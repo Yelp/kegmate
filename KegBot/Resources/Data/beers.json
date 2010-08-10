@@ -1,0 +1,26 @@
+// NOTE: This is temporary until the Admin section is built out
+[{ 
+  "id": "Racer5",
+  "name": "Racer 5",
+  "info": "This hoppy American IPA is a full bodied beer brewed American pale and crystal malts, and heavily hopped with Chinook, Cascade, Columbus and Centennial.",
+  "type": "Pale Ale",
+  "country": "US",
+  "image": "Racer_5.gif",
+  "abv": 7.0
+}, {
+  "id": "StBernardusTripel",
+  "name": "St. Bernardus Tripel",
+  "info": "Pale amber colour and a flowery, fruity taste with a harmonious balance between sweet and sour.",
+  "type": "Tripel",
+  "country": "Belgium",
+  "image": "St_Bernardus_Tripel.png",
+  "abv": 8.0
+}, {
+  "id": "StellaArtois",
+  "name": "Stella Artois",
+  "info": "Bottom-fermented pilsner lager, making up almost 75% of Belgian beer production.",
+  "type": "Lager",
+  "country": "Belgium",
+  "image": "Stella_Artois.png",
+  "abv": 5.0
+}]

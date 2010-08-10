@@ -1,0 +1,10 @@
+// NOTE: This is temporary until the Admin section is built out
+// Currently only supporting 1 keg at a time
+// If you are changing a keg, then change the id
+// Select the keg id in the Admin view
+[{
+  "id": "Keg1",
+  "beer_id": "StBernardusTripel", // Should match a beer id (beers.json)
+  "volume_adjusted": 15, // Volume in liters to adjust (subtract) the keg volume; This value with poured value and total value determines how much is remaining
+  "volume_total": 58.67 // Volume in liters of full keg
+}]

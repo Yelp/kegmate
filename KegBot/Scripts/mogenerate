@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# See http://github.com/rentzsch/mogenerator
+
+mogenerator --model KegBot.xcdatamodeld/KegBot.xcdatamodel && mv _*.m _*.h ../Classes/Models/ && rm *.m *.h

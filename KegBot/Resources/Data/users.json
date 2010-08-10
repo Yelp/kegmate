@@ -1,0 +1,17 @@
+// NOTE: This is temporary until the Admin section is built out
+[{
+  "rfid": "29009426DC47",
+  "display_name": "Gabriel H."
+}, {
+  "rfid": "2900942371EF",
+  "display_name": "John B."
+}, {
+  "rfid": "29009433E16F",
+  "display_name": "Jeff M."
+}, {
+  "rfid": "29009401239F",
+  "display_name": "Julien R."
+}, {
+  "rfid": "29009425D24A",
+  "display_name": "Alex D."
+}]

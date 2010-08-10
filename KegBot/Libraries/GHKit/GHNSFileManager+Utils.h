@@ -1,0 +1,84 @@
+//
+//  GHNSFileManager+Utils.h
+//
+//  Created by Gabe on 3/23/08.
+//  Copyright 2008 Gabriel Handford
+//
+//  Permission is hereby granted, free of charge, to any person
+//  obtaining a copy of this software and associated documentation
+//  files (the "Software"), to deal in the Software without
+//  restriction, including without limitation the rights to use,
+//  copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following
+//  conditions:
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
+//
+
+@interface NSFileManager (GHUtils)
+
+/*!
+ @method gh_fileSize
+ @abstract Get size of file
+ @param filePath Path
+ @result File size
+ */
++ (NSNumber *)gh_fileSize:(NSString *)filePath error:(NSError **)error;
+
+/*!
+ @method gh_isDirectory
+ @param filePath Path
+ @abstract Check if is directory
+ @result YES if directory, NO otherwise
+ */
++ (BOOL)gh_isDirectory:(NSString *)filePath;
+
+/*!
+ @method gh_exist 
+ @param filePath Path
+ @result YES if exists, NO otherwise
+ */
++ (BOOL)gh_exist:(NSString *)filePath;
+
+/*!
+ @method gh_temporaryFile
+ @abstract Get path to temporary file
+ @param appendPath Path to append to temporary directory name, if not nil
+ @param deleteIfExists Will delete existing file if it is in the way
+ @param error If not nil, will be set if an error occurs
+ @result Path for temporary file
+ */
++ (NSString *)gh_temporaryFile:(NSString *)appendPath deleteIfExists:(BOOL)deleteIfExists error:(NSError **)error;
+
+/*!
+ @method gh_uniquePathWithNumber
+ @abstract Get unique filename based on the specified path. If file does not already exist, the same object is returned. 
+ Example: foo.txt and that path already exists, will return foo-1.txt, and if that exists foo-2.txt, and so on...  
+ */
++ (NSString *)gh_uniquePathWithNumber:(NSString *)path;
+
+/*!
+ Ensure directory exists.
+ @param directory
+ @param error If not nil, will set if error occurs
+ @result YES If directory exists or was created
+ */
++ (BOOL)gh_ensureDirectoryExists:(NSString *)directory created:(BOOL *)created error:(NSError **)error;
+
+/*!
+ Path to resource in bundle.
+ */
++ (NSString *)gh_pathToResource:(NSString *)path;
+
+@end
