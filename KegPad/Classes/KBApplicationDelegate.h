@@ -1,8 +1,8 @@
 //
-//  KBKegBotApplication.h
-//  KegBot
+//  KBApplicationDelegate.h
+//  KegPad
 //
-//  Created by Gabriel Handford on 8/9/10.
+//  Created by Gabriel Handford on 7/28/10.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,24 +19,33 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+#import "KBDisplayViewController.h"
+#import "KBStatusViewController.h"
 #import "KBKegProcessor.h"
-
-@protocol KBKegBotApplicationDelegate <UIApplicationDelegate>
-- (KBKegProcessor *)kegProcessor;
-- (void)playSystemSoundGlass;
-@end
+#import "KBApplication.h"
+#import <AudioToolbox/AudioServices.h>
 
 /*!
- Main application instance, provides access to shared instances via KBKegBotApplicationDelegate.
+ Main application delegate.
  */
-@interface KBKegBotApplication : UIApplication { }
+@interface KBApplicationDelegate : NSObject <KBApplicationDelegate> {    
+  UIWindow *window_;    
+  
+  KBDataStore *store_;
 
-+ (NSObject<KBKegBotApplicationDelegate> *)sharedDelegate;
+  UINavigationController *navigationController_;
+  KBDisplayViewController *displayViewController_;
+  KBStatusViewController *statusViewController_;
+  
+  SystemSoundID systemSounds_[1];
+  
+  KBKegProcessor *kegProcessor_;
+}
 
-+ (void)setSharedDelegate:(NSObject<KBKegBotApplicationDelegate> *)sharedDelegate;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, readonly) KBKegProcessor *kegProcessor;
 
-+ (KBKegProcessor *)kegProcessor;
-
-+ (KBDataStore *)dataStore;
+- (void)setKeg:(KBKeg *)keg;
 
 @end
+

@@ -1,6 +1,6 @@
 //
 //  KBKegboard.h
-//  KegBot
+//  KegPad
 //
 //  Created by John Boiles on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  KBAdminViewController.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -22,7 +22,7 @@
 #import "KBAdminViewController.h"
 
 #import "KBDataStore.h"
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 #import "KBDataImporter.h"
 #import "KBUIAction.h"
 
@@ -94,7 +94,7 @@
 
 
 - (void)simulateInputs {  
-  [[KBKegBotApplication kegProcessor] simulateInputs];
+  [[KBApplication kegProcessor] simulateInputs];
   [self dismissModalViewControllerAnimated:YES];
 }
 

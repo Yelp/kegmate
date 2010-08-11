@@ -1,6 +1,6 @@
 //
 //  KBDisplayViewController.h
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -27,7 +27,7 @@
 #import "KBRatingPicker.h"
 
 /*!
- Main display for KegBot.
+ Main display for KegPad.
  Loads via KBDisplayViewController.xib.
  */
 @interface KBDisplayViewController : UIViewController {

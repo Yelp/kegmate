@@ -1,6 +1,6 @@
 //
 //  KBBeersViewController.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -22,7 +22,7 @@
 #import "KBBeersViewController.h"
 #import "KBDataStore.h"
 #import "KBBeer.h"
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
 @implementation KBBeersViewController
 
@@ -35,7 +35,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBBeer" inManagedObjectContext:[[KBKegBotApplication dataStore] managedObjectContext]]];
+  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBBeer" inManagedObjectContext:[[KBApplication dataStore] managedObjectContext]]];
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
   [fetchRequest setSortDescriptors:sortDescriptors];
@@ -43,7 +43,7 @@
   [sortDescriptor release];
 
   NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                  managedObjectContext:[[KBKegBotApplication dataStore] managedObjectContext]
+                                                                  managedObjectContext:[[KBApplication dataStore] managedObjectContext]
                                                                     sectionNameKeyPath:nil
                                                                              cacheName:@"KBBeersViewController"];
   [fetchRequest release];

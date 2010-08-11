@@ -1,6 +1,6 @@
 //
 //  KBChalkLabel.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.

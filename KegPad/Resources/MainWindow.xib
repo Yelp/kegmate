@@ -132,7 +132,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAxH+AAA</bytes>
 					</object>
-					<string>KBKegBotApplicationDelegate</string>
+					<string>KBApplicationDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -158,7 +158,7 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">KBKegBotApplicationDelegate</string>
+					<string key="className">KBApplicationDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">window</string>
@@ -173,7 +173,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/KBKegBotApplicationDelegate.h</string>
+						<string key="minorKey">Classes/KBApplicationDelegate.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -448,7 +448,7 @@
 			<integer value="3100" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../KegBot.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../KegPad.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<string key="IBCocoaTouchPluginVersion">123</string>
 	</data>

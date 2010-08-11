@@ -1,6 +1,6 @@
 //
 //  KBStatusViewController.h
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/30/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -26,7 +26,7 @@
 #import "KBLeaderboardView.h"
 
 /*!
- Status (back) display for KegBot.
+ Status (back) display for KegPad.
  Loads via KBStatusViewController.xib.
  */
 @interface KBStatusViewController : UIViewController {

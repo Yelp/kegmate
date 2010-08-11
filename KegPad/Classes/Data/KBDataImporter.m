@@ -1,6 +1,6 @@
 //
 //  KBDataImporter.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -21,7 +21,7 @@
 
 #import "KBDataImporter.h"
 
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
 #import "YAJL.h"
 #import "GHNSBundle+Utils.h"

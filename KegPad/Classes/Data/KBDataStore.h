@@ -1,6 +1,6 @@
 //
 //  KBDataStore.h
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/28/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -31,7 +31,9 @@
 } while(0)
 
 
-
+/*!
+ Main data store (CoreData).
+ */
 @interface KBDataStore : NSObject {
   
 @private

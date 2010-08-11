@@ -1,6 +1,6 @@
 //
 //  KBChartView.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -25,7 +25,7 @@
 #import "KBDataStore.h"
 #import "KBKegPour.h"
 #import "KBNotifications.h"
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
 @implementation KBChartView
 
@@ -86,7 +86,7 @@
 }
 
 - (void)recompute {
-  NSArray *kegPours = [[KBKegBotApplication dataStore] recentKegPours:20 ascending:NO error:nil];
+  NSArray *kegPours = [[KBApplication dataStore] recentKegPours:20 ascending:NO error:nil];
   
   if (!kegPourRates_)
     kegPourRates_ = [[NSMutableArray alloc] initWithCapacity:[kegPours count]];

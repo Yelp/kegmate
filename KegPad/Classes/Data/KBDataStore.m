@@ -1,6 +1,6 @@
 //
 //  KBDataStore.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/28/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -57,7 +57,7 @@
 
 - (NSManagedObjectModel *)managedObjectModel {  
   if (managedObjectModel_) return managedObjectModel_;
-  NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"KegBot" ofType:@"momd"];
+  NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"KegPad" ofType:@"momd"];
   NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
   managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
   return managedObjectModel_;
@@ -67,7 +67,7 @@
   
   if (persistentStoreCoordinator_) return persistentStoreCoordinator_;
   
-  NSString *path = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"KegBot.sqlite"];
+  NSString *path = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"KegPad.sqlite"];
   NSLog(@"Path: %@", path);
   NSURL *storeURL = [NSURL fileURLWithPath:path];
   

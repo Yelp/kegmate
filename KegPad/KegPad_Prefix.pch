@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'KegBot' target in the 'KegBot' project
+// Prefix header for all source files of the 'KegPad' target in the 'KegPad' project
 //
 #import <Availability.h>
 

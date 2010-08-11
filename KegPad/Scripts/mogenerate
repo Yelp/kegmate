@@ -2,4 +2,4 @@
 
 # See http://github.com/rentzsch/mogenerator
 
-mogenerator --model KegBot.xcdatamodeld/KegBot.xcdatamodel && mv _*.m _*.h ../Classes/Models/ && rm *.m *.h
+mogenerator --model KegPad.xcdatamodeld/KegPad.xcdatamodel && mv _*.m _*.h ../Classes/Models/ && rm *.m *.h

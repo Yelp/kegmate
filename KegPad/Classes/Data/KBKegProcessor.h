@@ -1,6 +1,6 @@
 //
 //  KBKegProcessor.h
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -23,11 +23,15 @@
 #import "KBUser.h"
 #import "KBDataStore.h"
 
+/*!
+ Interfaces to keg processing and the data store; Keeps track of current user, pouring status,
+ and triggering all the notifications.
+ */
 @interface KBKegProcessor : NSObject <KBKegProcessingDelegate> {
 
   KBUser *currentUser_;
-  NSDate *currentUserDate_;
-  BOOL pouring_;  
+  NSDate *currentUserDate_; // When the current user began
+  BOOL pouring_; // YES if we are currently pouring
   
   KBKegProcessing *processing_;
   

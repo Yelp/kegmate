@@ -1,6 +1,6 @@
 //
-//  KBKegBotApplication.m
-//  KegBot
+//  KBApplication.m
+//  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -19,22 +19,22 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
-@implementation KBKegBotApplication
+@implementation KBApplication
 
 @dynamic delegate;
 
-static NSObject<KBKegBotApplicationDelegate> *KBKegBotApplicationSharedDelegate = NULL;
+static NSObject<KBApplicationDelegate> *KBApplicationSharedDelegate = NULL;
 
-+ (NSObject<KBKegBotApplicationDelegate> *)sharedDelegate {
-  if (KBKegBotApplicationSharedDelegate != NULL) return KBKegBotApplicationSharedDelegate; // For overriding shared delegate (in tests)
-  return (NSObject<KBKegBotApplicationDelegate> *)[self sharedApplication].delegate;
++ (NSObject<KBApplicationDelegate> *)sharedDelegate {
+  if (KBApplicationSharedDelegate != NULL) return KBApplicationSharedDelegate; // For overriding shared delegate (in tests)
+  return (NSObject<KBApplicationDelegate> *)[self sharedApplication].delegate;
 }
 
-+ (void)setSharedDelegate:(NSObject<KBKegBotApplicationDelegate> *)sharedDelegate {
-  [KBKegBotApplicationSharedDelegate release];
-  KBKegBotApplicationSharedDelegate = [sharedDelegate retain];
++ (void)setSharedDelegate:(NSObject<KBApplicationDelegate> *)sharedDelegate {
+  [KBApplicationSharedDelegate release];
+  KBApplicationSharedDelegate = [sharedDelegate retain];
 }
 
 // Shortcuts to application delegate methods

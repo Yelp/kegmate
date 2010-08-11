@@ -1,6 +1,6 @@
 //
 //  KBImageView.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/30/10.
 //  Copyright 2010 Yelp. All rights reserved.

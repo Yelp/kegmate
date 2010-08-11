@@ -1,6 +1,6 @@
 //
 //  KBKegsViewController.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -23,7 +23,7 @@
 #import "KBDataStore.h"
 #import "KBKeg.h"
 #import "KBBeer.h"
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
 @implementation KBKegsViewController
 
@@ -41,7 +41,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBKeg" inManagedObjectContext:[[KBKegBotApplication dataStore] managedObjectContext]]];
+  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBKeg" inManagedObjectContext:[[KBApplication dataStore] managedObjectContext]]];
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
   [fetchRequest setSortDescriptors:sortDescriptors];
@@ -49,7 +49,7 @@
   [sortDescriptor release];
   
   NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                  managedObjectContext:[[KBKegBotApplication dataStore] managedObjectContext]
+                                                                  managedObjectContext:[[KBApplication dataStore] managedObjectContext]
                                                                     sectionNameKeyPath:nil
                                                                              cacheName:@"KBKegsViewController"];
   [fetchRequest release];
@@ -60,7 +60,7 @@
   cell.textLabel.text = [NSString stringWithFormat:@"Keg: %@", [[obj beer] name]];
   cell.detailTextLabel.text = [[obj dateCreated] description];
   
-  KBKeg *keg = [[KBKegBotApplication dataStore] kegAtPosition:0];
+  KBKeg *keg = [[KBApplication dataStore] kegAtPosition:0];
   if ([keg isEqual:obj]) {
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
   } else {
@@ -73,7 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
   KBKeg *keg = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-  [[KBKegBotApplication dataStore] setKeg:keg position:0];
+  [[KBApplication dataStore] setKeg:keg position:0];
   [self.tableView reloadData];
 }
 

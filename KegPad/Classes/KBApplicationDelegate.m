@@ -1,6 +1,6 @@
 //
-//  KBKegBotApplicationDelegate.m
-//  KegBot
+//  KBApplicationDelegate.m
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/28/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -19,12 +19,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBKegBotApplicationDelegate.h"
+#import "KBApplicationDelegate.h"
 
 #import "KBNotifications.h"
 #import "KBDataImporter.h"
 
-@implementation KBKegBotApplicationDelegate
+@implementation KBApplicationDelegate
 
 @synthesize window=window_, kegProcessor=kegProcessor_;
 
@@ -111,7 +111,7 @@
   [displayViewController_ setKegTemperature:nil]; // TODO(gabe): Load last temperature
   
   [statusViewController_ updateKeg:keg];
-  [statusViewController_ setLastKegPour:[[KBKegBotApplication dataStore] lastPour:nil]];  
+  [statusViewController_ setLastKegPour:[[KBApplication dataStore] lastPour:nil]];  
   [statusViewController_ setKegTemperature:nil]; // TODO(gabe): Load last temperature
   [statusViewController_ updateLeaderboard];  
   [statusViewController_ updateChart];

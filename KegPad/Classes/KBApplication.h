@@ -1,8 +1,8 @@
 //
-//  KBKegTemperature.m
+//  KBApplication.h
 //  KegPad
 //
-//  Created by Gabriel Handford on 7/29/10.
+//  Created by Gabriel Handford on 8/9/10.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,20 +19,24 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-//
-// Use Scripts/mogenerate to regenerate core-data backed files
-//
+#import "KBKegProcessor.h"
 
-#import "_KBKegTemperature.h"
+@protocol KBApplicationDelegate <UIApplicationDelegate>
+- (KBKegProcessor *)kegProcessor;
+- (void)playSystemSoundGlass;
+@end
 
-@interface KBKegTemperature : _KBKegTemperature {}
+/*!
+ Main application instance, provides access to shared instances via KBApplicationDelegate.
+ */
+@interface KBApplication : UIApplication { }
 
-- (NSString *)thermometerDescription;
++ (NSObject<KBApplicationDelegate> *)sharedDelegate;
 
-- (NSString *)statusDescription;
++ (void)setSharedDelegate:(NSObject<KBApplicationDelegate> *)sharedDelegate;
 
-+ (float)min;
++ (KBKegProcessor *)kegProcessor;
 
-+ (float)max;
++ (KBDataStore *)dataStore;
 
 @end

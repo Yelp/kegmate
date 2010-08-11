@@ -1,6 +1,6 @@
 //
 //  KBDataImporter.h
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
 //  Copyright 2010 Yelp. All rights reserved.

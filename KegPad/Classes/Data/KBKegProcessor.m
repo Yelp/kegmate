@@ -1,6 +1,6 @@
 //
 //  KBKegProcessor.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -22,7 +22,7 @@
 #import "KBKegProcessor.h"
 
 #import "KBNotifications.h"
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
 @implementation KBKegProcessor
 
@@ -101,7 +101,7 @@
   // TODO(johnb): tagId is coming in with some giberish
   tagId = [tagId gh_strip];
   self.currentUser = (tagId ? [dataStore_ userWithRFID:tagId error:nil] : nil);
-  [[KBKegBotApplication sharedDelegate] playSystemSoundGlass];
+  [[KBApplication sharedDelegate] playSystemSoundGlass];
   NSLog(@"RFID=%@, currentUser=%@", tagId, self.currentUser);
 }
 

@@ -1,6 +1,6 @@
 //
 //  KBStatusViewController.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/30/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -24,7 +24,7 @@
 #import "KBNotifications.h"
 
 #import "KBDataStore.h"
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
 @implementation KBStatusViewController
 
@@ -66,7 +66,7 @@ chartView=chartView_, leaderboardView=leaderboardView_;
 }
 
 - (void)updateLeaderboard {
-  [leaderboardView_ setUsers:[[KBKegBotApplication dataStore] topUsersByPourWithOffset:0 limit:6 error:nil]];
+  [leaderboardView_ setUsers:[[KBApplication dataStore] topUsersByPourWithOffset:0 limit:6 error:nil]];
 }
 
 - (void)updateChart {

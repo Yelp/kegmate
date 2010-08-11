@@ -1,6 +1,6 @@
 //
 //  KBDisplayViewController.m
-//  KegBot
+//  KegPad
 //
 //  Created by Gabriel Handford on 7/29/10.
 //  Copyright 2010 Yelp. All rights reserved.
@@ -23,7 +23,7 @@
 
 #import "KBDataStore.h"
 #import "KBNotifications.h"
-#import "KBKegBotApplication.h"
+#import "KBApplication.h"
 
 @implementation KBDisplayViewController
 
@@ -99,7 +99,7 @@ tempDescriptionLabel=tempDescriptionLabel_, chalkCircleView=chalkCircleView_, re
 }
 
 - (void)updateRecentPours {
-  [recentPoursView_ setRecentPours:[[KBKegBotApplication dataStore] recentKegPours:6 ascending:NO error:nil]];
+  [recentPoursView_ setRecentPours:[[KBApplication dataStore] recentKegPours:6 ascending:NO error:nil]];
 }
 
 - (void)_stopAnimationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
