@@ -44,15 +44,16 @@
 		0017BD12120279E200269CDA /* GHNSString+UIKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF4120279E200269CDA /* GHNSString+UIKitUtils.m */; };
 		0017BD13120279E200269CDA /* GHUIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF6120279E200269CDA /* GHUIColor+Utils.m */; };
 		0017BD14120279E200269CDA /* GHNSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */; };
+		002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F095F12263EE300766D62 /* YAJLIOS.framework */; };
 		008FED101201F0E900BA5D07 /* KBBeerMovieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */; };
 		008FED1C1201F2F600BA5D07 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */; };
 		008FEDB01201F9B600BA5D07 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */; };
 		008FEDB41201F9C400BA5D07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDB31201F9C400BA5D07 /* QuartzCore.framework */; };
+		00C02581121351E60020483D /* KBApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257D121351E60020483D /* KBApplicationDelegate.m */; };
+		00C02582121351E60020483D /* KBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257F121351E60020483D /* KBApplication.m */; };
 		00C1135112110639009C9B51 /* KBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1135012110639009C9B51 /* KBDataStore.m */; };
 		00C113541211064A009C9B51 /* KBDataImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C113531211064A009C9B51 /* KBDataImporter.m */; };
 		00C1136112110A70009C9B51 /* KBKegProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1136012110A70009C9B51 /* KBKegProcessor.m */; };
-		00C1136812110D51009C9B51 /* KBKegPadApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1136712110D51009C9B51 /* KBKegPadApplication.m */; };
-		00C113E11211154C009C9B51 /* libYAJLIPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C113D81211154C009C9B51 /* libYAJLIPhone.a */; };
 		00C1144312111A1B009C9B51 /* beers.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C113C71211121B009C9B51 /* beers.json */; };
 		00C1144412111A1C009C9B51 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C113F1121116CC009C9B51 /* users.json */; };
 		00C1147712111B75009C9B51 /* KBAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1147212111B75009C9B51 /* KBAdminViewController.m */; };
@@ -98,7 +99,6 @@
 		00DDE97F12037D1000B24BA5 /* home_wood_beer.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DDE97D12037D1000B24BA5 /* home_wood_beer.png */; };
 		00DDE98F12037E3600B24BA5 /* KBLeaderboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */; };
 		00EB4879120387DD00991768 /* controls_literboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EB4878120387DD00991768 /* controls_literboard_bg.png */; };
-		1D3623260D0F684500981E51 /* KBKegPadApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KBKegPadApplicationDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -194,29 +194,23 @@
 		0017BCF6120279E200269CDA /* GHUIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHUIColor+Utils.m"; sourceTree = "<group>"; };
 		0017BCF8120279E200269CDA /* GHNSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSObject+Swizzle.h"; sourceTree = "<group>"; };
 		0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSObject+Swizzle.m"; sourceTree = "<group>"; };
+		002F095F12263EE300766D62 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
 		008FED0E1201F0E900BA5D07 /* KBBeerMovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerMovieView.h; sourceTree = "<group>"; };
 		008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerMovieView.m; sourceTree = "<group>"; };
 		008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		008FEDB31201F9C400BA5D07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		00C0257D121351E60020483D /* KBApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBApplicationDelegate.m; sourceTree = "<group>"; };
+		00C0257E121351E60020483D /* KBApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBApplicationDelegate.h; sourceTree = "<group>"; };
+		00C0257F121351E60020483D /* KBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBApplication.m; sourceTree = "<group>"; };
+		00C02580121351E60020483D /* KBApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBApplication.h; sourceTree = "<group>"; };
 		00C1134F12110639009C9B51 /* KBDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDataStore.h; sourceTree = "<group>"; };
 		00C1135012110639009C9B51 /* KBDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDataStore.m; sourceTree = "<group>"; };
 		00C113521211064A009C9B51 /* KBDataImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDataImporter.h; sourceTree = "<group>"; };
 		00C113531211064A009C9B51 /* KBDataImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDataImporter.m; sourceTree = "<group>"; };
 		00C1135F12110A70009C9B51 /* KBKegProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegProcessor.h; sourceTree = "<group>"; };
 		00C1136012110A70009C9B51 /* KBKegProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegProcessor.m; sourceTree = "<group>"; };
-		00C1136612110D51009C9B51 /* KBKegPadApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegPadApplication.h; sourceTree = "<group>"; };
-		00C1136712110D51009C9B51 /* KBKegPadApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegPadApplication.m; sourceTree = "<group>"; };
 		00C113C71211121B009C9B51 /* beers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = beers.json; sourceTree = "<group>"; };
-		00C113D81211154C009C9B51 /* libYAJLIPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYAJLIPhone.a; sourceTree = "<group>"; };
-		00C113D91211154C009C9B51 /* NSObject+YAJL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YAJL.h"; sourceTree = "<group>"; };
-		00C113DA1211154C009C9B51 /* YAJL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAJL.h; sourceTree = "<group>"; };
-		00C113DB1211154C009C9B51 /* yajl_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_common.h; sourceTree = "<group>"; };
-		00C113DC1211154C009C9B51 /* yajl_gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_gen.h; sourceTree = "<group>"; };
-		00C113DD1211154C009C9B51 /* yajl_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parse.h; sourceTree = "<group>"; };
-		00C113DE1211154C009C9B51 /* YAJLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAJLDocument.h; sourceTree = "<group>"; };
-		00C113DF1211154C009C9B51 /* YAJLGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAJLGen.h; sourceTree = "<group>"; };
-		00C113E01211154C009C9B51 /* YAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAJLParser.h; sourceTree = "<group>"; };
 		00C113F1121116CC009C9B51 /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.json; sourceTree = "<group>"; };
 		00C1147112111B75009C9B51 /* KBAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBAdminViewController.h; sourceTree = "<group>"; };
 		00C1147212111B75009C9B51 /* KBAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBAdminViewController.m; sourceTree = "<group>"; };
@@ -282,8 +276,6 @@
 		00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBLeaderboardView.m; sourceTree = "<group>"; };
 		00EB4878120387DD00991768 /* controls_literboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_literboard_bg.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* KBKegPadApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegPadApplicationDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* KBKegPadApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegPadApplicationDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* KegPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KegPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -321,7 +313,7 @@
 				008FEDB01201F9B600BA5D07 /* CoreFoundation.framework in Frameworks */,
 				008FEDB41201F9C400BA5D07 /* QuartzCore.framework in Frameworks */,
 				429B08EE1202FF5300C36F76 /* AudioToolbox.framework in Frameworks */,
-				00C113E11211154C009C9B51 /* libYAJLIPhone.a in Frameworks */,
+				002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +370,7 @@
 		0017BCBE120279E200269CDA /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				00C113D71211154C009C9B51 /* YAJL */,
+				002F095F12263EE300766D62 /* YAJLIOS.framework */,
 				00DDE7421203558200B24BA5 /* s7graphview */,
 				0017BCBF120279E200269CDA /* GHKit */,
 			);
@@ -537,22 +529,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		00C113D71211154C009C9B51 /* YAJL */ = {
-			isa = PBXGroup;
-			children = (
-				00C113D81211154C009C9B51 /* libYAJLIPhone.a */,
-				00C113D91211154C009C9B51 /* NSObject+YAJL.h */,
-				00C113DA1211154C009C9B51 /* YAJL.h */,
-				00C113DB1211154C009C9B51 /* yajl_common.h */,
-				00C113DC1211154C009C9B51 /* yajl_gen.h */,
-				00C113DD1211154C009C9B51 /* yajl_parse.h */,
-				00C113DE1211154C009C9B51 /* YAJLDocument.h */,
-				00C113DF1211154C009C9B51 /* YAJLGen.h */,
-				00C113E01211154C009C9B51 /* YAJLParser.h */,
-			);
-			path = YAJL;
-			sourceTree = "<group>";
-		};
 		00C1147012111B75009C9B51 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,10 +604,10 @@
 				008FED0D1201F0DC00BA5D07 /* Views */,
 				008FED091201F0BE00BA5D07 /* Models */,
 				00C1134E12110639009C9B51 /* Data */,
-				1D3623240D0F684500981E51 /* KBKegPadApplicationDelegate.h */,
-				1D3623250D0F684500981E51 /* KBKegPadApplicationDelegate.m */,
-				00C1136612110D51009C9B51 /* KBKegPadApplication.h */,
-				00C1136712110D51009C9B51 /* KBKegPadApplication.m */,
+				00C0257E121351E60020483D /* KBApplicationDelegate.h */,
+				00C0257D121351E60020483D /* KBApplicationDelegate.m */,
+				00C02580121351E60020483D /* KBApplication.h */,
+				00C0257F121351E60020483D /* KBApplication.m */,
 				0017B8C912022CDD00269CDA /* KBNotifications.h */,
 				0017B8CA12022CDD00269CDA /* KBNotifications.m */,
 			);
@@ -818,7 +794,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* KBKegPadApplicationDelegate.m in Sources */,
 				28193055112F811F00ECF9B4 /* KegPad.xcdatamodeld in Sources */,
 				008FED101201F0E900BA5D07 /* KBBeerMovieView.m in Sources */,
 				0017B750120208F700269CDA /* KBKeg.m in Sources */,
@@ -874,13 +849,14 @@
 				00C1135112110639009C9B51 /* KBDataStore.m in Sources */,
 				00C113541211064A009C9B51 /* KBDataImporter.m in Sources */,
 				00C1136112110A70009C9B51 /* KBKegProcessor.m in Sources */,
-				00C1136812110D51009C9B51 /* KBKegPadApplication.m in Sources */,
 				00C1147712111B75009C9B51 /* KBAdminViewController.m in Sources */,
 				00C1147812111B75009C9B51 /* KBBeersViewController.m in Sources */,
 				00C1147912111B75009C9B51 /* KBKegsViewController.m in Sources */,
 				00C1147E12111C7B009C9B51 /* KBUIAction.m in Sources */,
 				00C114AD121121BA009C9B51 /* KBFetchedResultsViewController.m in Sources */,
 				00C114EF1211297D009C9B51 /* KBUsersViewController.m in Sources */,
+				00C02581121351E60020483D /* KBApplicationDelegate.m in Sources */,
+				00C02582121351E60020483D /* KBApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,15 +868,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KegPad_Prefix.pch;
 				INFOPLIST_FILE = "KegPad-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Libraries/YAJL\"",
-				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -914,6 +890,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KegPad_Prefix.pch;
 				INFOPLIST_FILE = "KegPad-Info.plist";

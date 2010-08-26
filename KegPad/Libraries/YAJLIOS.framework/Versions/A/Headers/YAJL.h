@@ -31,3 +31,4 @@
 #import "YAJLDocument.h"
 #import "YAJLGen.h"
 #import "NSObject+YAJL.h"
+#import "NSBundle+YAJL.h"

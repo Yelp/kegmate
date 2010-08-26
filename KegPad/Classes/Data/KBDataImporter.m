@@ -23,23 +23,15 @@
 
 #import "KBApplication.h"
 
-#import "YAJL.h"
+#import <YAJLIOS/YAJLIOS.h>
 #import "GHNSBundle+Utils.h"
 #import "GHNSDictionary+NSNull.h"
 
 @implementation KBDataImporter
 
-- (id)JSONFromResource:(NSString *)resource {
-  NSLog(@"Parsing resource: %@", resource);
-  NSError *error = nil;
-  id JSONValue = [[[NSBundle mainBundle] gh_loadStringDataFromResource:resource] yajl_JSONWithOptions:YAJLParserOptionsAllowComments error:&error];
-  if (error) [NSException raise:NSGenericException format:[error localizedDescription], nil];
-  return JSONValue;
-}
-
 - (void)updateUsersInDataStore:(KBDataStore *)dataStore {
   NSError *error = nil;
-  NSArray *users = [self JSONFromResource:@"users.json"];
+  NSArray *users = [[NSBundle mainBundle] yajl_JSONFromResource:@"users.json"];
   for (NSDictionary *user in users) {
     [dataStore addOrUpdateUserWithRFID:[user gh_objectMaybeNilForKey:@"rfid"]
                            displayName:[user gh_objectMaybeNilForKey:@"display_name"]
@@ -50,7 +42,7 @@
 
 - (void)updateBeersInDataStore:(KBDataStore *)dataStore {
   NSError *error = nil;
-  NSArray *beers = [self JSONFromResource:@"beers.json"];
+  NSArray *beers = [[NSBundle mainBundle] yajl_JSONFromResource:@"beers.json"];
   for (NSDictionary *beer in beers) {
     [dataStore updateBeerWithId:[beer gh_objectMaybeNilForKey:@"id"]
                            name:[beer gh_objectMaybeNilForKey:@"name"]
@@ -66,7 +58,7 @@
 
 - (void)updateKegsInDataStore:(KBDataStore *)dataStore {
   NSError *error = nil;
-  NSArray *kegs = [self JSONFromResource:@"kegs.json"];
+  NSArray *kegs = [[NSBundle mainBundle] yajl_JSONFromResource:@"kegs.json"];
   NSLog(@"kegs=%@", kegs);
   for (NSDictionary *keg in kegs) {
     NSString *beerId = [keg gh_objectMaybeNilForKey:@"beer_id"];
