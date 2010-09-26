@@ -52,7 +52,7 @@
 #include "KegboardPacket.h"
 #include "version.h"
 
-#if KB_ENABLE_RFID
+#if KB_ENABLE_ID12
 #include "NewSoftSerial.h"
 #endif
 
@@ -68,6 +68,10 @@
 #include <SoftwareSerial.h>
 SoftwareSerial gSerialLcd = SoftwareSerial(KB_PIN_SERIAL_LCD_RX,
     KB_PIN_SERIAL_LCD_TX);
+#endif
+
+#if KB_ENABLE_MAGSTRIPE
+#include "MagStripe.h"
 #endif
 
 //
@@ -148,8 +152,12 @@ static DS1820Sensor gThermoSensor;
 static OneWire gOnewireIdBus(KB_PIN_ONEWIRE_PRESENCE);
 #endif
 
-#if KB_ENABLE_RFID
-static NewSoftSerial mySerial(KB_PIN_RFID, KB_PIN_RFID + 1);
+#if KB_ENABLE_ID12
+static NewSoftSerial gID12Serial(KB_PIN_ID12, KB_PIN_ID12 + 1);
+#endif
+
+#if KB_ENABLE_MAGSTRIPE
+static MagStripe gMagStripe(KB_PIN_MAGSTRIPE_CLOCK, KB_PIN_MAGSTRIPE_DATA, KB_PIN_MAGSTRIPE_CARD_PRESENT);
 #endif
 
 //
@@ -167,6 +175,11 @@ void meterInterruptB()
   gMeters[1] += 1;
 }
 #endif
+
+void magStripeClockInterrupt()
+{
+  gMagStripe.clockData();
+}
 
 #ifdef KB_PIN_METER_C
 void meterInterruptC()
@@ -292,32 +305,51 @@ void writeAnalTempPacket(int channel)
 }
 #endif
 
-#if KB_ENABLE_RFID
-void writeRfidPacket()
+#if KB_ENABLE_ID12
+void writeID12Packet()
 {
   char name[5] = "rfid";
   name[4] = 0;
-  if (mySerial.available() < 16) {
+  if (gID12Serial.available() < 16) {
     return;
   }
   char buf[12];
   
-  mySerial.read(); // Should be STX (0x02)
+  gID12Serial.read(); // Should be STX (0x02)
   int i=0;
   for (i=0;i<12;i++) {
-    buf[i]=(char)mySerial.read();
+    buf[i]=(char)gID12Serial.read();
   }
   
   // TODO(johnb): Process CRC here and only send code if valid
   
-  mySerial.read(); // Should be CR
-  mySerial.read(); // Should be LF
-  mySerial.read(); // Should be ETX (0x03)
+  gID12Serial.read(); // Should be CR
+  gID12Serial.read(); // Should be LF
+  gID12Serial.read(); // Should be ETX (0x03)
 
   KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_RFID_STATUS);
-  packet.AddTag(KB_MESSAGE_TYPE_RFID_STATUS_TAG_METER_NAME, 5, name);
-  packet.AddTag(KB_MESSAGE_TYPE_RFID_STATUS_TAG_METER_READING, 12, buf);
+  packet.SetType(KB_MESSAGE_TYPE_ID12);
+  packet.AddTag(KB_MESSAGE_TYPE_ID12_READER_NAME, 5, name);
+  packet.AddTag(KB_MESSAGE_TYPE_ID12_TAG_ID, 12, buf);
+  packet.Print();
+}
+#endif
+
+#if KB_ENABLE_MAGSTRIPE
+void writeMagStripePacket()
+{
+  // Return if there is no data
+  char *data;
+  int dataSize = gMagStripe.getData(&data);
+  if (dataSize <= 0) return;
+
+  char name[10] = "magstripe";
+  name[9] = 0;
+  
+  KegboardPacket packet;
+  packet.SetType(KB_MESSAGE_TYPE_MAGSTRIPE);
+  packet.AddTag(KB_MESSAGE_TYPE_MAGSTRIPE_READER_NAME, 10, name);
+  packet.AddTag(KB_MESSAGE_TYPE_MAGSTRIPE_CARD_ID, dataSize, data);
   packet.Print();
 }
 #endif
@@ -423,11 +455,17 @@ void setup()
   gSerialLcd.print("Kegbot!");
 #endif
 
-#if KB_ENABLE_RFID
-mySerial.begin(9600);
+#if KB_ENABLE_ID12
+gID12Serial.begin(9600);
 #endif
 
-  writeHelloPacket();
+#if KB_ENABLE_MAGSTRIPE
+  attachInterrupt(1, magStripeClockInterrupt, FALLING);
+  pinMode(4, INPUT);
+  pinMode(5, INPUT);
+#endif
+
+writeHelloPacket();
 }
 
 void updateTimekeeping() {
@@ -731,8 +769,12 @@ void loop()
   stepOnewireThermoBus();
 #endif
 
-#if KB_ENABLE_RFID
-  writeRfidPacket();
+#if KB_ENABLE_ID12
+  writeID12Packet();
+#endif
+
+#if KB_ENABLE_MAGSTRIPE
+  writeMagStripePacket();
 #endif
 
 #if KB_ENABLE_ANALOG_TEMP

@@ -2,7 +2,7 @@
 // Feature configuration
 //
 
-// You may enable/disable kegboard features here as desired. The deafult are
+// You may enable/disable kegboard features here as desired. The default are
 // safe.
 
 // Check for & report 1-wire temperature sensors?
@@ -20,11 +20,16 @@
 // Enable serial LCD?
 #define KB_ENABLE_SERIAL_LCD 0
 
-// Enable RFID?
-#define KB_ENABLE_RFID 1
+// Enable ID12?
+#define KB_ENABLE_ID12 0
 
-// Enable RFID?
-#define KB_ENABLE_ANALOG_TEMP 1
+// Enable Analog?
+#define KB_ENABLE_ANALOG_TEMP 0
+
+// Enable MagStripe reader?
+// WARNING: MagStripe needs an input capture interrupt to work, but so does
+// KB_PIN_METER_B. Currently you cannot use meter b with MagStripe enabled
+#define KB_ENABLE_MAGSTRIPE 1
 
 //
 // Pin configuration
@@ -58,9 +63,13 @@
 #define KB_PIN_TEST_PULSE         12
 #define KB_PIN_ANALOG_TEMP        3
 // Sets this pin and the one after as NewSoftSerial port
-// TODO(johnb): Since we don't need TX to RFID, check and see if we can
+// TODO(johnb): Since we don't need TX to the ID12 RFID reader, check and see if we can
 // safely set the NewSoftSerial TX pin to 0
-#define KB_PIN_RFID               6
+#define KB_PIN_ID12               6
+// NOTE: Currently the MagStripe clock pin cannot be changed since it's tied to interrupt 1
+#define KB_PIN_MAGSTRIPE_CLOCK    3
+#define KB_PIN_MAGSTRIPE_DATA     5
+#define KB_PIN_MAGSTRIPE_CARD_PRESENT 4
 
 #define KB_PIN_SERIAL_LCD_TX 6
 #define KB_PIN_SERIAL_LCD_RX 10
