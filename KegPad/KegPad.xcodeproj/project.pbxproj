@@ -45,6 +45,12 @@
 		0017BD13120279E200269CDA /* GHUIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF6120279E200269CDA /* GHUIColor+Utils.m */; };
 		0017BD14120279E200269CDA /* GHNSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */; };
 		002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F095F12263EE300766D62 /* YAJLIOS.framework */; };
+		0075514D125043A400C5538C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075514B125043A400C5538C /* Icon-72.png */; };
+		0075514E125043A400C5538C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0075514C125043A400C5538C /* README */; };
+		007551521250493200C5538C /* beer_logged_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 007551511250493200C5538C /* beer_logged_in.png */; };
+		007551801250532600C5538C /* KBKegProcessorSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075517F1250532600C5538C /* KBKegProcessorSimulator.m */; };
+		007551851250554700C5538C /* KBSimulatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007551841250554700C5538C /* KBSimulatorViewController.m */; };
+		00755188125055B600C5538C /* KBActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00755187125055B600C5538C /* KBActionViewController.m */; };
 		008FED101201F0E900BA5D07 /* KBBeerMovieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */; };
 		008FED1C1201F2F600BA5D07 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */; };
 		008FEDB01201F9B600BA5D07 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */; };
@@ -95,8 +101,6 @@
 		00D54E601202DBD500F76724 /* top_gradient_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54E5F1202DBD500F76724 /* top_gradient_mask.png */; };
 		00D54F4E1202EC2300F76724 /* KBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D54F4D1202EC2300F76724 /* KBImageView.m */; };
 		00DDE7461203558200B24BA5 /* S7GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE7441203558200B24BA5 /* S7GraphView.m */; };
-		00DDE97E12037D1000B24BA5 /* home_wood_beer_loggedin.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DDE97C12037D1000B24BA5 /* home_wood_beer_loggedin.png */; };
-		00DDE97F12037D1000B24BA5 /* home_wood_beer.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DDE97D12037D1000B24BA5 /* home_wood_beer.png */; };
 		00DDE98F12037E3600B24BA5 /* KBLeaderboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */; };
 		00EB4879120387DD00991768 /* controls_literboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EB4878120387DD00991768 /* controls_literboard_bg.png */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -197,6 +201,15 @@
 		0017BCF8120279E200269CDA /* GHNSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSObject+Swizzle.h"; sourceTree = "<group>"; };
 		0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSObject+Swizzle.m"; sourceTree = "<group>"; };
 		002F095F12263EE300766D62 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
+		0075514B125043A400C5538C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		0075514C125043A400C5538C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		007551511250493200C5538C /* beer_logged_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_logged_in.png; sourceTree = "<group>"; };
+		0075517E1250532600C5538C /* KBKegProcessorSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegProcessorSimulator.h; sourceTree = "<group>"; };
+		0075517F1250532600C5538C /* KBKegProcessorSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegProcessorSimulator.m; sourceTree = "<group>"; };
+		007551831250554700C5538C /* KBSimulatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSimulatorViewController.h; sourceTree = "<group>"; };
+		007551841250554700C5538C /* KBSimulatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSimulatorViewController.m; sourceTree = "<group>"; };
+		00755186125055B600C5538C /* KBActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBActionViewController.h; sourceTree = "<group>"; };
+		00755187125055B600C5538C /* KBActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBActionViewController.m; sourceTree = "<group>"; };
 		008FED0E1201F0E900BA5D07 /* KBBeerMovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerMovieView.h; sourceTree = "<group>"; };
 		008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerMovieView.m; sourceTree = "<group>"; };
 		008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -272,8 +285,6 @@
 		00DDE7431203558200B24BA5 /* S7GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S7GraphView.h; sourceTree = "<group>"; };
 		00DDE7441203558200B24BA5 /* S7GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S7GraphView.m; sourceTree = "<group>"; };
 		00DDE7451203558200B24BA5 /* S7Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S7Macros.h; sourceTree = "<group>"; };
-		00DDE97C12037D1000B24BA5 /* home_wood_beer_loggedin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_wood_beer_loggedin.png; sourceTree = "<group>"; };
-		00DDE97D12037D1000B24BA5 /* home_wood_beer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_wood_beer.png; sourceTree = "<group>"; };
 		00DDE98D12037E3600B24BA5 /* KBLeaderboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBLeaderboardView.h; sourceTree = "<group>"; };
 		00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBLeaderboardView.m; sourceTree = "<group>"; };
 		00EB4878120387DD00991768 /* controls_literboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_literboard_bg.png; sourceTree = "<group>"; };
@@ -341,11 +352,11 @@
 		0017B91112022FE200269CDA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				007551511250493200C5538C /* beer_logged_in.png */,
+				00D54AAA1202887D00F76724 /* beer.png */,
 				00CD28961211DFC700DF808D /* chalk_bg.png */,
 				00CD28971211DFC700DF808D /* wood_bg.png */,
 				00EB4878120387DD00991768 /* controls_literboard_bg.png */,
-				00DDE97C12037D1000B24BA5 /* home_wood_beer_loggedin.png */,
-				00DDE97D12037D1000B24BA5 /* home_wood_beer.png */,
 				429B08DC1202FEEA00C36F76 /* Stars */,
 				00D54E5F1202DBD500F76724 /* top_gradient_mask.png */,
 				00D54CE21202BE2A00F76724 /* controls_graph_bg.png */,
@@ -357,7 +368,6 @@
 				00D54AFB1202918100F76724 /* whats_on_tap.png */,
 				00D54ACA12028ECE00F76724 /* BeerLogos */,
 				00D54AA91202887D00F76724 /* thermometer.png */,
-				00D54AAA1202887D00F76724 /* beer.png */,
 				00D54AAB1202887D00F76724 /* Test */,
 				00D54AAF1202887D00F76724 /* chalk_thermometer_circle.png */,
 			);
@@ -458,6 +468,15 @@
 			path = Swizzle;
 			sourceTree = "<group>";
 		};
+		0075514A125043A400C5538C /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				0075514B125043A400C5538C /* Icon-72.png */,
+				0075514C125043A400C5538C /* README */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		008FED091201F0BE00BA5D07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +540,8 @@
 				00C113531211064A009C9B51 /* KBDataImporter.m */,
 				00C1135F12110A70009C9B51 /* KBKegProcessor.h */,
 				00C1136012110A70009C9B51 /* KBKegProcessor.m */,
+				0075517E1250532600C5538C /* KBKegProcessorSimulator.h */,
+				0075517F1250532600C5538C /* KBKegProcessorSimulator.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -538,6 +559,8 @@
 		00C1147012111B75009C9B51 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				00755186125055B600C5538C /* KBActionViewController.h */,
+				00755187125055B600C5538C /* KBActionViewController.m */,
 				00C1147112111B75009C9B51 /* KBAdminViewController.h */,
 				00C1147212111B75009C9B51 /* KBAdminViewController.m */,
 				00C114AB121121BA009C9B51 /* KBFetchedResultsViewController.h */,
@@ -548,6 +571,8 @@
 				00C1147612111B75009C9B51 /* KBKegsViewController.m */,
 				00C114ED1211297D009C9B51 /* KBUsersViewController.h */,
 				00C114EE1211297D009C9B51 /* KBUsersViewController.m */,
+				007551831250554700C5538C /* KBSimulatorViewController.h */,
+				007551841250554700C5538C /* KBSimulatorViewController.m */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -658,6 +683,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0075514A125043A400C5538C /* Icons */,
 				00C113C612111212009C9B51 /* Data */,
 				429B08E91202FEF600C36F76 /* Sounds */,
 				00D54B23120295F300F76724 /* Fonts */,
@@ -783,8 +809,6 @@
 				429B08E71202FEEA00C36F76 /* o6hstars_large@2x.png in Resources */,
 				429B08E81202FEEA00C36F76 /* o8hstars_large@2x.png in Resources */,
 				429B08EB1202FEF600C36F76 /* Glass.aiff in Resources */,
-				00DDE97E12037D1000B24BA5 /* home_wood_beer_loggedin.png in Resources */,
-				00DDE97F12037D1000B24BA5 /* home_wood_beer.png in Resources */,
 				00EB4879120387DD00991768 /* controls_literboard_bg.png in Resources */,
 				429B0AAC120386EE00C36F76 /* St_Bernardus_Tripel.png in Resources */,
 				00C1144312111A1B009C9B51 /* beers.json in Resources */,
@@ -793,6 +817,9 @@
 				00CD28981211DFC700DF808D /* chalk_bg.png in Resources */,
 				00CD28991211DFC700DF808D /* wood_bg.png in Resources */,
 				00CD289F1211E42C00DF808D /* license.txt in Resources */,
+				0075514D125043A400C5538C /* Icon-72.png in Resources */,
+				0075514E125043A400C5538C /* README in Resources */,
+				007551521250493200C5538C /* beer_logged_in.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +896,9 @@
 				00C02582121351E60020483D /* KBApplication.m in Sources */,
 				42DDF16B1251A7A900CDA6D7 /* KBKegboardMessage.m in Sources */,
 				42DDF19D1251B7E400CDA6D7 /* crc16ccitt.c in Sources */,
+				007551801250532600C5538C /* KBKegProcessorSimulator.m in Sources */,
+				007551851250554700C5538C /* KBSimulatorViewController.m in Sources */,
+				00755188125055B600C5538C /* KBActionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,6 +909,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -894,6 +925,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = KegPad;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};

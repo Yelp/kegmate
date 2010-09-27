@@ -24,9 +24,23 @@
 #import "KBNotifications.h"
 #import "KBApplication.h"
 
+@interface KBKegProcessor ()
+@property (retain, nonatomic) KBUser *loginUser;
+@property (retain, nonatomic) NSDate *loginDate;
+
+/*!
+ Logout.
+ @param postNotification If YES, will post log out notification.
+ */
+- (void)_logout:(BOOL)postNotification;
+@end
+
+static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
+
 @implementation KBKegProcessor
 
-@synthesize currentUser=currentUser_, dataStore=dataStore_;
+@synthesize dataStore=dataStore_, loginUser=loginUser_;
+@synthesize loginDate=loginDate_; // Private properties
 
 - (id)init {
   if ((self = [super init])) {
@@ -36,11 +50,12 @@
 }
 
 - (void)dealloc {
+  [loginTimer_ invalidate];
   processing_.delegate = nil;
   [processing_ release];
   [dataStore_ release];
-  [currentUser_ release];
-  [currentUserDate_ release];
+  [loginUser_ release];
+  [loginDate_ release];
   [super dealloc];
 }
 
@@ -51,27 +66,44 @@
   }
 }
 
-- (void)setCurrentUser:(KBUser *)currentUser {
-  [currentUser retain];
-  [currentUser_ release];
-  currentUser_ = currentUser;
-  [currentUserDate_ release];
-  currentUserDate_ = nil;
-  if (currentUser_) {
-    currentUserDate_ = [[NSDate date] retain];
+- (void)login:(KBUser *)user {
+  NSParameterAssert(user);
+  // Check if its the same user, so we don't log out and log in the same user,
+  // though we will re-set the login date and timer below even if they are equal.
+  if (!(self.loginUser && [self.loginUser isEqual:user])) {
+    [self _logout:NO];
+    self.loginUser = user;
+  }
+  
+  // Set login date and timer if logged in
+  self.loginDate = [NSDate date];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegUserDidLoginNotification object:self.loginUser];
+  loginTimer_ = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_checkLoginStatus) userInfo:nil repeats:YES];
+}
+
+- (void)_logout:(BOOL)postNotification {
+  KBUser *previousUser = [self.loginUser retain];
+  self.loginDate = nil;
+  self.loginUser = nil;
+  [loginTimer_ invalidate];
+  loginTimer_ = nil;  
+  if (previousUser && postNotification) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:KBKegUserDidLogoutNotification object:previousUser];
   }
 }
 
-- (KBUser *)_currentUser {
-  if (pouring_) return currentUser_;
-  if (!currentUserDate_) return nil;
-  if (fabs([currentUserDate_ timeIntervalSinceNow]) > 10) return nil; // Max login time idle
-  return currentUser_;
+- (void)logout {
+  [self _logout:YES];
 }
 
-- (KBUser *)currentUser {
-  KBUser *currentUser = [self _currentUser];
-  return currentUser;
+//! Run from timer after login, and logout if timeout was reached
+- (void)_checkLoginStatus {
+  if (pouring_) return; // Don't log out current user if pouring
+  if (!loginDate_) return;
+  
+  if (fabs([loginDate_ timeIntervalSinceNow]) > kLoggedInTimeoutInterval) {
+    [self logout];
+  }
 }
 
 #pragma mark KBKegProcessingDelegate
@@ -84,42 +116,30 @@
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didEndPourWithAmount:(double)amount {
   
   if (amount > 0) 
-    [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:[self currentUser] error:nil];
+    [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:self.loginUser error:nil];
   
   pouring_ = NO;
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEndPourNotification object:nil];
 
-  // Clear user!
-  self.currentUser = nil;
+  [self logout]; // Done with pour, logout user
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didChangeTemperature:(double)temperature {
   [dataStore_ addKegTemperature:temperature keg:[dataStore_ kegAtPosition:0] error:nil];
 }
 
-- (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagID {
-  // TODO(johnb): tagID is coming in with some giberish
-  tagID = [tagID gh_strip];
-  self.currentUser = (tagID ? [dataStore_ userWithRFID:tagID error:nil] : nil);
-  [[KBApplication sharedDelegate] playSystemSoundGlass];
-  NSLog(@"RFID=%@, currentUser=%@", tagID, self.currentUser);
-}
-
-#pragma mark Testing
-
-- (void)simulateInputs {
-  KBKeg *keg = [dataStore_ kegAtPosition:0];
-  NSLog(@"Keg: %@", keg);
-  KBUser *user = [dataStore_ userWithRFID:@"29009401239F" error:nil];
-  NSLog(@"User: %@", user);
-  srand(time(NULL));
-  // Randomly select this user or leave anonymous
-  if (rand() % 2 == 0) [self setCurrentUser:user];
-  // Simulate temperature reading
-  [[self gh_proxyAfterDelay:1] kegProcessing:nil didChangeTemperature:10.4];
-  // Simulate start and end pour with random amount
-  [[self gh_proxyAfterDelay:2] kegProcessingDidStartPour:nil];
-  [[self gh_proxyAfterDelay:12] kegProcessing:nil didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+- (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId {
+  // TODO(johnb): tagId is coming in with some giberish
+  tagId = [tagId gh_strip];
+  KBUser *user = (tagId ? [dataStore_ userWithRFID:tagId error:nil] : nil);
+  if (user) {
+    [self login:user];
+    [[KBApplication sharedDelegate] playSystemSoundGlass];
+    NSLog(@"RFID=%@, user=%@", tagId, user);
+  } else {
+    // Unknown user; TODO(gabe): Handle this special
+    [self logout];
+  }
 }
 
 @end

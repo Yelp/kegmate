@@ -29,24 +29,35 @@
  */
 @interface KBKegProcessor : NSObject <KBKegProcessingDelegate> {
 
-  KBUser *currentUser_;
-  NSDate *currentUserDate_; // When the current user began
+  KBUser *loginUser_;
+  NSDate *loginDate_; // When the current user logged in
   BOOL pouring_; // YES if we are currently pouring
   
   KBKegProcessing *processing_;
   
   KBDataStore *dataStore_;
 
+  NSTimer *loginTimer_;
 }
 
-@property (nonatomic, retain) KBUser *currentUser;
+@property (readonly, retain, nonatomic) KBUser *loginUser;
 @property (readonly, retain) KBDataStore *dataStore;
 
+/*!
+ Start the processor.
+ */
 - (void)start;
 
 /*!
- Simulate inputs.
+ Login user.
+ User will logout automatically after a timeout (if not pouring).
  */
-- (void)simulateInputs;
+- (void)login:(KBUser *)user;
+
+/*!
+ Logout.
+ Will post logout notification.
+ */
+- (void)logout;
 
 @end

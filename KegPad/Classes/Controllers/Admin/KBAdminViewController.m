@@ -47,11 +47,10 @@
 
 - (id)init {
   if ((self = [super init])) {
-    options_ = [[NSMutableArray alloc] initWithCapacity:10];
-    [options_ addObject:[KBUIAction actionWithName:@"Beers" info:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
-    [options_ addObject:[KBUIAction actionWithName:@"Kegs" info:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
-    [options_ addObject:[KBUIAction actionWithName:@"Users" info:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
-    [options_ addObject:[KBUIAction actionWithName:@"Simulate imputs" info:@"For testing." target:self action:@selector(simulateInputs) showDisclosure:NO]];
+    [self addAction:[KBUIAction actionWithName:@"Beers" info:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
+    [self addAction:[KBUIAction actionWithName:@"Kegs" info:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
+    [self addAction:[KBUIAction actionWithName:@"Users" info:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
+    [self addAction:[KBUIAction actionWithName:@"Simulator" info:@"For testing." target:self action:@selector(showSimulator) showDisclosure:NO]];
   }
   return self;
 }
@@ -60,7 +59,6 @@
   [beersViewController_ release];
   [usersViewController_ release];
   [kegsViewController_ release];
-  [options_ release];
   [super dealloc];
 }
 
@@ -92,33 +90,10 @@
   [self.navigationController pushViewController:kegsViewController_ animated:YES];
 }
 
-
-- (void)simulateInputs {  
-  [[KBApplication kegProcessor] simulateInputs];
-  [self dismissModalViewControllerAnimated:YES];
-}
-
-#pragma mark -
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
-  return [options_ count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {  
-  KBUIAction *action = [options_ objectAtIndex:indexPath.row];
-  return [action tableView:tableView cellForRowAtIndexPath:indexPath];
-}
-
-#pragma mark -
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
-  KBUIAction *action = [options_ objectAtIndex:indexPath.row];
-  [action performAction];
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+- (void)showSimulator {  
+  if (!simulatorViewController_)
+    simulatorViewController_ = [[KBSimulatorViewController alloc] init];
+  [self.navigationController pushViewController:simulatorViewController_ animated:YES];
 }
 
 @end

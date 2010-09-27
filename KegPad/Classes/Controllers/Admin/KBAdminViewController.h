@@ -22,6 +22,8 @@
 #import "KBBeersViewController.h"
 #import "KBUsersViewController.h"
 #import "KBKegsViewController.h"
+#import "KBActionViewController.h"
+#import "KBSimulatorViewController.h"
 
 @class KBAdminOptionsController;
 
@@ -32,13 +34,13 @@
 @end
 
 
-@interface KBAdminOptionsController : UITableViewController {
-  
-  NSMutableArray *options_;
+@interface KBAdminOptionsController : KBActionViewController {
   
   KBBeersViewController *beersViewController_;
   KBUsersViewController *usersViewController_;
   KBKegsViewController *kegsViewController_;
+  KBSimulatorViewController *simulatorViewController_;
+  
 }
 
 @end

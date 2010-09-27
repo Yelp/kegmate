@@ -140,17 +140,17 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUIImageView" id="71690961">
+					<object class="IBUIImageView" id="999888864">
 						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{768, 1024}</string>
+						<int key="NSvFlags">301</int>
+						<string key="NSFrame">{{0, 441}, {400, 400}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<int key="IBUIContentMode">7</int>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home_wood_beer.png</string>
+							<string key="NSResourceName">beer.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="196776114">
@@ -581,6 +581,14 @@
 					</object>
 					<int key="connectionID">53</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">beerUserStatus</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="999888864"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -610,7 +618,6 @@
 							<reference ref="223926807"/>
 							<reference ref="962502130"/>
 							<reference ref="923953217"/>
-							<reference ref="71690961"/>
 							<reference ref="444813776"/>
 							<reference ref="12030516"/>
 							<reference ref="268381543"/>
@@ -630,6 +637,7 @@
 							<reference ref="542302765"/>
 							<reference ref="418831344"/>
 							<reference ref="412254784"/>
+							<reference ref="999888864"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -685,12 +693,6 @@
 						</object>
 						<reference key="parent" ref="766721923"/>
 						<string key="objectName">Wood Background</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">27</int>
-						<reference key="object" ref="71690961"/>
-						<reference key="parent" ref="766721923"/>
-						<string key="objectName">Beer Logo</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">28</int>
@@ -787,6 +789,12 @@
 						<reference key="object" ref="542302765"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">54</int>
+						<reference key="object" ref="999888864"/>
+						<reference key="parent" ref="766721923"/>
+						<string key="objectName">Beer/User</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -804,8 +812,6 @@
 					<string>26.CustomClassName</string>
 					<string>26.IBPluginDependency</string>
 					<string>26.IBViewBoundsToFrameTransform</string>
-					<string>27.IBPluginDependency</string>
-					<string>27.IBViewBoundsToFrameTransform</string>
 					<string>28.IBPluginDependency</string>
 					<string>28.IBViewBoundsToFrameTransform</string>
 					<string>29.IBPluginDependency</string>
@@ -843,6 +849,8 @@
 					<string>52.CustomClassName</string>
 					<string>52.IBPluginDependency</string>
 					<string>52.IBViewBoundsToFrameTransform</string>
+					<string>54.IBPluginDependency</string>
+					<string>54.IBViewBoundsToFrameTransform</string>
 					<string>6.IBPluginDependency</string>
 					<string>6.IBViewBoundsToFrameTransform</string>
 					<string>7.IBPluginDependency</string>
@@ -853,7 +861,7 @@
 					<string>KBDisplayViewController</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{1771, -53}, {768, 1024}}</string>
+					<string>{{211, 77}, {768, 1024}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>KBImageView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -862,10 +870,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAxHqAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUGgAABDxYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -934,6 +938,10 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">AQAAAABD3IAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDs4AAw/4AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -958,7 +966,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">55</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -999,6 +1007,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>abvLabel</string>
 							<string>beerMovieView</string>
+							<string>beerUserStatus</string>
 							<string>chalkCircleView</string>
 							<string>countryLabel</string>
 							<string>imageView</string>
@@ -1014,6 +1023,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UILabel</string>
 							<string>KBBeerMovieView</string>
+							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
@@ -1032,6 +1042,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>abvLabel</string>
 							<string>beerMovieView</string>
+							<string>beerUserStatus</string>
 							<string>chalkCircleView</string>
 							<string>countryLabel</string>
 							<string>imageView</string>
@@ -1052,6 +1063,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">beerMovieView</string>
 								<string key="candidateClassName">KBBeerMovieView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">beerUserStatus</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">chalkCircleView</string>
@@ -1143,13 +1158,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Libraries/GHKit/Swizzle/GHNSObject+Swizzle.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Libraries/YAJL/NSObject+YAJL.h</string>
 					</object>
 				</object>
 			</object>
@@ -1289,6 +1297,13 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">YAJLIOS.framework/Headers/NSObject+YAJL.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">UIButton</string>
 					<string key="superclassName">UIControl</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1418,9 +1433,9 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>beer.png</string>
 				<string>chalk_bg.png</string>
 				<string>chalk_thermometer_circle.png</string>
-				<string>home_wood_beer.png</string>
 				<string>rate_this_beer.png</string>
 				<string>thermometer.png</string>
 				<string>whats_on_tap.png</string>
@@ -1429,9 +1444,9 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{400, 400}</string>
 				<string>{768, 1024}</string>
 				<string>{79, 43}</string>
-				<string>{768, 1024}</string>
 				<string>{340, 80}</string>
 				<string>{111, 362}</string>
 				<string>{240, 68}</string>

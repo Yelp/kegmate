@@ -43,6 +43,8 @@
   
   UIImageView *chalkCircleView_;
   UILabel *temperatureLabel_;
+  
+  UIImageView *beerUserStatus_;
 
   KBRecentPoursView *recentPoursView_;
 
@@ -65,6 +67,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *chalkCircleView;
 @property (nonatomic, retain) IBOutlet KBRecentPoursView *recentPoursView;
 @property (nonatomic, retain) IBOutlet KBRatingPicker *ratingPicker;
+@property (nonatomic, retain) IBOutlet UIImageView *beerUserStatus;
 
 - (void)startPour;
 - (void)stopPour;

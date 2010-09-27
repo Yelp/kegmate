@@ -1,9 +1,9 @@
 //
-//  KBNotifications.h
+//  KBKegProcessorSimulator.h
 //  KegPad
 //
-//  Created by Gabriel Handford on 7/29/10.
-//  Copyright 2010 Yelp. All rights reserved.
+//  Created by Gabe on 9/26/10.
+//  Copyright 2010 rel.me. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,13 +19,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-extern NSString *const KBKegSelectionDidChangeNotification;
-extern NSString *const KBKegTemperatureDidChangeNotification;
-extern NSString *const KBKegVolumeDidChangeNotification;
-extern NSString *const KBKegDidStartPourNotification;
-extern NSString *const KBKegDidEndPourNotification;
-extern NSString *const KBKegDidSavePourNotification;
-extern NSString *const KBKegUserDidLoginNotification;
-extern NSString *const KBKegUserDidLogoutNotification;
+#import "KBKegProcessor.h"
 
-extern NSString *const KBSwapScreensNotification;
+
+@interface KBKegProcessorSimulator : NSObject { 
+  KBKegProcessor *kegProcessor_;
+}
+
+- (id)initWithKegProcessor:(KBKegProcessor *)kegProcessor;
+
+- (void)temperatureAndPour;
+
+- (void)login;
+
+@end
