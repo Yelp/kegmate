@@ -33,7 +33,7 @@
 - (void)kegProcessingDidStartPour:(KBKegProcessing *)kegProcessing;
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didEndPourWithAmount:(double)amount;
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didChangeTemperature:(double)temperature;
-- (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId;
+- (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagID;
 //- (void)kegProcessing:(KBKegProcessing *)kegProcessing didError:(KBError *)error;
 @end
 

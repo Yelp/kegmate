@@ -97,12 +97,12 @@
   [dataStore_ addKegTemperature:temperature keg:[dataStore_ kegAtPosition:0] error:nil];
 }
 
-- (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId {
-  // TODO(johnb): tagId is coming in with some giberish
-  tagId = [tagId gh_strip];
-  self.currentUser = (tagId ? [dataStore_ userWithRFID:tagId error:nil] : nil);
+- (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagID {
+  // TODO(johnb): tagID is coming in with some giberish
+  tagID = [tagID gh_strip];
+  self.currentUser = (tagID ? [dataStore_ userWithRFID:tagID error:nil] : nil);
   [[KBApplication sharedDelegate] playSystemSoundGlass];
-  NSLog(@"RFID=%@, currentUser=%@", tagId, self.currentUser);
+  NSLog(@"RFID=%@, currentUser=%@", tagID, self.currentUser);
 }
 
 #pragma mark Testing

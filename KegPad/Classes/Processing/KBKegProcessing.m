@@ -90,8 +90,10 @@
 
 - (void)kegboard:(KBKegboard *)kegboard didReceiveOutputStatus:(KBKegboardMessageOutputStatus *)message { }
 
-- (void)kegboard:(KBKegboard *)kegboard didReceiveRFID:(KBKegboardMessageRFID *)message {
-  [self.delegate kegProcessing:self didReceiveRFIDTagId:[message tagId]];
+- (void)kegboard:(KBKegboard *)kegboard didReceiveRFID:(KBKegboardMessageRFID *)message { }
+
+- (void)kegboard:(KBKegboard *)kegboard didReceiveMagStripe:(KBKegboardMessageMagStripe *)message {
+  [self.delegate kegProcessing:self didReceiveRFIDTagId:[message cardID]];
 }
 
 @end

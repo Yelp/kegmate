@@ -70,4 +70,9 @@ void sleeperRead(int fileDescriptor, char *data, int length) {
     if (bytesRead == 0) usleep(10000); // Sleep 10ms
     index += bytesRead;
   }
+  /* Uncomment for debugging
+  for (int i = 0; i < length; i++) {
+    printf("%2X %c\n", data[i], data[i]);
+  }
+  */
 }

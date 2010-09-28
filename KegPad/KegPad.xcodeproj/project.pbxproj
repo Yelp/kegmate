@@ -117,6 +117,8 @@
 		429B094D1203371700C36F76 /* KBRatingPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B094C1203371700C36F76 /* KBRatingPicker.m */; };
 		429B098A12033A4000C36F76 /* KBTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B098912033A4000C36F76 /* KBTypes.m */; };
 		429B0AAC120386EE00C36F76 /* St_Bernardus_Tripel.png in Resources */ = {isa = PBXBuildFile; fileRef = 429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */; };
+		42DDF16B1251A7A900CDA6D7 /* KBKegboardMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DDF16A1251A7A900CDA6D7 /* KBKegboardMessage.m */; };
+		42DDF19D1251B7E400CDA6D7 /* crc16ccitt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42DDF19C1251B7E400CDA6D7 /* crc16ccitt.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -297,6 +299,10 @@
 		429B098812033A4000C36F76 /* KBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTypes.h; sourceTree = "<group>"; };
 		429B098912033A4000C36F76 /* KBTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTypes.m; sourceTree = "<group>"; };
 		429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = St_Bernardus_Tripel.png; sourceTree = "<group>"; };
+		42DDF1691251A7A900CDA6D7 /* KBKegboardMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegboardMessage.h; sourceTree = "<group>"; };
+		42DDF16A1251A7A900CDA6D7 /* KBKegboardMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegboardMessage.m; sourceTree = "<group>"; };
+		42DDF19C1251B7E400CDA6D7 /* crc16ccitt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc16ccitt.c; sourceTree = "<group>"; };
+		42DDF19E1251B7F400CDA6D7 /* crc16ccitt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc16ccitt.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* KegPad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KegPad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -576,8 +582,12 @@
 		00D54C7E1202B36800F76724 /* Processing */ = {
 			isa = PBXGroup;
 			children = (
+				42DDF19E1251B7F400CDA6D7 /* crc16ccitt.h */,
+				42DDF19C1251B7E400CDA6D7 /* crc16ccitt.c */,
 				00D54C7F1202B36800F76724 /* KBKegboard.h */,
 				00D54C801202B36800F76724 /* KBKegboard.m */,
+				42DDF1691251A7A900CDA6D7 /* KBKegboardMessage.h */,
+				42DDF16A1251A7A900CDA6D7 /* KBKegboardMessage.m */,
 				00D54C811202B36800F76724 /* KBKegProcessing.h */,
 				00D54C821202B36800F76724 /* KBKegProcessing.m */,
 				00D54C831202B36800F76724 /* Serial.c */,
@@ -857,6 +867,8 @@
 				00C114EF1211297D009C9B51 /* KBUsersViewController.m in Sources */,
 				00C02581121351E60020483D /* KBApplicationDelegate.m in Sources */,
 				00C02582121351E60020483D /* KBApplication.m in Sources */,
+				42DDF16B1251A7A900CDA6D7 /* KBKegboardMessage.m in Sources */,
+				42DDF19D1251B7E400CDA6D7 /* crc16ccitt.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
