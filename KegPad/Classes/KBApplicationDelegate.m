@@ -23,6 +23,7 @@
 
 #import "KBNotifications.h"
 #import "KBDataImporter.h"
+#import "KBSignUpViewController.h"
 
 @implementation KBApplicationDelegate
 
@@ -34,6 +35,8 @@
   [window_ release];
   [displayViewController_ release];
   [statusViewController_ release];
+  signUpViewController_.delegate = nil;
+  [signUpViewController_ release];
   [navigationController_ release];
   [super dealloc];
 }
@@ -79,6 +82,9 @@
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegSelectionDidChange:) name:KBKegSelectionDidChangeNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_swapScreens:) name:KBSwapScreensNotification object:nil];      
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogin:) name:KBUserDidLoginNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogout:) name:KBUserDidLogoutNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknowTagId:) name:KBUnknownTagIdNotification object:nil];  
   
   kegProcessor_ = [[KBKegProcessor alloc] init];
 
@@ -117,9 +123,43 @@
   [statusViewController_ updateChart];
 }
 
+- (void)setUser:(KBUser *)user {
+  [displayViewController_ setUser:user];
+}
+
+- (void)signUpTagId:(NSString *)registerTagId {
+  if (!signUpViewController_) {
+    signUpViewController_ = [[KBSignUpViewController alloc] init];
+    signUpViewController_.delegate = self;
+  }
+  UINavigationController *signUpNavigationController = [[UINavigationController alloc] initWithRootViewController:signUpViewController_];
+  signUpNavigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+  [navigationController_ presentModalViewController:signUpNavigationController animated:YES];
+  [signUpNavigationController release];
+}
+
+#pragma mark KBSignUpViewControllerDelegate
+
+- (void)signUpViewControllerDidCancel:(KBSignUpViewController *)signUpViewController {
+  [navigationController_ dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark Notifications
+
 - (void)_kegSelectionDidChange:(NSNotification *)notification {
   [self setKeg:[notification object]];
 }
 
+- (void)_userDidLogin:(NSNotification *)notification {
+  [self setUser:[notification object]];
+}
+
+- (void)_userDidLogout:(NSNotification *)notification {
+  [self setUser:nil];
+}
+
+- (void)_unknowTagId:(NSNotification *)notification {
+  [self signUpTagId:[notification object]];
+}
 @end
 

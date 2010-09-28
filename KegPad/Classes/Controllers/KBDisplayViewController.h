@@ -25,6 +25,7 @@
 #import "KBKegTemperature.h"
 #import "KBRecentPoursView.h"
 #import "KBRatingPicker.h"
+#import "KBUserView.h"
 
 /*!
  Main display for KegPad.
@@ -44,7 +45,7 @@
   UIImageView *chalkCircleView_;
   UILabel *temperatureLabel_;
   
-  UIImageView *beerUserStatus_;
+  KBUserView *userView_;
 
   KBRecentPoursView *recentPoursView_;
 
@@ -67,7 +68,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *chalkCircleView;
 @property (nonatomic, retain) IBOutlet KBRecentPoursView *recentPoursView;
 @property (nonatomic, retain) IBOutlet KBRatingPicker *ratingPicker;
-@property (nonatomic, retain) IBOutlet UIImageView *beerUserStatus;
+@property (nonatomic, retain) IBOutlet KBUserView *userView;
 
 - (void)startPour;
 - (void)stopPour;
@@ -79,5 +80,7 @@
 - (void)setKegTemperature:(KBKegTemperature *)kegTemperature;
 
 - (void)updateRecentPours;
+
+- (void)setUser:(KBUser *)user;
 
 @end

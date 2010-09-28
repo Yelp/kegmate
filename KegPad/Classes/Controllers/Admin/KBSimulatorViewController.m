@@ -15,8 +15,9 @@
 - (id)init {
   if ((self = [super init])) {
     kegProcessorSimulator_ = [[KBKegProcessorSimulator alloc] initWithKegProcessor:[KBApplication kegProcessor]];
-    [self addAction:[KBUIAction actionWithName:@"Simulate temperature and pour" info:@"" target:self action:@selector(_simulateTemperatureAndPour) showDisclosure:NO]];
-    [self addAction:[KBUIAction actionWithName:@"Simulate login" info:@"" target:self action:@selector(_simulateLogin) showDisclosure:NO]];
+    [self addAction:[KBUIAction actionWithName:@"Simulate temperature and pour" info:@"" target:kegProcessorSimulator_ action:@selector(temperatureAndPour) showDisclosure:NO]];
+    [self addAction:[KBUIAction actionWithName:@"Simulate login" info:@"" target:kegProcessorSimulator_ action:@selector(login) showDisclosure:NO]];
+    [self addAction:[KBUIAction actionWithName:@"Simulate unknown tag" info:@"" target:kegProcessorSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
   }
   return self;
 }
@@ -24,14 +25,6 @@
 - (void)dealloc {
   [kegProcessorSimulator_ release];
   [super dealloc];
-}
-
-- (void)_simulateTemperatureAndPour {
-  [kegProcessorSimulator_ temperatureAndPour];
-}
-
-- (void)_simulateLogin {
-  [kegProcessorSimulator_ login];
 }
 
 @end

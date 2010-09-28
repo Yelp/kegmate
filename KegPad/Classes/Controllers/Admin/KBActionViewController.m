@@ -11,6 +11,8 @@
 
 @implementation KBActionViewController
 
+@synthesize delegate=delegate_;
+
 - (id)init {
   if ((self = [super init])) {
     options_ = [[NSMutableArray alloc] initWithCapacity:10];
@@ -41,7 +43,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
   KBUIAction *action = [options_ objectAtIndex:indexPath.row];
+  if ([delegate_ respondsToSelector:@selector(actionViewController:willSelectAction:)])
+    [delegate_ actionViewController:self willSelectAction:action];
   [action performAction];
+  if ([delegate_ respondsToSelector:@selector(actionViewController:didSelectAction:)])
+    [delegate_ actionViewController:self didSelectAction:action];
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -39,7 +39,7 @@
   [super viewWillAppear:animated];
   NSError *error = nil;
   if (![[self _fetchedResultsController] performFetch:&error]) {
-    NSLog(@"Error: %@", [error localizedFailureReason]);
+    KBError(@"Error: %@", [error localizedFailureReason]);
   }
   [self.tableView reloadData];
 }

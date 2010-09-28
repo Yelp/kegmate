@@ -59,7 +59,7 @@
 - (void)updateKegsInDataStore:(KBDataStore *)dataStore {
   NSError *error = nil;
   NSArray *kegs = [[NSBundle mainBundle] yajl_JSONFromResource:@"kegs.json"];
-  NSLog(@"kegs=%@", kegs);
+  KBDebug(@"kegs=%@", kegs);
   for (NSDictionary *keg in kegs) {
     NSString *beerId = [keg gh_objectMaybeNilForKey:@"beer_id"];
     KBBeer *beer = [dataStore beerWithId:beerId error:nil];
@@ -87,7 +87,7 @@
     KBDataStoreCheckError(error);
     NSAssert(keg, @"No keg could be selected");
     [dataStore setKeg:keg position:0];
-    NSLog(@"Auto selecting keg: %@", keg);
+    KBDebug(@"Auto selecting keg: %@", keg);
   }
   
   [importer release];

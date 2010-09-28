@@ -27,7 +27,9 @@ NSString *const KBKegVolumeDidChangeNotification = @"KBKegVolumeDidChangeNotific
 NSString *const KBKegDidStartPourNotification = @"KBKegDidStartPourNotification";
 NSString *const KBKegDidEndPourNotification = @"KBKegDidEndPourNotification";
 NSString *const KBKegDidSavePourNotification = @"KBKegDidSavePourNotification";
-NSString *const KBKegUserDidLoginNotification = @"KBKegUserDidLoginNotification";
-NSString *const KBKegUserDidLogoutNotification = @"KBKegUserDidLogoutNotification";
+NSString *const KBUserDidLoginNotification = @"KBUserDidLoginNotification";
+NSString *const KBUserDidLogoutNotification = @"KBUserDidLogoutNotification";
+
+NSString *const KBUnknownTagIdNotification = @"KBUnknownTagIdNotification";
 
 NSString *const KBSwapScreensNotification = @"KBSwapScreensNotification";

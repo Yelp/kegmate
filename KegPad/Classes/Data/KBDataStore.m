@@ -68,7 +68,7 @@
   if (persistentStoreCoordinator_) return persistentStoreCoordinator_;
   
   NSString *path = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"KegPad.sqlite"];
-  NSLog(@"Path: %@", path);
+  KBDebug(@"Path: %@", path);
   NSURL *storeURL = [NSURL fileURLWithPath:path];
   
   NSError *error = nil;
@@ -83,14 +83,14 @@
                            nil];
   
   if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
-    NSLog(@"Error: %@", [error localizedFailureReason]);
+    KBError(@"Error: %@", [error localizedFailureReason]);
   }    
   
   return persistentStoreCoordinator_;
 }
 
 - (NSString *)applicationDocumentsDirectory {
-  NSLog(@"Documents directories: %@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
+  KBDebug(@"Documents directories: %@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
   return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) gh_firstObject];
 }
 
@@ -102,7 +102,7 @@
 }
 
 - (void)setKeg:(KBKeg *)keg position:(NSInteger)position {
-  NSLog(@"Saving keg: %@", keg);
+  KBDebug(@"Saving keg: %@", keg);
   if (!keg) return;
   keg.indexValue = position;
   NSString *URIString = [[[keg objectID] URIRepresentation] absoluteString];
@@ -258,7 +258,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
 
 - (float)rateForKegPoursLastHourForUser:(KBUser *)user error:(NSError **)error {
   NSArray *kegPours = [self recentKegPoursFromDate:[NSDate dateWithTimeIntervalSinceNow:-(60 * 60)] toDate:[NSDate date] user:user error:error];
-  NSLog(@"Loaded %d keg pours from last hour", [kegPours count]);
+  KBDebug(@"Loaded %d keg pours from last hour", [kegPours count]);
   CGFloat value = 0;
   NSTimeInterval start = 0, end = 0;
   for (KBKegPour *pour in kegPours) {

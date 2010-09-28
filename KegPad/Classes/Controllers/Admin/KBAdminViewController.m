@@ -59,6 +59,8 @@
   [beersViewController_ release];
   [usersViewController_ release];
   [kegsViewController_ release];
+  simulatorViewController_.delegate = nil;
+  [simulatorViewController_ release];
   [super dealloc];
 }
 
@@ -69,7 +71,8 @@
 }
 
 - (void)close {
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissModalViewControllerAnimated:NO];
+  [self.navigationController popToRootViewControllerAnimated:NO]; 
 }
 
 - (void)showBeers {
@@ -91,9 +94,17 @@
 }
 
 - (void)showSimulator {  
-  if (!simulatorViewController_)
+  if (!simulatorViewController_) {
     simulatorViewController_ = [[KBSimulatorViewController alloc] init];
+    simulatorViewController_.delegate = self;
+  }
   [self.navigationController pushViewController:simulatorViewController_ animated:YES];
+}
+
+#pragma mark KBActionViewControllerDelegate
+
+- (void)actionViewController:(KBActionViewController *)actionViewController willSelectAction:(KBUIAction *)action {
+  [self close];
 }
 
 @end

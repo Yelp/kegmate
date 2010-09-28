@@ -30,7 +30,7 @@
 @synthesize beerMovieView=beerMovieView_, nameLabel=nameLabel_, infoLabel=infoLabel_, abvLabel=abvLabel_, imageView=imageView_, 
 temperatureLabel=temperatureLabel_, typeLabel=typeLabel_, countryLabel=countryLabel_,
 tempDescriptionLabel=tempDescriptionLabel_, chalkCircleView=chalkCircleView_, recentPoursView=recentPoursView_, 
-ratingPicker=ratingPicker_, beerUserStatus=beerUserStatus_;
+ratingPicker=ratingPicker_, userView=userView_;
 
 - (id)init {
   if ((self = [super initWithNibName:nil bundle:nil])) { }
@@ -54,7 +54,7 @@ ratingPicker=ratingPicker_, beerUserStatus=beerUserStatus_;
   [chalkCircleView_ release];
   [recentPoursView_ release];
   [ratingPicker_ release];
-  [beerUserStatus_ release];
+  [userView_ release];
   [super dealloc];
 }
 
@@ -162,6 +162,10 @@ ratingPicker=ratingPicker_, beerUserStatus=beerUserStatus_;
     abvLabel_.text = @"-";
     imageView_.image = nil;
   }
+}
+
+- (void)setUser:(KBUser *)user {
+  [userView_ setUser:user];
 }
 
 #pragma mark - 

@@ -41,7 +41,7 @@
 
 - (void)endPour {
   if (_pouring) {
-    NSLog(@"Ended pour");
+    KBDebug(@"Ended pour");
     [self.delegate kegProcessing:self didEndPourWithAmount:_lastVolume - _pourStartVolume];
     _pouring = NO;
     _pourTimeout = nil;
@@ -51,7 +51,7 @@
 #pragma mark Delegates (KBKegboard)
 
 - (void)kegboard:(KBKegboard *)kegboard didReceiveHello:(KBKegboardMessageHello *)message {
-  NSLog(@"Hello from Kegboard!");
+  KBDebug(@"Hello from Kegboard!");
 }
 
 - (void)kegboard:(KBKegboard *)kegboard didReceiveBoardConfiguration:(KBKegboardMessageBoardConfiguration *)message { }
@@ -67,7 +67,7 @@
   // Figure out if we've started to increase flow a lot since the last sample
   if (fabs(volume - _lastVolume) > KB_VOLUME_DIFFERENCE_THRESHOLD) {
     if (!_pouring) {
-      NSLog(@"Pouring");
+      KBDebug(@"Pouring");
       [self.delegate kegProcessingDidStartPour:self]; 
       _pourStartVolume = _lastVolume;
       _pouring = YES;

@@ -45,6 +45,9 @@
 		0017BD13120279E200269CDA /* GHUIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF6120279E200269CDA /* GHUIColor+Utils.m */; };
 		0017BD14120279E200269CDA /* GHNSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */; };
 		002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F095F12263EE300766D62 /* YAJLIOS.framework */; };
+		00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00568FAE1251A493004AF3D1 /* KBUserView.m */; };
+		005691F11251BDE6004AF3D1 /* KBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */; };
+		0056927D1251C4AA004AF3D1 /* KBSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0056927C1251C4AA004AF3D1 /* KBSignUpViewController.xib */; };
 		0075514D125043A400C5538C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075514B125043A400C5538C /* Icon-72.png */; };
 		0075514E125043A400C5538C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0075514C125043A400C5538C /* README */; };
 		007551521250493200C5538C /* beer_logged_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 007551511250493200C5538C /* beer_logged_in.png */; };
@@ -201,6 +204,12 @@
 		0017BCF8120279E200269CDA /* GHNSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSObject+Swizzle.h"; sourceTree = "<group>"; };
 		0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSObject+Swizzle.m"; sourceTree = "<group>"; };
 		002F095F12263EE300766D62 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
+		00568FAD1251A493004AF3D1 /* KBUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserView.h; sourceTree = "<group>"; };
+		00568FAE1251A493004AF3D1 /* KBUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserView.m; sourceTree = "<group>"; };
+		005691EF1251BDE6004AF3D1 /* KBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSignUpViewController.h; sourceTree = "<group>"; };
+		005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSignUpViewController.m; sourceTree = "<group>"; };
+		005691F21251BF56004AF3D1 /* KBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDefines.h; sourceTree = "<group>"; };
+		0056927C1251C4AA004AF3D1 /* KBSignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBSignUpViewController.xib; sourceTree = "<group>"; };
 		0075514B125043A400C5538C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		0075514C125043A400C5538C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		007551511250493200C5538C /* beer_logged_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_logged_in.png; sourceTree = "<group>"; };
@@ -345,6 +354,8 @@
 				0017B7C4120219BC00269CDA /* KBDisplayViewController.m */,
 				00D54CBD1202BB6900F76724 /* KBStatusViewController.h */,
 				00D54CBE1202BB6900F76724 /* KBStatusViewController.m */,
+				005691EF1251BDE6004AF3D1 /* KBSignUpViewController.h */,
+				005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -527,6 +538,8 @@
 				429B098912033A4000C36F76 /* KBTypes.m */,
 				00C1147C12111C7B009C9B51 /* KBUIAction.h */,
 				00C1147D12111C7B009C9B51 /* KBUIAction.m */,
+				00568FAD1251A493004AF3D1 /* KBUserView.h */,
+				00568FAE1251A493004AF3D1 /* KBUserView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -645,6 +658,7 @@
 				00C0257F121351E60020483D /* KBApplication.m */,
 				0017B8C912022CDD00269CDA /* KBNotifications.h */,
 				0017B8CA12022CDD00269CDA /* KBNotifications.m */,
+				005691F21251BF56004AF3D1 /* KBDefines.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -693,6 +707,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				00D54CC81202BBEB00F76724 /* KBStatusViewController.xib */,
 				0017B7C612021B1A00269CDA /* KBDisplayViewController.xib */,
+				0056927C1251C4AA004AF3D1 /* KBSignUpViewController.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -820,6 +835,7 @@
 				0075514D125043A400C5538C /* Icon-72.png in Resources */,
 				0075514E125043A400C5538C /* README in Resources */,
 				007551521250493200C5538C /* beer_logged_in.png in Resources */,
+				0056927D1251C4AA004AF3D1 /* KBSignUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +915,8 @@
 				007551801250532600C5538C /* KBKegProcessorSimulator.m in Sources */,
 				007551851250554700C5538C /* KBSimulatorViewController.m in Sources */,
 				00755188125055B600C5538C /* KBActionViewController.m in Sources */,
+				00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */,
+				005691F11251BDE6004AF3D1 /* KBSignUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +937,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KegPad_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "KegPad-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",

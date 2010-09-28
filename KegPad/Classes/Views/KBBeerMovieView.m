@@ -36,7 +36,7 @@
 }
 
 - (void)_playbackDidFinish:(NSNotification *)notification {
-  NSLog(@"Playback finished: %@", notification);
+  KBDebug(@"Playback finished: %@", notification);
 }
 
 - (void)play:(NSURL *)URL {

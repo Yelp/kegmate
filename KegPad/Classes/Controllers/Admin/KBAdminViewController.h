@@ -34,7 +34,7 @@
 @end
 
 
-@interface KBAdminOptionsController : KBActionViewController {
+@interface KBAdminOptionsController : KBActionViewController <KBActionViewControllerDelegate> {
   
   KBBeersViewController *beersViewController_;
   KBUsersViewController *usersViewController_;

@@ -5,6 +5,6 @@
 [{
   "id": "Keg1",
   "beer_id": "StBernardusTripel", // Should match a beer id (beers.json)
-  "volume_adjusted": 15, // Volume in liters to adjust (subtract) the keg volume; This value with poured value and total value determines how much is remaining
+  "volume_adjusted": 15.0, // Volume in liters to adjust (subtract) the keg volume; This value with poured value and total value determines how much is remaining
   "volume_total": 58.67 // Volume in liters of full keg
 }]

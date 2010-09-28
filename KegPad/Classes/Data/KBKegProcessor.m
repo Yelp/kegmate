@@ -39,7 +39,7 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
 
 @implementation KBKegProcessor
 
-@synthesize dataStore=dataStore_, loginUser=loginUser_;
+@synthesize dataStore=dataStore_, loginUser=loginUser_, processing=processing_;
 @synthesize loginDate=loginDate_; // Private properties
 
 - (id)init {
@@ -77,7 +77,7 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
   
   // Set login date and timer if logged in
   self.loginDate = [NSDate date];
-  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegUserDidLoginNotification object:self.loginUser];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidLoginNotification object:self.loginUser];
   loginTimer_ = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_checkLoginStatus) userInfo:nil repeats:YES];
 }
 
@@ -88,7 +88,7 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
   [loginTimer_ invalidate];
   loginTimer_ = nil;  
   if (previousUser && postNotification) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:KBKegUserDidLogoutNotification object:previousUser];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidLogoutNotification object:previousUser];
   }
 }
 
@@ -131,14 +131,17 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId {
   // TODO(johnb): tagId is coming in with some giberish
   tagId = [tagId gh_strip];
+  
+  if ([tagId gh_isBlank]) return;
+  
   KBUser *user = (tagId ? [dataStore_ userWithRFID:tagId error:nil] : nil);
   if (user) {
     [self login:user];
     [[KBApplication sharedDelegate] playSystemSoundGlass];
-    NSLog(@"RFID=%@, user=%@", tagId, user);
+    KBDebug(@"RFID=%@, user=%@", tagId, user);
   } else {
-    // Unknown user; TODO(gabe): Handle this special
     [self logout];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KBUnknownTagIdNotification object:tagId];    
   }
 }
 

@@ -42,6 +42,7 @@
 
 @property (readonly, retain, nonatomic) KBUser *loginUser;
 @property (readonly, retain) KBDataStore *dataStore;
+@property (readonly, nonatomic) KBKegProcessing *processing;
 
 /*!
  Start the processor.

@@ -15,4 +15,5 @@
   #import <MediaPlayer/MediaPlayer.h>
   #import <QuartzCore/QuartzCore.h>
   #import "GHKit.h"
+  #import "KBDefines.h"
 #endif

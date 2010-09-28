@@ -25,7 +25,9 @@ extern NSString *const KBKegVolumeDidChangeNotification;
 extern NSString *const KBKegDidStartPourNotification;
 extern NSString *const KBKegDidEndPourNotification;
 extern NSString *const KBKegDidSavePourNotification;
-extern NSString *const KBKegUserDidLoginNotification;
-extern NSString *const KBKegUserDidLogoutNotification;
+extern NSString *const KBUserDidLoginNotification; // With user (KBUser).
+extern NSString *const KBUserDidLogoutNotification;
+
+extern NSString *const KBUnknownTagIdNotification; // With tag id (NSString), if an unknown tag is read.
 
 extern NSString *const KBSwapScreensNotification;

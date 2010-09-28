@@ -88,7 +88,7 @@ static NSInteger gFileDescriptor;
 }
 
 - (void)readLoop {
-  NSLog(@"Initializing Read Loop");
+  KBDebug(@"Initializing Read Loop");
   // Pool is never released since it lasts the whole life of the app
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   // Directly ported from PyKeg to ObjectiveC
@@ -111,13 +111,13 @@ static NSInteger gFileDescriptor;
       if (byte == KBSP_PREFIX[headerPosition]) {
         headerPosition += 1;
         if (loggedFrameError) {
-          NSLog(@"Packet framing fixed.");
+          KBDebug(@"Packet framing fixed.");
           loggedFrameError = NO;
         }
       // Byte wasn't expected
       } else {
         if (!loggedFrameError) {
-          NSLog(@"Packet framing broken (found \"%X\", expected \"%X\"); reframing.", byte, KBSP_PREFIX[headerPosition]);
+          KBDebug(@"Packet framing broken (found \"%X\", expected \"%X\"); reframing.", byte, KBSP_PREFIX[headerPosition]);
           loggedFrameError = YES;
         }
         headerPosition = 0;
@@ -131,7 +131,7 @@ static NSInteger gFileDescriptor;
     NSInteger messageId = [KBKegboardMessage parseUInt16:headerBytes];
     NSInteger messageLength = [KBKegboardMessage parseUInt16:&headerBytes[2]];
     if (messageLength > KBSP_PAYLOAD_MAXLEN) {
-      NSLog(@"Bogus message length (%d), skipping message", messageLength);
+      KBDebug(@"Bogus message length (%d), skipping message", messageLength);
       continue;
     }
     
@@ -148,13 +148,13 @@ static NSInteger gFileDescriptor;
     }    
 
     if (trailer[0] != KBSP_TRAILER[0] || trailer[1] != KBSP_TRAILER[1]) {
-      NSLog(@"Bad trailer characters 0x%X 0x%X (expected 0x%X 0x%X) skipping message", trailer[0], trailer[1], KBSP_TRAILER[0], KBSP_TRAILER[1]);
+      KBDebug(@"Bad trailer characters 0x%X 0x%X (expected 0x%X 0x%X) skipping message", trailer[0], trailer[1], KBSP_TRAILER[0], KBSP_TRAILER[1]);
       continue;
     }
     
     // Create KegboardMessage from id and payload
     KBKegboardMessage *kegboardMessage = [KBKegboardMessage messageWithId:messageId payload:payload length:messageLength];
-    NSLog(@"Got message %@", kegboardMessage);
+    KBDebug(@"Got message %@", kegboardMessage);
     // Notify delegate of message
     [self performSelectorOnMainThread:@selector(notifyDelegate:) withObject:kegboardMessage waitUntilDone:NO];
   }
