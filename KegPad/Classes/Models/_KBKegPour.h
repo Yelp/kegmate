@@ -7,6 +7,11 @@
 @class KBKeg;
 @class KBUser;
 
+
+
+
+
+
 @interface KBKegPourID : NSManagedObjectID {}
 @end
 
@@ -68,5 +73,45 @@
 @end
 
 @interface _KBKegPour (CoreDataGeneratedAccessors)
+
+@end
+
+@interface _KBKegPour (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveAmountHour;
+- (void)setPrimitiveAmountHour:(NSNumber*)value;
+
+- (float)primitiveAmountHourValue;
+- (void)setPrimitiveAmountHourValue:(float)value_;
+
+
+- (NSNumber*)primitiveAmountUserHour;
+- (void)setPrimitiveAmountUserHour:(NSNumber*)value;
+
+- (float)primitiveAmountUserHourValue;
+- (void)setPrimitiveAmountUserHourValue:(float)value_;
+
+
+- (NSNumber*)primitiveAmount;
+- (void)setPrimitiveAmount:(NSNumber*)value;
+
+- (float)primitiveAmountValue;
+- (void)setPrimitiveAmountValue:(float)value_;
+
+
+- (NSDate*)primitiveDate;
+- (void)setPrimitiveDate:(NSDate*)value;
+
+
+
+
+- (KBKeg*)primitiveKeg;
+- (void)setPrimitiveKeg:(KBKeg*)value;
+
+
+
+- (KBUser*)primitiveUser;
+- (void)setPrimitiveUser:(KBUser*)value;
+
 
 @end

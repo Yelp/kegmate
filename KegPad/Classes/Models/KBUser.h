@@ -31,4 +31,6 @@
 
 - (NSString *)volumePouredDescription;
 
+- (NSString *)displayName;
+
 @end

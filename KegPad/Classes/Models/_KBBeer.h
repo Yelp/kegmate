@@ -7,6 +7,15 @@
 @class KBRating;
 @class KBKeg;
 
+
+
+
+
+
+
+
+
+
 @interface KBBeerID : NSManagedObjectID {}
 @end
 
@@ -98,5 +107,58 @@
 - (void)removeKegs:(NSSet*)value_;
 - (void)addKegsObject:(KBKeg*)value_;
 - (void)removeKegsObject:(KBKeg*)value_;
+
+@end
+
+@interface _KBBeer (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSString*)primitiveType;
+- (void)setPrimitiveType:(NSString*)value;
+
+
+- (NSString*)primitiveId;
+- (void)setPrimitiveId:(NSString*)value;
+
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
+- (NSString*)primitiveInfo;
+- (void)setPrimitiveInfo:(NSString*)value;
+
+
+- (NSNumber*)primitiveRating;
+- (void)setPrimitiveRating:(NSNumber*)value;
+
+- (float)primitiveRatingValue;
+- (void)setPrimitiveRatingValue:(float)value_;
+
+
+- (NSNumber*)primitiveAbv;
+- (void)setPrimitiveAbv:(NSNumber*)value;
+
+- (float)primitiveAbvValue;
+- (void)setPrimitiveAbvValue:(float)value_;
+
+
+- (NSString*)primitiveCountry;
+- (void)setPrimitiveCountry:(NSString*)value;
+
+
+- (NSString*)primitiveImageName;
+- (void)setPrimitiveImageName:(NSString*)value;
+
+
+
+
+- (NSMutableSet*)primitiveRatings;
+- (void)setPrimitiveRatings:(NSMutableSet*)value;
+
+
+
+- (NSMutableSet*)primitiveKegs;
+- (void)setPrimitiveKegs:(NSMutableSet*)value;
+
 
 @end

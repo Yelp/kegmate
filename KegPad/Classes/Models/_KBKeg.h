@@ -8,6 +8,13 @@
 @class KBBeer;
 @class KBKegPour;
 
+
+
+
+
+
+
+
 @interface KBKegID : NSManagedObjectID {}
 @end
 
@@ -100,5 +107,61 @@
 - (void)removePours:(NSSet*)value_;
 - (void)addPoursObject:(KBKegPour*)value_;
 - (void)removePoursObject:(KBKegPour*)value_;
+
+@end
+
+@interface _KBKeg (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveVolumeTotal;
+- (void)setPrimitiveVolumeTotal:(NSNumber*)value;
+
+- (float)primitiveVolumeTotalValue;
+- (void)setPrimitiveVolumeTotalValue:(float)value_;
+
+
+- (NSString*)primitiveId;
+- (void)setPrimitiveId:(NSString*)value;
+
+
+- (NSNumber*)primitiveVolumePoured;
+- (void)setPrimitiveVolumePoured:(NSNumber*)value;
+
+- (float)primitiveVolumePouredValue;
+- (void)setPrimitiveVolumePouredValue:(float)value_;
+
+
+- (NSNumber*)primitiveIndex;
+- (void)setPrimitiveIndex:(NSNumber*)value;
+
+- (int)primitiveIndexValue;
+- (void)setPrimitiveIndexValue:(int)value_;
+
+
+- (NSNumber*)primitiveVolumeAdjusted;
+- (void)setPrimitiveVolumeAdjusted:(NSNumber*)value;
+
+- (float)primitiveVolumeAdjustedValue;
+- (void)setPrimitiveVolumeAdjustedValue:(float)value_;
+
+
+- (NSDate*)primitiveDateCreated;
+- (void)setPrimitiveDateCreated:(NSDate*)value;
+
+
+
+
+- (NSMutableSet*)primitiveTemperatures;
+- (void)setPrimitiveTemperatures:(NSMutableSet*)value;
+
+
+
+- (KBBeer*)primitiveBeer;
+- (void)setPrimitiveBeer:(KBBeer*)value;
+
+
+
+- (NSMutableSet*)primitivePours;
+- (void)setPrimitivePours:(NSMutableSet*)value;
+
 
 @end

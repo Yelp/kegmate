@@ -47,13 +47,11 @@
 		002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F095F12263EE300766D62 /* YAJLIOS.framework */; };
 		00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00568FAE1251A493004AF3D1 /* KBUserView.m */; };
 		005691F11251BDE6004AF3D1 /* KBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */; };
-		0056927D1251C4AA004AF3D1 /* KBSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0056927C1251C4AA004AF3D1 /* KBSignUpViewController.xib */; };
 		0075514D125043A400C5538C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075514B125043A400C5538C /* Icon-72.png */; };
 		0075514E125043A400C5538C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0075514C125043A400C5538C /* README */; };
 		007551521250493200C5538C /* beer_logged_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 007551511250493200C5538C /* beer_logged_in.png */; };
 		007551801250532600C5538C /* KBKegProcessorSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0075517F1250532600C5538C /* KBKegProcessorSimulator.m */; };
 		007551851250554700C5538C /* KBSimulatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007551841250554700C5538C /* KBSimulatorViewController.m */; };
-		00755188125055B600C5538C /* KBActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00755187125055B600C5538C /* KBActionViewController.m */; };
 		008FED101201F0E900BA5D07 /* KBBeerMovieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */; };
 		008FED1C1201F2F600BA5D07 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */; };
 		008FEDB01201F9B600BA5D07 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */; };
@@ -68,13 +66,16 @@
 		00C1147712111B75009C9B51 /* KBAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1147212111B75009C9B51 /* KBAdminViewController.m */; };
 		00C1147812111B75009C9B51 /* KBBeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1147412111B75009C9B51 /* KBBeersViewController.m */; };
 		00C1147912111B75009C9B51 /* KBKegsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1147612111B75009C9B51 /* KBKegsViewController.m */; };
-		00C1147E12111C7B009C9B51 /* KBUIAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1147D12111C7B009C9B51 /* KBUIAction.m */; };
 		00C114AD121121BA009C9B51 /* KBFetchedResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */; };
 		00C114D6121128DD009C9B51 /* kegs.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C114B2121124B1009C9B51 /* kegs.json */; };
 		00C114EF1211297D009C9B51 /* KBUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C114EE1211297D009C9B51 /* KBUsersViewController.m */; };
 		00CD28981211DFC700DF808D /* chalk_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CD28961211DFC700DF808D /* chalk_bg.png */; };
 		00CD28991211DFC700DF808D /* wood_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CD28971211DFC700DF808D /* wood_bg.png */; };
 		00CD289F1211E42C00DF808D /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00CD289E1211E42C00DF808D /* license.txt */; };
+		00D01167125334170013DF33 /* KBFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01160125334170013DF33 /* KBFormFieldCell.m */; };
+		00D01168125334170013DF33 /* KBUIForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01162125334170013DF33 /* KBUIForm.m */; };
+		00D01169125334170013DF33 /* KBUIFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01164125334170013DF33 /* KBUIFormViewController.m */; };
+		00D0116A125334170013DF33 /* KBUIFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01166125334170013DF33 /* KBUIFormField.m */; };
 		00D54A70120282C600F76724 /* KBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D54A6F120282C600F76724 /* KBChartView.m */; };
 		00D54AB21202887D00F76724 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54AA91202887D00F76724 /* thermometer.png */; };
 		00D54AB31202887D00F76724 /* beer.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54AAA1202887D00F76724 /* beer.png */; };
@@ -209,7 +210,6 @@
 		005691EF1251BDE6004AF3D1 /* KBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSignUpViewController.h; sourceTree = "<group>"; };
 		005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSignUpViewController.m; sourceTree = "<group>"; };
 		005691F21251BF56004AF3D1 /* KBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDefines.h; sourceTree = "<group>"; };
-		0056927C1251C4AA004AF3D1 /* KBSignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBSignUpViewController.xib; sourceTree = "<group>"; };
 		0075514B125043A400C5538C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		0075514C125043A400C5538C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		007551511250493200C5538C /* beer_logged_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_logged_in.png; sourceTree = "<group>"; };
@@ -217,8 +217,6 @@
 		0075517F1250532600C5538C /* KBKegProcessorSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegProcessorSimulator.m; sourceTree = "<group>"; };
 		007551831250554700C5538C /* KBSimulatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSimulatorViewController.h; sourceTree = "<group>"; };
 		007551841250554700C5538C /* KBSimulatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSimulatorViewController.m; sourceTree = "<group>"; };
-		00755186125055B600C5538C /* KBActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBActionViewController.h; sourceTree = "<group>"; };
-		00755187125055B600C5538C /* KBActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBActionViewController.m; sourceTree = "<group>"; };
 		008FED0E1201F0E900BA5D07 /* KBBeerMovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerMovieView.h; sourceTree = "<group>"; };
 		008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerMovieView.m; sourceTree = "<group>"; };
 		008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -242,8 +240,6 @@
 		00C1147412111B75009C9B51 /* KBBeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeersViewController.m; sourceTree = "<group>"; };
 		00C1147512111B75009C9B51 /* KBKegsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegsViewController.h; sourceTree = "<group>"; };
 		00C1147612111B75009C9B51 /* KBKegsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegsViewController.m; sourceTree = "<group>"; };
-		00C1147C12111C7B009C9B51 /* KBUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIAction.h; sourceTree = "<group>"; };
-		00C1147D12111C7B009C9B51 /* KBUIAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIAction.m; sourceTree = "<group>"; };
 		00C114AB121121BA009C9B51 /* KBFetchedResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFetchedResultsViewController.h; sourceTree = "<group>"; };
 		00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFetchedResultsViewController.m; sourceTree = "<group>"; };
 		00C114B2121124B1009C9B51 /* kegs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kegs.json; sourceTree = "<group>"; };
@@ -252,6 +248,14 @@
 		00CD28961211DFC700DF808D /* chalk_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk_bg.png; sourceTree = "<group>"; };
 		00CD28971211DFC700DF808D /* wood_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood_bg.png; sourceTree = "<group>"; };
 		00CD289E1211E42C00DF808D /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
+		00D0115F125334170013DF33 /* KBFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFormFieldCell.h; sourceTree = "<group>"; };
+		00D01160125334170013DF33 /* KBFormFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFormFieldCell.m; sourceTree = "<group>"; };
+		00D01161125334170013DF33 /* KBUIForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIForm.h; sourceTree = "<group>"; };
+		00D01162125334170013DF33 /* KBUIForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIForm.m; sourceTree = "<group>"; };
+		00D01163125334170013DF33 /* KBUIFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormViewController.h; sourceTree = "<group>"; };
+		00D01164125334170013DF33 /* KBUIFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormViewController.m; sourceTree = "<group>"; };
+		00D01165125334170013DF33 /* KBUIFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormField.h; sourceTree = "<group>"; };
+		00D01166125334170013DF33 /* KBUIFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormField.m; sourceTree = "<group>"; };
 		00D54A6E120282C600F76724 /* KBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBChartView.h; sourceTree = "<group>"; };
 		00D54A6F120282C600F76724 /* KBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBChartView.m; sourceTree = "<group>"; };
 		00D54AA91202887D00F76724 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
@@ -536,8 +540,6 @@
 				00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */,
 				429B098812033A4000C36F76 /* KBTypes.h */,
 				429B098912033A4000C36F76 /* KBTypes.m */,
-				00C1147C12111C7B009C9B51 /* KBUIAction.h */,
-				00C1147D12111C7B009C9B51 /* KBUIAction.m */,
 				00568FAD1251A493004AF3D1 /* KBUserView.h */,
 				00568FAE1251A493004AF3D1 /* KBUserView.m */,
 			);
@@ -572,8 +574,6 @@
 		00C1147012111B75009C9B51 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
-				00755186125055B600C5538C /* KBActionViewController.h */,
-				00755187125055B600C5538C /* KBActionViewController.m */,
 				00C1147112111B75009C9B51 /* KBAdminViewController.h */,
 				00C1147212111B75009C9B51 /* KBAdminViewController.m */,
 				00C114AB121121BA009C9B51 /* KBFetchedResultsViewController.h */,
@@ -588,6 +588,21 @@
 				007551841250554700C5538C /* KBSimulatorViewController.m */,
 			);
 			path = Admin;
+			sourceTree = "<group>";
+		};
+		00D0115E125334170013DF33 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				00D0115F125334170013DF33 /* KBFormFieldCell.h */,
+				00D01160125334170013DF33 /* KBFormFieldCell.m */,
+				00D01161125334170013DF33 /* KBUIForm.h */,
+				00D01162125334170013DF33 /* KBUIForm.m */,
+				00D01163125334170013DF33 /* KBUIFormViewController.h */,
+				00D01164125334170013DF33 /* KBUIFormViewController.m */,
+				00D01165125334170013DF33 /* KBUIFormField.h */,
+				00D01166125334170013DF33 /* KBUIFormField.m */,
+			);
+			path = Forms;
 			sourceTree = "<group>";
 		};
 		00D54AAB1202887D00F76724 /* Test */ = {
@@ -650,6 +665,7 @@
 				00D54C7E1202B36800F76724 /* Processing */,
 				0017B7581202124C00269CDA /* Controllers */,
 				008FED0D1201F0DC00BA5D07 /* Views */,
+				00D0115E125334170013DF33 /* Forms */,
 				008FED091201F0BE00BA5D07 /* Models */,
 				00C1134E12110639009C9B51 /* Data */,
 				00C0257E121351E60020483D /* KBApplicationDelegate.h */,
@@ -707,7 +723,6 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				00D54CC81202BBEB00F76724 /* KBStatusViewController.xib */,
 				0017B7C612021B1A00269CDA /* KBDisplayViewController.xib */,
-				0056927C1251C4AA004AF3D1 /* KBSignUpViewController.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -835,7 +850,6 @@
 				0075514D125043A400C5538C /* Icon-72.png in Resources */,
 				0075514E125043A400C5538C /* README in Resources */,
 				007551521250493200C5538C /* beer_logged_in.png in Resources */,
-				0056927D1251C4AA004AF3D1 /* KBSignUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +919,6 @@
 				00C1147712111B75009C9B51 /* KBAdminViewController.m in Sources */,
 				00C1147812111B75009C9B51 /* KBBeersViewController.m in Sources */,
 				00C1147912111B75009C9B51 /* KBKegsViewController.m in Sources */,
-				00C1147E12111C7B009C9B51 /* KBUIAction.m in Sources */,
 				00C114AD121121BA009C9B51 /* KBFetchedResultsViewController.m in Sources */,
 				00C114EF1211297D009C9B51 /* KBUsersViewController.m in Sources */,
 				00C02581121351E60020483D /* KBApplicationDelegate.m in Sources */,
@@ -914,9 +927,12 @@
 				42DDF19D1251B7E400CDA6D7 /* crc16ccitt.c in Sources */,
 				007551801250532600C5538C /* KBKegProcessorSimulator.m in Sources */,
 				007551851250554700C5538C /* KBSimulatorViewController.m in Sources */,
-				00755188125055B600C5538C /* KBActionViewController.m in Sources */,
 				00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */,
 				005691F11251BDE6004AF3D1 /* KBSignUpViewController.m in Sources */,
+				00D01167125334170013DF33 /* KBFormFieldCell.m in Sources */,
+				00D01168125334170013DF33 /* KBUIForm.m in Sources */,
+				00D01169125334170013DF33 /* KBUIFormViewController.m in Sources */,
+				00D0116A125334170013DF33 /* KBUIFormField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

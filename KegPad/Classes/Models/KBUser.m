@@ -23,6 +23,10 @@
 
 @implementation KBUser
 
+- (NSString *)displayName {
+  return [NSString stringWithFormat:@"%@ %@.", self.firstName, [self.lastName substringToIndex:1]];
+}
+
 - (void)addPouredValue:(float)poured {
   self.volumePouredValue += poured;
 }

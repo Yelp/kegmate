@@ -29,32 +29,47 @@
 
 
 
-@dynamic rfid;
-
-
-
-
-
-
-@dynamic displayName;
-
-
-
-
-
-
 @dynamic volumePoured;
 
 
 
 - (float)volumePouredValue {
 	NSNumber *result = [self volumePoured];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setVolumePouredValue:(float)value_ {
 	[self setVolumePoured:[NSNumber numberWithFloat:value_]];
 }
+
+- (float)primitiveVolumePouredValue {
+	NSNumber *result = [self primitiveVolumePoured];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveVolumePouredValue:(float)value_ {
+	[self setPrimitiveVolumePoured:[NSNumber numberWithFloat:value_]];
+}
+
+
+
+
+
+@dynamic lastName;
+
+
+
+
+
+
+@dynamic firstName;
+
+
+
+
+
+
+@dynamic tagId;
 
 
 

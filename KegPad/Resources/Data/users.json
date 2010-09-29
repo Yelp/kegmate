@@ -1,17 +1,22 @@
 // NOTE: This is temporary until the Admin section is built out
 [{
-  "rfid": "29009426DC47",
-  "display_name": "Gabriel H."
+  "tag_id": "29009426DC47",
+  "first_name": "Gabriel",
+  "last_name": "Handford"
 }, {
-  "rfid": "2900942371EF",
-  "display_name": "John B."
+  "tag_id": "2900942371EF",
+  "first_name": "John",
+  "last_name": "Boiles"
 }, {
-  "rfid": "29009433E16F",
-  "display_name": "Jeff M."
+  "tag_id": "29009433E16F",
+  "first_name": "Jeff",
+  "last_name": "Micklos"
 }, {
-  "rfid": "29009401239F",
-  "display_name": "Julien R."
+  "tag_id": "29009401239F",
+  "first_name": "Julien",
+  "last_name": "Rhodes"
 }, {
-  "rfid": "29009425D24A",
-  "display_name": "Alex D."
+  "tag_id": "29009425D24A",
+  "first_name": "Alex",
+  "last_name": "Davis"
 }]

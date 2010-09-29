@@ -6,6 +6,10 @@
 
 @class KBKeg;
 
+
+
+
+
 @interface KBKegTemperatureID : NSManagedObjectID {}
 @end
 
@@ -52,5 +56,33 @@
 @end
 
 @interface _KBKegTemperature (CoreDataGeneratedAccessors)
+
+@end
+
+@interface _KBKegTemperature (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveTemperature;
+- (void)setPrimitiveTemperature:(NSNumber*)value;
+
+- (float)primitiveTemperatureValue;
+- (void)setPrimitiveTemperatureValue:(float)value_;
+
+
+- (NSNumber*)primitiveTemperatureHour;
+- (void)setPrimitiveTemperatureHour:(NSNumber*)value;
+
+- (float)primitiveTemperatureHourValue;
+- (void)setPrimitiveTemperatureHourValue:(float)value_;
+
+
+- (NSDate*)primitiveDate;
+- (void)setPrimitiveDate:(NSDate*)value;
+
+
+
+
+- (KBKeg*)primitiveKeg;
+- (void)setPrimitiveKeg:(KBKeg*)value;
+
 
 @end

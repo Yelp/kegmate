@@ -51,7 +51,7 @@
 }
 
 - (void)login {
-  KBUser *user = [kegProcessor_.dataStore userWithRFID:@"29009426DC47" error:nil];
+  KBUser *user = [kegProcessor_.dataStore userWithTagId:@"29009426DC47" error:nil];
   KBDebug(@"User: %@", user);
   [kegProcessor_ login:user];
 }

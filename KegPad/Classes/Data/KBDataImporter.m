@@ -33,8 +33,9 @@
   NSError *error = nil;
   NSArray *users = [[NSBundle mainBundle] yajl_JSONFromResource:@"users.json"];
   for (NSDictionary *user in users) {
-    [dataStore addOrUpdateUserWithRFID:[user gh_objectMaybeNilForKey:@"rfid"]
-                           displayName:[user gh_objectMaybeNilForKey:@"display_name"]
+    [dataStore addOrUpdateUserWithTagId:[user gh_objectMaybeNilForKey:@"tag_id"]
+                              firstName:[user gh_objectMaybeNilForKey:@"first_name"]
+                               lastName:[user gh_objectMaybeNilForKey:@"last_name"]
                                  error:&error];
     KBDataStoreCheckError(error);
   }

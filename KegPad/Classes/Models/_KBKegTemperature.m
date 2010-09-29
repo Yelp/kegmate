@@ -35,13 +35,21 @@
 
 - (float)temperatureValue {
 	NSNumber *result = [self temperature];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setTemperatureValue:(float)value_ {
 	[self setTemperature:[NSNumber numberWithFloat:value_]];
 }
 
+- (float)primitiveTemperatureValue {
+	NSNumber *result = [self primitiveTemperature];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveTemperatureValue:(float)value_ {
+	[self setPrimitiveTemperature:[NSNumber numberWithFloat:value_]];
+}
 
 
 
@@ -53,13 +61,21 @@
 
 - (float)temperatureHourValue {
 	NSNumber *result = [self temperatureHour];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setTemperatureHourValue:(float)value_ {
 	[self setTemperatureHour:[NSNumber numberWithFloat:value_]];
 }
 
+- (float)primitiveTemperatureHourValue {
+	NSNumber *result = [self primitiveTemperatureHour];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveTemperatureHourValue:(float)value_ {
+	[self setPrimitiveTemperatureHour:[NSNumber numberWithFloat:value_]];
+}
 
 
 

@@ -35,13 +35,21 @@
 
 - (float)volumeTotalValue {
 	NSNumber *result = [self volumeTotal];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setVolumeTotalValue:(float)value_ {
 	[self setVolumeTotal:[NSNumber numberWithFloat:value_]];
 }
 
+- (float)primitiveVolumeTotalValue {
+	NSNumber *result = [self primitiveVolumeTotal];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveVolumeTotalValue:(float)value_ {
+	[self setPrimitiveVolumeTotal:[NSNumber numberWithFloat:value_]];
+}
 
 
 
@@ -60,13 +68,21 @@
 
 - (float)volumePouredValue {
 	NSNumber *result = [self volumePoured];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setVolumePouredValue:(float)value_ {
 	[self setVolumePoured:[NSNumber numberWithFloat:value_]];
 }
 
+- (float)primitiveVolumePouredValue {
+	NSNumber *result = [self primitiveVolumePoured];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveVolumePouredValue:(float)value_ {
+	[self setPrimitiveVolumePoured:[NSNumber numberWithFloat:value_]];
+}
 
 
 
@@ -78,13 +94,21 @@
 
 - (int)indexValue {
 	NSNumber *result = [self index];
-	return result ? [result intValue] : 0;
+	return [result intValue];
 }
 
 - (void)setIndexValue:(int)value_ {
 	[self setIndex:[NSNumber numberWithInt:value_]];
 }
 
+- (int)primitiveIndexValue {
+	NSNumber *result = [self primitiveIndex];
+	return [result intValue];
+}
+
+- (void)setPrimitiveIndexValue:(int)value_ {
+	[self setPrimitiveIndex:[NSNumber numberWithInt:value_]];
+}
 
 
 
@@ -96,13 +120,21 @@
 
 - (float)volumeAdjustedValue {
 	NSNumber *result = [self volumeAdjusted];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setVolumeAdjustedValue:(float)value_ {
 	[self setVolumeAdjusted:[NSNumber numberWithFloat:value_]];
 }
 
+- (float)primitiveVolumeAdjustedValue {
+	NSNumber *result = [self primitiveVolumeAdjusted];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveVolumeAdjustedValue:(float)value_ {
+	[self setPrimitiveVolumeAdjusted:[NSNumber numberWithFloat:value_]];
+}
 
 
 

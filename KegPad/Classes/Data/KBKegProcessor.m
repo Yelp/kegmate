@@ -134,7 +134,7 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
   
   if ([tagId gh_isBlank]) return;
   
-  KBUser *user = (tagId ? [dataStore_ userWithRFID:tagId error:nil] : nil);
+  KBUser *user = (tagId ? [dataStore_ userWithTagId:tagId error:nil] : nil);
   if (user) {
     [self login:user];
     [[KBApplication sharedDelegate] playSystemSoundGlass];

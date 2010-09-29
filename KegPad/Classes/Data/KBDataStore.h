@@ -151,19 +151,20 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
 
 /*!
  Add/update a user.
- @param rfid RFID
- @param displayName Display name
+ @param tagId Tag id, such as a RFID
+ @param firstName First name
+ @param lastName Last name
  @param error Out error
- @result YES if user was added
+ @result User if saved, nil otherwise
  */
-- (BOOL)addOrUpdateUserWithRFID:(NSString *)RFID displayName:(NSString *)displayName error:(NSError **)error;
+- (KBUser *)addOrUpdateUserWithTagId:(NSString *)tagId firstName:(NSString *)firstName lastName:(NSString *)lastName error:(NSError **)error;
 
 /*!
- Find user by RFID.
- @param rfid RFID
+ Find user by tag id.
+ @param tagId Tag id, such as a RFID
  @param error Out error
  */
-- (KBUser *)userWithRFID:(NSString *)rfid error:(NSError **)error;
+- (KBUser *)userWithTagId:(NSString *)tagId error:(NSError **)error;
 
 /*!
  Get a list of kegs.

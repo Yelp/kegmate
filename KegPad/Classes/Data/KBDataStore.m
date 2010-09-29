@@ -282,21 +282,23 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return [[self recentKegPours:1 ascending:NO error:error] gh_firstObject];
 }
 
-- (BOOL)addOrUpdateUserWithRFID:(NSString *)RFID displayName:(NSString *)displayName error:(NSError **)error {
-  KBUser *user = [self userWithRFID:RFID error:error];
+- (KBUser *)addOrUpdateUserWithTagId:(NSString *)tagId firstName:(NSString *)firstName lastName:(NSString *)lastName error:(NSError **)error {
+  KBUser *user = [self userWithTagId:tagId error:error];
   if (!user)
     user = [NSEntityDescription insertNewObjectForEntityForName:@"KBUser" inManagedObjectContext:[self managedObjectContext]];
-  user.displayName = displayName;
-  user.rfid = RFID;
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.tagId = tagId;
   BOOL saved = [[self managedObjectContext] save:error];
-  return saved;
+  if (!saved) return nil;
+  return user;
 }
 
-- (KBUser *)userWithRFID:(NSString *)rfid error:(NSError **)error {
+- (KBUser *)userWithTagId:(NSString *)tagId error:(NSError **)error {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBUser" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setFetchLimit:1];
-  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"rfid = %@", rfid]];
+  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"tagId = %@", tagId]];
   return [[[self managedObjectContext] executeFetchRequest:fetchRequest error:error] gh_firstObject];
 }
 

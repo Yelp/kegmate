@@ -63,13 +63,21 @@
 
 - (float)ratingValue {
 	NSNumber *result = [self rating];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setRatingValue:(float)value_ {
 	[self setRating:[NSNumber numberWithFloat:value_]];
 }
 
+- (float)primitiveRatingValue {
+	NSNumber *result = [self primitiveRating];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveRatingValue:(float)value_ {
+	[self setPrimitiveRating:[NSNumber numberWithFloat:value_]];
+}
 
 
 
@@ -81,13 +89,21 @@
 
 - (float)abvValue {
 	NSNumber *result = [self abv];
-	return result ? [result floatValue] : 0;
+	return [result floatValue];
 }
 
 - (void)setAbvValue:(float)value_ {
 	[self setAbv:[NSNumber numberWithFloat:value_]];
 }
 
+- (float)primitiveAbvValue {
+	NSNumber *result = [self primitiveAbv];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveAbvValue:(float)value_ {
+	[self setPrimitiveAbv:[NSNumber numberWithFloat:value_]];
+}
 
 
 
