@@ -35,8 +35,6 @@
   [window_ release];
   [displayViewController_ release];
   [statusViewController_ release];
-  signUpViewController_.delegate = nil;
-  [signUpViewController_ release];
   [navigationController_ release];
   [super dealloc];
 }
@@ -84,6 +82,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_swapScreens:) name:KBSwapScreensNotification object:nil];      
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogin:) name:KBUserDidLoginNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogout:) name:KBUserDidLogoutNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidSignUp:) name:KBUserDidSignUpNotification object:nil];  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknowTagId:) name:KBUnknownTagIdNotification object:nil];  
   
   kegProcessor_ = [[KBKegProcessor alloc] init];
@@ -97,6 +96,9 @@
   
   // Start processing
   [kegProcessor_ start];
+
+  // For testing unknown tag sign up flow
+  //[self performSelector:@selector(_testUnknownTag) withObject:nil afterDelay:1.0];
   return YES;
 }
 
@@ -127,21 +129,11 @@
   [displayViewController_ setUser:user];
 }
 
-- (void)signUpTagId:(NSString *)registerTagId {
-  if (!signUpViewController_) {
-    signUpViewController_ = [[KBSignUpViewController alloc] init];
-    signUpViewController_.delegate = self;
-  }
-  UINavigationController *signUpNavigationController = [[UINavigationController alloc] initWithRootViewController:signUpViewController_];
-  signUpNavigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+- (void)signUpTagId:(NSString *)tagId {
+  KBSignUpNavigationController *signUpNavigationController = [[KBSignUpNavigationController alloc] init];
+  [signUpNavigationController setTagId:tagId];
   [navigationController_ presentModalViewController:signUpNavigationController animated:YES];
   [signUpNavigationController release];
-}
-
-#pragma mark KBSignUpViewControllerDelegate
-
-- (void)signUpViewControllerDidCancel:(KBSignUpViewController *)signUpViewController {
-  [navigationController_ dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark Notifications
@@ -158,8 +150,23 @@
   [self setUser:nil];
 }
 
+- (void)_userDidSignUp:(NSNotification *)notification {
+  [[KBApplication kegProcessor] login:[notification object]];
+  [[KBApplication sharedDelegate] playSystemSoundGlass]; // TODO(gabe): Special welcome sound effect
+}
+
 - (void)_unknowTagId:(NSNotification *)notification {
   [self signUpTagId:[notification object]];
 }
+
+#pragma mark Testing
+
+- (void)_testUnknownTag {
+  // For testing
+  srand(time(NULL));
+  NSString *randomTagId = [NSString stringWithFormat:@"%d", [NSNumber gh_randomInteger]];
+  [kegProcessor_ kegProcessing:kegProcessor_.processing didReceiveRFIDTagId:randomTagId];
+}
+
 @end
 

@@ -30,6 +30,8 @@ NSString *const KBKegDidSavePourNotification = @"KBKegDidSavePourNotification";
 NSString *const KBUserDidLoginNotification = @"KBUserDidLoginNotification";
 NSString *const KBUserDidLogoutNotification = @"KBUserDidLogoutNotification";
 
+NSString *const KBUserDidSignUpNotification = @"KBUserDidSignUpNotification";
+
 NSString *const KBUnknownTagIdNotification = @"KBUnknownTagIdNotification";
 
 NSString *const KBSwapScreensNotification = @"KBSwapScreensNotification";

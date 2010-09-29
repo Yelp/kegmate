@@ -6,16 +6,28 @@
 //  Copyright 2010 Yelp. All rights reserved.
 //
 
-@class KBSignUpViewController;
+#import "KBUIFormViewController.h"
+#import "KBUIFormField.h"
 
-@protocol KBSignUpViewControllerDelegate <NSObject>
-- (void)signUpViewControllerDidCancel:(KBSignUpViewController *)signUpViewController;
-@end
-
-@interface KBSignUpViewController : UIViewController {
-  id<KBSignUpViewControllerDelegate> delegate_;
+@interface KBSignUpViewController : KBUIFormViewController { 
+  KBUIFormField *firstNameField_;
+  KBUIFormField *lastNameField_;  
+  KBUIFormField *tagField_;
 }
 
-@property (assign, nonatomic) id<KBSignUpViewControllerDelegate> delegate;
+- (NSString *)firstName;
+- (NSString *)lastName;
+- (NSString *)tagId;
+
+- (void)setTagId:(NSString *)tagId;
+
+@end
+
+
+@interface KBSignUpNavigationController : UINavigationController {
+  KBSignUpViewController *signUpViewController_;
+}
+
+- (void)setTagId:(NSString *)tagId;
 
 @end

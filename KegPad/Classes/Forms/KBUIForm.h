@@ -1,5 +1,5 @@
 //
-//  KBUIAction.h
+//  KBUIForm.h
 //  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
@@ -22,27 +22,28 @@
 /*!
  Handles generic actions in UITableView contexts.
  */
-@interface KBUIAction : NSObject {
-  NSString *_name;
-  NSString *_info;
-  BOOL _showDisclosure;
+@interface KBUIForm : NSObject {
+  NSString *title_;
+  NSString *text_;
+  BOOL showDisclosure_;
   
-  id _target; // weak
-  SEL _action;
-  SEL _selectedAction; // Selector to call (returns BOOL) to set selected state
+  id target_; // weak
+  SEL action_;
+  SEL selectedAction_; // Selector to call (returns BOOL) to set selected state
   
-  id _context;
+  id context_;
 }
 
-@property (retain, nonatomic) NSString *name;
-@property (retain, nonatomic) NSString *info;
+@property (retain, nonatomic) NSString *title;
+@property (retain, nonatomic) NSString *text;
 @property (readonly, nonatomic) BOOL showDisclosure;
 @property (readonly, nonatomic, getter=isSelected) BOOL selected;
 
-- (id)initWithName:(NSString *)name info:(NSString *)info target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure selectedAction:(SEL)selectedAction;
-+ (KBUIAction *)actionWithName:(NSString *)name info:(NSString *)info target:(id)target action:(SEL)action showDisclosure:(BOOL)showDisclosure;
-+ (KBUIAction *)actionWithName:(NSString *)name target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure;
-+ (KBUIAction *)actionWithName:(NSString *)name target:(id)target action:(SEL)action selectedAction:(SEL)selectedAction;
+- (id)initWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure selectedAction:(SEL)selectedAction;
++ (KBUIForm *)actionWithTitle:(NSString *)title text:(NSString *)text;
++ (KBUIForm *)actionWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action showDisclosure:(BOOL)showDisclosure;
++ (KBUIForm *)actionWithTitle:(NSString *)title target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure;
++ (KBUIForm *)actionWithTitle:(NSString *)title target:(id)target action:(SEL)action selectedAction:(SEL)selectedAction;
 
 - (void)performAction;
 

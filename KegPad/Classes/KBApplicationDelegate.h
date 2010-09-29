@@ -21,7 +21,6 @@
 
 #import "KBDisplayViewController.h"
 #import "KBStatusViewController.h"
-#import "KBSignUpViewController.h"
 #import "KBKegProcessor.h"
 #import "KBApplication.h"
 #import <AudioToolbox/AudioServices.h>
@@ -29,7 +28,7 @@
 /*!
  Main application delegate.
  */
-@interface KBApplicationDelegate : NSObject <KBApplicationDelegate, KBSignUpViewControllerDelegate> {    
+@interface KBApplicationDelegate : NSObject <KBApplicationDelegate> {    
   UIWindow *window_;    
   
   KBDataStore *store_;
@@ -37,7 +36,6 @@
   UINavigationController *navigationController_;
   KBDisplayViewController *displayViewController_;
   KBStatusViewController *statusViewController_;
-  KBSignUpViewController *signUpViewController_;
   
   SystemSoundID systemSounds_[1];
   

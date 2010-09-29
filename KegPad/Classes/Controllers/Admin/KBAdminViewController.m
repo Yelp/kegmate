@@ -24,12 +24,13 @@
 #import "KBDataStore.h"
 #import "KBApplication.h"
 #import "KBDataImporter.h"
-#import "KBUIAction.h"
+#import "KBUIForm.h"
 
 @implementation KBAdminViewController
 
 - (id)init {
   if ((self = [super init])) {
+    self.modalPresentationStyle = UIModalPresentationFormSheet;
     adminOptionsController_ = [[KBAdminOptionsController alloc] init];
     [self pushViewController:adminOptionsController_ animated:NO];
   }
@@ -46,11 +47,12 @@
 @implementation KBAdminOptionsController
 
 - (id)init {
-  if ((self = [super init])) {
-    [self addAction:[KBUIAction actionWithName:@"Beers" info:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
-    [self addAction:[KBUIAction actionWithName:@"Kegs" info:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
-    [self addAction:[KBUIAction actionWithName:@"Users" info:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
-    [self addAction:[KBUIAction actionWithName:@"Simulator" info:@"For testing." target:self action:@selector(showSimulator) showDisclosure:NO]];
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+    self.title = @"Admin";
+    [self addAction:[KBUIForm actionWithTitle:@"Beers" text:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
+    [self addAction:[KBUIForm actionWithTitle:@"Kegs" text:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
+    [self addAction:[KBUIForm actionWithTitle:@"Users" text:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
+    [self addAction:[KBUIForm actionWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
   }
   return self;
 }
@@ -71,7 +73,7 @@
 }
 
 - (void)close {
-  [self dismissModalViewControllerAnimated:NO];
+  [self dismissModalViewControllerAnimated:YES];
   [self.navigationController popToRootViewControllerAnimated:NO]; 
 }
 
@@ -101,10 +103,11 @@
   [self.navigationController pushViewController:simulatorViewController_ animated:YES];
 }
 
-#pragma mark KBActionViewControllerDelegate
+#pragma mark KBUIFormViewControllerDelegate
 
-- (void)actionViewController:(KBActionViewController *)actionViewController willSelectAction:(KBUIAction *)action {
-  [self close];
+- (void)actionViewController:(KBUIFormViewController *)actionViewController willSelectAction:(KBUIForm *)action {
+  [self dismissModalViewControllerAnimated:NO];
+  [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 @end

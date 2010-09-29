@@ -6,10 +6,10 @@
 //  Copyright 2010 rel.me. All rights reserved.
 //
 
-#import "KBActionViewController.h"
+#import "KBUIFormViewController.h"
 #import "KBKegProcessorSimulator.h"
 
-@interface KBSimulatorViewController : KBActionViewController {
+@interface KBSimulatorViewController : KBUIFormViewController {
   KBKegProcessorSimulator *kegProcessorSimulator_;
 }
 

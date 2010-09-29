@@ -22,7 +22,7 @@
 #import "KBBeersViewController.h"
 #import "KBUsersViewController.h"
 #import "KBKegsViewController.h"
-#import "KBActionViewController.h"
+#import "KBUIFormViewController.h"
 #import "KBSimulatorViewController.h"
 
 @class KBAdminOptionsController;
@@ -34,7 +34,7 @@
 @end
 
 
-@interface KBAdminOptionsController : KBActionViewController <KBActionViewControllerDelegate> {
+@interface KBAdminOptionsController : KBUIFormViewController <KBUIFormViewControllerDelegate> {
   
   KBBeersViewController *beersViewController_;
   KBUsersViewController *usersViewController_;
