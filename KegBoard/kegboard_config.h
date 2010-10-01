@@ -66,10 +66,10 @@
 // TODO(johnb): Since we don't need TX to the ID12 RFID reader, check and see if we can
 // safely set the NewSoftSerial TX pin to 0
 #define KB_PIN_ID12               6
-// NOTE: Currently the MagStripe clock pin cannot be changed since it's tied to interrupt 1
-#define KB_PIN_MAGSTRIPE_CLOCK    3
-#define KB_PIN_MAGSTRIPE_DATA     5
-#define KB_PIN_MAGSTRIPE_CARD_PRESENT 4
+
+#define KB_PIN_MAGSTRIPE_CLOCK    17
+#define KB_PIN_MAGSTRIPE_DATA     18
+#define KB_PIN_MAGSTRIPE_CARD_PRESENT 19
 
 #define KB_PIN_SERIAL_LCD_TX 6
 #define KB_PIN_SERIAL_LCD_RX 10

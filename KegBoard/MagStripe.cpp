@@ -23,6 +23,7 @@
 
 #include "MagStripe.h"
 #include "pins_arduino.h"
+#include "WProgram.h"
 
 /*
 Ideally this would use 2 external interrupts, one for the card present pin,
@@ -37,28 +38,23 @@ Ideally this would use 2 external interrupts, one for the card present pin,
  */
 
 MagStripe::MagStripe(uint8_t clockPin, uint8_t dataPin, uint8_t cardPresentPin) {
-  // Hardcoding clock pin for now
-  //m_clockPin = clockPin;
-  m_clockPin = 3;
-  m_dataPin = dataPin;
-  m_cardPresentPin = cardPresentPin;
-  m_dataSize = 0;
-  dataAvailable = false;
-  // Interrupt on clock signal
-  //attachInterrupt(1, m_writeBit, FALLING);
-  //pinMode(2, INPUT);
+  _clockPin = clockPin;
+  pinMode(clockPin, INPUT);
+  _dataPin = dataPin;
+  pinMode(dataPin, INPUT);
+  _cardPresentPin = cardPresentPin;
+  pinMode(cardPresentPin, INPUT);
+  reset();
 }
 
 int MagStripe::getData(char **data) {
-  // If card is present, don't return anything
-  // TODO(johnb): Hardcoding pin for now
-  //if (digitalRead(m_cardPresentPin) == LOW) return 0;
-  if (!(PIND & 0x10)) return 0;
+  // If card is present, we're reading data, don't return anything
+  if (digitalRead(_cardPresentPin) == LOW) return 0;
   // If data is available, return data, reset values
   if (dataAvailable) {
     decode();
-    *data = m_cardData;
-    int dataSize = m_dataSize;
+    *data = _cardData;
+    int dataSize = _dataSize;
     reset();
     return dataSize;
   }
@@ -66,19 +62,16 @@ int MagStripe::getData(char **data) {
 }
 
 void MagStripe::reset() {
-  m_bufferIndex = 0;
-  m_dataSize = 0;
+  _bufferIndex = 0;
+  _dataSize = 0;
   dataAvailable = false;
 }
 
 // Writes the bit to the buffer
 void MagStripe::clockData() {
-  // TODO(johnb): hardcoding for now
-  //m_buffer[m_bufferIndex] = !!!digitalRead(2);
-  if (m_bufferIndex > MAGSTRIPE_BUFFER_SIZE) return;
-  if (PIND & 0x20) m_buffer[m_bufferIndex] = 0;
-  else m_buffer[m_bufferIndex] = 1;
-  m_bufferIndex++;
+  if (_bufferIndex > MAGSTRIPE_BUFFER_SIZE) return;
+  _buffer[_bufferIndex] = !digitalRead(_dataPin);
+  _bufferIndex++;
   dataAvailable = true;
 }
 
@@ -87,7 +80,7 @@ void MagStripe::printBuffer() {
 #if MAGSTRIPE_DEBUG
   Serial.print("Buffer:");
   for (int j = 0; j < MAGSTRIPE_BUFFER_SIZE; j = j + 1) {
-    Serial.println(m_buffer[j], DEC);
+    Serial.println(_buffer[j], DEC);
   }
   Serial.println("End Buffer");
 #endif
@@ -103,7 +96,7 @@ int MagStripe::findStartSentinal() {
     queue[3] = queue[2];
     queue[2] = queue[1];
     queue[1] = queue[0];
-    queue[0] = m_buffer[j];
+    queue[0] = _buffer[j];
 
 #if MAGSTRIPE_DEBUG
     Serial.print(queue[0], DEC);
@@ -135,7 +128,7 @@ void MagStripe::decode() {
   char thisByte[5];
 
   for (int j = sentinal; j < MAGSTRIPE_BUFFER_SIZE - sentinal; j = j + 1) {
-    thisByte[i] = m_buffer[j];
+    thisByte[i] = _buffer[j];
     i++;
     if (i % 5 == 0) {
       i = 0;
@@ -143,13 +136,14 @@ void MagStripe::decode() {
         break;
       }
       char value = saveByte(thisByte);
+      // TODO(johnb): Do some validation. Maybe return false if there wasn't an end sentinel.
       if (value == '?') break; // End sentinel
     }
   }
 #if MAGSTRIPE_DEBUG 
   Serial.print("Stripe_Data:");
-  for (k = 0; k < m_dataSize; k = k + 1) {
-    Serial.print(m_cardData[k]);
+  for (k = 0; k < _dataSize; k = k + 1) {
+    Serial.print(_cardData[k]);
   }
   Serial.println("");
 #endif
@@ -167,8 +161,8 @@ char MagStripe::saveByte(char thisByte[]) {
   char value = decodeByte(thisByte);
   if (value == ';') return ';'; // Ignore start sentinel
   if (value == '?') return '?'; // Ignore end sentinel
-  m_cardData[m_dataSize] = value;
-  m_dataSize++;
+  _cardData[_dataSize] = value;
+  _dataSize++;
   return value;
 }
 

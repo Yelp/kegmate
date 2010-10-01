@@ -51,6 +51,7 @@
 #include "ds1820.h"
 #include "KegboardPacket.h"
 #include "version.h"
+#include "PCInterrupt.h"
 
 #if KB_ENABLE_ID12
 #include "NewSoftSerial.h"
@@ -176,11 +177,6 @@ void meterInterruptB()
 }
 #endif
 
-void magStripeClockInterrupt()
-{
-  gMagStripe.clockData();
-}
-
 #ifdef KB_PIN_METER_C
 void meterInterruptC()
 {
@@ -206,6 +202,13 @@ void meterInterruptE()
 void meterInterruptF()
 {
   gMeters[5] += 1;
+}
+#endif
+
+#ifdef KB_ENABLE_MAGSTRIPE
+void magStripeClockInterrupt()
+{
+  gMagStripe.clockData();
 }
 #endif
 
@@ -456,13 +459,11 @@ void setup()
 #endif
 
 #if KB_ENABLE_ID12
-gID12Serial.begin(9600);
+  gID12Serial.begin(9600);
 #endif
 
 #if KB_ENABLE_MAGSTRIPE
-  attachInterrupt(1, magStripeClockInterrupt, FALLING);
-  pinMode(4, INPUT);
-  pinMode(5, INPUT);
+  PCattachInterrupt(KB_PIN_MAGSTRIPE_CLOCK, magStripeClockInterrupt, FALLING);
 #endif
 
 writeHelloPacket();

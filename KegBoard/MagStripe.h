@@ -31,14 +31,15 @@ class MagStripe {
     int getData(char **data);
     void clockData();
   private:
-    volatile unsigned char m_buffer[MAGSTRIPE_BUFFER_SIZE];
-    volatile int m_bufferIndex;
+    // TODO(johnb): Make this some sort of bit vector so we more efficiently use ram.
+    volatile unsigned char _buffer[MAGSTRIPE_BUFFER_SIZE];
+    volatile int _bufferIndex;
     // Buffer for data, though this sucks since each char only uses a bit
-    char m_cardData[40]; // holds card id string
-    int m_dataSize; // length of card id string
-    uint8_t m_clockPin;
-    uint8_t m_dataPin;
-    uint8_t m_cardPresentPin;
+    char _cardData[40]; // holds card id string
+    int _dataSize; // length of card id string
+    uint8_t _clockPin;
+    uint8_t _dataPin;
+    uint8_t _cardPresentPin;
     int findStartSentinal();
     void decode();
     char saveByte(char thisByte[]);
