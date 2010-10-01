@@ -19,31 +19,6 @@
 		0017BA42120249D600269CDA /* KBKegPour.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3D120249D600269CDA /* KBKegPour.m */; };
 		0017BA43120249D600269CDA /* KBKegTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3F120249D600269CDA /* KBKegTemperature.m */; };
 		0017BBD9120272E300269CDA /* BeerReverse400.mov in Resources */ = {isa = PBXBuildFile; fileRef = 0017BBD5120272E300269CDA /* BeerReverse400.mov */; };
-		0017BCFA120279E200269CDA /* GHNSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCC3120279E200269CDA /* GHNSArray+Utils.m */; };
-		0017BCFB120279E200269CDA /* GHNSBundle+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCC5120279E200269CDA /* GHNSBundle+Utils.m */; };
-		0017BCFC120279E200269CDA /* GHNSDate+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCC7120279E200269CDA /* GHNSDate+Parsing.m */; };
-		0017BCFD120279E200269CDA /* GHNSDate+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCC9120279E200269CDA /* GHNSDate+Utils.m */; };
-		0017BCFE120279E200269CDA /* GHNSDictionary+NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCCB120279E200269CDA /* GHNSDictionary+NSNull.m */; };
-		0017BCFF120279E200269CDA /* GHNSDictionary+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCCD120279E200269CDA /* GHNSDictionary+Utils.m */; };
-		0017BD00120279E200269CDA /* GHNSError+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCCF120279E200269CDA /* GHNSError+Utils.m */; };
-		0017BD01120279E200269CDA /* GHNSFileManager+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCD1120279E200269CDA /* GHNSFileManager+Utils.m */; };
-		0017BD02120279E200269CDA /* GHNSInvocation+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCD3120279E200269CDA /* GHNSInvocation+Utils.m */; };
-		0017BD03120279E200269CDA /* GHNSInvocationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCD5120279E200269CDA /* GHNSInvocationProxy.m */; };
-		0017BD04120279E200269CDA /* GHNSMutableArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCD7120279E200269CDA /* GHNSMutableArray+Utils.m */; };
-		0017BD05120279E200269CDA /* GHNSMutableDictionary+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCD9120279E200269CDA /* GHNSMutableDictionary+Utils.m */; };
-		0017BD06120279E200269CDA /* GHNSNotificationCenter+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCDB120279E200269CDA /* GHNSNotificationCenter+Utils.m */; };
-		0017BD07120279E200269CDA /* GHNSNumber+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCDD120279E200269CDA /* GHNSNumber+Utils.m */; };
-		0017BD08120279E200269CDA /* GHNSObject+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCDF120279E200269CDA /* GHNSObject+Invocation.m */; };
-		0017BD09120279E200269CDA /* GHNSObject+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCE1120279E200269CDA /* GHNSObject+Utils.m */; };
-		0017BD0A120279E200269CDA /* GHNSString+TimeInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCE3120279E200269CDA /* GHNSString+TimeInterval.m */; };
-		0017BD0B120279E200269CDA /* GHNSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCE5120279E200269CDA /* GHNSString+URL.m */; };
-		0017BD0C120279E200269CDA /* GHNSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCE7120279E200269CDA /* GHNSString+Utils.m */; };
-		0017BD0F120279E200269CDA /* GHNSStringEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCED120279E200269CDA /* GHNSStringEnumerator.m */; };
-		0017BD10120279E200269CDA /* GHNSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCEF120279E200269CDA /* GHNSURL+Utils.m */; };
-		0017BD11120279E200269CDA /* GHReversableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF1120279E200269CDA /* GHReversableDictionary.m */; };
-		0017BD12120279E200269CDA /* GHNSString+UIKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF4120279E200269CDA /* GHNSString+UIKitUtils.m */; };
-		0017BD13120279E200269CDA /* GHUIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF6120279E200269CDA /* GHUIColor+Utils.m */; };
-		0017BD14120279E200269CDA /* GHNSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */; };
 		002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F095F12263EE300766D62 /* YAJLIOS.framework */; };
 		00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00568FAE1251A493004AF3D1 /* KBUserView.m */; };
 		0075514D125043A400C5538C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075514B125043A400C5538C /* Icon-72.png */; };
@@ -108,6 +83,8 @@
 		00D54F4E1202EC2300F76724 /* KBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D54F4D1202EC2300F76724 /* KBImageView.m */; };
 		00DDE7461203558200B24BA5 /* S7GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE7441203558200B24BA5 /* S7GraphView.m */; };
 		00DDE98F12037E3600B24BA5 /* KBLeaderboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */; };
+		00E654581256565B00E4CE9E /* GHKitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E654571256565B00E4CE9E /* GHKitIOS.framework */; };
+		00E655701256638400E4CE9E /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6556E1256638400E4CE9E /* GTMLogger.m */; };
 		00EB4879120387DD00991768 /* controls_literboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EB4878120387DD00991768 /* controls_literboard_bg.png */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -154,58 +131,6 @@
 		0017BA3E120249D600269CDA /* KBKegTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTemperature.h; sourceTree = "<group>"; };
 		0017BA3F120249D600269CDA /* KBKegTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTemperature.m; sourceTree = "<group>"; };
 		0017BBD5120272E300269CDA /* BeerReverse400.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = BeerReverse400.mov; sourceTree = "<group>"; };
-		0017BCC0120279E200269CDA /* GHKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHKit.h; sourceTree = "<group>"; };
-		0017BCC1120279E200269CDA /* GHKitDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHKitDefines.h; sourceTree = "<group>"; };
-		0017BCC2120279E200269CDA /* GHNSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSArray+Utils.h"; sourceTree = "<group>"; };
-		0017BCC3120279E200269CDA /* GHNSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSArray+Utils.m"; sourceTree = "<group>"; };
-		0017BCC4120279E200269CDA /* GHNSBundle+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSBundle+Utils.h"; sourceTree = "<group>"; };
-		0017BCC5120279E200269CDA /* GHNSBundle+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSBundle+Utils.m"; sourceTree = "<group>"; };
-		0017BCC6120279E200269CDA /* GHNSDate+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSDate+Parsing.h"; sourceTree = "<group>"; };
-		0017BCC7120279E200269CDA /* GHNSDate+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSDate+Parsing.m"; sourceTree = "<group>"; };
-		0017BCC8120279E200269CDA /* GHNSDate+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSDate+Utils.h"; sourceTree = "<group>"; };
-		0017BCC9120279E200269CDA /* GHNSDate+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSDate+Utils.m"; sourceTree = "<group>"; };
-		0017BCCA120279E200269CDA /* GHNSDictionary+NSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSDictionary+NSNull.h"; sourceTree = "<group>"; };
-		0017BCCB120279E200269CDA /* GHNSDictionary+NSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSDictionary+NSNull.m"; sourceTree = "<group>"; };
-		0017BCCC120279E200269CDA /* GHNSDictionary+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSDictionary+Utils.h"; sourceTree = "<group>"; };
-		0017BCCD120279E200269CDA /* GHNSDictionary+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSDictionary+Utils.m"; sourceTree = "<group>"; };
-		0017BCCE120279E200269CDA /* GHNSError+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSError+Utils.h"; sourceTree = "<group>"; };
-		0017BCCF120279E200269CDA /* GHNSError+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSError+Utils.m"; sourceTree = "<group>"; };
-		0017BCD0120279E200269CDA /* GHNSFileManager+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSFileManager+Utils.h"; sourceTree = "<group>"; };
-		0017BCD1120279E200269CDA /* GHNSFileManager+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSFileManager+Utils.m"; sourceTree = "<group>"; };
-		0017BCD2120279E200269CDA /* GHNSInvocation+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSInvocation+Utils.h"; sourceTree = "<group>"; };
-		0017BCD3120279E200269CDA /* GHNSInvocation+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSInvocation+Utils.m"; sourceTree = "<group>"; };
-		0017BCD4120279E200269CDA /* GHNSInvocationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHNSInvocationProxy.h; sourceTree = "<group>"; };
-		0017BCD5120279E200269CDA /* GHNSInvocationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHNSInvocationProxy.m; sourceTree = "<group>"; };
-		0017BCD6120279E200269CDA /* GHNSMutableArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSMutableArray+Utils.h"; sourceTree = "<group>"; };
-		0017BCD7120279E200269CDA /* GHNSMutableArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSMutableArray+Utils.m"; sourceTree = "<group>"; };
-		0017BCD8120279E200269CDA /* GHNSMutableDictionary+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSMutableDictionary+Utils.h"; sourceTree = "<group>"; };
-		0017BCD9120279E200269CDA /* GHNSMutableDictionary+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSMutableDictionary+Utils.m"; sourceTree = "<group>"; };
-		0017BCDA120279E200269CDA /* GHNSNotificationCenter+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSNotificationCenter+Utils.h"; sourceTree = "<group>"; };
-		0017BCDB120279E200269CDA /* GHNSNotificationCenter+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSNotificationCenter+Utils.m"; sourceTree = "<group>"; };
-		0017BCDC120279E200269CDA /* GHNSNumber+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSNumber+Utils.h"; sourceTree = "<group>"; };
-		0017BCDD120279E200269CDA /* GHNSNumber+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSNumber+Utils.m"; sourceTree = "<group>"; };
-		0017BCDE120279E200269CDA /* GHNSObject+Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSObject+Invocation.h"; sourceTree = "<group>"; };
-		0017BCDF120279E200269CDA /* GHNSObject+Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSObject+Invocation.m"; sourceTree = "<group>"; };
-		0017BCE0120279E200269CDA /* GHNSObject+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSObject+Utils.h"; sourceTree = "<group>"; };
-		0017BCE1120279E200269CDA /* GHNSObject+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSObject+Utils.m"; sourceTree = "<group>"; };
-		0017BCE2120279E200269CDA /* GHNSString+TimeInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSString+TimeInterval.h"; sourceTree = "<group>"; };
-		0017BCE3120279E200269CDA /* GHNSString+TimeInterval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSString+TimeInterval.m"; sourceTree = "<group>"; };
-		0017BCE4120279E200269CDA /* GHNSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSString+URL.h"; sourceTree = "<group>"; };
-		0017BCE5120279E200269CDA /* GHNSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSString+URL.m"; sourceTree = "<group>"; };
-		0017BCE6120279E200269CDA /* GHNSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSString+Utils.h"; sourceTree = "<group>"; };
-		0017BCE7120279E200269CDA /* GHNSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSString+Utils.m"; sourceTree = "<group>"; };
-		0017BCEC120279E200269CDA /* GHNSStringEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHNSStringEnumerator.h; sourceTree = "<group>"; };
-		0017BCED120279E200269CDA /* GHNSStringEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHNSStringEnumerator.m; sourceTree = "<group>"; };
-		0017BCEE120279E200269CDA /* GHNSURL+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSURL+Utils.h"; sourceTree = "<group>"; };
-		0017BCEF120279E200269CDA /* GHNSURL+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSURL+Utils.m"; sourceTree = "<group>"; };
-		0017BCF0120279E200269CDA /* GHReversableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHReversableDictionary.h; sourceTree = "<group>"; };
-		0017BCF1120279E200269CDA /* GHReversableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHReversableDictionary.m; sourceTree = "<group>"; };
-		0017BCF3120279E200269CDA /* GHNSString+UIKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSString+UIKitUtils.h"; sourceTree = "<group>"; };
-		0017BCF4120279E200269CDA /* GHNSString+UIKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSString+UIKitUtils.m"; sourceTree = "<group>"; };
-		0017BCF5120279E200269CDA /* GHUIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHUIColor+Utils.h"; sourceTree = "<group>"; };
-		0017BCF6120279E200269CDA /* GHUIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHUIColor+Utils.m"; sourceTree = "<group>"; };
-		0017BCF8120279E200269CDA /* GHNSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSObject+Swizzle.h"; sourceTree = "<group>"; };
-		0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSObject+Swizzle.m"; sourceTree = "<group>"; };
 		002F095F12263EE300766D62 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
 		00568FAD1251A493004AF3D1 /* KBUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserView.h; sourceTree = "<group>"; };
 		00568FAE1251A493004AF3D1 /* KBUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserView.m; sourceTree = "<group>"; };
@@ -307,6 +232,10 @@
 		00DDE7451203558200B24BA5 /* S7Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S7Macros.h; sourceTree = "<group>"; };
 		00DDE98D12037E3600B24BA5 /* KBLeaderboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBLeaderboardView.h; sourceTree = "<group>"; };
 		00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBLeaderboardView.m; sourceTree = "<group>"; };
+		00E654571256565B00E4CE9E /* GHKitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHKitIOS.framework; sourceTree = "<group>"; };
+		00E6556D1256638400E4CE9E /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLogger.h; sourceTree = "<group>"; };
+		00E6556E1256638400E4CE9E /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMLogger.m; sourceTree = "<group>"; };
+		00E6556F1256638400E4CE9E /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		00EB4878120387DD00991768 /* controls_literboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_literboard_bg.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* KegPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KegPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -351,6 +280,7 @@
 				008FEDB41201F9C400BA5D07 /* QuartzCore.framework in Frameworks */,
 				429B08EE1202FF5300C36F76 /* AudioToolbox.framework in Frameworks */,
 				002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */,
+				00E654581256565B00E4CE9E /* GHKitIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,86 +336,12 @@
 		0017BCBE120279E200269CDA /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				00E6556B1256638400E4CE9E /* GTM */,
+				00E654571256565B00E4CE9E /* GHKitIOS.framework */,
 				002F095F12263EE300766D62 /* YAJLIOS.framework */,
 				00DDE7421203558200B24BA5 /* s7graphview */,
-				0017BCBF120279E200269CDA /* GHKit */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		0017BCBF120279E200269CDA /* GHKit */ = {
-			isa = PBXGroup;
-			children = (
-				0017BCC0120279E200269CDA /* GHKit.h */,
-				0017BCC1120279E200269CDA /* GHKitDefines.h */,
-				0017BCC2120279E200269CDA /* GHNSArray+Utils.h */,
-				0017BCC3120279E200269CDA /* GHNSArray+Utils.m */,
-				0017BCC4120279E200269CDA /* GHNSBundle+Utils.h */,
-				0017BCC5120279E200269CDA /* GHNSBundle+Utils.m */,
-				0017BCC6120279E200269CDA /* GHNSDate+Parsing.h */,
-				0017BCC7120279E200269CDA /* GHNSDate+Parsing.m */,
-				0017BCC8120279E200269CDA /* GHNSDate+Utils.h */,
-				0017BCC9120279E200269CDA /* GHNSDate+Utils.m */,
-				0017BCCA120279E200269CDA /* GHNSDictionary+NSNull.h */,
-				0017BCCB120279E200269CDA /* GHNSDictionary+NSNull.m */,
-				0017BCCC120279E200269CDA /* GHNSDictionary+Utils.h */,
-				0017BCCD120279E200269CDA /* GHNSDictionary+Utils.m */,
-				0017BCCE120279E200269CDA /* GHNSError+Utils.h */,
-				0017BCCF120279E200269CDA /* GHNSError+Utils.m */,
-				0017BCD0120279E200269CDA /* GHNSFileManager+Utils.h */,
-				0017BCD1120279E200269CDA /* GHNSFileManager+Utils.m */,
-				0017BCD2120279E200269CDA /* GHNSInvocation+Utils.h */,
-				0017BCD3120279E200269CDA /* GHNSInvocation+Utils.m */,
-				0017BCD4120279E200269CDA /* GHNSInvocationProxy.h */,
-				0017BCD5120279E200269CDA /* GHNSInvocationProxy.m */,
-				0017BCD6120279E200269CDA /* GHNSMutableArray+Utils.h */,
-				0017BCD7120279E200269CDA /* GHNSMutableArray+Utils.m */,
-				0017BCD8120279E200269CDA /* GHNSMutableDictionary+Utils.h */,
-				0017BCD9120279E200269CDA /* GHNSMutableDictionary+Utils.m */,
-				0017BCDA120279E200269CDA /* GHNSNotificationCenter+Utils.h */,
-				0017BCDB120279E200269CDA /* GHNSNotificationCenter+Utils.m */,
-				0017BCDC120279E200269CDA /* GHNSNumber+Utils.h */,
-				0017BCDD120279E200269CDA /* GHNSNumber+Utils.m */,
-				0017BCDE120279E200269CDA /* GHNSObject+Invocation.h */,
-				0017BCDF120279E200269CDA /* GHNSObject+Invocation.m */,
-				0017BCE0120279E200269CDA /* GHNSObject+Utils.h */,
-				0017BCE1120279E200269CDA /* GHNSObject+Utils.m */,
-				0017BCE2120279E200269CDA /* GHNSString+TimeInterval.h */,
-				0017BCE3120279E200269CDA /* GHNSString+TimeInterval.m */,
-				0017BCE4120279E200269CDA /* GHNSString+URL.h */,
-				0017BCE5120279E200269CDA /* GHNSString+URL.m */,
-				0017BCE6120279E200269CDA /* GHNSString+Utils.h */,
-				0017BCE7120279E200269CDA /* GHNSString+Utils.m */,
-				0017BCEC120279E200269CDA /* GHNSStringEnumerator.h */,
-				0017BCED120279E200269CDA /* GHNSStringEnumerator.m */,
-				0017BCEE120279E200269CDA /* GHNSURL+Utils.h */,
-				0017BCEF120279E200269CDA /* GHNSURL+Utils.m */,
-				0017BCF0120279E200269CDA /* GHReversableDictionary.h */,
-				0017BCF1120279E200269CDA /* GHReversableDictionary.m */,
-				0017BCF2120279E200269CDA /* IPhone */,
-				0017BCF7120279E200269CDA /* Swizzle */,
-			);
-			path = GHKit;
-			sourceTree = "<group>";
-		};
-		0017BCF2120279E200269CDA /* IPhone */ = {
-			isa = PBXGroup;
-			children = (
-				0017BCF3120279E200269CDA /* GHNSString+UIKitUtils.h */,
-				0017BCF4120279E200269CDA /* GHNSString+UIKitUtils.m */,
-				0017BCF5120279E200269CDA /* GHUIColor+Utils.h */,
-				0017BCF6120279E200269CDA /* GHUIColor+Utils.m */,
-			);
-			path = IPhone;
-			sourceTree = "<group>";
-		};
-		0017BCF7120279E200269CDA /* Swizzle */ = {
-			isa = PBXGroup;
-			children = (
-				0017BCF8120279E200269CDA /* GHNSObject+Swizzle.h */,
-				0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */,
-			);
-			path = Swizzle;
 			sourceTree = "<group>";
 		};
 		0075514A125043A400C5538C /* Icons */ = {
@@ -668,6 +524,24 @@
 				00DDE7451203558200B24BA5 /* S7Macros.h */,
 			);
 			path = s7graphview;
+			sourceTree = "<group>";
+		};
+		00E6556B1256638400E4CE9E /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				00E6556C1256638400E4CE9E /* Foundation */,
+				00E6556F1256638400E4CE9E /* GTMDefines.h */,
+			);
+			path = GTM;
+			sourceTree = "<group>";
+		};
+		00E6556C1256638400E4CE9E /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				00E6556D1256638400E4CE9E /* GTMLogger.h */,
+				00E6556E1256638400E4CE9E /* GTMLogger.m */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
@@ -885,31 +759,6 @@
 				0017BA41120249D600269CDA /* _KBKegTemperature.m in Sources */,
 				0017BA42120249D600269CDA /* KBKegPour.m in Sources */,
 				0017BA43120249D600269CDA /* KBKegTemperature.m in Sources */,
-				0017BCFA120279E200269CDA /* GHNSArray+Utils.m in Sources */,
-				0017BCFB120279E200269CDA /* GHNSBundle+Utils.m in Sources */,
-				0017BCFC120279E200269CDA /* GHNSDate+Parsing.m in Sources */,
-				0017BCFD120279E200269CDA /* GHNSDate+Utils.m in Sources */,
-				0017BCFE120279E200269CDA /* GHNSDictionary+NSNull.m in Sources */,
-				0017BCFF120279E200269CDA /* GHNSDictionary+Utils.m in Sources */,
-				0017BD00120279E200269CDA /* GHNSError+Utils.m in Sources */,
-				0017BD01120279E200269CDA /* GHNSFileManager+Utils.m in Sources */,
-				0017BD02120279E200269CDA /* GHNSInvocation+Utils.m in Sources */,
-				0017BD03120279E200269CDA /* GHNSInvocationProxy.m in Sources */,
-				0017BD04120279E200269CDA /* GHNSMutableArray+Utils.m in Sources */,
-				0017BD05120279E200269CDA /* GHNSMutableDictionary+Utils.m in Sources */,
-				0017BD06120279E200269CDA /* GHNSNotificationCenter+Utils.m in Sources */,
-				0017BD07120279E200269CDA /* GHNSNumber+Utils.m in Sources */,
-				0017BD08120279E200269CDA /* GHNSObject+Invocation.m in Sources */,
-				0017BD09120279E200269CDA /* GHNSObject+Utils.m in Sources */,
-				0017BD0A120279E200269CDA /* GHNSString+TimeInterval.m in Sources */,
-				0017BD0B120279E200269CDA /* GHNSString+URL.m in Sources */,
-				0017BD0C120279E200269CDA /* GHNSString+Utils.m in Sources */,
-				0017BD0F120279E200269CDA /* GHNSStringEnumerator.m in Sources */,
-				0017BD10120279E200269CDA /* GHNSURL+Utils.m in Sources */,
-				0017BD11120279E200269CDA /* GHReversableDictionary.m in Sources */,
-				0017BD12120279E200269CDA /* GHNSString+UIKitUtils.m in Sources */,
-				0017BD13120279E200269CDA /* GHUIColor+Utils.m in Sources */,
-				0017BD14120279E200269CDA /* GHNSObject+Swizzle.m in Sources */,
 				00D54A70120282C600F76724 /* KBChartView.m in Sources */,
 				00D54B4B1202978500F76724 /* KBChalkLabel.m in Sources */,
 				00D54BCA1202A46600F76724 /* _KBUser.m in Sources */,
@@ -947,6 +796,7 @@
 				00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */,
 				00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */,
 				00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */,
+				00E655701256638400E4CE9E /* GTMLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

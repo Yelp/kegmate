@@ -96,7 +96,7 @@
 
 - (id)init {
   if ((self = [super init])) {
-    userEditViewController_ = [[KBUserEditViewController alloc] initWithTitle:@"Sign Up"];
+    userEditViewController_ = [[KBUserEditViewController alloc] initWithTitle:@"Sign Up" buttonTitle:@"Sign Up"];
     userEditViewController_.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
     self.modalPresentationStyle = UIModalPresentationFormSheet;
     self.viewControllers = [NSArray arrayWithObject:userEditViewController_];
