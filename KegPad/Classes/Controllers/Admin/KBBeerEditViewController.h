@@ -1,8 +1,8 @@
 //
-//  KBSimulatorViewController.h
+//  KBBeerEditViewController.h
 //  KegPad
 //
-//  Created by Gabe on 9/26/10.
+//  Created by Gabe on 9/30/10.
 //  Copyright 2010 rel.me. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,11 +19,28 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBUIFormViewController.h"
-#import "KBKegProcessorSimulator.h"
 
-@interface KBSimulatorViewController : KBUIFormViewController {
-  KBKegProcessorSimulator *kegProcessorSimulator_;
+#import "KBUIFormViewController.h"
+#import "KBUIFormTextField.h"
+#import "KBBeer.h"
+
+@class KBBeerEditViewController;
+
+@protocol KBBeerEditViewControllerDelegate <NSObject>
+- (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didAddBeer:(KBBeer *)beer;
+@end
+
+@interface KBBeerEditViewController : KBUIFormViewController { 
+  KBUIFormTextField *nameField_;
+  KBUIFormTextField *typeField_;  
+  KBUIFormTextField *infoField_;
+  KBUIFormTextField *abvField_;
+  KBUIFormTextField *countryField_;
+  KBUIFormTextField *imageNameField_;
 }
+
+@property (assign, nonatomic) id<KBBeerEditViewControllerDelegate> delegate;
+
+- (id)initWithTitle:(NSString *)title;
 
 @end

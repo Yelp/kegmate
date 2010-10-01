@@ -5,6 +5,19 @@
 //  Created by Gabe on 9/26/10.
 //  Copyright 2010 rel.me. All rights reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #import "KBUIFormViewController.h"
 
@@ -25,24 +38,24 @@
   [super dealloc];
 }
 
-- (void)addAction:(KBUIForm *)action {
-  [self addAction:action section:0];
+- (void)addForm:(KBUIForm *)form {
+  [self addForm:form section:0];
 }
 
-- (void)addAction:(KBUIForm *)action section:(NSInteger)section {
+- (void)addForm:(KBUIForm *)form section:(NSInteger)section {
   NSNumber *key = [NSNumber numberWithInteger:section];
-  NSMutableArray *actions = [sections_ objectForKey:key];
-  if (!actions) {
-    actions = [NSMutableArray arrayWithCapacity:10];
-    [sections_ setObject:actions forKey:key];
+  NSMutableArray *forms = [sections_ objectForKey:key];
+  if (!forms) {
+    forms = [NSMutableArray arrayWithCapacity:10];
+    [sections_ setObject:forms forKey:key];
   }
-  [actions addObject:action];
+  [forms addObject:form];
 }
 
-- (KBUIForm *)actionForIndexPath:(NSIndexPath *)indexPath {
+- (KBUIForm *)formForIndexPath:(NSIndexPath *)indexPath {
   NSNumber *key = [NSNumber numberWithInteger:indexPath.section];
-  NSMutableArray *actions = [sections_ objectForKey:key];
-  return [actions objectAtIndex:indexPath.row];
+  NSMutableArray *forms = [sections_ objectForKey:key];
+  return [forms objectAtIndex:indexPath.row];
 }
 
 - (void)reload {
@@ -57,24 +70,24 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
   NSNumber *key = [NSNumber numberWithInteger:section];
-  NSMutableArray *actions = [sections_ objectForKey:key];
-  return [actions count];
+  NSMutableArray *forms = [sections_ objectForKey:key];
+  return [forms count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {  
-  KBUIForm *action = [self actionForIndexPath:indexPath];
-  return [action tableView:tableView cellForRowAtIndexPath:indexPath];
+  KBUIForm *form = [self formForIndexPath:indexPath];
+  return [form tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 #pragma mark -
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
-  KBUIForm *action = [self actionForIndexPath:indexPath];
-  if ([delegate_ respondsToSelector:@selector(actionViewController:willSelectAction:)])
-    [delegate_ actionViewController:self willSelectAction:action];
-  [action performAction];
-  if ([delegate_ respondsToSelector:@selector(actionViewController:didSelectAction:)])
-    [delegate_ actionViewController:self didSelectAction:action];
+  KBUIForm *form = [self formForIndexPath:indexPath];
+  if ([delegate_ respondsToSelector:@selector(formViewController:willSelectForm:)])
+    [delegate_ formViewController:self willSelectForm:form];
+  [form performAction];
+  if ([delegate_ respondsToSelector:@selector(formViewController:didSelectForm:)])
+    [delegate_ formViewController:self didSelectForm:form];
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -29,6 +29,7 @@ extern NSString *const KBUserDidLoginNotification; // With user (KBUser).
 extern NSString *const KBUserDidLogoutNotification;
 
 extern NSString *const KBUserDidSignUpNotification; // With user (KBUser).
+extern NSString *const KBUserDidAddUserNotification; // With user (KBUser).
 
 extern NSString *const KBUnknownTagIdNotification; // With tag id (NSString), if an unknown tag is read.
 

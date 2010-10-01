@@ -29,14 +29,16 @@
 - (id)init {
   if ((self = [super init])) { 
     self.title = @"Users";
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_add)] autorelease];
   }
   return self;
 }
 
-- (NSFetchedResultsController *)fetchedResultsController {
+- (NSFetchedResultsController *)loadFetchedResultsController {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBUser" inManagedObjectContext:[[KBApplication dataStore] managedObjectContext]]];
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayName" ascending:NO];
+  // TODO(gabe): Need to sort on fullName
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
   [fetchRequest setSortDescriptors:sortDescriptors];
   [sortDescriptors release];
@@ -50,10 +52,29 @@
   return [fetchedResultsController autorelease];
 }
 
+- (void)_add {
+  KBUserEditViewController *userEditViewController = [[KBUserEditViewController alloc] init];
+  userEditViewController.delegate = self;
+  [self.navigationController pushViewController:userEditViewController animated:YES];
+  [userEditViewController release];
+}
+
+- (void)deleteObject:(id)obj {
+  // TODO(gabe): Handle error
+  [[[KBApplication dataStore] managedObjectContext] deleteObject:obj];
+  [[[KBApplication dataStore] managedObjectContext] save:nil];  
+}
+
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
-  cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", [obj displayName], [obj volumePouredDescription]];
-  cell.detailTextLabel.text = nil;
+  cell.textLabel.text = [obj fullName];
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"Tag Id: %@, Volume poured: %@", [obj tagId], [obj volumePouredDescription]];
   return cell;
+}
+
+#pragma mark KBUserEditViewControllerDelegate
+
+- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didAddUser:(KBUser *)user { 
+  [self.navigationController popToViewController:self animated:YES];
 }
 
 @end

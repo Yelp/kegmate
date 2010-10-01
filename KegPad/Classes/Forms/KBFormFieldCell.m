@@ -69,12 +69,4 @@
 	[self.contentView bringSubviewToFront:textField_];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-	if (selected && editable_) {
-    [textField_ becomeFirstResponder];
-  } else {
-		[textField_ resignFirstResponder];
-  }
-}
-
 @end

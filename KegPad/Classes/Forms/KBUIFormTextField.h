@@ -1,8 +1,8 @@
 //
-//  KBSimulatorViewController.h
+//  KBUIFormTextField.h
 //  KegPad
 //
-//  Created by Gabe on 9/26/10.
+//  Created by Gabe on 9/28/10.
 //  Copyright 2010 rel.me. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,11 +19,21 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBUIFormViewController.h"
-#import "KBKegProcessorSimulator.h"
+#import "KBUIForm.h"
+#import "KBFormFieldCell.h"
 
-@interface KBSimulatorViewController : KBUIFormViewController {
-  KBKegProcessorSimulator *kegProcessorSimulator_;
+@interface KBUIFormTextField : KBUIForm {
+  BOOL secureTextEntry_;
+  BOOL editable_;
+  
+  KBFormFieldCell *cell_;
 }
+
+@property (assign, nonatomic, getter=isSecureTextEntry) BOOL secureTextEntry;
+@property (assign, nonatomic, getter=isEditable) BOOL editable;
+
++ (KBUIFormTextField *)actionWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable;
+
+- (UITextField *)textField;
 
 @end

@@ -30,16 +30,12 @@
 - (id)init {
   if ((self = [super init])) { 
     self.title = @"Kegs";
-    //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_add)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_add)] autorelease];
   }
   return self;
 }
 
-- (void)_add {
-  // TODO: Add form
-}
-
-- (NSFetchedResultsController *)fetchedResultsController {
+- (NSFetchedResultsController *)loadFetchedResultsController {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBKeg" inManagedObjectContext:[[KBApplication dataStore] managedObjectContext]]];
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
@@ -67,6 +63,25 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
   }
   return cell;
+}
+
+- (void)_add {
+  KBKegEditViewController *kegEditViewController = [[KBKegEditViewController alloc] init];
+  kegEditViewController.delegate = self;
+  [self.navigationController pushViewController:kegEditViewController animated:YES];
+  [kegEditViewController release];
+}
+
+- (void)deleteObject:(id)obj {
+  // TODO(gabe): Handle error
+  [[[KBApplication dataStore] managedObjectContext] deleteObject:obj];
+  [[[KBApplication dataStore] managedObjectContext] save:nil];  
+}
+
+#pragma mark KBKegEditViewControllerDelegate
+
+- (void)kegEditViewController:(KBKegEditViewController *)kegEditViewController didAddKeg:(KBKeg *)keg {
+  [self.navigationController popToViewController:self animated:YES];
 }
 
 #pragma mark -

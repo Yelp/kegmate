@@ -46,7 +46,6 @@
 		0017BD14120279E200269CDA /* GHNSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BCF9120279E200269CDA /* GHNSObject+Swizzle.m */; };
 		002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F095F12263EE300766D62 /* YAJLIOS.framework */; };
 		00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00568FAE1251A493004AF3D1 /* KBUserView.m */; };
-		005691F11251BDE6004AF3D1 /* KBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */; };
 		0075514D125043A400C5538C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075514B125043A400C5538C /* Icon-72.png */; };
 		0075514E125043A400C5538C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0075514C125043A400C5538C /* README */; };
 		007551521250493200C5538C /* beer_logged_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 007551511250493200C5538C /* beer_logged_in.png */; };
@@ -56,6 +55,9 @@
 		008FED1C1201F2F600BA5D07 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */; };
 		008FEDB01201F9B600BA5D07 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */; };
 		008FEDB41201F9C400BA5D07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDB31201F9C400BA5D07 /* QuartzCore.framework */; };
+		00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */; };
+		00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */; };
+		00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */; };
 		00C02581121351E60020483D /* KBApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257D121351E60020483D /* KBApplicationDelegate.m */; };
 		00C02582121351E60020483D /* KBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257F121351E60020483D /* KBApplication.m */; };
 		00C1135112110639009C9B51 /* KBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1135012110639009C9B51 /* KBDataStore.m */; };
@@ -75,7 +77,7 @@
 		00D01167125334170013DF33 /* KBFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01160125334170013DF33 /* KBFormFieldCell.m */; };
 		00D01168125334170013DF33 /* KBUIForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01162125334170013DF33 /* KBUIForm.m */; };
 		00D01169125334170013DF33 /* KBUIFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01164125334170013DF33 /* KBUIFormViewController.m */; };
-		00D0116A125334170013DF33 /* KBUIFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01166125334170013DF33 /* KBUIFormField.m */; };
+		00D0116A125334170013DF33 /* KBUIFormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01166125334170013DF33 /* KBUIFormTextField.m */; };
 		00D54A70120282C600F76724 /* KBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D54A6F120282C600F76724 /* KBChartView.m */; };
 		00D54AB21202887D00F76724 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54AA91202887D00F76724 /* thermometer.png */; };
 		00D54AB31202887D00F76724 /* beer.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54AAA1202887D00F76724 /* beer.png */; };
@@ -207,8 +209,6 @@
 		002F095F12263EE300766D62 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
 		00568FAD1251A493004AF3D1 /* KBUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserView.h; sourceTree = "<group>"; };
 		00568FAE1251A493004AF3D1 /* KBUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserView.m; sourceTree = "<group>"; };
-		005691EF1251BDE6004AF3D1 /* KBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSignUpViewController.h; sourceTree = "<group>"; };
-		005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSignUpViewController.m; sourceTree = "<group>"; };
 		005691F21251BF56004AF3D1 /* KBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDefines.h; sourceTree = "<group>"; };
 		0075514B125043A400C5538C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		0075514C125043A400C5538C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -222,6 +222,13 @@
 		008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		008FEDB31201F9C400BA5D07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserEditViewController.h; sourceTree = "<group>"; };
+		00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserEditViewController.m; sourceTree = "<group>"; };
+		00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerEditViewController.h; sourceTree = "<group>"; };
+		00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerEditViewController.m; sourceTree = "<group>"; };
+		00AA3F9D1255B9B400CB3F6B /* KBKegEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegEditViewController.h; sourceTree = "<group>"; };
+		00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegEditViewController.m; sourceTree = "<group>"; };
+		00AA3FFF1255C07400CB3F6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		00C0257D121351E60020483D /* KBApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBApplicationDelegate.m; sourceTree = "<group>"; };
 		00C0257E121351E60020483D /* KBApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBApplicationDelegate.h; sourceTree = "<group>"; };
 		00C0257F121351E60020483D /* KBApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBApplication.m; sourceTree = "<group>"; };
@@ -254,8 +261,8 @@
 		00D01162125334170013DF33 /* KBUIForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIForm.m; sourceTree = "<group>"; };
 		00D01163125334170013DF33 /* KBUIFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormViewController.h; sourceTree = "<group>"; };
 		00D01164125334170013DF33 /* KBUIFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormViewController.m; sourceTree = "<group>"; };
-		00D01165125334170013DF33 /* KBUIFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormField.h; sourceTree = "<group>"; };
-		00D01166125334170013DF33 /* KBUIFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormField.m; sourceTree = "<group>"; };
+		00D01165125334170013DF33 /* KBUIFormTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormTextField.h; sourceTree = "<group>"; };
+		00D01166125334170013DF33 /* KBUIFormTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormTextField.m; sourceTree = "<group>"; };
 		00D54A6E120282C600F76724 /* KBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBChartView.h; sourceTree = "<group>"; };
 		00D54A6F120282C600F76724 /* KBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBChartView.m; sourceTree = "<group>"; };
 		00D54AA91202887D00F76724 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
@@ -358,8 +365,6 @@
 				0017B7C4120219BC00269CDA /* KBDisplayViewController.m */,
 				00D54CBD1202BB6900F76724 /* KBStatusViewController.h */,
 				00D54CBE1202BB6900F76724 /* KBStatusViewController.m */,
-				005691EF1251BDE6004AF3D1 /* KBSignUpViewController.h */,
-				005691F01251BDE6004AF3D1 /* KBSignUpViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -561,14 +566,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		00C113C612111212009C9B51 /* Data */ = {
+		00C113C612111212009C9B51 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
 				00C113C71211121B009C9B51 /* beers.json */,
 				00C113F1121116CC009C9B51 /* users.json */,
 				00C114B2121124B1009C9B51 /* kegs.json */,
 			);
-			path = Data;
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		00C1147012111B75009C9B51 /* Admin */ = {
@@ -580,10 +585,16 @@
 				00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */,
 				00C1147312111B75009C9B51 /* KBBeersViewController.h */,
 				00C1147412111B75009C9B51 /* KBBeersViewController.m */,
+				00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */,
+				00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */,
 				00C1147512111B75009C9B51 /* KBKegsViewController.h */,
 				00C1147612111B75009C9B51 /* KBKegsViewController.m */,
+				00AA3F9D1255B9B400CB3F6B /* KBKegEditViewController.h */,
+				00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */,
 				00C114ED1211297D009C9B51 /* KBUsersViewController.h */,
 				00C114EE1211297D009C9B51 /* KBUsersViewController.m */,
+				00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */,
+				00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */,
 				007551831250554700C5538C /* KBSimulatorViewController.h */,
 				007551841250554700C5538C /* KBSimulatorViewController.m */,
 			);
@@ -599,8 +610,8 @@
 				00D01162125334170013DF33 /* KBUIForm.m */,
 				00D01163125334170013DF33 /* KBUIFormViewController.h */,
 				00D01164125334170013DF33 /* KBUIFormViewController.m */,
-				00D01165125334170013DF33 /* KBUIFormField.h */,
-				00D01166125334170013DF33 /* KBUIFormField.m */,
+				00D01165125334170013DF33 /* KBUIFormTextField.h */,
+				00D01166125334170013DF33 /* KBUIFormTextField.m */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -690,6 +701,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				00AA3FFF1255C07400CB3F6B /* README.md */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				0017BCBE120279E200269CDA /* Libraries */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -714,7 +726,7 @@
 			isa = PBXGroup;
 			children = (
 				0075514A125043A400C5538C /* Icons */,
-				00C113C612111212009C9B51 /* Data */,
+				00C113C612111212009C9B51 /* Fixtures */,
 				429B08E91202FEF600C36F76 /* Sounds */,
 				00D54B23120295F300F76724 /* Fonts */,
 				0017BB4A12025DB700269CDA /* Videos */,
@@ -928,11 +940,13 @@
 				007551801250532600C5538C /* KBKegProcessorSimulator.m in Sources */,
 				007551851250554700C5538C /* KBSimulatorViewController.m in Sources */,
 				00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */,
-				005691F11251BDE6004AF3D1 /* KBSignUpViewController.m in Sources */,
 				00D01167125334170013DF33 /* KBFormFieldCell.m in Sources */,
 				00D01168125334170013DF33 /* KBUIForm.m in Sources */,
 				00D01169125334170013DF33 /* KBUIFormViewController.m in Sources */,
-				00D0116A125334170013DF33 /* KBUIFormField.m in Sources */,
+				00D0116A125334170013DF33 /* KBUIFormTextField.m in Sources */,
+				00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */,
+				00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */,
+				00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

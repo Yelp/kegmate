@@ -23,7 +23,7 @@
 
 #import "KBNotifications.h"
 #import "KBDataImporter.h"
-#import "KBSignUpViewController.h"
+#import "KBUserEditViewController.h"
 
 @implementation KBApplicationDelegate
 
@@ -82,7 +82,6 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_swapScreens:) name:KBSwapScreensNotification object:nil];      
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogin:) name:KBUserDidLoginNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogout:) name:KBUserDidLogoutNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidSignUp:) name:KBUserDidSignUpNotification object:nil];  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknowTagId:) name:KBUnknownTagIdNotification object:nil];  
   
   kegProcessor_ = [[KBKegProcessor alloc] init];
@@ -130,10 +129,11 @@
 }
 
 - (void)signUpTagId:(NSString *)tagId {
-  KBSignUpNavigationController *signUpNavigationController = [[KBSignUpNavigationController alloc] init];
-  [signUpNavigationController setTagId:tagId];
-  [navigationController_ presentModalViewController:signUpNavigationController animated:YES];
-  [signUpNavigationController release];
+  KBUserAddNavigationController *userAddNavigationController = [[KBUserAddNavigationController alloc] init];
+  userAddNavigationController.userEditViewController.delegate = self;
+  [userAddNavigationController.userEditViewController setTagId:tagId editable:NO];
+  [navigationController_ presentModalViewController:userAddNavigationController animated:YES];
+  [userAddNavigationController release];
 }
 
 #pragma mark Notifications
@@ -150,13 +150,16 @@
   [self setUser:nil];
 }
 
-- (void)_userDidSignUp:(NSNotification *)notification {
-  [[KBApplication kegProcessor] login:[notification object]];
-  [[KBApplication sharedDelegate] playSystemSoundGlass]; // TODO(gabe): Special welcome sound effect
-}
-
 - (void)_unknowTagId:(NSNotification *)notification {
   [self signUpTagId:[notification object]];
+}
+
+#pragma mark KBUserEditViewControllerDelegate
+
+- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didAddUser:(KBUser *)user {
+  [[KBApplication kegProcessor] login:user];
+  [[KBApplication sharedDelegate] playSystemSoundGlass]; // TODO(gabe): Special welcome sound effect
+  [navigationController_ dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark Testing

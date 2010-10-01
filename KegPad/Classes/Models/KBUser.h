@@ -33,4 +33,6 @@
 
 - (NSString *)displayName;
 
+- (NSString *)fullName;
+
 @end

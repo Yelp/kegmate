@@ -23,7 +23,7 @@
 
 @implementation KBUIForm
 
-@synthesize title=title_, text=text_, showDisclosure=showDisclosure_;
+@synthesize title=title_, text=text_, showDisclosure=showDisclosure_, selectEnabled=selectEnabled_;
 
 - (id)initWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure selectedAction:(SEL)selectedAction {
   if ((self = [self init])) {
@@ -80,6 +80,8 @@
   
   cell.textLabel.text = self.title;
   cell.detailTextLabel.text = self.text;
+  cell.selectionStyle = (self.isSelectEnabled ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone);
+  
   if (self.showDisclosure) {
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   } else if (self.isSelected) {

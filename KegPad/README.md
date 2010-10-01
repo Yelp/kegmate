@@ -7,8 +7,8 @@ KegPad is the iPad interface in the KegMate project.
 
 ## Admin
 
-Tap the bottom left of the screen to pull up the admin interface, which currently doesn't let you do much. 
+Tap the bottom left of the screen to pull up the admin interface, which is very basic at the moment.
 
 ## Importing
 
-To import beers, kegs and users, see the JSON files in Resources/Data/. These files are read on startup and any data here is imported and updated. This is just temporary until the admin interface is built out.
+To import beers, kegs and users, see the JSON files in Resources/Fixtures/. These files are automatically read on startup and any data here is imported and updated. This is just temporary until the admin interface is built out.

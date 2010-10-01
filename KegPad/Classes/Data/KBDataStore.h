@@ -100,7 +100,7 @@
 - (BOOL)addKegWithBeer:(KBBeer *)beer error:(NSError **)error;
 
 /*!
- Update beer with identifier.
+ Add or update beer with identifier.
  @param id Identifier
  @param name Name ("Stella Artois")
  @param info Description to set ("A pilsner ...")
@@ -109,9 +109,9 @@
  @param imageName Name of image in resources
  @param abv Alchohol by volume
  @param error Out error
- @result YES if beer was updated
+ @result New beer if saved, nil otherwise
  */
-- (BOOL)updateBeerWithId:(NSString *)id name:(NSString *)name info:(NSString *)info type:(NSString *)type country:(NSString *)country 
+- (KBBeer *)addOrUpdateBeerWithId:(NSString *)id name:(NSString *)name info:(NSString *)info type:(NSString *)type country:(NSString *)country 
 imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
 
 /*!
@@ -190,9 +190,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @param volumeAdjusted Volume in liters to adjust (subtract) the keg volume; This value with poured value and total value determines how much is remaining
  @param volumeTotal
  @param error Out error
- @result YES if added or updated
+ @result Keg if saved, nil otherwise
  */
-- (BOOL)addOrUpdateKegWithId:(NSString *)id beer:(KBBeer *)beer volumeAdjusted:(float)volumeAdjusted volumeTotal:(float)volumeTotal error:(NSError **)error;
+- (KBKeg *)addOrUpdateKegWithId:(NSString *)id beer:(KBBeer *)beer volumeAdjusted:(float)volumeAdjusted volumeTotal:(float)volumeTotal error:(NSError **)error;
 
 /*!
  Get list of users.

@@ -154,7 +154,7 @@
   return [results gh_firstObject];
 }
 
-- (BOOL)addOrUpdateKegWithId:(NSString *)id beer:(KBBeer *)beer volumeAdjusted:(float)volumeAdjusted volumeTotal:(float)volumeTotal error:(NSError **)error {  
+- (KBKeg *)addOrUpdateKegWithId:(NSString *)id beer:(KBBeer *)beer volumeAdjusted:(float)volumeAdjusted volumeTotal:(float)volumeTotal error:(NSError **)error {  
   KBKeg *keg = [self kegWithId:id error:error];
   if (!keg) {
     keg = [NSEntityDescription insertNewObjectForEntityForName:@"KBKeg" inManagedObjectContext:[self managedObjectContext]];
@@ -164,10 +164,12 @@
   keg.beer = beer;
   keg.volumeAdjustedValue = volumeAdjusted;
   keg.volumeTotalValue = volumeTotal;
-  return [[self managedObjectContext] save:error];  
+  BOOL saved = [[self managedObjectContext] save:error];  
+  if (!saved) return nil;
+  return keg;
 }
 
-- (BOOL)updateBeerWithId:(NSString *)id name:(NSString *)name info:(NSString *)info type:(NSString *)type country:(NSString *)country 
+- (KBBeer *)addOrUpdateBeerWithId:(NSString *)id name:(NSString *)name info:(NSString *)info type:(NSString *)type country:(NSString *)country 
 imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {  
   KBBeer *beer = [self beerWithId:id error:error];
   if (!beer) {
@@ -180,7 +182,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   beer.info = info;
   beer.imageName = imageName;
   beer.abvValue = abv;
-  return [[self managedObjectContext] save:error];
+  BOOL saved = [[self managedObjectContext] save:error];
+  if (!saved) return nil;
+  return beer;
 }
 
 - (BOOL)addKegTemperature:(float)temperature keg:(KBKeg *)keg error:(NSError **)error {
@@ -291,6 +295,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   user.tagId = tagId;
   BOOL saved = [[self managedObjectContext] save:error];
   if (!saved) return nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidAddUserNotification object:user];
   return user;
 }
 

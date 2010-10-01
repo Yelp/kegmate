@@ -29,11 +29,12 @@
 - (id)init {
   if ((self = [super init])) { 
     self.title = @"Beers";
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_add)] autorelease];
   }
   return self;
 }
 
-- (NSFetchedResultsController *)fetchedResultsController {
+- (NSFetchedResultsController *)loadFetchedResultsController {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBBeer" inManagedObjectContext:[[KBApplication dataStore] managedObjectContext]]];
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
@@ -54,6 +55,25 @@
   cell.textLabel.text = [obj name];
   cell.detailTextLabel.text = [obj info];
   return cell;
+}
+
+- (void)_add {
+  KBBeerEditViewController *beerEditViewController = [[KBBeerEditViewController alloc] init];
+  beerEditViewController.delegate = self;
+  [self.navigationController pushViewController:beerEditViewController animated:YES];
+  [beerEditViewController release];
+}
+
+- (void)deleteObject:(id)obj {
+  // TODO(gabe): Handle error
+  [[[KBApplication dataStore] managedObjectContext] deleteObject:obj];
+  [[[KBApplication dataStore] managedObjectContext] save:nil];  
+}
+
+#pragma mark KBBeerEditViewControllerDelegate
+
+- (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didAddBeer:(KBBeer *)beer { 
+  [self.navigationController popToViewController:self animated:YES];
 }
 
 @end

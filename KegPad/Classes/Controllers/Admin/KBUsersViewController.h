@@ -21,8 +21,9 @@
 
 #import "KBFetchedResultsViewController.h"
 
+#import "KBUserEditViewController.h"
 
-@interface KBUsersViewController : KBFetchedResultsViewController {
+@interface KBUsersViewController : KBFetchedResultsViewController <KBUserEditViewControllerDelegate> {
 
 }
 

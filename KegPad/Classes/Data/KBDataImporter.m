@@ -45,14 +45,14 @@
   NSError *error = nil;
   NSArray *beers = [[NSBundle mainBundle] yajl_JSONFromResource:@"beers.json"];
   for (NSDictionary *beer in beers) {
-    [dataStore updateBeerWithId:[beer gh_objectMaybeNilForKey:@"id"]
-                           name:[beer gh_objectMaybeNilForKey:@"name"]
-                           info:[beer gh_objectMaybeNilForKey:@"info"]
-                           type:[beer gh_objectMaybeNilForKey:@"type"]
-                        country:[beer gh_objectMaybeNilForKey:@"country"]
-                      imageName:[beer gh_objectMaybeNilForKey:@"image"]
-                            abv:[[beer gh_objectMaybeNilForKey:@"abv"] floatValue]
-                          error:&error];
+    [dataStore addOrUpdateBeerWithId:[beer gh_objectMaybeNilForKey:@"id"]
+                                name:[beer gh_objectMaybeNilForKey:@"name"]
+                                info:[beer gh_objectMaybeNilForKey:@"info"]
+                                type:[beer gh_objectMaybeNilForKey:@"type"]
+                              country:[beer gh_objectMaybeNilForKey:@"country"]
+                            imageName:[beer gh_objectMaybeNilForKey:@"image"]
+                                  abv:[[beer gh_objectMaybeNilForKey:@"abv"] floatValue]
+                                error:&error];
     KBDataStoreCheckError(error);
   }
 }

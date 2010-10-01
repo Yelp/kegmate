@@ -49,10 +49,10 @@
 - (id)init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = @"Admin";
-    [self addAction:[KBUIForm actionWithTitle:@"Beers" text:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
-    [self addAction:[KBUIForm actionWithTitle:@"Kegs" text:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
-    [self addAction:[KBUIForm actionWithTitle:@"Users" text:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
-    [self addAction:[KBUIForm actionWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
+    [self addForm:[KBUIForm actionWithTitle:@"Beers" text:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
+    [self addForm:[KBUIForm actionWithTitle:@"Kegs" text:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
+    [self addForm:[KBUIForm actionWithTitle:@"Users" text:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
+    [self addForm:[KBUIForm actionWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
   }
   return self;
 }
@@ -105,7 +105,7 @@
 
 #pragma mark KBUIFormViewControllerDelegate
 
-- (void)actionViewController:(KBUIFormViewController *)actionViewController willSelectAction:(KBUIForm *)action {
+- (void)formViewController:(KBUIFormViewController *)formViewController willSelectForm:(KBUIForm *)action {
   [self dismissModalViewControllerAnimated:NO];
   [self.navigationController popToRootViewControllerAnimated:NO];
 }

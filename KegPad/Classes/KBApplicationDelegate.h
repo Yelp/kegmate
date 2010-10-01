@@ -21,6 +21,7 @@
 
 #import "KBDisplayViewController.h"
 #import "KBStatusViewController.h"
+#import "KBUserEditViewController.h"
 #import "KBKegProcessor.h"
 #import "KBApplication.h"
 #import <AudioToolbox/AudioServices.h>
@@ -28,7 +29,7 @@
 /*!
  Main application delegate.
  */
-@interface KBApplicationDelegate : NSObject <KBApplicationDelegate> {    
+@interface KBApplicationDelegate : NSObject <KBApplicationDelegate, KBUserEditViewControllerDelegate> {
   UIWindow *window_;    
   
   KBDataStore *store_;

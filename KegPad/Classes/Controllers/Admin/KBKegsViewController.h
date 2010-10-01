@@ -20,7 +20,8 @@
 //
 
 #import "KBFetchedResultsViewController.h"
+#import "KBKegEditViewController.h"
 
-@interface KBKegsViewController : KBFetchedResultsViewController { }
+@interface KBKegsViewController : KBFetchedResultsViewController <KBKegEditViewControllerDelegate> { }
 
 @end

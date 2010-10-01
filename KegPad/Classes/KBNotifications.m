@@ -31,6 +31,7 @@ NSString *const KBUserDidLoginNotification = @"KBUserDidLoginNotification";
 NSString *const KBUserDidLogoutNotification = @"KBUserDidLogoutNotification";
 
 NSString *const KBUserDidSignUpNotification = @"KBUserDidSignUpNotification";
+NSString *const KBUserDidAddUserNotification = @"KBUserDidAddUserNotification";
 
 NSString *const KBUnknownTagIdNotification = @"KBUnknownTagIdNotification";
 

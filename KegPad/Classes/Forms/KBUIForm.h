@@ -31,6 +31,8 @@
   SEL action_;
   SEL selectedAction_; // Selector to call (returns BOOL) to set selected state
   
+  BOOL selectEnabled_;
+  
   id context_;
 }
 
@@ -38,6 +40,7 @@
 @property (retain, nonatomic) NSString *text;
 @property (readonly, nonatomic) BOOL showDisclosure;
 @property (readonly, nonatomic, getter=isSelected) BOOL selected;
+@property (assign, nonatomic, getter=isSelectEnabled) BOOL selectEnabled;
 
 - (id)initWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure selectedAction:(SEL)selectedAction;
 + (KBUIForm *)actionWithTitle:(NSString *)title text:(NSString *)text;

@@ -19,14 +19,25 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-@interface KBFetchedResultsViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+@interface KBFetchedResultsViewController : UITableViewController <UITableViewDataSource, NSFetchedResultsControllerDelegate> {
   NSFetchedResultsController *fetchedResultsController_;
 }
 
-// Abstract
+/*!
+ @result Fetched results controller. If this is the first time called, it will call loadFetchedResultsController.
+ */
 - (NSFetchedResultsController *)fetchedResultsController;
 
 // Abstract
+- (NSFetchedResultsController *)loadFetchedResultsController;
+
+// Abstract
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj;
+
+// Abstract
+- (void)deleteObject:(id)obj;
+
+// Abstract
+- (void)insertAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

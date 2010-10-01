@@ -21,6 +21,8 @@
 
 #import "KBFetchedResultsViewController.h"
 
-@interface KBBeersViewController : KBFetchedResultsViewController { }
+#import "KBBeerEditViewController.h"
+
+@interface KBBeersViewController : KBFetchedResultsViewController <KBBeerEditViewControllerDelegate> { }
 
 @end

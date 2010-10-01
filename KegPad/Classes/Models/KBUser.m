@@ -27,6 +27,10 @@
   return [NSString stringWithFormat:@"%@ %@.", self.firstName, [self.lastName substringToIndex:1]];
 }
 
+- (NSString *)fullName {
+  return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
 - (void)addPouredValue:(float)poured {
   self.volumePouredValue += poured;
 }
