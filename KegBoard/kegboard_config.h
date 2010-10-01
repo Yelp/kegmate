@@ -6,7 +6,7 @@
 // safe.
 
 // Check for & report 1-wire temperature sensors?
-#define KB_ENABLE_ONEWIRE_THERMO   0
+#define KB_ENABLE_ONEWIRE_THERMO   1
 
 // Check for & report 1-wire devices on the ID bus?
 #define KB_ENABLE_ONEWIRE_PRESENCE 0
