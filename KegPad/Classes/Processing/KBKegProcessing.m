@@ -61,6 +61,12 @@
   // Since we're receiving flow values at about 1 Hz, watch for significant changes
   double volume = [message meterReading] * KB_VOLUME_PER_TICK;
 
+  if (!_hasVolume) {
+    _lastVolume = volume;
+    _hasVolume = YES;
+    return;
+  }
+  
   // NOTE(johnb): This is assuming we've gotten messages every second, which depends on the firmware
   _flowRate = volume - _lastVolume;
   

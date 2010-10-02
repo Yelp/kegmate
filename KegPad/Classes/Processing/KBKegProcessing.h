@@ -22,9 +22,9 @@
 #import "KBKegboard.h"
 
 #define KB_TEMPERATURE_DIFFERENCE_THRESHOLD 0.1
-#define KB_VOLUME_DIFFERENCE_THRESHOLD 0.03
+#define KB_VOLUME_DIFFERENCE_THRESHOLD 0.001
 // Adjust this value based on the flow meter properties
-#define KB_VOLUME_PER_TICK .0001639344262
+#define KB_VOLUME_PER_TICK 0.0001639344262
 #define KB_POUR_TIMEOUT 1.5
 
 @class KBKegProcessing;
@@ -52,6 +52,8 @@
   double _pourStartVolume;
   BOOL _pouring;
   NSTimer *_pourTimeout;
+  
+  BOOL _hasVolume;
 }
 
 @property (assign, nonatomic) id<KBKegProcessingDelegate> delegate;

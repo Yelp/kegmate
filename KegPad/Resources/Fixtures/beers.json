@@ -23,4 +23,12 @@
   "country": "Belgium",
   "image": "Stella_Artois.png",
   "abv": 5.0
+}, {
+    "id": "North Coast Pranqster",
+    "name": "North Coast Pranqster",
+    "info": "Pranqster Belgian Style Golden Ale is packaged in the traditional manner with yeast in the keg.",
+    "type": "Belgian Style Golden Ale",
+    "country": "USA",
+    "image": "Pranqster.png",
+    "abv": 7.6
 }]

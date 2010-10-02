@@ -106,6 +106,7 @@
 		429B0AAC120386EE00C36F76 /* St_Bernardus_Tripel.png in Resources */ = {isa = PBXBuildFile; fileRef = 429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */; };
 		42DDF16B1251A7A900CDA6D7 /* KBKegboardMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DDF16A1251A7A900CDA6D7 /* KBKegboardMessage.m */; };
 		42DDF19D1251B7E400CDA6D7 /* crc16ccitt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42DDF19C1251B7E400CDA6D7 /* crc16ccitt.c */; };
+		42FAFC0C1256BDE6007DC9EB /* Pranqster.png in Resources */ = {isa = PBXBuildFile; fileRef = 42FAFC0B1256BDE6007DC9EB /* Pranqster.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -263,6 +264,7 @@
 		42DDF16A1251A7A900CDA6D7 /* KBKegboardMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegboardMessage.m; sourceTree = "<group>"; };
 		42DDF19C1251B7E400CDA6D7 /* crc16ccitt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc16ccitt.c; sourceTree = "<group>"; };
 		42DDF19E1251B7F400CDA6D7 /* crc16ccitt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc16ccitt.h; sourceTree = "<group>"; };
+		42FAFC0B1256BDE6007DC9EB /* Pranqster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pranqster.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* KegPad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KegPad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -484,6 +486,7 @@
 		00D54ACA12028ECE00F76724 /* BeerLogos */ = {
 			isa = PBXGroup;
 			children = (
+				42FAFC0B1256BDE6007DC9EB /* Pranqster.png */,
 				429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */,
 				00D54ACB12028ECE00F76724 /* Racer_5.gif */,
 				00D54ACC12028ECE00F76724 /* Stella_Artois.png */,
@@ -736,6 +739,7 @@
 				0075514D125043A400C5538C /* Icon-72.png in Resources */,
 				0075514E125043A400C5538C /* README in Resources */,
 				007551521250493200C5538C /* beer_logged_in.png in Resources */,
+				42FAFC0C1256BDE6007DC9EB /* Pranqster.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

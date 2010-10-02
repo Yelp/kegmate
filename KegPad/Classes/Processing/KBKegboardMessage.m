@@ -110,7 +110,6 @@ char *const KBSP_TRAILER = kKBSP_TRAILER;
 
 + (double)parseTemp:(char *)data {
   NSInteger tempInteger = [KBKegboardMessage parseInt32:data];
-  NSLog(@"temp reading %d", tempInteger);
   return ((double)tempInteger / 1000000);
 }
 
