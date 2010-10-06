@@ -38,7 +38,13 @@
   [super dealloc];
 }
 
+- (BOOL)validate {
+  NSString *beerName = beerField_.textField.text;
+  return (![NSString gh_isBlank:beerName]);
+}
+
 - (void)_add {
+  if (![self validate]) return;
   NSString *identifier = [NSString gh_uuid];
   NSString *beerName = beerField_.textField.text;
   KBBeer *beer = [[KBApplication dataStore] beerWithId:beerName error:nil];
@@ -46,16 +52,15 @@
   float volumeTotal = 58.67; // Volume in liters of full keg
   
   // TODO(gabe): Validate input
-  if (!beer) {
-    // Show error
+  if (!beer) {    
     return;
   } 
   
   NSError *error = nil;
-  KBKeg *keg = [[KBApplication dataStore] addOrUpdateKegWithId:identifier beer:beer volumeAdjusted:volumeAdjusted volumeTotal:volumeTotal   error:&error];
+  KBKeg *keg = [[KBApplication dataStore] addOrUpdateKegWithId:identifier beer:beer volumeAdjusted:volumeAdjusted volumeTotal:volumeTotal error:&error];
     
   if (!keg) {
-    // TODO(gabe): Show error
+    [self showError:error];
     return;
   }
   

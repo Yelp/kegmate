@@ -68,7 +68,18 @@
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
   cell.textLabel.text = [obj fullName];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"Tag Id: %@, Volume poured: %@", [obj tagId], [obj volumePouredDescription]];
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
+  KBUser *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+
+  KBUserEditViewController *userEditViewController = [[KBUserEditViewController alloc] init];
+  userEditViewController.delegate = self;
+  [userEditViewController setUser:user];
+  [self.navigationController pushViewController:userEditViewController animated:YES];
+  [userEditViewController release];
 }
 
 #pragma mark KBUserEditViewControllerDelegate

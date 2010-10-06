@@ -42,6 +42,13 @@
   [self addForm:form section:0];
 }
 
+- (void)showError:(NSError *)error {
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription]
+                                                 delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+  [alert show];
+  [alert autorelease];
+}  
+
 - (void)addForm:(KBUIForm *)form section:(NSInteger)section {
   NSNumber *key = [NSNumber numberWithInteger:section];
   NSMutableArray *forms = [sections_ objectForKey:key];

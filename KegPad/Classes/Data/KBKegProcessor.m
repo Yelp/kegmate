@@ -132,7 +132,7 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
   // TODO(johnb): tagId is coming in with some giberish
   tagId = [tagId gh_strip];
   
-  if ([tagId gh_isBlank]) return;
+  if ([NSString gh_isBlank:tagId]) return;
   
   KBUser *user = (tagId ? [dataStore_ userWithTagId:tagId error:nil] : nil);
   if (user) {

@@ -25,6 +25,11 @@
 #import "KBApplication.h"
 #import "KBNotifications.h"
 
+
+@interface KBUserEditViewController ()
+- (void)_updateNavigationItem;
+@end
+
 @implementation KBUserEditViewController
 
 @dynamic delegate;
@@ -42,11 +47,16 @@
       self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:buttonTitle style:UIBarButtonItemStylePlain target:self action:@selector(_add)] autorelease];
     }
     firstNameField_ = [[KBUIFormTextField actionWithTitle:@"First Name" text:nil] retain];
+    firstNameField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    [firstNameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:firstNameField_];
     lastNameField_ = [[KBUIFormTextField actionWithTitle:@"Last Name" text:nil] retain];
+    lastNameField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    [lastNameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:lastNameField_];
     tagField_ = [[KBUIFormTextField actionWithTitle:@"Tag" text:nil] retain];
-    [self addForm:tagField_];
+    [tagField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [self addForm:tagField_];    
   }
   return self;
 }
@@ -58,28 +68,49 @@
   [super dealloc];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self _updateNavigationItem];
+}
+
+- (void)setUser:(KBUser *)user {
+  firstNameField_.text = user.firstName;
+  lastNameField_.text = user.lastName;
+  tagField_.text = user.tagId;
+}
+
 - (void)setTagId:(NSString *)tagId editable:(BOOL)editable {
   tagField_.text = tagId;
   tagField_.editable = editable;
-  [self reload];
+}
+
+- (BOOL)validate {
+  NSString *firstName = firstNameField_.textField.text;
+  NSString *lastName = lastNameField_.textField.text;
+  NSString *tagId = tagField_.textField.text;
+  return (!([NSString gh_isBlank:firstName] || [NSString gh_isBlank:lastName] || [NSString gh_isBlank:tagId]));
+}
+
+- (void)_updateNavigationItem {
+  self.navigationItem.rightBarButtonItem.enabled = [self validate];
+}
+
+- (void)_onTextFieldDidChange:(id)sender {
+  [self _updateNavigationItem];
 }
 
 - (void)_add {
-  NSString *tagId = tagField_.textField.text;
+  if (![self validate]) return;
   NSString *firstName = firstNameField_.textField.text;
   NSString *lastName = lastNameField_.textField.text;
-  
-  // TODO(gabe): Proper validation, show error
-  if ([firstName gh_isBlank]) return;
-  if ([lastName gh_isBlank]) return;
-  if ([tagId gh_isBlank]) return;
+  NSString *tagId = tagField_.textField.text;  
   
   NSError *error = nil;
   KBUser *user = [[KBApplication dataStore] addOrUpdateUserWithTagId:tagId firstName:firstName 
     lastName:lastName error:&error];
     
   if (!user) {
-    // TODO(gabe): Show error
+    [self showError:error];
     return;
   }
   

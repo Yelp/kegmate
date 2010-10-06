@@ -38,6 +38,8 @@
 
 @property (assign, nonatomic) id<KBUIFormViewControllerDelegate> delegate; // Weak
 
+- (void)showError:(NSError *)error;
+
 - (void)addForm:(KBUIForm *)form;
 
 - (void)addForm:(KBUIForm *)form section:(NSInteger)section;

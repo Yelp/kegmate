@@ -39,6 +39,8 @@
 
 - (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle;
 
+- (void)setUser:(KBUser *)user;
+
 - (void)setTagId:(NSString *)tagId editable:(BOOL)editable;
 
 @end
