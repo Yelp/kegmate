@@ -30,6 +30,8 @@
 		008FED1C1201F2F600BA5D07 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */; };
 		008FEDB01201F9B600BA5D07 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */; };
 		008FEDB41201F9C400BA5D07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDB31201F9C400BA5D07 /* QuartzCore.framework */; };
+		00983D8E125EE8520031006C /* KBUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 00983D8D125EE8520031006C /* KBUIWindow.m */; };
+		00983F2A125F052C0031006C /* KBRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 00983F29125F052C0031006C /* KBRating.m */; };
 		00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */; };
 		00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */; };
 		00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */; };
@@ -80,7 +82,6 @@
 		00D54CDF1202BDB200F76724 /* controls_top_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54CDE1202BDB200F76724 /* controls_top_dial.png */; };
 		00D54CE31202BE2A00F76724 /* controls_graph_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54CE21202BE2A00F76724 /* controls_graph_bg.png */; };
 		00D54E601202DBD500F76724 /* top_gradient_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54E5F1202DBD500F76724 /* top_gradient_mask.png */; };
-		00D54F4E1202EC2300F76724 /* KBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D54F4D1202EC2300F76724 /* KBImageView.m */; };
 		00DDE7461203558200B24BA5 /* S7GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE7441203558200B24BA5 /* S7GraphView.m */; };
 		00DDE98F12037E3600B24BA5 /* KBLeaderboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */; };
 		00E654581256565B00E4CE9E /* GHKitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E654571256565B00E4CE9E /* GHKitIOS.framework */; };
@@ -148,6 +149,10 @@
 		008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		008FEDB31201F9C400BA5D07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		00983D8C125EE8520031006C /* KBUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIWindow.h; sourceTree = "<group>"; };
+		00983D8D125EE8520031006C /* KBUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIWindow.m; sourceTree = "<group>"; };
+		00983F28125F052C0031006C /* KBRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRating.h; sourceTree = "<group>"; };
+		00983F29125F052C0031006C /* KBRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRating.m; sourceTree = "<group>"; };
 		00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserEditViewController.h; sourceTree = "<group>"; };
 		00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserEditViewController.m; sourceTree = "<group>"; };
 		00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerEditViewController.h; sourceTree = "<group>"; };
@@ -226,8 +231,6 @@
 		00D54CDE1202BDB200F76724 /* controls_top_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_top_dial.png; sourceTree = "<group>"; };
 		00D54CE21202BE2A00F76724 /* controls_graph_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_graph_bg.png; sourceTree = "<group>"; };
 		00D54E5F1202DBD500F76724 /* top_gradient_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_gradient_mask.png; sourceTree = "<group>"; };
-		00D54F4C1202EC2300F76724 /* KBImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageView.h; sourceTree = "<group>"; };
-		00D54F4D1202EC2300F76724 /* KBImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageView.m; sourceTree = "<group>"; };
 		00DDE7431203558200B24BA5 /* S7GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S7GraphView.h; sourceTree = "<group>"; };
 		00DDE7441203558200B24BA5 /* S7GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S7GraphView.m; sourceTree = "<group>"; };
 		00DDE7451203558200B24BA5 /* S7Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S7Macros.h; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 			children = (
 				00D54C381202AFCA00F76724 /* _KBRating.h */,
 				00D54C371202AFCA00F76724 /* _KBRating.m */,
+				00983F28125F052C0031006C /* KBRating.h */,
+				00983F29125F052C0031006C /* KBRating.m */,
 				00D54BC91202A46600F76724 /* _KBUser.h */,
 				00D54BC81202A46600F76724 /* _KBUser.m */,
 				00D54BCB1202A47400F76724 /* KBUser.h */,
@@ -397,14 +402,14 @@
 				00D54B4A1202978500F76724 /* KBChalkLabel.m */,
 				00D54BFD1202A76200F76724 /* KBRecentPoursView.h */,
 				00D54BFE1202A76200F76724 /* KBRecentPoursView.m */,
-				00D54F4C1202EC2300F76724 /* KBImageView.h */,
-				00D54F4D1202EC2300F76724 /* KBImageView.m */,
 				00DDE98D12037E3600B24BA5 /* KBLeaderboardView.h */,
 				00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */,
 				429B098812033A4000C36F76 /* KBTypes.h */,
 				429B098912033A4000C36F76 /* KBTypes.m */,
 				00568FAD1251A493004AF3D1 /* KBUserView.h */,
 				00568FAE1251A493004AF3D1 /* KBUserView.m */,
+				00983D8C125EE8520031006C /* KBUIWindow.h */,
+				00983D8D125EE8520031006C /* KBUIWindow.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -773,7 +778,6 @@
 				00D54C861202B36800F76724 /* KBKegProcessing.m in Sources */,
 				00D54C871202B36800F76724 /* Serial.c in Sources */,
 				00D54CBF1202BB6900F76724 /* KBStatusViewController.m in Sources */,
-				00D54F4E1202EC2300F76724 /* KBImageView.m in Sources */,
 				00DDE7461203558200B24BA5 /* S7GraphView.m in Sources */,
 				00DDE98F12037E3600B24BA5 /* KBLeaderboardView.m in Sources */,
 				429B094D1203371700C36F76 /* KBRatingPicker.m in Sources */,
@@ -801,6 +805,8 @@
 				00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */,
 				00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */,
 				00E655701256638400E4CE9E /* GTMLogger.m in Sources */,
+				00983D8E125EE8520031006C /* KBUIWindow.m in Sources */,
+				00983F2A125F052C0031006C /* KBRating.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,7 @@
 #import "KBKeg.h"
 #import "KBKegPour.h"
 #import "KBKegTemperature.h"
+#import "KBRating.h"
 
 
 @implementation KBDataStore
@@ -37,13 +38,6 @@
   [super dealloc];
 }
 
-- (BOOL)save:(NSError **)error {
-  if ([managedObjectContext_ hasChanges])
-    return [managedObjectContext_ save:error];
-  
-  return NO;
-}
-  
 - (NSManagedObjectContext *)managedObjectContext {
   if (managedObjectContext_) return managedObjectContext_;
 
@@ -94,6 +88,33 @@
   return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) gh_firstObject];
 }
 
+- (NSArray *)executeFetchRequest:(NSFetchRequest *)request error:(NSError **)error {
+  if (!error) {
+    NSError *tmpError = nil;
+    error = &tmpError;
+  }
+  NSArray *results = [[self managedObjectContext] executeFetchRequest:request error:error];
+  
+  if (error && *error) {
+    KBError(@"Error fetching: %@", [*error localizedDescription]);
+  }
+  return results;
+}
+
+- (BOOL)save:(NSError **)error {
+  if (!error) {
+    NSError *tmpError = nil;
+    error = &tmpError;
+  }
+  
+  BOOL saved = [[self managedObjectContext] save:error];
+  
+  if (error && *error) {
+    KBError(@"Error saving: %@", [*error localizedDescription]);
+  }
+  return saved;
+}
+
 - (id)objectForURI:(NSString *)URIString {
   if (!URIString) return nil;
   NSManagedObjectID *objectId = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:[NSURL URLWithString:URIString]];
@@ -120,7 +141,7 @@
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBBeer" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id = %@", id]];
-  NSArray *results = [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
   return [results gh_firstObject];
 }
 
@@ -134,7 +155,7 @@
   [fetchRequest setSortDescriptors:sortDescriptors];
   [sortDescriptors release];
   [sortDescriptor release];  
-  return [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
+  return [self executeFetchRequest:fetchRequest error:error];
 }
 
 - (BOOL)addKegWithBeer:(KBBeer *)beer error:(NSError **)error {
@@ -143,14 +164,14 @@
   keg.beer = beer;
   keg.dateCreated = [NSDate date];
   keg.volumeTotalValue = 58.67;
-  return [[self managedObjectContext] save:error];  
+  return [self save:error];  
 }
 
 - (KBKeg *)kegWithId:(NSString *)id error:(NSError **)error {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBKeg" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id = %@", id]];
-  NSArray *results = [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
   return [results gh_firstObject];
 }
 
@@ -164,7 +185,7 @@
   keg.beer = beer;
   keg.volumeAdjustedValue = volumeAdjusted;
   keg.volumeTotalValue = volumeTotal;
-  BOOL saved = [[self managedObjectContext] save:error];  
+  BOOL saved = [self save:error];  
   if (!saved) return nil;
   return keg;
 }
@@ -182,7 +203,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   beer.info = info;
   beer.imageName = imageName;
   beer.abvValue = abv;
-  BOOL saved = [[self managedObjectContext] save:error];
+  BOOL saved = [self save:error];
   if (!saved) return nil;
   return beer;
 }
@@ -193,7 +214,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   kegTemperature.keg = keg;
   kegTemperature.date = [NSDate date];
   kegTemperature.temperatureValue = temperature;
-  BOOL saved = [[self managedObjectContext] save:error];
+  BOOL saved = [self save:error];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegTemperatureDidChangeNotification object:kegTemperature];
   return saved;
 }
@@ -213,7 +234,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   kegPour.amountHourValue = [self rateForKegPoursLastHourForUser:nil error:error];
   kegPour.amountUserHourValue = [self rateForKegPoursLastHourForUser:kegPour.user error:error];
   
-  BOOL saved = [[self managedObjectContext] save:error];
+  BOOL saved = [self save:error];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegVolumeDidChangeNotification object:keg];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidSavePourNotification object:kegPour];
@@ -230,7 +251,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
+  return [self executeFetchRequest:fetchRequest error:error];
 }
 
 - (NSArray *)usersWithOffset:(NSUInteger)offset limit:(NSUInteger)limit error:(NSError **)error {
@@ -244,7 +265,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
+  return [self executeFetchRequest:fetchRequest error:error];
 }
 
 - (NSArray */*of KBKegPour*/)recentKegPoursFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate user:(KBUser *)user error:(NSError **)error {
@@ -257,7 +278,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
+  return [self executeFetchRequest:fetchRequest error:error];
 }
 
 - (float)rateForKegPoursLastHourForUser:(KBUser *)user error:(NSError **)error {
@@ -279,11 +300,35 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   NSArray *kegPours = [self recentKegPours:limit ascending:NO error:nil];  
   for (KBKegPour *pour in kegPours)
     pour.amountHourValue = [self rateForKegPoursLastHourForUser:user error:error];
-  return [[self managedObjectContext] save:error];
+  return [self save:error];
 }
 
 - (KBKegPour *)lastPour:(NSError **)error {
   return [[self recentKegPours:1 ascending:NO error:error] gh_firstObject];
+}
+
+- (KBRating *)ratingWithUser:(KBUser *)user beer:(KBBeer *)beer error:(NSError **)error {
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBRating" inManagedObjectContext:[self managedObjectContext]]];
+  KBDebug(@"Fetching with user: %@, beer: %@", user.firstName, beer.name);
+  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"user = %@ and beer = %@", user, beer]];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  return [results gh_firstObject];  
+}
+
+- (KBRating *)setRating:(KBRatingValue)ratingValue user:(KBUser *)user beer:(KBBeer *)beer error:(NSError **)error {
+  KBRating *rating = [self ratingWithUser:user beer:beer error:error];
+  if (!rating) {
+    KBDebug(@"Creating rating with user: %@, beer: %@", user.firstName, beer.name);
+    rating = [NSEntityDescription insertNewObjectForEntityForName:@"KBRating" inManagedObjectContext:[self managedObjectContext]];
+    rating.user = user;
+    rating.beer = beer;
+  }
+  rating.ratingValue = ratingValue;
+  BOOL saved = [self save:error];
+  if (!saved) return nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidSetRatingNotification object:rating];
+  return rating;  
 }
 
 - (KBUser *)addOrUpdateUserWithTagId:(NSString *)tagId firstName:(NSString *)firstName lastName:(NSString *)lastName error:(NSError **)error {
@@ -293,7 +338,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   user.firstName = firstName;
   user.lastName = lastName;
   user.tagId = tagId;
-  BOOL saved = [[self managedObjectContext] save:error];
+  BOOL saved = [self save:error];
   if (!saved) return nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidAddUserNotification object:user];
   return user;
@@ -304,7 +349,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBUser" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setFetchLimit:1];
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"tagId = %@", tagId]];
-  return [[[self managedObjectContext] executeFetchRequest:fetchRequest error:error] gh_firstObject];
+  return [[self executeFetchRequest:fetchRequest error:error] gh_firstObject];
 }
 
 - (NSArray *)topUsersByPourWithOffset:(NSUInteger)offset limit:(NSUInteger)limit error:(NSError **)error {
@@ -317,7 +362,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];  
+  return [self executeFetchRequest:fetchRequest error:error];  
 }
 
 - (void)recomputeStats {

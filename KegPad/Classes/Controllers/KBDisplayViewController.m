@@ -24,13 +24,25 @@
 #import "KBDataStore.h"
 #import "KBNotifications.h"
 #import "KBApplication.h"
+#import "KBApplicationDelegate.h"
+#import "KBTypes.h"
+#import "KBRating.h"
+
+
+@interface KBDisplayViewController ()
+@property (retain, nonatomic) KBKeg *keg;
+@property (retain, nonatomic) KBUser *user;
+@end
+
 
 @implementation KBDisplayViewController
 
 @synthesize beerMovieView=beerMovieView_, nameLabel=nameLabel_, infoLabel=infoLabel_, abvLabel=abvLabel_, imageView=imageView_, 
 temperatureLabel=temperatureLabel_, typeLabel=typeLabel_, countryLabel=countryLabel_,
 tempDescriptionLabel=tempDescriptionLabel_, chalkCircleView=chalkCircleView_, recentPoursView=recentPoursView_, 
-ratingPicker=ratingPicker_, userView=userView_;
+ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate=delegate_;
+
+@synthesize keg=keg_, user=user_; // Private properties
 
 - (id)init {
   if ((self = [super initWithNibName:nil bundle:nil])) { }
@@ -41,6 +53,8 @@ ratingPicker=ratingPicker_, userView=userView_;
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [timer_ release];
   [timer_ invalidate];
+  [keg_ release];
+  [user_ release];
   [beerMovieView_ release];
   [adminViewController_ release];
   [nameLabel_ release];
@@ -54,6 +68,7 @@ ratingPicker=ratingPicker_, userView=userView_;
   [chalkCircleView_ release];
   [recentPoursView_ release];
   [ratingPicker_ release];
+  [rateButton_ release];
   [userView_ release];
   [super dealloc];
 }
@@ -65,7 +80,8 @@ ratingPicker=ratingPicker_, userView=userView_;
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegVolumeDidChange:) name:KBKegVolumeDidChangeNotification object:nil];    
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidStartPour:) name:KBKegDidStartPourNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];      
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];        
+  [self.view sendSubviewToBack:beerMovieView_];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -81,9 +97,9 @@ ratingPicker=ratingPicker_, userView=userView_;
 }
 
 - (void)startPour {
-  self.view;  
+  self.view;
   beerMovieView_.alpha = 0.0;
-  [self.view bringSubviewToFront:beerMovieView_];  
+  [self.view bringSubviewToFront:beerMovieView_];
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:0.5];
   beerMovieView_.alpha = 1.0;
@@ -106,12 +122,7 @@ ratingPicker=ratingPicker_, userView=userView_;
 
 - (void)_stopAnimationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
   [beerMovieView_ stop];
-  [self.view bringSubviewToFront:ratingPicker_];
-}
-
-- (IBAction)admin {
-  if (!adminViewController_) adminViewController_ = [[KBAdminViewController alloc] init];
-  [self presentModalViewController:adminViewController_ animated:YES];
+  [self.view sendSubviewToBack:beerMovieView_];
 }
 
 - (void)_updateKegTemperatureValue:(float)temperature {
@@ -147,6 +158,7 @@ ratingPicker=ratingPicker_, userView=userView_;
 
 - (void)updateKeg:(KBKeg *)keg {
   self.view;
+  self.keg = keg;
   if (keg.beer) {
     nameLabel_.text = keg.beer.name;
     infoLabel_.text = keg.beer.info;
@@ -164,8 +176,67 @@ ratingPicker=ratingPicker_, userView=userView_;
   }
 }
 
-- (void)setUser:(KBUser *)user {
-  [userView_ setUser:user];
+- (void)setUser:(KBUser *)user {  
+  // Set rating if we are setting a new user
+  // Save rating if we are unsetting the user
+  if (keg_) {
+    if (user) {
+      KBRating *rating = [[KBApplication dataStore] ratingWithUser:user beer:keg_.beer error:nil];
+      KBDebug(@"Loaded rating: %d for user: %@", rating.ratingValue, user.firstName);
+      if (rating) {
+        [ratingPicker_ setRating:(KBRatingValue)rating.ratingValue];
+      } else {
+        [ratingPicker_ setRating:KBRatingValueNone];
+      }
+    } else if (user_) {
+      KBDebug(@"Saving rating: %d for user: %@", ratingPicker_.rating, user_.firstName);
+      [[KBApplication dataStore] setRating:ratingPicker_.rating user:user_ beer:keg_.beer error:nil];
+    }
+  }
+  
+  [user retain];
+  [user_ release];
+  user_ = user;
+
+  if (!user_) {
+    // Hide rating button and picker
+    rateButton_.userInteractionEnabled = NO;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    rateButton_.alpha = 0.0;
+    ratingPicker_.alpha = 0.0;
+    [UIView commitAnimations];    
+  } else if (keg_) {
+    // Show rating button
+    rateButton_.userInteractionEnabled = YES;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    rateButton_.alpha = 1.0;
+    [UIView commitAnimations]; 
+  }
+
+  [userView_ setUser:user_];
+}
+
+#pragma mark Actions
+
+- (IBAction)rateBeer:(id)sender {
+  if (user_ && keg_) {
+    // Show rating picker
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    ratingPicker_.alpha = 1.0;
+    [UIView commitAnimations];    
+  }
+}
+
+- (IBAction)admin:(id)sender {
+  if (!adminViewController_) adminViewController_ = [[KBAdminViewController alloc] init];
+  [self presentModalViewController:adminViewController_ animated:YES];
+}
+
+- (IBAction)flip:(id)sender {
+  [delegate_ flip];
 }
 
 #pragma mark - 

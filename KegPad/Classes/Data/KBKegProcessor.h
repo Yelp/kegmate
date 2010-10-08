@@ -30,7 +30,7 @@
 @interface KBKegProcessor : NSObject <KBKegProcessingDelegate> {
 
   KBUser *loginUser_;
-  NSDate *loginDate_; // When the current user logged in
+  NSTimeInterval activityTime_; // The time of last activity from the reference date
   BOOL pouring_; // YES if we are currently pouring
   
   KBKegProcessing *processing_;

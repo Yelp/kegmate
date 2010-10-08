@@ -30,6 +30,7 @@
 
 - (void)temperatureAndPour;
 
-- (void)login;
+- (void)login1;
+- (void)login2;
 
 @end

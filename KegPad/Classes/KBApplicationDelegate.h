@@ -48,5 +48,7 @@
 
 - (void)setKeg:(KBKeg *)keg;
 
+- (void)flip;
+
 @end
 

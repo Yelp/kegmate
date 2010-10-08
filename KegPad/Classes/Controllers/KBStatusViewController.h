@@ -25,6 +25,8 @@
 #import "KBChartView.h"
 #import "KBLeaderboardView.h"
 
+@class KBApplicationDelegate;
+
 /*!
  Status (back) display for KegPad.
  Loads via KBStatusViewController.xib.
@@ -43,6 +45,8 @@
   KBChartView *chartView_;
   
   KBLeaderboardView *leaderboardView_;
+  
+  KBApplicationDelegate *delegate_; // weak
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
@@ -56,6 +60,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *totalPouredAmountLabel;
 @property (nonatomic, retain) IBOutlet KBChartView *chartView;
 @property (nonatomic, retain) IBOutlet KBLeaderboardView *leaderboardView;
+@property (nonatomic, assign) KBApplicationDelegate *delegate;
 
 
 - (void)updateKeg:(KBKeg *)keg ;
@@ -67,5 +72,7 @@
 - (void)updateLeaderboard;
 
 - (void)updateChart;
+
+- (IBAction)flip:(id)sender;
 
 @end

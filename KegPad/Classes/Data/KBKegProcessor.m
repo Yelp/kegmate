@@ -26,7 +26,7 @@
 
 @interface KBKegProcessor ()
 @property (retain, nonatomic) KBUser *loginUser;
-@property (retain, nonatomic) NSDate *loginDate;
+@property (assign, nonatomic) NSTimeInterval activityTime;
 
 /*!
  Logout.
@@ -35,27 +35,31 @@
 - (void)_logout:(BOOL)postNotification;
 @end
 
+
 static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
+static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out this many seconds after pour
+
 
 @implementation KBKegProcessor
 
 @synthesize dataStore=dataStore_, loginUser=loginUser_, processing=processing_;
-@synthesize loginDate=loginDate_; // Private properties
+@synthesize activityTime=activityTime_; // Private properties
 
 - (id)init {
   if ((self = [super init])) {
     dataStore_ = [[KBDataStore alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_activityNotification:) name:KBActivityNotification object:nil];
   }
   return self;
 }
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [loginTimer_ invalidate];
   processing_.delegate = nil;
   [processing_ release];
   [dataStore_ release];
   [loginUser_ release];
-  [loginDate_ release];
   [super dealloc];
 }
 
@@ -75,15 +79,15 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
     self.loginUser = user;
   }
   
-  // Set login date and timer if logged in
-  self.loginDate = [NSDate date];
+  // Set activity time and timer if logged in
+  self.activityTime = [NSDate timeIntervalSinceReferenceDate];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidLoginNotification object:self.loginUser];
   loginTimer_ = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_checkLoginStatus) userInfo:nil repeats:YES];
 }
 
 - (void)_logout:(BOOL)postNotification {
   KBUser *previousUser = [self.loginUser retain];
-  self.loginDate = nil;
+  self.activityTime = 0;
   self.loginUser = nil;
   [loginTimer_ invalidate];
   loginTimer_ = nil;  
@@ -99,11 +103,16 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
 //! Run from timer after login, and logout if timeout was reached
 - (void)_checkLoginStatus {
   if (pouring_) return; // Don't log out current user if pouring
-  if (!loginDate_) return;
   
-  if (fabs([loginDate_ timeIntervalSinceNow]) > kLoggedInTimeoutInterval) {
+  if ([NSDate timeIntervalSinceReferenceDate] - activityTime_ > kLoggedInTimeoutInterval) {
     [self logout];
   }
+}
+
+#pragma mark Notifications
+
+- (void)_activityNotification:(NSNotification *)Notifications {
+  self.activityTime = [NSDate timeIntervalSinceReferenceDate];
 }
 
 #pragma mark KBKegProcessingDelegate
@@ -121,7 +130,8 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
   pouring_ = NO;
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEndPourNotification object:nil];
 
-  [self logout]; // Done with pour, logout user
+  // Set timer to timeout in kLoggedInTimeoutAfterPourInterval seconds after a pour
+  self.activityTime = ([NSDate timeIntervalSinceReferenceDate] - kLoggedInTimeoutInterval + kLoggedInTimeoutAfterPourInterval);
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didChangeTemperature:(double)temperature {

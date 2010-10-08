@@ -25,6 +25,8 @@
 #import "KBUser.h"
 #import "KBBeer.h"
 #import "KBKegProcessing.h"
+#import "KBTypes.h"
+
 
 #define KBDataStoreCheckError(__ERROR__) do { \
   if (error) NSLog(@"Error: %@; %@", error, [error localizedFailureReason]); \
@@ -72,6 +74,21 @@
  Documents directory, where the data store is persisted.
  */
 - (NSString *)applicationDocumentsDirectory;
+
+/*!
+ Execute fetch
+ @param request
+ @param error Out error
+ @result Results
+ */
+- (NSArray *)executeFetchRequest:(NSFetchRequest *)request error:(NSError **)error;
+
+/*!
+ Save context.
+ @param error Out error
+ @result YES if saved
+ */
+- (BOOL)save:(NSError **)error;
 
 /*!
  Set the keg at position.
@@ -193,6 +210,25 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @result Keg if saved, nil otherwise
  */
 - (KBKeg *)addOrUpdateKegWithId:(NSString *)id beer:(KBBeer *)beer volumeAdjusted:(float)volumeAdjusted volumeTotal:(float)volumeTotal error:(NSError **)error;
+
+/*!
+ Rating on beer for user.
+ @param user
+ @param beer
+ @param error
+ @result Rating
+ */
+- (KBRating *)ratingWithUser:(KBUser *)user beer:(KBBeer *)beer error:(NSError **)error;
+
+/*!
+ Set rating on beer for user.
+ @param rating
+ @param user
+ @param beer
+ @param error Out error
+ @result Rating
+ */
+- (KBRating *)setRating:(KBRatingValue)rating user:(KBUser *)user beer:(KBBeer *)beer error:(NSError **)error;
 
 /*!
  Get list of users.

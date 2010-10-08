@@ -29,7 +29,8 @@
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     kegProcessorSimulator_ = [[KBKegProcessorSimulator alloc] initWithKegProcessor:[KBApplication kegProcessor]];
     [self addForm:[KBUIForm actionWithTitle:@"Simulate temperature and pour" text:@"" target:kegProcessorSimulator_ action:@selector(temperatureAndPour) showDisclosure:NO]];
-    [self addForm:[KBUIForm actionWithTitle:@"Simulate login" text:@"" target:kegProcessorSimulator_ action:@selector(login) showDisclosure:NO]];
+    [self addForm:[KBUIForm actionWithTitle:@"Simulate login (1)" text:@"" target:kegProcessorSimulator_ action:@selector(login1) showDisclosure:NO]];
+    [self addForm:[KBUIForm actionWithTitle:@"Simulate login (2)" text:@"" target:kegProcessorSimulator_ action:@selector(login2) showDisclosure:NO]];
     [self addForm:[KBUIForm actionWithTitle:@"Simulate unknown tag" text:@"" target:kegProcessorSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
   }
   return self;

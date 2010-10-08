@@ -21,11 +21,12 @@
 
 #define kLitersToOunces 33.8140227
 
-typedef enum {
+enum {
   KBRatingValueNone = 0,
   KBRatingValue1 = 1,
   KBRatingValue2 = 2,
   KBRatingValue3 = 3,
   KBRatingValue4 = 4,
   KBRatingValue5 = 5
-} KBRatingValue;
+};
+typedef NSInteger KBRatingValue;

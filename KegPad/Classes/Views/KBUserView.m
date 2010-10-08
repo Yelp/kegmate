@@ -21,6 +21,7 @@
 
 #import "KBUserView.h"
 
+#import "KBNotifications.h"
 
 @implementation KBUserView
 
@@ -48,6 +49,9 @@
     displayNameLabel_.alpha = 0.0;
     displayNameLabel_.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -0.06);
     [self addSubview:displayNameLabel_];
+    
+    self.exclusiveTouch = YES;
+    self.userInteractionEnabled = NO;
   }
   return self;
 }
@@ -60,6 +64,11 @@
   [super dealloc];
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesEnded:touches withEvent:event];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBEditUserNotification object:user_];
+}
+
 - (void)setUser:(KBUser *)user {
   [user retain];
   [user_ release];
@@ -68,11 +77,13 @@
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:0.5];
   if (user_) {
+    self.userInteractionEnabled = YES;
     imageView_.alpha = 0.0;
     userImageView_.alpha = 1.0;
     displayNameLabel_.alpha = 1.0;
     displayNameLabel_.text = user_.displayName;
   } else {
+    self.userInteractionEnabled = NO;
     imageView_.alpha = 1.0;
     userImageView_.alpha = 0.0;
     displayNameLabel_.alpha = 0.0;

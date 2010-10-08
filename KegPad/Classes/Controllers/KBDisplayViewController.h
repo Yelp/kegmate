@@ -27,6 +27,8 @@
 #import "KBRatingPicker.h"
 #import "KBUserView.h"
 
+@class KBApplicationDelegate;
+
 /*!
  Main display for KegPad.
  Loads via KBDisplayViewController.xib.
@@ -53,7 +55,13 @@
   
   NSTimer *timer_;
   
+  UIButton *rateButton_;
   KBRatingPicker *ratingPicker_;
+  
+  KBKeg *keg_;
+  KBUser *user_;
+  
+  KBApplicationDelegate *delegate_; // weak
 }
 
 @property (nonatomic, retain) IBOutlet KBBeerMovieView *beerMovieView;
@@ -67,13 +75,18 @@
 @property (nonatomic, retain) IBOutlet UILabel *tempDescriptionLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *chalkCircleView;
 @property (nonatomic, retain) IBOutlet KBRecentPoursView *recentPoursView;
+@property (nonatomic, retain) IBOutlet UIButton *rateButton;
 @property (nonatomic, retain) IBOutlet KBRatingPicker *ratingPicker;
 @property (nonatomic, retain) IBOutlet KBUserView *userView;
+
+@property (nonatomic, assign) KBApplicationDelegate *delegate;
 
 - (void)startPour;
 - (void)stopPour;
 
-- (IBAction)admin;
+- (IBAction)admin:(id)sender;
+- (IBAction)rateBeer:(id)sender;
+- (IBAction)flip:(id)sender;
 
 - (void)updateKeg:(KBKeg *)keg;
 

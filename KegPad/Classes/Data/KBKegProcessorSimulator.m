@@ -50,8 +50,14 @@
   [[kegProcessor_ gh_proxyAfterDelay:12] kegProcessing:kegProcessor_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
 }
 
-- (void)login {
+- (void)login1 {
   KBUser *user = [kegProcessor_.dataStore userWithTagId:@"29009426DC47" error:nil];
+  KBDebug(@"User: %@", user);
+  [kegProcessor_ login:user];
+}
+
+- (void)login2 {
+  KBUser *user = [kegProcessor_.dataStore userWithTagId:@"2900942371EF" error:nil];
   KBDebug(@"User: %@", user);
   [kegProcessor_ login:user];
 }

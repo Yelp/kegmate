@@ -8,6 +8,7 @@
 @class KBUser;
 
 
+
 @interface KBRatingID : NSManagedObjectID {}
 @end
 
@@ -16,6 +17,16 @@
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (KBRatingID*)objectID;
+
+
+
+@property (nonatomic, retain) NSNumber *rating;
+
+@property int ratingValue;
+- (int)ratingValue;
+- (void)setRatingValue:(int)value_;
+
+//- (BOOL)validateRating:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -37,6 +48,13 @@
 @end
 
 @interface _KBRating (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveRating;
+- (void)setPrimitiveRating:(NSNumber*)value;
+
+- (int)primitiveRatingValue;
+- (void)setPrimitiveRatingValue:(int)value_;
+
 
 
 

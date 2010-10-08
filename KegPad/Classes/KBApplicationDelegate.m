@@ -33,7 +33,9 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [store_ release];
   [window_ release];
+  displayViewController_.delegate = nil;
   [displayViewController_ release];
+  statusViewController_.delegate = nil;
   [statusViewController_ release];
   [navigationController_ release];
   [super dealloc];
@@ -49,7 +51,7 @@
   [UIView commitAnimations]; 
 }
 
-- (void)_swapScreens:(NSNotification *)notification {
+- (void)flip {
   if (![[navigationController_ viewControllers] containsObject:statusViewController_]) {
     [self popPushViewController:statusViewController_];
   } else {
@@ -68,8 +70,10 @@
   [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
   displayViewController_ = [[KBDisplayViewController alloc] init];
+  displayViewController_.delegate = self;
   
   statusViewController_ = [[KBStatusViewController alloc] init];
+  statusViewController_.delegate = self;
 
   navigationController_ = [[UINavigationController alloc] initWithRootViewController:displayViewController_];
   navigationController_.navigationBarHidden = YES;
@@ -79,10 +83,10 @@
   [self initializeSounds];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegSelectionDidChange:) name:KBKegSelectionDidChangeNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_swapScreens:) name:KBSwapScreensNotification object:nil];      
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogin:) name:KBUserDidLoginNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogout:) name:KBUserDidLogoutNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknowTagId:) name:KBUnknownTagIdNotification object:nil];  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_editUser:) name:KBEditUserNotification object:nil];    
   
   kegProcessor_ = [[KBKegProcessor alloc] init];
 
@@ -136,6 +140,14 @@
   [userAddNavigationController release];
 }
 
+- (void)editUser:(KBUser *)user {
+  KBUserAddNavigationController *userAddNavigationController = [[KBUserAddNavigationController alloc] init];
+  userAddNavigationController.userEditViewController.delegate = self;
+  [userAddNavigationController.userEditViewController setUser:user];
+  [navigationController_ presentModalViewController:userAddNavigationController animated:YES];
+  [userAddNavigationController release];
+}
+
 #pragma mark Notifications
 
 - (void)_kegSelectionDidChange:(NSNotification *)notification {
@@ -148,6 +160,10 @@
 
 - (void)_userDidLogout:(NSNotification *)notification {
   [self setUser:nil];
+}
+
+- (void)_editUser:(NSNotification *)notification {
+  [self editUser:[notification object]];
 }
 
 - (void)_unknowTagId:(NSNotification *)notification {

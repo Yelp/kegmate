@@ -25,6 +25,8 @@
 
 #import "KBDataStore.h"
 #import "KBApplication.h"
+#import "KBApplicationDelegate.h"
+
 
 @implementation KBStatusViewController
 
@@ -32,7 +34,7 @@
 lastPourAmountLabel=lastPourAmountLabel_, lastPourAmountUnitsLabel=lastPourAmountUnitsLabel_,
 percentRemaingLabel=percentRemaingLabel_, totalPouredAmountLabel=totalPouredAmountLabel_,
 temperatureLabel=temperatureLabel_, temperatureDescriptionLabel=temperatureDescriptionLabel_,
-chartView=chartView_, leaderboardView=leaderboardView_;
+chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_;
 
 - (id)init {  
   if ((self = [super initWithNibName:nil bundle:nil])) { }
@@ -111,6 +113,10 @@ chartView=chartView_, leaderboardView=leaderboardView_;
     temperatureLabel_.text = @"-";
     temperatureDescriptionLabel_.text = @"TEMP.";
   }  
+}
+
+- (IBAction)flip:(id)sender {
+  [delegate_ flip];
 }
 
 #pragma mark - 

@@ -29,6 +29,32 @@
 
 
 
+@dynamic rating;
+
+
+
+- (int)ratingValue {
+	NSNumber *result = [self rating];
+	return [result intValue];
+}
+
+- (void)setRatingValue:(int)value_ {
+	[self setRating:[NSNumber numberWithInt:value_]];
+}
+
+- (int)primitiveRatingValue {
+	NSNumber *result = [self primitiveRating];
+	return [result intValue];
+}
+
+- (void)setPrimitiveRatingValue:(int)value_ {
+	[self setPrimitiveRating:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
 @dynamic beer;
 
 	
