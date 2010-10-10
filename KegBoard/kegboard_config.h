@@ -21,7 +21,7 @@
 #define KB_ENABLE_SERIAL_LCD 0
 
 // Enable ID12?
-#define KB_ENABLE_ID12 0
+#define KB_ENABLE_ID12 1
 
 // Enable Analog?
 #define KB_ENABLE_ANALOG_TEMP 0
@@ -65,7 +65,7 @@
 // Sets this pin and the one after as NewSoftSerial port
 // TODO(johnb): Since we don't need TX to the ID12 RFID reader, check and see if we can
 // safely set the NewSoftSerial TX pin to 0
-#define KB_PIN_ID12               6
+#define KB_PIN_ID12               8
 
 #define KB_PIN_MAGSTRIPE_CLOCK    17
 #define KB_PIN_MAGSTRIPE_DATA     18

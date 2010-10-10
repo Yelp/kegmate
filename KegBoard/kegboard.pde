@@ -309,6 +309,18 @@ void writeAnalTempPacket(int channel)
 #endif
 
 #if KB_ENABLE_ID12
+// Takes an ascii char representing a 4 bit hex value (0-9a-f) and returns the
+// corresponding value
+char charFromAsciiHexChar(char asciiHexChar) {
+  char value;
+  if ((asciiHexChar >= '0') && (asciiHexChar <= '9')) {
+    value = asciiHexChar - '0';
+  } else if ((asciiHexChar >= 'A') && (asciiHexChar <= 'F')) {
+    value = 10 + asciiHexChar - 'A';
+  }
+  return value;
+}
+
 void writeID12Packet()
 {
   char name[5] = "rfid";
@@ -316,25 +328,49 @@ void writeID12Packet()
   if (gID12Serial.available() < 16) {
     return;
   }
-  char buf[12];
-  
-  gID12Serial.read(); // Should be STX (0x02)
+
+  // Should be STX (0x02)
+  if (gID12Serial.read() != 0x02) {
+    gID12Serial.flush();
+    return;
+  };
+
+  char buf[10];
   int i=0;
-  for (i=0;i<12;i++) {
+  for (i=0;i<10;i++) {
     buf[i]=(char)gID12Serial.read();
   }
+
+  // Calculate the checksum, compare with the sent checksum
+  char calculatedChecksum = 0;
+  for (int i = 0; i < 5; i++) {
+    calculatedChecksum ^= charFromAsciiHexChar(buf[2 * i]) << 4;
+    calculatedChecksum ^= charFromAsciiHexChar(buf[2 * i + 1]);
+  }
   
-  // TODO(johnb): Process CRC here and only send code if valid
+  char receivedChecksum = charFromAsciiHexChar(gID12Serial.read()) << 4;
+  receivedChecksum |= charFromAsciiHexChar(gID12Serial.read());
+
+  if (calculatedChecksum != receivedChecksum) {
+    gID12Serial.flush();
+    return;
+  }
   
-  gID12Serial.read(); // Should be CR
-  gID12Serial.read(); // Should be LF
-  gID12Serial.read(); // Should be ETX (0x03)
+  // After the checksum we expect CR LF ETX(0x03)
+  if ((gID12Serial.read() != '\r')
+      || (gID12Serial.read() != '\n')
+      || (gID12Serial.read() != 0x03)) {
+    gID12Serial.flush();
+    return;
+  }
 
   KegboardPacket packet;
   packet.SetType(KB_MESSAGE_TYPE_ID12);
   packet.AddTag(KB_MESSAGE_TYPE_ID12_READER_NAME, 5, name);
-  packet.AddTag(KB_MESSAGE_TYPE_ID12_TAG_ID, 12, buf);
+  packet.AddTag(KB_MESSAGE_TYPE_ID12_TAG_ID, 10, buf);
   packet.Print();
+  // Reset the buffer (in case things got wonky)
+  gID12Serial.flush();
 }
 #endif
 
