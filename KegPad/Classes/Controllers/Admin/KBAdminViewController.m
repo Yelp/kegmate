@@ -49,10 +49,12 @@
 - (id)init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = @"Admin";
-    [self addForm:[KBUIForm actionWithTitle:@"Beers" text:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
-    [self addForm:[KBUIForm actionWithTitle:@"Kegs" text:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
-    [self addForm:[KBUIForm actionWithTitle:@"Users" text:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
-    [self addForm:[KBUIForm actionWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Beers" text:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Kegs" text:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Users" text:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Update fixtures" text:@"Load fixture data (will reset changes from fixture data)." 
+                                   target:self action:@selector(updateWithFixtures) showDisclosure:NO]];
   }
   return self;
 }
@@ -101,6 +103,11 @@
     simulatorViewController_.delegate = self;
   }
   [self.navigationController pushViewController:simulatorViewController_ animated:YES];
+}
+
+- (void)updateWithFixtures {
+  // Manual importing of data; Temporary until we build out admin section
+  [KBDataImporter updateDataStore:[KBApplication dataStore]];
 }
 
 #pragma mark KBUIFormViewControllerDelegate

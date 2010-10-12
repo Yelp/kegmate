@@ -28,12 +28,14 @@ extern NSString *const KBKegDidSavePourNotification;
 extern NSString *const KBUserDidLoginNotification; // With user (KBUser)
 extern NSString *const KBUserDidLogoutNotification;
 
-extern NSString *const KBUserDidSignUpNotification; // With user (KBUser)
-extern NSString *const KBUserDidAddUserNotification; // With user (KBUser)
+extern NSString *const KBUserDidEditNotification; // With user (KBUser)
+extern NSString *const KBUserDidUpdateUserNotification; // With user (KBUser)
 extern NSString *const KBUserDidSetRatingNotification; // With rating (KBRating)
+
+extern NSString *const KBBeerDidEditNotification; // With beer (KBBeer)
 
 extern NSString *const KBUnknownTagIdNotification; // With tag id (NSString), if an unknown tag is read
 
-extern NSString *const KBEditUserNotification; // With user (KBUser)
+extern NSString *const KBDidSelectUserNotification; // With user (KBUser)
 
 extern NSString *const KBActivityNotification; // If there is an user activity

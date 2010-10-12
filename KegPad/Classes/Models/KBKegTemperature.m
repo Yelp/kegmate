@@ -27,14 +27,14 @@
   float temperature = self.temperatureValue;  
   if (temperature < 10) return @"frosty!";
   else if (temperature < 16) return @"chilly!";
-  return @">:(";
+  return @"warm";
 }
 
 - (NSString *)statusDescription {
   float temperature = self.temperatureValue;  
   if (temperature < 10) return @"COLD CHILLIN'";
   else if (temperature < 16) return @"CHILLIN'";
-  return @"WTFOMGBBQ";
+  return @"WARM";
 }
  
 + (float)min {

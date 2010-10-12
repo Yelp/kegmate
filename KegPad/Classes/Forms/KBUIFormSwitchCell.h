@@ -1,8 +1,8 @@
 //
-//  KBFormFieldCell.h
+//  KBUIFormSwitchCell.h
 //  KegPad
 //
-//  Created by Gabe on 9/28/10.
+//  Created by Gabe on 10/10/10.
 //  Copyright 2010 rel.me. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,16 +19,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-@interface KBFormFieldCell : UITableViewCell {
-
-	UITextField *textField_;
-	UISwitch *switch_;
+@interface KBUIFormSwitchCell : UITableViewCell {
   
-  BOOL editable_;
-
+	UISwitch *switchField_;
+  
 }
 
-@property (readonly, nonatomic) UITextField *textField;
-@property (assign, nonatomic, getter=isEditable) BOOL editable;
+@property (readonly, nonatomic) UISwitch *switchField;
 
 @end

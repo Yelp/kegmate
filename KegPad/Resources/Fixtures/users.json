@@ -2,21 +2,30 @@
 [{
   "tag_id": "29009426DC47",
   "first_name": "Gabriel",
-  "last_name": "Handford"
+  "last_name": "Handford",
+  "is_admin": true
 }, {
   "tag_id": "2900942371EF",
   "first_name": "John",
-  "last_name": "Boiles"
+  "last_name": "Boiles",
+  "is_admin": true
 }, {
   "tag_id": "29009433E16F",
   "first_name": "Jeff",
-  "last_name": "Micklos"
+  "last_name": "Micklos",
+  "is_admin": true
 }, {
   "tag_id": "29009401239F",
   "first_name": "Julien",
-  "last_name": "Rhodes"
+  "last_name": "Rhodes",
+  "is_admin": true
 }, {
   "tag_id": "29009425D24A",
   "first_name": "Alex",
-  "last_name": "Davis"
+  "last_name": "Davis",
+  "is_admin": true 
+}, {
+  "tag_id": "TESTTAGID1",
+  "first_name": "Joe",
+  "last_name": "Schmoe"
 }]

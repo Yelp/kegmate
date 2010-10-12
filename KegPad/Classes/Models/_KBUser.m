@@ -35,21 +35,13 @@
 
 - (float)volumePouredValue {
 	NSNumber *result = [self volumePoured];
-	return [result floatValue];
+	return result ? [result floatValue] : 0;
 }
 
 - (void)setVolumePouredValue:(float)value_ {
 	[self setVolumePoured:[NSNumber numberWithFloat:value_]];
 }
 
-- (float)primitiveVolumePouredValue {
-	NSNumber *result = [self primitiveVolumePoured];
-	return [result floatValue];
-}
-
-- (void)setPrimitiveVolumePouredValue:(float)value_ {
-	[self setPrimitiveVolumePoured:[NSNumber numberWithFloat:value_]];
-}
 
 
 
@@ -63,6 +55,24 @@
 
 
 @dynamic firstName;
+
+
+
+
+
+
+@dynamic isAdmin;
+
+
+
+- (BOOL)isAdminValue {
+	NSNumber *result = [self isAdmin];
+	return result ? [result boolValue] : 0;
+}
+
+- (void)setIsAdminValue:(BOOL)value_ {
+	[self setIsAdmin:[NSNumber numberWithBool:value_]];
+}
 
 
 

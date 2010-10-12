@@ -34,6 +34,7 @@
     [dataStore addOrUpdateUserWithTagId:[user gh_objectMaybeNilForKey:@"tag_id"]
                               firstName:[user gh_objectMaybeNilForKey:@"first_name"]
                                lastName:[user gh_objectMaybeNilForKey:@"last_name"]
+                                isAdmin:[user gh_boolForKey:@"is_admin"]
                                  error:&error];
     KBDataStoreCheckError(error);
   }
@@ -47,10 +48,10 @@
                                 name:[beer gh_objectMaybeNilForKey:@"name"]
                                 info:[beer gh_objectMaybeNilForKey:@"info"]
                                 type:[beer gh_objectMaybeNilForKey:@"type"]
-                              country:[beer gh_objectMaybeNilForKey:@"country"]
-                            imageName:[beer gh_objectMaybeNilForKey:@"image"]
-                                  abv:[[beer gh_objectMaybeNilForKey:@"abv"] floatValue]
-                                error:&error];
+                             country:[beer gh_objectMaybeNilForKey:@"country"]
+                           imageName:[beer gh_objectMaybeNilForKey:@"image"]
+                                 abv:[[beer gh_objectMaybeNilForKey:@"abv"] floatValue]
+                               error:&error];
     KBDataStoreCheckError(error);
   }
 }
@@ -58,7 +59,6 @@
 - (void)updateKegsInDataStore:(KBDataStore *)dataStore {
   NSError *error = nil;
   NSArray *kegs = [[NSBundle mainBundle] yajl_JSONFromResource:@"kegs.json"];
-  KBDebug(@"kegs=%@", kegs);
   for (NSDictionary *keg in kegs) {
     NSString *beerId = [keg gh_objectMaybeNilForKey:@"beer_id"];
     KBBeer *beer = [dataStore beerWithId:beerId error:nil];

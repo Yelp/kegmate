@@ -44,8 +44,11 @@
   UILabel *tempDescriptionLabel_;
   UIImageView *imageView_;
   
+  UILabel *ratingLabel_;
+  
   UIImageView *chalkCircleView_;
   UILabel *temperatureLabel_;
+  UIButton *adminButton_;
   
   KBUserView *userView_;
 
@@ -53,13 +56,16 @@
 
   KBAdminViewController *adminViewController_;
   
-  NSTimer *timer_;
+  NSTimer *timer_; // For updating screen every minute
   
-  UIButton *rateButton_;
+  UIImageView *rateView_;
   KBRatingPicker *ratingPicker_;
   
   KBKeg *keg_;
   KBUser *user_;
+  
+  CGFloat chalkCircleOriginMinY_;
+  CGFloat chalkCircleOriginMaxY_;  
   
   KBApplicationDelegate *delegate_; // weak
 }
@@ -72,12 +78,14 @@
 @property (nonatomic, retain) IBOutlet UILabel *abvLabel;
 @property (nonatomic, retain) IBOutlet UILabel *temperatureLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic, retain) IBOutlet UILabel *ratingLabel;
 @property (nonatomic, retain) IBOutlet UILabel *tempDescriptionLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *chalkCircleView;
 @property (nonatomic, retain) IBOutlet KBRecentPoursView *recentPoursView;
-@property (nonatomic, retain) IBOutlet UIButton *rateButton;
+@property (nonatomic, retain) IBOutlet UIImageView *rateView;
 @property (nonatomic, retain) IBOutlet KBRatingPicker *ratingPicker;
 @property (nonatomic, retain) IBOutlet KBUserView *userView;
+@property (nonatomic, retain) IBOutlet UIButton *adminButton;
 
 @property (nonatomic, assign) KBApplicationDelegate *delegate;
 
@@ -85,7 +93,6 @@
 - (void)stopPour;
 
 - (IBAction)admin:(id)sender;
-- (IBAction)rateBeer:(id)sender;
 - (IBAction)flip:(id)sender;
 
 - (void)updateKeg:(KBKeg *)keg;

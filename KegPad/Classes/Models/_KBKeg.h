@@ -8,13 +8,6 @@
 @class KBBeer;
 @class KBKegPour;
 
-
-
-
-
-
-
-
 @interface KBKegID : NSManagedObjectID {}
 @end
 
@@ -23,22 +16,6 @@
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (KBKegID*)objectID;
-
-
-
-@property (nonatomic, retain) NSNumber *volumeTotal;
-
-@property float volumeTotalValue;
-- (float)volumeTotalValue;
-- (void)setVolumeTotalValue:(float)value_;
-
-//- (BOOL)validateVolumeTotal:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSString *id;
-
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -52,6 +29,12 @@
 
 
 
+@property (nonatomic, retain) NSString *id;
+
+//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
+
+
+
 @property (nonatomic, retain) NSNumber *index;
 
 @property int indexValue;
@@ -62,6 +45,42 @@
 
 
 
+@property (nonatomic, retain) NSNumber *volumeTotal;
+
+@property float volumeTotalValue;
+- (float)volumeTotalValue;
+- (void)setVolumeTotalValue:(float)value_;
+
+//- (BOOL)validateVolumeTotal:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *ratingCount;
+
+@property int ratingCountValue;
+- (int)ratingCountValue;
+- (void)setRatingCountValue:(int)value_;
+
+//- (BOOL)validateRatingCount:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *ratingTotal;
+
+@property double ratingTotalValue;
+- (double)ratingTotalValue;
+- (void)setRatingTotalValue:(double)value_;
+
+//- (BOOL)validateRatingTotal:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSDate *dateCreated;
+
+//- (BOOL)validateDateCreated:(id*)value_ error:(NSError**)error_;
+
+
+
 @property (nonatomic, retain) NSNumber *volumeAdjusted;
 
 @property float volumeAdjustedValue;
@@ -69,12 +88,6 @@
 - (void)setVolumeAdjustedValue:(float)value_;
 
 //- (BOOL)validateVolumeAdjusted:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSDate *dateCreated;
-
-//- (BOOL)validateDateCreated:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -107,61 +120,5 @@
 - (void)removePours:(NSSet*)value_;
 - (void)addPoursObject:(KBKegPour*)value_;
 - (void)removePoursObject:(KBKegPour*)value_;
-
-@end
-
-@interface _KBKeg (CoreDataGeneratedPrimitiveAccessors)
-
-- (NSNumber*)primitiveVolumeTotal;
-- (void)setPrimitiveVolumeTotal:(NSNumber*)value;
-
-- (float)primitiveVolumeTotalValue;
-- (void)setPrimitiveVolumeTotalValue:(float)value_;
-
-
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
-
-
-- (NSNumber*)primitiveVolumePoured;
-- (void)setPrimitiveVolumePoured:(NSNumber*)value;
-
-- (float)primitiveVolumePouredValue;
-- (void)setPrimitiveVolumePouredValue:(float)value_;
-
-
-- (NSNumber*)primitiveIndex;
-- (void)setPrimitiveIndex:(NSNumber*)value;
-
-- (int)primitiveIndexValue;
-- (void)setPrimitiveIndexValue:(int)value_;
-
-
-- (NSNumber*)primitiveVolumeAdjusted;
-- (void)setPrimitiveVolumeAdjusted:(NSNumber*)value;
-
-- (float)primitiveVolumeAdjustedValue;
-- (void)setPrimitiveVolumeAdjustedValue:(float)value_;
-
-
-- (NSDate*)primitiveDateCreated;
-- (void)setPrimitiveDateCreated:(NSDate*)value;
-
-
-
-
-- (NSMutableSet*)primitiveTemperatures;
-- (void)setPrimitiveTemperatures:(NSMutableSet*)value;
-
-
-
-- (KBBeer*)primitiveBeer;
-- (void)setPrimitiveBeer:(KBBeer*)value;
-
-
-
-- (NSMutableSet*)primitivePours;
-- (void)setPrimitivePours:(NSMutableSet*)value;
-
 
 @end

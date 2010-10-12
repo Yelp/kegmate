@@ -23,10 +23,10 @@
 - (id)initWithTitle:(NSString *)title {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) { 
     self.title = title;
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(_add)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(_save)] autorelease];
 
     // TODO(gabe): Make beer selector
-    beerField_ = [[KBUIFormTextField actionWithTitle:@"Beer (name)" text:nil] retain];
+    beerField_ = [[KBUIFormTextField formWithTitle:@"Beer (name)" text:nil] retain];
     [self addForm:beerField_];
 
   }
@@ -43,7 +43,7 @@
   return (![NSString gh_isBlank:beerName]);
 }
 
-- (void)_add {
+- (void)_save {
   if (![self validate]) return;
   NSString *identifier = [NSString gh_uuid];
   NSString *beerName = beerField_.textField.text;
@@ -51,8 +51,8 @@
   float volumeAdjusted = 0;
   float volumeTotal = 58.67; // Volume in liters of full keg
   
-  // TODO(gabe): Validate input
   if (!beer) {    
+    [self showAlertWithTitle:nil message:@"Enter a valid beer name"];
     return;
   } 
   

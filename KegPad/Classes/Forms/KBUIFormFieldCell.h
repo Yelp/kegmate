@@ -1,5 +1,5 @@
 //
-//  KBUIFormTextField.h
+//  KBUIFormFieldCell.h
 //  KegPad
 //
 //  Created by Gabe on 9/28/10.
@@ -19,21 +19,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBUIForm.h"
-#import "KBUIFormFieldCell.h"
+@interface KBUIFormFieldCell : UITableViewCell {
 
-@interface KBUIFormTextField : KBUIForm {
-  BOOL secureTextEntry_;
-  BOOL editable_;
+	UITextField *textField_;
   
-  KBUIFormFieldCell *cell_;
+  BOOL editable_;
+
 }
 
-@property (assign, nonatomic, getter=isSecureTextEntry) BOOL secureTextEntry;
+@property (readonly, nonatomic) UITextField *textField;
 @property (assign, nonatomic, getter=isEditable) BOOL editable;
-
-+ (KBUIFormTextField *)formWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable;
-
-- (UITextField *)textField;
 
 @end

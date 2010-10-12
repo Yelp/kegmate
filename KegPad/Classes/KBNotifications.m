@@ -30,11 +30,13 @@ NSString *const KBKegDidSavePourNotification = @"KBKegDidSavePourNotification";
 NSString *const KBUserDidLoginNotification = @"KBUserDidLoginNotification";
 NSString *const KBUserDidLogoutNotification = @"KBUserDidLogoutNotification";
 
-NSString *const KBUserDidSignUpNotification = @"KBUserDidSignUpNotification";
-NSString *const KBUserDidAddUserNotification = @"KBUserDidAddUserNotification";
+NSString *const KBUserDidEditNotification = @"KBUserDidEditNotification";
+NSString *const KBUserDidUpdateUserNotification = @"KBUserDidUpdateUserNotification";
 NSString *const KBUserDidSetRatingNotification = @"KBUserDidSetRatingNotification";
 
+NSString *const KBBeerDidEditNotification = @"KBBeerDidEditNotification";
+
 NSString *const KBUnknownTagIdNotification = @"KBUnknownTagIdNotification";
-NSString *const KBEditUserNotification = @"KBEditUserNotification";
+NSString *const KBDidSelectUserNotification = @"KBDidSelectUserNotification";
 
 NSString *const KBActivityNotification = @"KBActivityNotification";

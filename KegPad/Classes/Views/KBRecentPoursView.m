@@ -24,6 +24,9 @@
 #import "KBKegPour.h"
 #import "KBUser.h"
 
+#define kDefaultUserName @"Lone Drinker"
+
+
 @implementation KBRecentPoursView
 
 - (void)dealloc {
@@ -39,21 +42,43 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-  CGPoint p = CGPointMake(10, 10);
-  UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:24];
-  UIFont *amountFont = [UIFont fontWithName:@"Helvetica" size:16];
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  CGPoint point = CGPointMake(10, 10);
+  UIFont *nameFont = [UIFont fontWithName:@"Helvetica-Bold" size:22];
+  UIFont *amountFont = [UIFont fontWithName:@"Helvetica-Bold" size:15];
   
   for (KBKegPour *pour in recentPours_) {
     NSString *name = [pour.user displayName];
-    if (!name) name = @"Lone Drinker";
-    [[UIColor whiteColor] set];
-    [name drawAtPoint:p forWidth:160 withFont:nameFont lineBreakMode:UILineBreakModeTailTruncation];
-    
+    if (!name) name = kDefaultUserName;
+
+    // TODO(gabe): Use CATextLayer or cells instead of ghetto shadow
+    [[UIColor colorWithWhite:0.0 alpha:0.9] set];
+    [name drawAtPoint:CGPointMake(point.x, point.y + 1.0) forWidth:160 withFont:nameFont lineBreakMode:UILineBreakModeTailTruncation];
     [[UIColor colorWithWhite:0.9 alpha:0.9] set];
-    p.x += 168;
-    [[pour amountDescriptionWithTimeAgo] drawAtPoint:CGPointMake(p.x, p.y + 5) forWidth:(self.frame.size.width - p.x)  withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation];
-    p.x = 10;
-    p.y += 36;
+    [name drawAtPoint:point forWidth:160 withFont:nameFont lineBreakMode:UILineBreakModeTailTruncation];
+    
+    point.x += 168;
+    [[UIColor colorWithWhite:1.0 alpha:0.5] set];
+    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.5, self.frame.size.width - point.x - 10, 20) withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
+    [[UIColor colorWithWhite:0.0 alpha:0.8] set];
+    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.0, self.frame.size.width - point.x - 10, 20) withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
+    point.x = 10;
+    point.y += 32;
+        
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0, point.y + 0.5);
+    CGContextAddLineToPoint(context, self.frame.size.width, point.y + 0.5);
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1.0 alpha:0.8].CGColor);
+    CGContextSetLineWidth(context, 0.5);
+    CGContextStrokePath(context);
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0, point.y);
+    CGContextAddLineToPoint(context, self.frame.size.width, point.y);
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0.0 alpha:0.8].CGColor);
+    CGContextSetLineWidth(context, 0.5);
+    CGContextStrokePath(context);
+    
+    point.y += 4;
   }
 }
 

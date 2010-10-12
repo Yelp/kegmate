@@ -86,22 +86,21 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogin:) name:KBUserDidLoginNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogout:) name:KBUserDidLogoutNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknowTagId:) name:KBUnknownTagIdNotification object:nil];  
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_editUser:) name:KBEditUserNotification object:nil];    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectUser:) name:KBDidSelectUserNotification object:nil];    
   
   kegProcessor_ = [[KBKegProcessor alloc] init];
 
-  // Manual importing of data; Temporary until we build out admin section
-  [KBDataImporter updateDataStore:kegProcessor_.dataStore];
-
   // Set the keg (only 1 keg is currently supported)
   KBKeg *keg = [kegProcessor_.dataStore kegAtPosition:0];
-  [self setKeg:keg];
+  if (!keg) {
+    [displayViewController_ admin:nil]; 
+  } else {
+    [self setKeg:keg];
+  }
   
   // Start processing
   [kegProcessor_ start];
 
-  // For testing unknown tag sign up flow
-  //[self performSelector:@selector(_testUnknownTag) withObject:nil afterDelay:1.0];
   return YES;
 }
 
@@ -132,20 +131,20 @@
   [displayViewController_ setUser:user];
 }
 
-- (void)signUpTagId:(NSString *)tagId {
-  KBUserAddNavigationController *userAddNavigationController = [[KBUserAddNavigationController alloc] init];
-  userAddNavigationController.userEditViewController.delegate = self;
-  [userAddNavigationController.userEditViewController setTagId:tagId editable:NO];
-  [navigationController_ presentModalViewController:userAddNavigationController animated:YES];
-  [userAddNavigationController release];
+- (void)registerTagId:(NSString *)tagId {
+  KBUserEditNavigationController *userEditNavigationController = [[KBUserEditNavigationController alloc] initWithTitle:@"Sign Up" buttonTitle:@"Sign Up"];
+  userEditNavigationController.userEditViewController.delegate = self;
+  [userEditNavigationController.userEditViewController setTagId:tagId editable:NO];
+  [navigationController_ presentModalViewController:userEditNavigationController animated:YES];
+  [userEditNavigationController release];
 }
 
 - (void)editUser:(KBUser *)user {
-  KBUserAddNavigationController *userAddNavigationController = [[KBUserAddNavigationController alloc] init];
-  userAddNavigationController.userEditViewController.delegate = self;
-  [userAddNavigationController.userEditViewController setUser:user];
-  [navigationController_ presentModalViewController:userAddNavigationController animated:YES];
-  [userAddNavigationController release];
+  KBUserEditNavigationController *userEditNavigationController = [[KBUserEditNavigationController alloc] initWithTitle:@"Edit" buttonTitle:@"Save"];
+  userEditNavigationController.userEditViewController.delegate = self;
+  [userEditNavigationController.userEditViewController setUser:user];
+  [navigationController_ presentModalViewController:userEditNavigationController animated:YES];
+  [userEditNavigationController release];
 }
 
 #pragma mark Notifications
@@ -167,7 +166,8 @@
 }
 
 - (void)_unknowTagId:(NSNotification *)notification {
-  [self signUpTagId:[notification object]];
+  [self registerTagId:[notification object]];
+  [[KBApplication sharedDelegate] playSystemSoundGlass];
 }
 
 #pragma mark KBUserEditViewControllerDelegate

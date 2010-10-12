@@ -57,53 +57,55 @@
 
 
 
-@dynamic rating;
-
-
-
-- (float)ratingValue {
-	NSNumber *result = [self rating];
-	return [result floatValue];
-}
-
-- (void)setRatingValue:(float)value_ {
-	[self setRating:[NSNumber numberWithFloat:value_]];
-}
-
-- (float)primitiveRatingValue {
-	NSNumber *result = [self primitiveRating];
-	return [result floatValue];
-}
-
-- (void)setPrimitiveRatingValue:(float)value_ {
-	[self setPrimitiveRating:[NSNumber numberWithFloat:value_]];
-}
-
-
-
-
-
 @dynamic abv;
 
 
 
 - (float)abvValue {
 	NSNumber *result = [self abv];
-	return [result floatValue];
+	return result ? [result floatValue] : 0;
 }
 
 - (void)setAbvValue:(float)value_ {
 	[self setAbv:[NSNumber numberWithFloat:value_]];
 }
 
-- (float)primitiveAbvValue {
-	NSNumber *result = [self primitiveAbv];
-	return [result floatValue];
+
+
+
+
+
+@dynamic ratingCount;
+
+
+
+- (int)ratingCountValue {
+	NSNumber *result = [self ratingCount];
+	return result ? [result intValue] : 0;
 }
 
-- (void)setPrimitiveAbvValue:(float)value_ {
-	[self setPrimitiveAbv:[NSNumber numberWithFloat:value_]];
+- (void)setRatingCountValue:(int)value_ {
+	[self setRatingCount:[NSNumber numberWithInt:value_]];
 }
+
+
+
+
+
+
+@dynamic ratingTotal;
+
+
+
+- (double)ratingTotalValue {
+	NSNumber *result = [self ratingTotal];
+	return result ? [result doubleValue] : 0;
+}
+
+- (void)setRatingTotalValue:(double)value_ {
+	[self setRatingTotal:[NSNumber numberWithDouble:value_]];
+}
+
 
 
 

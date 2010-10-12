@@ -23,6 +23,9 @@
   MPMoviePlayerController *moviePlayerController_;
   
   UIView *movieView_;
+  
+  NSTimer *timer_; // For keeping track of time during play
+
 }
 
 - (void)play:(NSURL *)URL;
@@ -30,5 +33,7 @@
 - (void)play;
 
 - (void)stop;
+
+- (void)setCurrentPlaybackRate:(float)currentPlaybackRate;
 
 @end

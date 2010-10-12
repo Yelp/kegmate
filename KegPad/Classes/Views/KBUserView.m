@@ -66,7 +66,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesEnded:touches withEvent:event];
-  [[NSNotificationCenter defaultCenter] postNotificationName:KBEditUserNotification object:user_];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBDidSelectUserNotification object:user_];
 }
 
 - (void)setUser:(KBUser *)user {

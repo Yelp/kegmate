@@ -25,8 +25,8 @@
 
 @protocol KBUIFormViewControllerDelegate <NSObject>
 @optional
-- (void)formViewController:(KBUIFormViewController *)formViewController willSelectForm:(KBUIForm *)action;
-- (void)formViewController:(KBUIFormViewController *)formViewController didSelectForm:(KBUIForm *)action;
+- (void)formViewController:(KBUIFormViewController *)formViewController willSelectForm:(KBUIForm *)form;
+- (void)formViewController:(KBUIFormViewController *)formViewController didSelectForm:(KBUIForm *)form;
 @end
 
 @interface KBUIFormViewController : UITableViewController {
@@ -38,11 +38,12 @@
 
 @property (assign, nonatomic) id<KBUIFormViewControllerDelegate> delegate; // Weak
 
-- (void)showError:(NSError *)error;
-
 - (void)addForm:(KBUIForm *)form;
 
 - (void)addForm:(KBUIForm *)form section:(NSInteger)section;
+
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message;
+- (void)showError:(NSError *)error;
 
 - (KBUIForm *)formForIndexPath:(NSIndexPath *)indexPath;
 

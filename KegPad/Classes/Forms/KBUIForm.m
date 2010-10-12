@@ -34,6 +34,7 @@
     context_ = [context retain];
     showDisclosure_ = showDisclosure;
     selectedAction_ = selectedAction;
+    selectEnabled_ = YES;
   }
   return self;
 }
@@ -46,19 +47,19 @@
   [super dealloc];
 }
 
-+ (KBUIForm *)actionWithTitle:(NSString *)title text:(NSString *)text {
++ (KBUIForm *)formWithTitle:(NSString *)title text:(NSString *)text {
   return [[[self alloc] initWithTitle:title text:text target:nil action:NULL context:nil showDisclosure:NO selectedAction:NULL] autorelease];
 }
 
-+ (KBUIForm *)actionWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action showDisclosure:(BOOL)showDisclosure {
++ (KBUIForm *)formWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action showDisclosure:(BOOL)showDisclosure {
   return [[[self alloc] initWithTitle:title text:text target:target action:action context:nil showDisclosure:showDisclosure selectedAction:NULL] autorelease];
 }
 
-+ (KBUIForm *)actionWithTitle:(NSString *)title target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure {
++ (KBUIForm *)formWithTitle:(NSString *)title target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure {
   return [[[self alloc] initWithTitle:title text:nil target:target action:action context:context showDisclosure:showDisclosure selectedAction:NULL] autorelease];
 }
 
-+ (KBUIForm *)actionWithTitle:(NSString *)title target:(id)target action:(SEL)action selectedAction:(SEL)selectedAction {
++ (KBUIForm *)formWithTitle:(NSString *)title target:(id)target action:(SEL)action selectedAction:(SEL)selectedAction {
   return [[[self alloc] initWithTitle:title text:nil target:target action:action context:nil showDisclosure:NO selectedAction:selectedAction] autorelease];
 }
 

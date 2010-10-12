@@ -316,13 +316,26 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return [results gh_firstObject];  
 }
 
-- (KBRating *)setRating:(KBRatingValue)ratingValue user:(KBUser *)user beer:(KBBeer *)beer error:(NSError **)error {
-  KBRating *rating = [self ratingWithUser:user beer:beer error:error];
+- (KBRating *)setRating:(KBRatingValue)ratingValue user:(KBUser *)user keg:(KBKeg *)keg error:(NSError **)error {
+  KBRating *rating = [self ratingWithUser:user beer:keg.beer error:error];
   if (!rating) {
-    KBDebug(@"Creating rating with user: %@, beer: %@", user.firstName, beer.name);
+    KBDebug(@"Creating rating with user: %@, beer: %@", user.firstName, keg.beer.name);
     rating = [NSEntityDescription insertNewObjectForEntityForName:@"KBRating" inManagedObjectContext:[self managedObjectContext]];
     rating.user = user;
-    rating.beer = beer;
+    rating.beer = keg.beer;
+    
+    keg.ratingTotalValue += ratingValue;
+    keg.ratingCountValue += 1;
+    // TODO(gabe): Set rating for beer in KBKeg
+    keg.beer.ratingTotalValue += ratingValue;
+    keg.beer.ratingCountValue += 1;    
+  } else {
+    // Update total by subtracting existing and adding new value
+    keg.ratingTotalValue -= rating.ratingValue;
+    keg.ratingTotalValue += ratingValue;
+    // TODO(gabe): Set rating for beer in KBKeg
+    keg.beer.ratingTotalValue -= rating.ratingValue;
+    keg.beer.ratingTotalValue += ratingValue;    
   }
   rating.ratingValue = ratingValue;
   BOOL saved = [self save:error];
@@ -331,16 +344,18 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return rating;  
 }
 
-- (KBUser *)addOrUpdateUserWithTagId:(NSString *)tagId firstName:(NSString *)firstName lastName:(NSString *)lastName error:(NSError **)error {
+- (KBUser *)addOrUpdateUserWithTagId:(NSString *)tagId firstName:(NSString *)firstName lastName:(NSString *)lastName 
+                             isAdmin:(BOOL)isAdmin error:(NSError **)error {
   KBUser *user = [self userWithTagId:tagId error:error];
   if (!user)
     user = [NSEntityDescription insertNewObjectForEntityForName:@"KBUser" inManagedObjectContext:[self managedObjectContext]];
   user.firstName = firstName;
   user.lastName = lastName;
   user.tagId = tagId;
+  user.isAdminValue = isAdmin;
   BOOL saved = [self save:error];
   if (!saved) return nil;
-  [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidAddUserNotification object:user];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidUpdateUserNotification object:user];
   return user;
 }
 

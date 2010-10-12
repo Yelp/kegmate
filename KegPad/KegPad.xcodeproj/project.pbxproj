@@ -32,6 +32,8 @@
 		008FEDB41201F9C400BA5D07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDB31201F9C400BA5D07 /* QuartzCore.framework */; };
 		00983D8E125EE8520031006C /* KBUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 00983D8D125EE8520031006C /* KBUIWindow.m */; };
 		00983F2A125F052C0031006C /* KBRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 00983F29125F052C0031006C /* KBRating.m */; };
+		009840151262D63A0031006C /* KBUIFormSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 009840141262D63A0031006C /* KBUIFormSwitchCell.m */; };
+		0098401A1262D76F0031006C /* KBUIFormSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 009840191262D76F0031006C /* KBUIFormSwitch.m */; };
 		00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */; };
 		00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */; };
 		00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */; };
@@ -51,7 +53,7 @@
 		00CD28981211DFC700DF808D /* chalk_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CD28961211DFC700DF808D /* chalk_bg.png */; };
 		00CD28991211DFC700DF808D /* wood_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CD28971211DFC700DF808D /* wood_bg.png */; };
 		00CD289F1211E42C00DF808D /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00CD289E1211E42C00DF808D /* license.txt */; };
-		00D01167125334170013DF33 /* KBFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01160125334170013DF33 /* KBFormFieldCell.m */; };
+		00D01167125334170013DF33 /* KBUIFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01160125334170013DF33 /* KBUIFormFieldCell.m */; };
 		00D01168125334170013DF33 /* KBUIForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01162125334170013DF33 /* KBUIForm.m */; };
 		00D01169125334170013DF33 /* KBUIFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01164125334170013DF33 /* KBUIFormViewController.m */; };
 		00D0116A125334170013DF33 /* KBUIFormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01166125334170013DF33 /* KBUIFormTextField.m */; };
@@ -153,6 +155,10 @@
 		00983D8D125EE8520031006C /* KBUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIWindow.m; sourceTree = "<group>"; };
 		00983F28125F052C0031006C /* KBRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRating.h; sourceTree = "<group>"; };
 		00983F29125F052C0031006C /* KBRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRating.m; sourceTree = "<group>"; };
+		009840131262D63A0031006C /* KBUIFormSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormSwitchCell.h; sourceTree = "<group>"; };
+		009840141262D63A0031006C /* KBUIFormSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormSwitchCell.m; sourceTree = "<group>"; };
+		009840181262D76F0031006C /* KBUIFormSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormSwitch.h; sourceTree = "<group>"; };
+		009840191262D76F0031006C /* KBUIFormSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormSwitch.m; sourceTree = "<group>"; };
 		00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserEditViewController.h; sourceTree = "<group>"; };
 		00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserEditViewController.m; sourceTree = "<group>"; };
 		00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerEditViewController.h; sourceTree = "<group>"; };
@@ -186,8 +192,8 @@
 		00CD28961211DFC700DF808D /* chalk_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk_bg.png; sourceTree = "<group>"; };
 		00CD28971211DFC700DF808D /* wood_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood_bg.png; sourceTree = "<group>"; };
 		00CD289E1211E42C00DF808D /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
-		00D0115F125334170013DF33 /* KBFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFormFieldCell.h; sourceTree = "<group>"; };
-		00D01160125334170013DF33 /* KBFormFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFormFieldCell.m; sourceTree = "<group>"; };
+		00D0115F125334170013DF33 /* KBUIFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormFieldCell.h; sourceTree = "<group>"; };
+		00D01160125334170013DF33 /* KBUIFormFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormFieldCell.m; sourceTree = "<group>"; };
 		00D01161125334170013DF33 /* KBUIForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIForm.h; sourceTree = "<group>"; };
 		00D01162125334170013DF33 /* KBUIForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIForm.m; sourceTree = "<group>"; };
 		00D01163125334170013DF33 /* KBUIFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormViewController.h; sourceTree = "<group>"; };
@@ -467,14 +473,18 @@
 		00D0115E125334170013DF33 /* Forms */ = {
 			isa = PBXGroup;
 			children = (
-				00D0115F125334170013DF33 /* KBFormFieldCell.h */,
-				00D01160125334170013DF33 /* KBFormFieldCell.m */,
+				00D0115F125334170013DF33 /* KBUIFormFieldCell.h */,
+				00D01160125334170013DF33 /* KBUIFormFieldCell.m */,
+				009840131262D63A0031006C /* KBUIFormSwitchCell.h */,
+				009840141262D63A0031006C /* KBUIFormSwitchCell.m */,
 				00D01161125334170013DF33 /* KBUIForm.h */,
 				00D01162125334170013DF33 /* KBUIForm.m */,
 				00D01163125334170013DF33 /* KBUIFormViewController.h */,
 				00D01164125334170013DF33 /* KBUIFormViewController.m */,
 				00D01165125334170013DF33 /* KBUIFormTextField.h */,
 				00D01166125334170013DF33 /* KBUIFormTextField.m */,
+				009840181262D76F0031006C /* KBUIFormSwitch.h */,
+				009840191262D76F0031006C /* KBUIFormSwitch.m */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -797,7 +807,7 @@
 				007551801250532600C5538C /* KBKegProcessorSimulator.m in Sources */,
 				007551851250554700C5538C /* KBSimulatorViewController.m in Sources */,
 				00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */,
-				00D01167125334170013DF33 /* KBFormFieldCell.m in Sources */,
+				00D01167125334170013DF33 /* KBUIFormFieldCell.m in Sources */,
 				00D01168125334170013DF33 /* KBUIForm.m in Sources */,
 				00D01169125334170013DF33 /* KBUIFormViewController.m in Sources */,
 				00D0116A125334170013DF33 /* KBUIFormTextField.m in Sources */,
@@ -807,6 +817,8 @@
 				00E655701256638400E4CE9E /* GTMLogger.m in Sources */,
 				00983D8E125EE8520031006C /* KBUIWindow.m in Sources */,
 				00983F2A125F052C0031006C /* KBRating.m in Sources */,
+				009840151262D63A0031006C /* KBUIFormSwitchCell.m in Sources */,
+				0098401A1262D76F0031006C /* KBUIFormSwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

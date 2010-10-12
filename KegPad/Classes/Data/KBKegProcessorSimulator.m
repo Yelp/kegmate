@@ -41,8 +41,6 @@
 }
 
 - (void)temperatureAndPour {
-  KBKeg *keg = [kegProcessor_.dataStore kegAtPosition:0];
-  KBDebug(@"Keg: %@", keg);
   // Simulate temperature reading
   [[kegProcessor_ gh_proxyAfterDelay:1] kegProcessing:kegProcessor_.processing didChangeTemperature:10.4];
   // Simulate start and end pour with random amount
@@ -50,14 +48,15 @@
   [[kegProcessor_ gh_proxyAfterDelay:12] kegProcessing:kegProcessor_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
 }
 
-- (void)login1 {
-  KBUser *user = [kegProcessor_.dataStore userWithTagId:@"29009426DC47" error:nil];
-  KBDebug(@"User: %@", user);
-  [kegProcessor_ login:user];
+- (void)temperatures {
+  [[kegProcessor_ gh_proxyAfterDelay:1] kegProcessing:kegProcessor_.processing didChangeTemperature:10.4];
+  [[kegProcessor_ gh_proxyAfterDelay:2] kegProcessing:kegProcessor_.processing didChangeTemperature:13.4];
+  [[kegProcessor_ gh_proxyAfterDelay:3] kegProcessing:kegProcessor_.processing didChangeTemperature:15.0];
+  [[kegProcessor_ gh_proxyAfterDelay:4] kegProcessing:kegProcessor_.processing didChangeTemperature:18.6];  
 }
 
-- (void)login2 {
-  KBUser *user = [kegProcessor_.dataStore userWithTagId:@"2900942371EF" error:nil];
+- (void)login:(NSString *)tagId {
+  KBUser *user = [kegProcessor_.dataStore userWithTagId:tagId error:nil];
   KBDebug(@"User: %@", user);
   [kegProcessor_ login:user];
 }
@@ -65,6 +64,18 @@
 - (void)unknownTag {  
   NSString *randomTagId = [NSString stringWithFormat:@"%d", [NSNumber gh_randomInteger]];
   [kegProcessor_ kegProcessing:kegProcessor_.processing didReceiveRFIDTagId:randomTagId];
+}
+
+- (void)pours {
+  [[kegProcessor_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegProcessor_.processing];
+  [[kegProcessor_ gh_proxyAfterDelay:3] kegProcessing:kegProcessor_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+  [[kegProcessor_ gh_proxyAfterDelay:8] kegProcessingDidStartPour:kegProcessor_.processing];
+  [[kegProcessor_ gh_proxyAfterDelay:9] kegProcessing:kegProcessor_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+}
+
+- (void)pourLong {
+  [[kegProcessor_ gh_proxyAfterDelay:1] kegProcessingDidStartPour:kegProcessor_.processing];
+  [[kegProcessor_ gh_proxyAfterDelay:30] kegProcessing:kegProcessor_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];
 }
 
 @end

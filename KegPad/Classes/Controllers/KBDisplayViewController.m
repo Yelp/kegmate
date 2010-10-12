@@ -38,9 +38,9 @@
 @implementation KBDisplayViewController
 
 @synthesize beerMovieView=beerMovieView_, nameLabel=nameLabel_, infoLabel=infoLabel_, abvLabel=abvLabel_, imageView=imageView_, 
-temperatureLabel=temperatureLabel_, typeLabel=typeLabel_, countryLabel=countryLabel_,
+temperatureLabel=temperatureLabel_, typeLabel=typeLabel_, countryLabel=countryLabel_, ratingLabel=ratingLabel_,
 tempDescriptionLabel=tempDescriptionLabel_, chalkCircleView=chalkCircleView_, recentPoursView=recentPoursView_, 
-ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate=delegate_;
+ratingPicker=ratingPicker_, rateView=rateView_, userView=userView_, adminButton=adminButton_, delegate=delegate_;
 
 @synthesize keg=keg_, user=user_; // Private properties
 
@@ -61,6 +61,7 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
   [infoLabel_ release];
   [abvLabel_ release];
   [imageView_ release];
+  [ratingLabel_ release];
   [temperatureLabel_ release];
   [typeLabel_ release];
   [countryLabel_ release];
@@ -68,8 +69,9 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
   [chalkCircleView_ release];
   [recentPoursView_ release];
   [ratingPicker_ release];
-  [rateButton_ release];
+  [rateView_ release];
   [userView_ release];
+  [adminButton_ release];
   [super dealloc];
 }
 
@@ -80,13 +82,23 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegVolumeDidChange:) name:KBKegVolumeDidChangeNotification object:nil];    
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidStartPour:) name:KBKegDidStartPourNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];        
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidSetRating:) name:KBUserDidSetRatingNotification object:nil];    
+
   [self.view sendSubviewToBack:beerMovieView_];
+  
+  // TODO(gabe): Fix the pixel math
+  chalkCircleOriginMinY_ = 30;
+  chalkCircleOriginMaxY_ = chalkCircleOriginMinY_ - (chalkCircleView_.frame.size.height/2.0) + 306; // Height of thermometer  
+  
+#if TARGET_IPHONE_SIMULATOR
+  adminButton_.hidden = NO;
+#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  timer_ = [[NSTimer timerWithTimeInterval:60 target:self selector:@selector(updateRecentPours) userInfo:nil repeats:YES] retain];
+  timer_ = [[NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(updateRecentPours) userInfo:nil repeats:YES] retain];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -113,11 +125,15 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(_stopAnimationDidStop:finished:context:)];
   beerMovieView_.alpha = 0.0;
-  [UIView commitAnimations];
+  [UIView commitAnimations];  
+}
+
+- (void)pourTiming {
+  
 }
 
 - (void)updateRecentPours {
-  [recentPoursView_ setRecentPours:[[KBApplication dataStore] recentKegPours:6 ascending:NO error:nil]];
+  [recentPoursView_ setRecentPours:[[KBApplication dataStore] recentKegPours:20 ascending:NO error:nil]];
 }
 
 - (void)_stopAnimationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
@@ -125,22 +141,29 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
   [self.view sendSubviewToBack:beerMovieView_];
 }
 
-- (void)_updateKegTemperatureValue:(float)temperature {
-  // TODO(gabe): Fix all the absolute pixel math
-  CGFloat chalkCircleOriginMinY = chalkCircleView_.frame.origin.y;
-  CGFloat chalkCircleOriginMaxY = chalkCircleOriginMinY - (chalkCircleView_.frame.size.height/2.0) + 306; // Height of thermometer
-  
+- (void)_updateKegTemperatureValue:(float)temperature { 
   float percentage = ((temperature - [KBKegTemperature min]) / ([KBKegTemperature max] - [KBKegTemperature min]));
-  CGFloat percentageToHeight = percentage * (chalkCircleOriginMaxY - chalkCircleOriginMinY);
-  CGFloat temperatureY = percentageToHeight + chalkCircleOriginMinY;
-  if (temperatureY < chalkCircleOriginMinY) temperatureY = chalkCircleOriginMinY;
-  if (temperatureY > chalkCircleOriginMaxY) temperatureY = chalkCircleOriginMaxY;
+  CGFloat percentageToHeight = percentage * (chalkCircleOriginMaxY_ - chalkCircleOriginMinY_);
+  CGFloat temperatureY = percentageToHeight + chalkCircleOriginMinY_;
+  if (temperatureY < chalkCircleOriginMinY_) temperatureY = chalkCircleOriginMinY_;
+  if (temperatureY > chalkCircleOriginMaxY_) temperatureY = chalkCircleOriginMaxY_;
   
   chalkCircleView_.hidden = NO;
   chalkCircleView_.frame = CGRectMake(chalkCircleView_.frame.origin.x, temperatureY,
                                       chalkCircleView_.frame.size.width, chalkCircleView_.frame.size.height);
   
   temperatureLabel_.text = [NSString stringWithFormat:@"%0.1f°C", temperature];
+}
+
+- (void)updateRating {
+  NSInteger ratingCount = keg_.beer.ratingCountValue;
+  if (ratingCount > 0) {
+    double rating = keg_.beer.ratingTotalValue / (double)ratingCount;
+    KBDebug(@"Rating: %0.1f, %@ / %@", rating, keg_.beer.ratingTotal, keg_.beer.ratingCount);
+    ratingLabel_.text = [NSString stringWithFormat:@"rating: %0.1f", rating];
+  } else {
+    ratingLabel_.text = @"";
+  }
 }
 
 - (void)setKegTemperature:(KBKegTemperature *)kegTemperature {
@@ -174,6 +197,7 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
     abvLabel_.text = @"-";
     imageView_.image = nil;
   }
+  [self updateRating];
 }
 
 - (void)setUser:(KBUser *)user {  
@@ -190,7 +214,7 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
       }
     } else if (user_) {
       KBDebug(@"Saving rating: %d for user: %@", ratingPicker_.rating, user_.firstName);
-      [[KBApplication dataStore] setRating:ratingPicker_.rating user:user_ beer:keg_.beer error:nil];
+      [[KBApplication dataStore] setRating:ratingPicker_.rating user:user_ keg:keg_ error:nil];
     }
   }
   
@@ -199,36 +223,27 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
   user_ = user;
 
   if (!user_) {
-    // Hide rating button and picker
-    rateButton_.userInteractionEnabled = NO;
+    // Hide rating and picker
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    rateButton_.alpha = 0.0;
+    rateView_.alpha = 0.0;
     ratingPicker_.alpha = 0.0;
     [UIView commitAnimations];    
-  } else if (keg_) {
-    // Show rating button
-    rateButton_.userInteractionEnabled = YES;
+  } else if (user_ && keg_) {
+    // Show rating and picker
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    rateButton_.alpha = 1.0;
+    rateView_.alpha = 1.0;
+    ratingPicker_.alpha = 1.0;
     [UIView commitAnimations]; 
   }
+
+  adminButton_.hidden = ![user_ isAdminValue];
 
   [userView_ setUser:user_];
 }
 
 #pragma mark Actions
-
-- (IBAction)rateBeer:(id)sender {
-  if (user_ && keg_) {
-    // Show rating picker
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
-    ratingPicker_.alpha = 1.0;
-    [UIView commitAnimations];    
-  }
-}
 
 - (IBAction)admin:(id)sender {
   if (!adminViewController_) adminViewController_ = [[KBAdminViewController alloc] init];
@@ -259,6 +274,10 @@ ratingPicker=ratingPicker_, rateButton=rateButton_, userView=userView_, delegate
 
 - (void)_kegDidSavePour:(NSNotification *)notification {
   [self updateRecentPours];
+}
+
+- (void)_userDidSetRating:(NSNotification *)notification {
+  [self updateRating];
 }
 
 @end

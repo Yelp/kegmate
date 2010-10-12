@@ -37,6 +37,8 @@
 
 - (void)_playbackDidFinish:(NSNotification *)notification {
   KBDebug(@"Playback finished: %@", notification);
+  // Restart so it loops
+  [moviePlayerController_ play];
 }
 
 - (void)play:(NSURL *)URL {
@@ -48,14 +50,14 @@
     moviePlayerController_.scalingMode = MPMovieScalingModeAspectFill;
     moviePlayerController_.controlStyle = MPMovieControlStyleNone;
     movieView_ = [moviePlayerController_.view retain];
-    
+
     // Mask
     CALayer *maskLayer = [CALayer layer];    
     maskLayer.frame = CGRectMake(0, 0, 768, 432);
     maskLayer.position = CGPointMake(0, 0);
     maskLayer.anchorPoint = CGPointMake(0,0);  
-    UIImage *testImage = [UIImage imageNamed:@"top_gradient_mask.png"];
-    [maskLayer setContents:(id)testImage.CGImage];
+    UIImage *maskImage = [UIImage imageNamed:@"top_gradient_mask.png"];
+    [maskLayer setContents:(id)maskImage.CGImage];
     self.layer.mask = maskLayer;
     
     [self addSubview:movieView_];
@@ -63,6 +65,7 @@
   
   moviePlayerController_.currentPlaybackRate = 0.70;
   [moviePlayerController_ setContentURL:URL];
+  
   [moviePlayerController_ play];
 }
 
@@ -73,8 +76,14 @@
   [self play:URL];
 }
 
+- (void)setCurrentPlaybackRate:(float)currentPlaybackRate {
+  moviePlayerController_.currentPlaybackRate = currentPlaybackRate;
+}
+
 - (void)stop {
+  KBDebug(@"Stop");  
   [moviePlayerController_ stop];
+  [self _playbackDidFinish:nil];
 }
 
 @end

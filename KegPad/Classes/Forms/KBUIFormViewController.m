@@ -42,11 +42,16 @@
   [self addForm:form section:0];
 }
 
-- (void)showError:(NSError *)error {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription]
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message
                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
   [alert show];
   [alert autorelease];
+}  
+
+
+- (void)showError:(NSError *)error {
+  [self showAlertWithTitle:@"Error" message:[error localizedDescription]];
 }  
 
 - (void)addForm:(KBUIForm *)form section:(NSInteger)section {

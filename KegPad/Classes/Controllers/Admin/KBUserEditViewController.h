@@ -21,6 +21,7 @@
 
 #import "KBUIFormViewController.h"
 #import "KBUIFormTextField.h"
+#import "KBUIFormSwitch.h"
 #import "KBUser.h"
 
 @class KBUserEditViewController;
@@ -33,11 +34,12 @@
   KBUIFormTextField *firstNameField_;
   KBUIFormTextField *lastNameField_;  
   KBUIFormTextField *tagField_;
+  KBUIFormSwitch * isAdminField_;
 }
 
 @property (assign, nonatomic) id<KBUserEditViewControllerDelegate> delegate;
 
-- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle;
+- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle adminOptionEnabled:(BOOL)adminOptionEnabled;
 
 - (void)setUser:(KBUser *)user;
 
@@ -46,10 +48,12 @@
 @end
 
 
-@interface KBUserAddNavigationController : UINavigationController {
+@interface KBUserEditNavigationController : UINavigationController {
   KBUserEditViewController *userEditViewController_;
 }
 
 @property (retain, nonatomic) KBUserEditViewController *userEditViewController;
+
+- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle;
 
 @end

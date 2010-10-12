@@ -171,10 +171,12 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @param tagId Tag id, such as a RFID
  @param firstName First name
  @param lastName Last name
+ @param isAdmin Whether user is admin
  @param error Out error
  @result User if saved, nil otherwise
  */
-- (KBUser *)addOrUpdateUserWithTagId:(NSString *)tagId firstName:(NSString *)firstName lastName:(NSString *)lastName error:(NSError **)error;
+- (KBUser *)addOrUpdateUserWithTagId:(NSString *)tagId firstName:(NSString *)firstName lastName:(NSString *)lastName 
+                             isAdmin:(BOOL)isAdmin error:(NSError **)error;
 
 /*!
  Find user by tag id.
@@ -224,11 +226,11 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  Set rating on beer for user.
  @param rating
  @param user
- @param beer
+ @param keg
  @param error Out error
  @result Rating
  */
-- (KBRating *)setRating:(KBRatingValue)rating user:(KBUser *)user beer:(KBBeer *)beer error:(NSError **)error;
+- (KBRating *)setRating:(KBRatingValue)ratingValue user:(KBUser *)user keg:(KBKeg *)keg error:(NSError **)error;
 
 /*!
  Get list of users.

@@ -35,21 +35,13 @@
 
 - (int)ratingValue {
 	NSNumber *result = [self rating];
-	return [result intValue];
+	return result ? [result intValue] : 0;
 }
 
 - (void)setRatingValue:(int)value_ {
 	[self setRating:[NSNumber numberWithInt:value_]];
 }
 
-- (int)primitiveRatingValue {
-	NSNumber *result = [self primitiveRating];
-	return [result intValue];
-}
-
-- (void)setPrimitiveRatingValue:(int)value_ {
-	[self setPrimitiveRating:[NSNumber numberWithInt:value_]];
-}
 
 
 

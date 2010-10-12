@@ -1,5 +1,5 @@
 //
-//  KBFormFieldCell.m
+//  KBUIFormFieldCell.m
 //  KegPad
 //
 //  Created by Gabe on 9/28/10.
@@ -19,10 +19,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBFormFieldCell.h"
+#import "KBUIFormFieldCell.h"
 
 
-@implementation KBFormFieldCell
+@implementation KBUIFormFieldCell
 
 @synthesize textField=textField_, editable=editable_;
 
@@ -38,16 +38,12 @@
     // TODO(gabe): For password
     //textField_.secureTextEntry = YES;
 		[self.contentView addSubview:textField_];
-    
-    //switch_ = [[UISwitch alloc] initWithFrame:CGRectZero];	
-		//[self.contentView addSubview:switch_];
   }
   return self;
 }
 
 - (void)dealloc {
 	[textField_ release];	
-	[switch_ release];
 	[super dealloc];
 }
 

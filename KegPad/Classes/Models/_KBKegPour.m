@@ -35,21 +35,13 @@
 
 - (float)amountHourValue {
 	NSNumber *result = [self amountHour];
-	return [result floatValue];
+	return result ? [result floatValue] : 0;
 }
 
 - (void)setAmountHourValue:(float)value_ {
 	[self setAmountHour:[NSNumber numberWithFloat:value_]];
 }
 
-- (float)primitiveAmountHourValue {
-	NSNumber *result = [self primitiveAmountHour];
-	return [result floatValue];
-}
-
-- (void)setPrimitiveAmountHourValue:(float)value_ {
-	[self setPrimitiveAmountHour:[NSNumber numberWithFloat:value_]];
-}
 
 
 
@@ -61,21 +53,13 @@
 
 - (float)amountUserHourValue {
 	NSNumber *result = [self amountUserHour];
-	return [result floatValue];
+	return result ? [result floatValue] : 0;
 }
 
 - (void)setAmountUserHourValue:(float)value_ {
 	[self setAmountUserHour:[NSNumber numberWithFloat:value_]];
 }
 
-- (float)primitiveAmountUserHourValue {
-	NSNumber *result = [self primitiveAmountUserHour];
-	return [result floatValue];
-}
-
-- (void)setPrimitiveAmountUserHourValue:(float)value_ {
-	[self setPrimitiveAmountUserHour:[NSNumber numberWithFloat:value_]];
-}
 
 
 
@@ -87,21 +71,13 @@
 
 - (float)amountValue {
 	NSNumber *result = [self amount];
-	return [result floatValue];
+	return result ? [result floatValue] : 0;
 }
 
 - (void)setAmountValue:(float)value_ {
 	[self setAmount:[NSNumber numberWithFloat:value_]];
 }
 
-- (float)primitiveAmountValue {
-	NSNumber *result = [self primitiveAmount];
-	return [result floatValue];
-}
-
-- (void)setPrimitiveAmountValue:(float)value_ {
-	[self setPrimitiveAmount:[NSNumber numberWithFloat:value_]];
-}
 
 
 

@@ -7,15 +7,6 @@
 @class KBRating;
 @class KBKeg;
 
-
-
-
-
-
-
-
-
-
 @interface KBBeerID : NSManagedObjectID {}
 @end
 
@@ -51,16 +42,6 @@
 
 
 
-@property (nonatomic, retain) NSNumber *rating;
-
-@property float ratingValue;
-- (float)ratingValue;
-- (void)setRatingValue:(float)value_;
-
-//- (BOOL)validateRating:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) NSNumber *abv;
 
 @property float abvValue;
@@ -68,6 +49,26 @@
 - (void)setAbvValue:(float)value_;
 
 //- (BOOL)validateAbv:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *ratingCount;
+
+@property int ratingCountValue;
+- (int)ratingCountValue;
+- (void)setRatingCountValue:(int)value_;
+
+//- (BOOL)validateRatingCount:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *ratingTotal;
+
+@property double ratingTotalValue;
+- (double)ratingTotalValue;
+- (void)setRatingTotalValue:(double)value_;
+
+//- (BOOL)validateRatingTotal:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -107,58 +108,5 @@
 - (void)removeKegs:(NSSet*)value_;
 - (void)addKegsObject:(KBKeg*)value_;
 - (void)removeKegsObject:(KBKeg*)value_;
-
-@end
-
-@interface _KBBeer (CoreDataGeneratedPrimitiveAccessors)
-
-- (NSString*)primitiveType;
-- (void)setPrimitiveType:(NSString*)value;
-
-
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
-
-
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
-
-
-- (NSString*)primitiveInfo;
-- (void)setPrimitiveInfo:(NSString*)value;
-
-
-- (NSNumber*)primitiveRating;
-- (void)setPrimitiveRating:(NSNumber*)value;
-
-- (float)primitiveRatingValue;
-- (void)setPrimitiveRatingValue:(float)value_;
-
-
-- (NSNumber*)primitiveAbv;
-- (void)setPrimitiveAbv:(NSNumber*)value;
-
-- (float)primitiveAbvValue;
-- (void)setPrimitiveAbvValue:(float)value_;
-
-
-- (NSString*)primitiveCountry;
-- (void)setPrimitiveCountry:(NSString*)value;
-
-
-- (NSString*)primitiveImageName;
-- (void)setPrimitiveImageName:(NSString*)value;
-
-
-
-
-- (NSMutableSet*)primitiveRatings;
-- (void)setPrimitiveRatings:(NSMutableSet*)value;
-
-
-
-- (NSMutableSet*)primitiveKegs;
-- (void)setPrimitiveKegs:(NSMutableSet*)value;
-
 
 @end

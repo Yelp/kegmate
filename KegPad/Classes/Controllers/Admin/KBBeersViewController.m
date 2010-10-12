@@ -54,6 +54,7 @@
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
   cell.textLabel.text = [obj name];
   cell.detailTextLabel.text = [obj info];
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   return cell;
 }
 
@@ -68,6 +69,16 @@
   // TODO(gabe): Handle error
   [[[KBApplication dataStore] managedObjectContext] deleteObject:obj];
   [[[KBApplication dataStore] managedObjectContext] save:nil];  
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
+  KBBeer *beer = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+  
+  KBBeerEditViewController *beerEditViewController = [[KBBeerEditViewController alloc] init];
+  beerEditViewController.delegate = self;
+  [beerEditViewController setBeer:beer];
+  [self.navigationController pushViewController:beerEditViewController animated:YES];
+  [beerEditViewController release];
 }
 
 #pragma mark KBBeerEditViewControllerDelegate

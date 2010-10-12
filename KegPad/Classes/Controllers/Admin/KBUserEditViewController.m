@@ -35,28 +35,31 @@
 @dynamic delegate;
 
 - (id)init {
-  return [self initWithTitle:@"User" buttonTitle:nil];
+  return [self initWithTitle:@"User" buttonTitle:nil adminOptionEnabled:YES];
 }
 
-- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle {
+- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle adminOptionEnabled:(BOOL)adminOptionEnabled {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) { 
     self.title = title;
     if (!buttonTitle) {
-      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(_add)] autorelease];
+      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(_save)] autorelease];
     } else {
-      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:buttonTitle style:UIBarButtonItemStylePlain target:self action:@selector(_add)] autorelease];
+      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:buttonTitle style:UIBarButtonItemStylePlain target:self action:@selector(_save)] autorelease];
     }
-    firstNameField_ = [[KBUIFormTextField actionWithTitle:@"First Name" text:nil] retain];
+    firstNameField_ = [[KBUIFormTextField formWithTitle:@"First Name" text:nil] retain];
     firstNameField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [firstNameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:firstNameField_];
-    lastNameField_ = [[KBUIFormTextField actionWithTitle:@"Last Name" text:nil] retain];
+    lastNameField_ = [[KBUIFormTextField formWithTitle:@"Last Name" text:nil] retain];
     lastNameField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [lastNameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:lastNameField_];
-    tagField_ = [[KBUIFormTextField actionWithTitle:@"Tag" text:nil] retain];
+    tagField_ = [[KBUIFormTextField formWithTitle:@"Tag" text:nil] retain];
     [tagField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self addForm:tagField_];    
+    [self addForm:tagField_];
+    isAdminField_ = [[KBUIFormSwitch formWithTitle:@"Admin" on:NO] retain];
+    if (adminOptionEnabled)
+      [self addForm:isAdminField_];
   }
   return self;
 }
@@ -65,6 +68,7 @@
   [firstNameField_ release];
   [lastNameField_ release];
   [tagField_ release];
+  [isAdminField_ release];
   [super dealloc];
 }
 
@@ -77,11 +81,13 @@
   firstNameField_.text = user.firstName;
   lastNameField_.text = user.lastName;
   tagField_.text = user.tagId;
+  isAdminField_.on = user.isAdminValue;
 }
 
 - (void)setTagId:(NSString *)tagId editable:(BOOL)editable {
   tagField_.text = tagId;
   tagField_.editable = editable;
+  isAdminField_.on = NO;
 }
 
 - (BOOL)validate {
@@ -99,15 +105,17 @@
   [self _updateNavigationItem];
 }
 
-- (void)_add {
+- (void)_save {
   if (![self validate]) return;
   NSString *firstName = firstNameField_.textField.text;
   NSString *lastName = lastNameField_.textField.text;
-  NSString *tagId = tagField_.textField.text;  
+  NSString *tagId = tagField_.textField.text;
+  BOOL isAdmin = isAdminField_.switchField.on;
   
   NSError *error = nil;
   KBUser *user = [[KBApplication dataStore] addOrUpdateUserWithTagId:tagId firstName:firstName 
-    lastName:lastName error:&error];
+                                                            lastName:lastName isAdmin:isAdmin
+                                                               error:&error];
     
   if (!user) {
     [self showError:error];
@@ -115,19 +123,23 @@
   }
   
   [self.delegate userEditViewController:self didAddUser:user];
-  [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidSignUpNotification object:user];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidEditNotification object:user];
 }
 
 @end
 
 
-@implementation KBUserAddNavigationController
+@implementation KBUserEditNavigationController
 
 @synthesize userEditViewController=userEditViewController_;
 
 - (id)init {
+  return [self initWithTitle:@"Sign Up" buttonTitle:@"Sign Up"];
+}
+
+- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle {
   if ((self = [super init])) {
-    userEditViewController_ = [[KBUserEditViewController alloc] initWithTitle:@"Sign Up" buttonTitle:@"Sign Up"];
+    userEditViewController_ = [[KBUserEditViewController alloc] initWithTitle:title buttonTitle:buttonTitle adminOptionEnabled:NO];
     userEditViewController_.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
     self.modalPresentationStyle = UIModalPresentationFormSheet;
     self.viewControllers = [NSArray arrayWithObject:userEditViewController_];

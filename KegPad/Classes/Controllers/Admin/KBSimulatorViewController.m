@@ -28,10 +28,14 @@
 - (id)init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     kegProcessorSimulator_ = [[KBKegProcessorSimulator alloc] initWithKegProcessor:[KBApplication kegProcessor]];
-    [self addForm:[KBUIForm actionWithTitle:@"Simulate temperature and pour" text:@"" target:kegProcessorSimulator_ action:@selector(temperatureAndPour) showDisclosure:NO]];
-    [self addForm:[KBUIForm actionWithTitle:@"Simulate login (1)" text:@"" target:kegProcessorSimulator_ action:@selector(login1) showDisclosure:NO]];
-    [self addForm:[KBUIForm actionWithTitle:@"Simulate login (2)" text:@"" target:kegProcessorSimulator_ action:@selector(login2) showDisclosure:NO]];
-    [self addForm:[KBUIForm actionWithTitle:@"Simulate unknown tag" text:@"" target:kegProcessorSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate temperature and pour" text:@"" target:kegProcessorSimulator_ action:@selector(temperatureAndPour) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate temperatures (multiple)" text:@"" target:kegProcessorSimulator_ action:@selector(temperatures) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Gabriel)" target:kegProcessorSimulator_ action:@selector(login:) context:@"29009426DC47" showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate login (John)" target:kegProcessorSimulator_ action:@selector(login:) context:@"2900942371EF" showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Non-Admin)" target:kegProcessorSimulator_ action:@selector(login:) context:@"TESTTAGID1" showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate unknown tag" text:@"" target:kegProcessorSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate pours (multiple)" text:@"" target:kegProcessorSimulator_ action:@selector(pours) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate pour (long)" text:@"" target:kegProcessorSimulator_ action:@selector(pourLong) showDisclosure:NO]];    
   }
   return self;
 }

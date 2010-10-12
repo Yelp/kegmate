@@ -43,4 +43,6 @@
 
 - (id)initWithTitle:(NSString *)title;
 
+- (void)setBeer:(KBBeer *)beer;
+
 @end

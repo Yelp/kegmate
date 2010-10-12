@@ -7,8 +7,6 @@
 @class KBBeer;
 @class KBUser;
 
-
-
 @interface KBRatingID : NSManagedObjectID {}
 @end
 
@@ -44,27 +42,5 @@
 @end
 
 @interface _KBRating (CoreDataGeneratedAccessors)
-
-@end
-
-@interface _KBRating (CoreDataGeneratedPrimitiveAccessors)
-
-- (NSNumber*)primitiveRating;
-- (void)setPrimitiveRating:(NSNumber*)value;
-
-- (int)primitiveRatingValue;
-- (void)setPrimitiveRatingValue:(int)value_;
-
-
-
-
-- (KBBeer*)primitiveBeer;
-- (void)setPrimitiveBeer:(KBBeer*)value;
-
-
-
-- (KBUser*)primitiveUser;
-- (void)setPrimitiveUser:(KBUser*)value;
-
 
 @end

@@ -30,7 +30,12 @@
 
 - (void)temperatureAndPour;
 
-- (void)login1;
-- (void)login2;
+- (void)temperatures;
+
+- (void)login:(NSString *)tagId;
+
+- (void)pours;
+
+- (void)pourLong;
 
 @end

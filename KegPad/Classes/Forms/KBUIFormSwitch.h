@@ -1,8 +1,8 @@
 //
-//  KBUIFormTextField.h
+//  KBUIFormSwitch.h
 //  KegPad
 //
-//  Created by Gabe on 9/28/10.
+//  Created by Gabe on 10/10/10.
 //  Copyright 2010 rel.me. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -20,20 +20,18 @@
 //
 
 #import "KBUIForm.h"
-#import "KBUIFormFieldCell.h"
+#import "KBUIFormSwitchCell.h"
 
-@interface KBUIFormTextField : KBUIForm {
-  BOOL secureTextEntry_;
-  BOOL editable_;
+@interface KBUIFormSwitch : KBUIForm {
+  KBUIFormSwitchCell *cell_;
   
-  KBUIFormFieldCell *cell_;
+  BOOL on_;
 }
 
-@property (assign, nonatomic, getter=isSecureTextEntry) BOOL secureTextEntry;
-@property (assign, nonatomic, getter=isEditable) BOOL editable;
+@property (assign, nonatomic, getter=isOn) BOOL on;
 
-+ (KBUIFormTextField *)formWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable;
++ (KBUIFormSwitch *)formWithTitle:(NSString *)title on:(BOOL)on;
 
-- (UITextField *)textField;
+- (UISwitch *)switchField;
 
 @end

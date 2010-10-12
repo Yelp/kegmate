@@ -1,8 +1,8 @@
 //
-//  KBUIFormTextField.m
+//  KBUIFormSwitch.m
 //  KegPad
 //
-//  Created by Gabe on 9/28/10.
+//  Created by Gabe on 10/10/10.
 //  Copyright 2010 rel.me. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,17 +19,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBUIFormTextField.h"
+#import "KBUIFormSwitch.h"
 
-@implementation KBUIFormTextField
 
-@synthesize secureTextEntry=secureTextEntry_, editable=editable_;
+@implementation KBUIFormSwitch
+
+@synthesize on=on_;
 
 - (id)init {
   if ((self = [super init])) {
     self.selectEnabled = NO;
-    editable_ = YES;    
-    cell_ = [[KBUIFormFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    cell_ = [[KBUIFormSwitchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
   }
   return self;
 }
@@ -39,30 +39,26 @@
   [super dealloc];
 }
 
-- (UITextField *)textField {
-  return cell_.textField;
+- (UISwitch *)switchField {
+  return cell_.switchField;
 }
 
-+ (KBUIFormTextField *)formWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable {
-  KBUIFormTextField *form = (KBUIFormTextField *)[self formWithTitle:title text:text];
-  form.editable = editable;
++ (KBUIFormSwitch *)formWithTitle:(NSString *)title on:(BOOL)on {
+  KBUIFormSwitch *form = (KBUIFormSwitch *)[self formWithTitle:title text:nil];
+  form.on = on;
   return form;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {  
-  cell_.editable = editable_;
-  cell_.selectionStyle = (self.isSelectEnabled ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone);
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  cell_.selectionStyle = (self.selectEnabled ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone);
   cell_.textLabel.text = self.title;
-  cell_.textField.text = self.text;
-  cell_.textField.enabled = editable_;
+  cell_.switchField.on = self.on;
   cell_.accessoryType = UITableViewCellAccessoryNone;
-  cell_.textField.secureTextEntry = secureTextEntry_;
   return cell_;
 }
 
 - (void)performAction {
-  if (editable_)
-    [[self textField] becomeFirstResponder];
+  // TODO?
 }
 
 @end
