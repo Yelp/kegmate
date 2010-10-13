@@ -26,6 +26,8 @@
 #import "KBRecentPoursView.h"
 #import "KBRatingPicker.h"
 #import "KBUserView.h"
+#import "KBChalkLabel.h"
+
 
 @class KBApplicationDelegate;
 
@@ -44,7 +46,8 @@
   UILabel *tempDescriptionLabel_;
   UIImageView *imageView_;
   
-  UILabel *ratingLabel_;
+  KBRatingChalkView *ratingView_;
+  KBChalkLabel *ratingCountLabel_;
   
   UIImageView *chalkCircleView_;
   UILabel *temperatureLabel_;
@@ -58,7 +61,7 @@
   
   NSTimer *timer_; // For updating screen every minute
   
-  UIImageView *rateView_;
+  UIImageView *rateLabel_;
   KBRatingPicker *ratingPicker_;
   
   KBKeg *keg_;
@@ -78,11 +81,12 @@
 @property (nonatomic, retain) IBOutlet UILabel *abvLabel;
 @property (nonatomic, retain) IBOutlet UILabel *temperatureLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
-@property (nonatomic, retain) IBOutlet UILabel *ratingLabel;
+@property (nonatomic, retain) IBOutlet KBRatingChalkView *ratingView;
+@property (nonatomic, retain) IBOutlet KBChalkLabel *ratingCountLabel;
 @property (nonatomic, retain) IBOutlet UILabel *tempDescriptionLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *chalkCircleView;
 @property (nonatomic, retain) IBOutlet KBRecentPoursView *recentPoursView;
-@property (nonatomic, retain) IBOutlet UIImageView *rateView;
+@property (nonatomic, retain) IBOutlet UIImageView *rateLabel;
 @property (nonatomic, retain) IBOutlet KBRatingPicker *ratingPicker;
 @property (nonatomic, retain) IBOutlet KBUserView *userView;
 @property (nonatomic, retain) IBOutlet UIButton *adminButton;

@@ -19,10 +19,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBKegProcessor.h"
+#import "KBKegManager.h"
 
 @protocol KBApplicationDelegate <UIApplicationDelegate>
-- (KBKegProcessor *)kegProcessor;
+- (KBKegManager *)kegManager;
 - (void)playSystemSoundGlass;
 @end
 
@@ -35,7 +35,7 @@
 
 + (void)setSharedDelegate:(NSObject<KBApplicationDelegate> *)sharedDelegate;
 
-+ (KBKegProcessor *)kegProcessor;
++ (KBKegManager *)kegManager;
 
 + (KBDataStore *)dataStore;
 

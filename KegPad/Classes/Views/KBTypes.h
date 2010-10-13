@@ -30,3 +30,6 @@ enum {
   KBRatingValue5 = 5
 };
 typedef NSInteger KBRatingValue;
+
+
+extern KBRatingValue KBRatingValueFromRating(double rating);

@@ -33,7 +33,13 @@
 }
 
 - (NSString *)amountDescriptionWithTimeAgo {
-  return [NSString stringWithFormat:@"%0.1f oz. %@ ago", (self.amountValue * kLitersToOunces), [self.date gh_timeAgo:NO]];
+  NSString *timeAgo = nil;
+  if (-[self.date timeIntervalSinceNow] < 60.0) {
+    timeAgo = @"just now";
+  } else {
+    timeAgo = [NSString stringWithFormat:@"%@ ago", [self.date gh_timeAgo:NO]];
+  }  
+  return [NSString stringWithFormat:@"%0.1f oz. %@", (self.amountValue * kLitersToOunces), timeAgo];
 }
 
 - (NSInteger)timeAgoInteger:(NSDate *)date {

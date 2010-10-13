@@ -1,5 +1,5 @@
 //
-//  KBKegProcessorSimulator.h
+//  KBKegManagerSimulator.h
 //  KegPad
 //
 //  Created by Gabe on 9/26/10.
@@ -19,14 +19,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBKegProcessor.h"
+#import "KBKegManager.h"
 
 
-@interface KBKegProcessorSimulator : NSObject { 
-  KBKegProcessor *kegProcessor_;
+@interface KBKegManagerSimulator : NSObject { 
+  KBKegManager *kegManager_;
 }
 
-- (id)initWithKegProcessor:(KBKegProcessor *)kegProcessor;
+- (id)initWithKegProcessor:(KBKegManager *)kegManager;
 
 - (void)temperatureAndPour;
 

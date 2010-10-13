@@ -21,3 +21,12 @@
 
 #import "KBTypes.h"
 
+extern KBRatingValue KBRatingValueFromRating(double rating) {
+  if (rating < 0.5) return KBRatingValueNone;
+  else if (rating >= 0.5 && rating < 1.5) return KBRatingValue1;
+  else if (rating >= 1.5 && rating < 2.5) return KBRatingValue2;
+  else if (rating >= 2.5 && rating < 3.5) return KBRatingValue3;
+  else if (rating >= 3.5 && rating < 4.5) return KBRatingValue4;
+  else if (rating >= 4.5) return KBRatingValue5;
+  return KBRatingValueNone;
+}

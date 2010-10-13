@@ -30,22 +30,18 @@
 
 @synthesize rating=rating_;
 
+- (id)initWithStyle:(KBRatingPickerStyle)style {
+  if ((self = [self init])) {
+    rating_ = KBRatingValueNone;
+    [self setStyle:style];
+  }
+  return self;
+}
+
 - (id)initWithCoder:(NSCoder *)coder {
   if ((self = [super initWithCoder:coder])) {
-		// Images should be 268x49 which centers in 300x63 with (16x7 inset)
-		// TODO(gabe): Add ability to draw at smaller sizes
-		starImages_ = [[NSArray arrayWithObjects:
-										[UIImage imageNamed:@"o0hstars_large@2x.png"],
-										[UIImage imageNamed:@"o2hstars_large@2x.png"],
-										[UIImage imageNamed:@"o4hstars_large@2x.png"],
-										[UIImage imageNamed:@"o6hstars_large@2x.png"],
-										[UIImage imageNamed:@"o8hstars_large@2x.png"],
-										[UIImage imageNamed:@"o10hstars_large@2x.png"],
-										nil] retain];
-		rating_ = KBRatingValueNone;
-		inset_ = CGSizeMake(16.0, 7.0);
-		starIndex_ = 0;
-		self.opaque = NO;
+    rating_ = KBRatingValueNone;
+    [self setStyle:KBRatingPickerStyleDefault];
   }
   return self;
 }
@@ -53,6 +49,35 @@
 - (void)dealloc {
 	[starImages_ release];
 	[super dealloc];
+}
+
+- (void)setStyle:(KBRatingPickerStyle)style {
+  // TODO(gabe): Add ability to draw at smaller sizes
+  if (style == KBRatingPickerStyleDefault) {
+    inset_ = CGSizeMake(16.0, 7.0);
+    // Images should be 268x49 which centers in 300x63 with (16x7 inset)
+    [starImages_ release];
+    starImages_ = [[NSArray arrayWithObjects:
+                    [UIImage imageNamed:@"stars_0_0.png"],
+                    [UIImage imageNamed:@"stars_1_0.png"],
+                    [UIImage imageNamed:@"stars_2_0.png"],
+                    [UIImage imageNamed:@"stars_3_0.png"],
+                    [UIImage imageNamed:@"stars_4_0.png"],
+                    [UIImage imageNamed:@"stars_5_0.png"],
+                    nil] retain];
+  } else if (style == KBRatingPickerStyleChalk) {
+    inset_ = CGSizeMake(0, 0);
+    [starImages_ release];
+    starImages_ = [[NSArray arrayWithObjects:
+                    [UIImage imageNamed:@"stars_chalk_0_0.png"],
+                    [UIImage imageNamed:@"stars_chalk_1_0.png"],
+                    [UIImage imageNamed:@"stars_chalk_2_0.png"],
+                    [UIImage imageNamed:@"stars_chalk_3_0.png"],
+                    [UIImage imageNamed:@"stars_chalk_4_0.png"],
+                    [UIImage imageNamed:@"stars_chalk_5_0.png"],
+                    nil] retain];      
+  }
+  
 }
 
 - (NSInteger)_pointInsideIndex:(CGPoint)point {
@@ -122,6 +147,20 @@
     CGRect imageRect = CGRectMake(bounds.origin.x + xPad, bounds.origin.y + yPad, self.frame.size.width - 2 * (bounds.origin.x + xPad), self.frame.size.height - 2 * (bounds.origin.y + yPad));
 		[starImage drawInRect:imageRect];	
 	}
+}
+
+@end
+
+
+@implementation KBRatingChalkView
+
+- (id)initWithCoder:(NSCoder *)coder {
+  if ((self = [super initWithCoder:coder])) {
+    rating_ = KBRatingValueNone;
+    [self setStyle:KBRatingPickerStyleChalk];
+    self.userInteractionEnabled = NO;
+  }
+  return self;
 }
 
 @end

@@ -38,9 +38,10 @@
 @implementation KBDisplayViewController
 
 @synthesize beerMovieView=beerMovieView_, nameLabel=nameLabel_, infoLabel=infoLabel_, abvLabel=abvLabel_, imageView=imageView_, 
-temperatureLabel=temperatureLabel_, typeLabel=typeLabel_, countryLabel=countryLabel_, ratingLabel=ratingLabel_,
-tempDescriptionLabel=tempDescriptionLabel_, chalkCircleView=chalkCircleView_, recentPoursView=recentPoursView_, 
-ratingPicker=ratingPicker_, rateView=rateView_, userView=userView_, adminButton=adminButton_, delegate=delegate_;
+temperatureLabel=temperatureLabel_, typeLabel=typeLabel_, countryLabel=countryLabel_, rateLabel=rateLabel_, 
+ratingCountLabel=ratingCountLabel_, tempDescriptionLabel=tempDescriptionLabel_, chalkCircleView=chalkCircleView_, 
+recentPoursView=recentPoursView_,  ratingPicker=ratingPicker_, ratingView=ratingView_, userView=userView_, 
+adminButton=adminButton_, delegate=delegate_;
 
 @synthesize keg=keg_, user=user_; // Private properties
 
@@ -61,7 +62,7 @@ ratingPicker=ratingPicker_, rateView=rateView_, userView=userView_, adminButton=
   [infoLabel_ release];
   [abvLabel_ release];
   [imageView_ release];
-  [ratingLabel_ release];
+  [rateLabel_ release];
   [temperatureLabel_ release];
   [typeLabel_ release];
   [countryLabel_ release];
@@ -69,7 +70,8 @@ ratingPicker=ratingPicker_, rateView=rateView_, userView=userView_, adminButton=
   [chalkCircleView_ release];
   [recentPoursView_ release];
   [ratingPicker_ release];
-  [rateView_ release];
+  [ratingView_ release];
+  [ratingCountLabel_ release];
   [userView_ release];
   [adminButton_ release];
   [super dealloc];
@@ -128,10 +130,6 @@ ratingPicker=ratingPicker_, rateView=rateView_, userView=userView_, adminButton=
   [UIView commitAnimations];  
 }
 
-- (void)pourTiming {
-  
-}
-
 - (void)updateRecentPours {
   [recentPoursView_ setRecentPours:[[KBApplication dataStore] recentKegPours:20 ascending:NO error:nil]];
 }
@@ -159,10 +157,17 @@ ratingPicker=ratingPicker_, rateView=rateView_, userView=userView_, adminButton=
   NSInteger ratingCount = keg_.beer.ratingCountValue;
   if (ratingCount > 0) {
     double rating = keg_.beer.ratingTotalValue / (double)ratingCount;
+    KBRatingValue ratingValue = KBRatingValueFromRating(rating);
     KBDebug(@"Rating: %0.1f, %@ / %@", rating, keg_.beer.ratingTotal, keg_.beer.ratingCount);
-    ratingLabel_.text = [NSString stringWithFormat:@"rating: %0.1f", rating];
+    [ratingView_ setRating:ratingValue];
+    if (ratingCount == 1) {
+      ratingCountLabel_.text = [NSString stringWithFormat:@"(1 rating)"];
+    } else {
+      ratingCountLabel_.text = [NSString stringWithFormat:@"(%d ratings)", ratingCount];
+    }
   } else {
-    ratingLabel_.text = @"";
+    [ratingView_ setRating:KBRatingValueNone];
+    ratingCountLabel_.text = @"";
   }
 }
 
@@ -226,14 +231,14 @@ ratingPicker=ratingPicker_, rateView=rateView_, userView=userView_, adminButton=
     // Hide rating and picker
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    rateView_.alpha = 0.0;
+    rateLabel_.alpha = 0.0;
     ratingPicker_.alpha = 0.0;
     [UIView commitAnimations];    
   } else if (user_ && keg_) {
     // Show rating and picker
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    rateView_.alpha = 1.0;
+    rateLabel_.alpha = 1.0;
     ratingPicker_.alpha = 1.0;
     [UIView commitAnimations]; 
   }

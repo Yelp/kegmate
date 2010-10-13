@@ -27,21 +27,21 @@
 
 - (id)init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-    kegProcessorSimulator_ = [[KBKegProcessorSimulator alloc] initWithKegProcessor:[KBApplication kegProcessor]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate temperature and pour" text:@"" target:kegProcessorSimulator_ action:@selector(temperatureAndPour) showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate temperatures (multiple)" text:@"" target:kegProcessorSimulator_ action:@selector(temperatures) showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Gabriel)" target:kegProcessorSimulator_ action:@selector(login:) context:@"29009426DC47" showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate login (John)" target:kegProcessorSimulator_ action:@selector(login:) context:@"2900942371EF" showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Non-Admin)" target:kegProcessorSimulator_ action:@selector(login:) context:@"TESTTAGID1" showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate unknown tag" text:@"" target:kegProcessorSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate pours (multiple)" text:@"" target:kegProcessorSimulator_ action:@selector(pours) showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate pour (long)" text:@"" target:kegProcessorSimulator_ action:@selector(pourLong) showDisclosure:NO]];    
+    kegManagerSimulator_ = [[KBKegManagerSimulator alloc] initWithKegProcessor:[KBApplication kegManager]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate temperature and pour" text:@"" target:kegManagerSimulator_ action:@selector(temperatureAndPour) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate temperatures (multiple)" text:@"" target:kegManagerSimulator_ action:@selector(temperatures) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Gabriel)" target:kegManagerSimulator_ action:@selector(login:) context:@"29009426DC47" showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate login (John)" target:kegManagerSimulator_ action:@selector(login:) context:@"2900942371EF" showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Non-Admin)" target:kegManagerSimulator_ action:@selector(login:) context:@"TESTTAGID1" showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate unknown tag" text:@"" target:kegManagerSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate pours (multiple)" text:@"" target:kegManagerSimulator_ action:@selector(pours) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate pour (long)" text:@"" target:kegManagerSimulator_ action:@selector(pourLong) showDisclosure:NO]];    
   }
   return self;
 }
 
 - (void)dealloc {
-  [kegProcessorSimulator_ release];
+  [kegManagerSimulator_ release];
   [super dealloc];
 }
 

@@ -28,6 +28,8 @@
 
 @protocol KBUserEditViewControllerDelegate <NSObject>
 - (void)userEditViewController:(KBUserEditViewController *)userEditViewController didAddUser:(KBUser *)user;
+@optional
+- (void)userEditViewControllerDidLogout:(KBUserEditViewController *)userEditViewController;
 @end
 
 @interface KBUserEditViewController : KBUIFormViewController { 
@@ -39,7 +41,7 @@
 
 @property (assign, nonatomic) id<KBUserEditViewControllerDelegate> delegate;
 
-- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle adminOptionEnabled:(BOOL)adminOptionEnabled;
+- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle adminOptionEnabled:(BOOL)adminOptionEnabled logoutEnabled:(BOOL)logoutEnabled;
 
 - (void)setUser:(KBUser *)user;
 

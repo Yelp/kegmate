@@ -38,10 +38,6 @@
   [super dealloc];
 }
 
-- (void)addForm:(KBUIForm *)form {
-  [self addForm:form section:0];
-}
-
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message
                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -53,6 +49,10 @@
 - (void)showError:(NSError *)error {
   [self showAlertWithTitle:@"Error" message:[error localizedDescription]];
 }  
+
+- (void)addForm:(KBUIForm *)form {
+  [self addForm:form section:0];
+}
 
 - (void)addForm:(KBUIForm *)form section:(NSInteger)section {
   NSNumber *key = [NSNumber numberWithInteger:section];

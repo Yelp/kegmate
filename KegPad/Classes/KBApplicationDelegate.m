@@ -27,7 +27,7 @@
 
 @implementation KBApplicationDelegate
 
-@synthesize window=window_, kegProcessor=kegProcessor_;
+@synthesize window=window_, kegManager=kegManager_;
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -88,10 +88,10 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknowTagId:) name:KBUnknownTagIdNotification object:nil];  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectUser:) name:KBDidSelectUserNotification object:nil];    
   
-  kegProcessor_ = [[KBKegProcessor alloc] init];
+  kegManager_ = [[KBKegManager alloc] init];
 
   // Set the keg (only 1 keg is currently supported)
-  KBKeg *keg = [kegProcessor_.dataStore kegAtPosition:0];
+  KBKeg *keg = [kegManager_.dataStore kegAtPosition:0];
   if (!keg) {
     [displayViewController_ admin:nil]; 
   } else {
@@ -99,7 +99,7 @@
   }
   
   // Start processing
-  [kegProcessor_ start];
+  [kegManager_ start];
 
   return YES;
 }
@@ -161,7 +161,7 @@
   [self setUser:nil];
 }
 
-- (void)_editUser:(NSNotification *)notification {
+- (void)_selectUser:(NSNotification *)notification {
   [self editUser:[notification object]];
 }
 
@@ -173,8 +173,12 @@
 #pragma mark KBUserEditViewControllerDelegate
 
 - (void)userEditViewController:(KBUserEditViewController *)userEditViewController didAddUser:(KBUser *)user {
-  [[KBApplication kegProcessor] login:user];
+  [[KBApplication kegManager] login:user];
   [[KBApplication sharedDelegate] playSystemSoundGlass]; // TODO(gabe): Special welcome sound effect
+  [navigationController_ dismissModalViewControllerAnimated:YES];
+}
+
+- (void)userEditViewControllerDidLogout:(KBUserEditViewController *)userEditViewController {
   [navigationController_ dismissModalViewControllerAnimated:YES];
 }
 
@@ -184,7 +188,7 @@
   // For testing
   srand(time(NULL));
   NSString *randomTagId = [NSString stringWithFormat:@"%d", [NSNumber gh_randomInteger]];
-  [kegProcessor_ kegProcessing:kegProcessor_.processing didReceiveRFIDTagId:randomTagId];
+  [kegManager_ kegProcessing:kegManager_.processing didReceiveRFIDTagId:randomTagId];
 }
 
 @end

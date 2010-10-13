@@ -1,5 +1,5 @@
 //
-//  KBKegProcessor.h
+//  KBKegManager.h
 //  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
@@ -24,10 +24,10 @@
 #import "KBDataStore.h"
 
 /*!
- Interfaces to keg processing and the data store; Keeps track of current user, pouring status,
+ Interfaces to keg processing (may multiple in the future) and the data store; Keeps track of current user, pouring status,
  and triggering all the notifications.
  */
-@interface KBKegProcessor : NSObject <KBKegProcessingDelegate> {
+@interface KBKegManager : NSObject <KBKegProcessingDelegate> {
 
   KBUser *loginUser_;
   NSTimeInterval activityTime_; // The time of last activity from the reference date

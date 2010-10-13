@@ -1,5 +1,5 @@
 //
-//  KBKegProcessor.m
+//  KBKegManager.m
 //  KegPad
 //
 //  Created by Gabriel Handford on 8/9/10.
@@ -19,12 +19,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBKegProcessor.h"
+#import "KBKegManager.h"
 
 #import "KBNotifications.h"
 #import "KBApplication.h"
 
-@interface KBKegProcessor ()
+@interface KBKegManager ()
 @property (retain, nonatomic) KBUser *loginUser;
 @property (assign, nonatomic) NSTimeInterval activityTime;
 
@@ -40,7 +40,7 @@ static const NSTimeInterval kLoggedInTimeoutInterval = 10.0;
 static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out this many seconds after pour
 
 
-@implementation KBKegProcessor
+@implementation KBKegManager
 
 @synthesize dataStore=dataStore_, loginUser=loginUser_, processing=processing_;
 @synthesize activityTime=activityTime_; // Private properties

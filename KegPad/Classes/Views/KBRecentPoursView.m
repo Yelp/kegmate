@@ -59,9 +59,13 @@
     
     point.x += 168;
     [[UIColor colorWithWhite:1.0 alpha:0.5] set];
-    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.5, self.frame.size.width - point.x - 10, 20) withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
+    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.5, self.frame.size.width - point.x - 10, 20) 
+                                           withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation 
+                                          alignment:UITextAlignmentRight];
     [[UIColor colorWithWhite:0.0 alpha:0.8] set];
-    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.0, self.frame.size.width - point.x - 10, 20) withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
+    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.0, self.frame.size.width - point.x - 10, 20) 
+                                           withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation 
+                                          alignment:UITextAlignmentRight];
     point.x = 10;
     point.y += 32;
         

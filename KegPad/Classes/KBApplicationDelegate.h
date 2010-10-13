@@ -22,7 +22,7 @@
 #import "KBDisplayViewController.h"
 #import "KBStatusViewController.h"
 #import "KBUserEditViewController.h"
-#import "KBKegProcessor.h"
+#import "KBKegManager.h"
 #import "KBApplication.h"
 #import <AudioToolbox/AudioServices.h>
 
@@ -40,11 +40,11 @@
   
   SystemSoundID systemSounds_[1];
   
-  KBKegProcessor *kegProcessor_;
+  KBKegManager *kegManager_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, readonly) KBKegProcessor *kegProcessor;
+@property (nonatomic, readonly) KBKegManager *kegManager;
 
 - (void)setKeg:(KBKeg *)keg;
 

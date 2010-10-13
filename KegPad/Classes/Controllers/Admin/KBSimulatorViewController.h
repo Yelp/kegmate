@@ -20,10 +20,10 @@
 //
 
 #import "KBUIFormViewController.h"
-#import "KBKegProcessorSimulator.h"
+#import "KBKegManagerSimulator.h"
 
 @interface KBSimulatorViewController : KBUIFormViewController {
-  KBKegProcessorSimulator *kegProcessorSimulator_;
+  KBKegManagerSimulator *kegManagerSimulator_;
 }
 
 @end

@@ -21,6 +21,14 @@
 
 #import "KBTypes.h"
 
+enum {
+  KBRatingPickerStyleDefault,
+  KBRatingPickerStyleChalk,
+};
+
+typedef NSUInteger KBRatingPickerStyle;
+
+
 /*!
  Control for picking a rating from 1 - 5 stars.
  Currently does not resize properly, use size of 300x63.
@@ -35,5 +43,16 @@
 }
 
 @property (assign, nonatomic) KBRatingValue rating;
+
+- (id)initWithStyle:(KBRatingPickerStyle)style;
+
+- (void)setStyle:(KBRatingPickerStyle)style;
+
+@end
+
+
+@interface KBRatingChalkView : KBRatingPicker {
+
+}
 
 @end

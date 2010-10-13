@@ -35,10 +35,10 @@
 @dynamic delegate;
 
 - (id)init {
-  return [self initWithTitle:@"User" buttonTitle:nil adminOptionEnabled:YES];
+  return [self initWithTitle:@"User" buttonTitle:nil adminOptionEnabled:YES logoutEnabled:NO];
 }
 
-- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle adminOptionEnabled:(BOOL)adminOptionEnabled {
+- (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle adminOptionEnabled:(BOOL)adminOptionEnabled logoutEnabled:(BOOL)logoutEnabled {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) { 
     self.title = title;
     if (!buttonTitle) {
@@ -60,6 +60,9 @@
     isAdminField_ = [[KBUIFormSwitch formWithTitle:@"Admin" on:NO] retain];
     if (adminOptionEnabled)
       [self addForm:isAdminField_];
+
+    if (logoutEnabled)
+      [self addForm:[KBUIForm formWithTitle:@"Log out" text:nil target:self action:@selector(_logout) showDisclosure:NO] section:1];
   }
   return self;
 }
@@ -75,6 +78,12 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self _updateNavigationItem];
+}
+
+- (void)_logout {
+  [[KBApplication kegManager] logout];
+  if ([self.delegate respondsToSelector:@selector(userEditViewControllerDidLogout:)])
+    [self.delegate userEditViewControllerDidLogout:self];
 }
 
 - (void)setUser:(KBUser *)user {
@@ -139,7 +148,7 @@
 
 - (id)initWithTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle {
   if ((self = [super init])) {
-    userEditViewController_ = [[KBUserEditViewController alloc] initWithTitle:title buttonTitle:buttonTitle adminOptionEnabled:NO];
+    userEditViewController_ = [[KBUserEditViewController alloc] initWithTitle:title buttonTitle:buttonTitle adminOptionEnabled:NO logoutEnabled:YES];
     userEditViewController_.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
     self.modalPresentationStyle = UIModalPresentationFormSheet;
     self.viewControllers = [NSArray arrayWithObject:userEditViewController_];

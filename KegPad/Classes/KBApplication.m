@@ -39,12 +39,12 @@ static NSObject<KBApplicationDelegate> *KBApplicationSharedDelegate = NULL;
 
 // Shortcuts to application delegate methods
 
-+ (KBKegProcessor *)kegProcessor {
-  return [[self sharedDelegate] kegProcessor];
++ (KBKegManager *)kegManager {
+  return [[self sharedDelegate] kegManager];
 }
 
 + (KBDataStore *)dataStore {
-  return [[self sharedDelegate] kegProcessor].dataStore;
+  return [[self sharedDelegate] kegManager].dataStore;
 }
 
 @end
