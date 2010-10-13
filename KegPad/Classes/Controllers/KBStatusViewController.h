@@ -24,6 +24,7 @@
 #import "KBKegTemperature.h"
 #import "KBChartView.h"
 #import "KBLeaderboardView.h"
+#import "KBFlowIndicator.h"
 
 @class KBApplicationDelegate;
 
@@ -45,6 +46,8 @@
   KBChartView *chartView_;
   
   KBLeaderboardView *leaderboardView_;
+
+  KBFlowIndicator *flowIndicator_;
   
   KBApplicationDelegate *delegate_; // weak
 }
@@ -60,6 +63,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *totalPouredAmountLabel;
 @property (nonatomic, retain) IBOutlet KBChartView *chartView;
 @property (nonatomic, retain) IBOutlet KBLeaderboardView *leaderboardView;
+@property (nonatomic, retain) IBOutlet KBFlowIndicator *flowIndicator;
 @property (nonatomic, assign) KBApplicationDelegate *delegate;
 
 

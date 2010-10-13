@@ -28,7 +28,6 @@
 #import "KBUserView.h"
 #import "KBChalkLabel.h"
 
-
 @class KBApplicationDelegate;
 
 /*!

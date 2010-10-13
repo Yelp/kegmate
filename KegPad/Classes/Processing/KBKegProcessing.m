@@ -48,6 +48,10 @@
   }
 }
 
+- (double)pourVolume {
+  return _lastVolume - _pourStartVolume;
+}
+
 #pragma mark Delegates (KBKegboard)
 
 - (void)kegboard:(KBKegboard *)kegboard didReceiveHello:(KBKegboardMessageHello *)message {
@@ -83,15 +87,11 @@
     }
   }
   _lastVolume = volume;
+  [self.delegate kegProcessing:self didUpdatePourWithAmount:(volume - _pourStartVolume) flowRate:_flowRate];
 }
 
 - (void)kegboard:(KBKegboard *)kegboard didReceiveTemperatureReading:(KBKegboardMessageTemperatureReading *)message {
-  // If difference since last message send is significant, notify delegate
-  double temperature = [message sensorReading];
-  if (abs(temperature - _temperatureDifference) > KB_TEMPERATURE_DIFFERENCE_THRESHOLD) {
-    [self.delegate kegProcessing:self didChangeTemperature:temperature];
-    _temperatureDifference = temperature;
-  }
+  [self.delegate kegProcessing:self didChangeTemperature:[message sensorReading]];
 }
 
 - (void)kegboard:(KBKegboard *)kegboard didReceiveOutputStatus:(KBKegboardMessageOutputStatus *)message { }

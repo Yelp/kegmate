@@ -34,10 +34,20 @@
 lastPourAmountLabel=lastPourAmountLabel_, lastPourAmountUnitsLabel=lastPourAmountUnitsLabel_,
 percentRemaingLabel=percentRemaingLabel_, totalPouredAmountLabel=totalPouredAmountLabel_,
 temperatureLabel=temperatureLabel_, temperatureDescriptionLabel=temperatureDescriptionLabel_,
-chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_;
+chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flowIndicator=flowIndicator_;
 
 - (id)init {  
-  if ((self = [super initWithNibName:nil bundle:nil])) { }
+  if ((self = [super initWithNibName:nil bundle:nil])) {
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KBFlowIndicator" owner:nil options:nil];
+    for (id currentObject in topLevelObjects) {
+      if ([currentObject isKindOfClass:[KBFlowIndicator class]]) {
+        self.flowIndicator = currentObject;
+        break;
+      }
+    }
+    self.flowIndicator.frame = CGRectMake(20, 331, 402, 350);
+    [self.view addSubview:self.flowIndicator];
+  }
   return self;
 }
 
@@ -54,6 +64,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_;
   [temperatureDescriptionLabel_ release];
   [chartView_ release];
   [leaderboardView_ release];
+  [flowIndicator_ release];
   [super dealloc];
 }
 
@@ -86,7 +97,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_;
     percentRemaingLabel_.text = @"";
     totalPouredAmountLabel_.text = @"-";
   }
-}  
+}
 
 - (void)setLastKegPour:(KBKegPour *)kegPour {
   self.view;

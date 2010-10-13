@@ -113,6 +113,14 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		427AC48C126585C50063CE3C /* flow_at_symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC486126585C50063CE3C /* flow_at_symbol.png */; };
+		427AC48D126585C50063CE3C /* flow_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC487126585C50063CE3C /* flow_background.png */; };
+		427AC48E126585C50063CE3C /* flow_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC488126585C50063CE3C /* flow_fill.png */; };
+		427AC48F126585C50063CE3C /* flow_foreground.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC489126585C50063CE3C /* flow_foreground.png */; };
+		427AC490126585C50063CE3C /* flow_needle.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC48A126585C50063CE3C /* flow_needle.png */; };
+		427AC491126585C50063CE3C /* flow_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC48B126585C50063CE3C /* flow_shadow.png */; };
+		427AC71D1266A5640063CE3C /* KBFlowIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427AC71C1266A5640063CE3C /* KBFlowIndicator.xib */; };
+		427AC7241266A9C90063CE3C /* KBFlowIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 427AC7221266A9C90063CE3C /* KBFlowIndicator.m */; };
 		429B08EB1202FEF600C36F76 /* Glass.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 429B08EA1202FEF600C36F76 /* Glass.aiff */; };
 		429B08EE1202FF5300C36F76 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429B08ED1202FF5300C36F76 /* AudioToolbox.framework */; };
 		429B094D1203371700C36F76 /* KBRatingPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B094C1203371700C36F76 /* KBRatingPicker.m */; };
@@ -285,6 +293,15 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* KegPad_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KegPad_Prefix.pch; sourceTree = "<group>"; };
+		427AC486126585C50063CE3C /* flow_at_symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_at_symbol.png; sourceTree = "<group>"; };
+		427AC487126585C50063CE3C /* flow_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_background.png; sourceTree = "<group>"; };
+		427AC488126585C50063CE3C /* flow_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_fill.png; sourceTree = "<group>"; };
+		427AC489126585C50063CE3C /* flow_foreground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_foreground.png; sourceTree = "<group>"; };
+		427AC48A126585C50063CE3C /* flow_needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_needle.png; sourceTree = "<group>"; };
+		427AC48B126585C50063CE3C /* flow_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_shadow.png; sourceTree = "<group>"; };
+		427AC71C1266A5640063CE3C /* KBFlowIndicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFlowIndicator.xib; sourceTree = "<group>"; };
+		427AC7221266A9C90063CE3C /* KBFlowIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFlowIndicator.m; sourceTree = "<group>"; };
+		427AC7231266A9C90063CE3C /* KBFlowIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFlowIndicator.h; sourceTree = "<group>"; };
 		429B08EA1202FEF600C36F76 /* Glass.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Glass.aiff; sourceTree = "<group>"; };
 		429B08ED1202FF5300C36F76 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		429B094B1203371700C36F76 /* KBRatingPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRatingPicker.h; sourceTree = "<group>"; };
@@ -340,6 +357,7 @@
 				00D3534D1266ABB5005FF0B6 /* graph_background.png */,
 				00D353431266AA59005FF0B6 /* beer_button_icon.png */,
 				00D353441266AA59005FF0B6 /* status_button_icon.png */,
+				427AC485126585C50063CE3C /* FlowMeter */,
 				00D35181126556A0005FF0B6 /* Stars */,
 				00D35188126556A0005FF0B6 /* StarsChalk */,
 				004E1B0B12655172004B0AC0 /* admin_button.png */,
@@ -444,6 +462,8 @@
 				00568FAE1251A493004AF3D1 /* KBUserView.m */,
 				00983D8C125EE8520031006C /* KBUIWindow.h */,
 				00983D8D125EE8520031006C /* KBUIWindow.m */,
+				427AC7231266A9C90063CE3C /* KBFlowIndicator.h */,
+				427AC7221266A9C90063CE3C /* KBFlowIndicator.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -691,6 +711,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				00D54CC81202BBEB00F76724 /* KBStatusViewController.xib */,
 				0017B7C612021B1A00269CDA /* KBDisplayViewController.xib */,
+				427AC71C1266A5640063CE3C /* KBFlowIndicator.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -708,6 +729,19 @@
 				429B08ED1202FF5300C36F76 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		427AC485126585C50063CE3C /* FlowMeter */ = {
+			isa = PBXGroup;
+			children = (
+				427AC486126585C50063CE3C /* flow_at_symbol.png */,
+				427AC487126585C50063CE3C /* flow_background.png */,
+				427AC488126585C50063CE3C /* flow_fill.png */,
+				427AC489126585C50063CE3C /* flow_foreground.png */,
+				427AC48A126585C50063CE3C /* flow_needle.png */,
+				427AC48B126585C50063CE3C /* flow_shadow.png */,
+			);
+			path = FlowMeter;
 			sourceTree = "<group>";
 		};
 		429B08E91202FEF600C36F76 /* Sounds */ = {
@@ -816,6 +850,13 @@
 				00D353461266AA59005FF0B6 /* status_button_icon.png in Resources */,
 				00D3534E1266ABB5005FF0B6 /* graph_background.png in Resources */,
 				00D353581266AF4A005FF0B6 /* literboard_background.png in Resources */,
+				427AC48C126585C50063CE3C /* flow_at_symbol.png in Resources */,
+				427AC48D126585C50063CE3C /* flow_background.png in Resources */,
+				427AC48E126585C50063CE3C /* flow_fill.png in Resources */,
+				427AC48F126585C50063CE3C /* flow_foreground.png in Resources */,
+				427AC490126585C50063CE3C /* flow_needle.png in Resources */,
+				427AC491126585C50063CE3C /* flow_shadow.png in Resources */,
+				427AC71D1266A5640063CE3C /* KBFlowIndicator.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,6 +922,7 @@
 				009840151262D63A0031006C /* KBUIFormSwitchCell.m in Sources */,
 				0098401A1262D76F0031006C /* KBUIFormSwitch.m in Sources */,
 				00D353A21266B5B3005FF0B6 /* KBCGUtils.m in Sources */,
+				427AC7241266A9C90063CE3C /* KBFlowIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

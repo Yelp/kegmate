@@ -155,4 +155,8 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   }
 }
 
+- (void)kegProcessing:(KBKegProcessing *)kegProcessing didUpdatePourWithAmount:(double)amount flowRate:(double)flowRate {
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBUpdatePourNotification object:kegProcessing];
+}
+
 @end

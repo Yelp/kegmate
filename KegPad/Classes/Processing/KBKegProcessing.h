@@ -21,7 +21,6 @@
 
 #import "KBKegboard.h"
 
-#define KB_TEMPERATURE_DIFFERENCE_THRESHOLD 0.1
 #define KB_VOLUME_DIFFERENCE_THRESHOLD 0.001
 // Adjust this value based on the flow meter properties
 #define KB_VOLUME_PER_TICK 0.0001639344262
@@ -35,16 +34,14 @@
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didChangeTemperature:(double)temperature;
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagID;
 //- (void)kegProcessing:(KBKegProcessing *)kegProcessing didError:(KBError *)error;
+- (void)kegProcessing:(KBKegProcessing *)kegProcessing didUpdatePourWithAmount:(double)amount flowRate:(double)flowRate;
 @end
-
 
 @interface KBKegProcessing : NSObject <KBKegboardDelegate> {
   id<KBKegProcessingDelegate> _delegate;
   
   KBKegboard *_kegboard;
-  
-  double _temperatureDifference;
-  
+
   double _flowRate; // in litres / second
   
   double _lastVolume;
@@ -58,5 +55,6 @@
 
 @property (assign, nonatomic) id<KBKegProcessingDelegate> delegate;
 @property (readonly, nonatomic) double flowRate;
+@property (readonly, nonatomic) double pourVolume;
 
 @end

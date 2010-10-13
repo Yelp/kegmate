@@ -39,3 +39,5 @@ extern NSString *const KBUnknownTagIdNotification; // With tag id (NSString), if
 extern NSString *const KBDidSelectUserNotification; // With user (KBUser)
 
 extern NSString *const KBActivityNotification; // If there is an user activity
+
+extern NSString *const KBUpdatePourNotification; // For when an active pour is updated

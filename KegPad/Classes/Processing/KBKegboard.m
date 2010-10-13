@@ -106,7 +106,7 @@ static NSInteger gFileDescriptor;
     while (headerPosition < KBSP_PREFIX_LENGTH) {
       char byte;
       sleeperRead(gFileDescriptor, &byte, 1);
-      calculatedCRC = crc_update(calculatedCRC, &byte, 1);
+      calculatedCRC = crc_update(calculatedCRC, (unsigned char *)&byte, 1);
       // Byte was expected
       if (byte == KBSP_PREFIX[headerPosition]) {
         headerPosition += 1;
@@ -127,7 +127,7 @@ static NSInteger gFileDescriptor;
     
     // Read message type and message length
     sleeperRead(gFileDescriptor, headerBytes, 4);
-    calculatedCRC = crc_update(calculatedCRC, headerBytes, 4);
+    calculatedCRC = crc_update(calculatedCRC, (unsigned char *)headerBytes, 4);
     NSInteger messageId = [KBKegboardMessage parseUInt16:headerBytes];
     NSInteger messageLength = [KBKegboardMessage parseUInt16:&headerBytes[2]];
     if (messageLength > KBSP_PAYLOAD_MAXLEN) {
@@ -137,7 +137,7 @@ static NSInteger gFileDescriptor;
     
     // Read payload and trailer
     sleeperRead(gFileDescriptor, payload, messageLength);
-    calculatedCRC = crc_update(calculatedCRC, payload, messageLength);
+    calculatedCRC = crc_update(calculatedCRC, (unsigned char *)payload, messageLength);
     sleeperRead(gFileDescriptor, crc, 2);
     sleeperRead(gFileDescriptor, trailer, 2);
 

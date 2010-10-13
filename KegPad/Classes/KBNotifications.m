@@ -40,3 +40,5 @@ NSString *const KBUnknownTagIdNotification = @"KBUnknownTagIdNotification";
 NSString *const KBDidSelectUserNotification = @"KBDidSelectUserNotification";
 
 NSString *const KBActivityNotification = @"KBActivityNotification";
+
+NSString *const KBUpdatePourNotification = @"KBUpdatePourNotification";
