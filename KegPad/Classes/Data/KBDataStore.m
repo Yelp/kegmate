@@ -229,7 +229,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   
   [keg addPouredValue:amount];
   
-  [kegPour.user addPouredValue:amount];
+  [user addPouredValue:amount];
   
   kegPour.amountHourValue = [self rateForKegPoursLastHourForUser:nil error:error];
   kegPour.amountUserHourValue = [self rateForKegPoursLastHourForUser:kegPour.user error:error];

@@ -61,6 +61,24 @@
 
 
 
+@dynamic pourCount;
+
+
+
+- (int)pourCountValue {
+	NSNumber *result = [self pourCount];
+	return result ? [result intValue] : 0;
+}
+
+- (void)setPourCountValue:(int)value_ {
+	[self setPourCount:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+
 @dynamic isAdmin;
 
 

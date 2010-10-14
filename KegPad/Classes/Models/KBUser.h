@@ -29,7 +29,7 @@
 
 - (void)addPouredValue:(float)poured;
 
-- (NSString *)volumePouredDescription;
+- (NSString *)pouredDescription;
 
 - (NSString *)displayName;
 

@@ -67,7 +67,7 @@
 
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
   cell.textLabel.text = [obj fullName];
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"Tag Id: %@, Volume poured: %@", [obj tagId], [obj volumePouredDescription]];
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"Tag Id: %@, Volume poured: %@", [obj tagId], [obj pouredDescription]];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   return cell;
 }

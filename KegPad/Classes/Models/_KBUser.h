@@ -40,6 +40,16 @@
 
 
 
+@property (nonatomic, retain) NSNumber *pourCount;
+
+@property int pourCountValue;
+- (int)pourCountValue;
+- (void)setPourCountValue:(int)value_;
+
+//- (BOOL)validatePourCount:(id*)value_ error:(NSError**)error_;
+
+
+
 @property (nonatomic, retain) NSNumber *isAdmin;
 
 @property BOOL isAdminValue;

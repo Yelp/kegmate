@@ -90,6 +90,13 @@
 
 
 
+@dynamic dateCreated;
+
+
+
+
+
+
 @dynamic ratingCount;
 
 
@@ -120,13 +127,6 @@
 - (void)setRatingTotalValue:(double)value_ {
 	[self setRatingTotal:[NSNumber numberWithDouble:value_]];
 }
-
-
-
-
-
-
-@dynamic dateCreated;
 
 
 

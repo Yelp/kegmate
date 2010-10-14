@@ -21,11 +21,21 @@
 
 #import "KBLeaderboardView.h"
 
+#import "KBCGUtils.h"
+
 
 @implementation KBLeaderboardView
 
+- (id)initWithCoder:(NSCoder *)coder {
+  if ((self = [super initWithCoder:coder])) {
+    backgroundImage_ = [[UIImage imageNamed:@"literboard_background.png"] retain];
+  }
+  return self;
+}
+
 - (void)dealloc {
   [users_ release];
+  [backgroundImage_ release];
   [super dealloc];
 }
 
@@ -36,29 +46,41 @@
   [self setNeedsDisplay];
 }
 
-- (void)setRecentPours:(NSArray *)recentPours {
-  [recentPours retain];
-  [recentPours_ release];
-  recentPours_ = recentPours;
-  [self setNeedsDisplay];
-}
-
 - (void)drawRect:(CGRect)rect {
-  CGPoint origin = CGPointMake(10, 16);
+  [super drawRect:rect];
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  
+  [backgroundImage_ drawAtPoint:CGPointMake(0, 0)];
+  
+  CGPoint origin = CGPointMake(20, 20);
   CGPoint p = origin;
-  UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:24];
-  UIFont *amountFont = [UIFont fontWithName:@"Helvetica" size:16];
+  UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:22];
+  UIFont *amountFont = [UIFont fontWithName:@"Helvetica" size:15];
+  
+  CGFloat nameHeight = 24;
+  CGFloat amountHeight = 26;
+  CGFloat padding = 8;  
+  CGFloat rowHeight = nameHeight + amountHeight + padding;
   
   for (KBUser *user in users_) {
     NSString *name = [user displayName];
-    [[UIColor blackColor] set];
+    [[UIColor colorWithWhite:0.1 alpha:0.9] set];
     [name drawAtPoint:p forWidth:160 withFont:nameFont lineBreakMode:UILineBreakModeTailTruncation];
     
     [[UIColor colorWithWhite:0.2 alpha:0.8] set];
-    p.x += 168;
-    [[user volumePouredDescription] drawAtPoint:CGPointMake(p.x, p.y + 5) forWidth:(self.frame.size.width - p.x)  withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation];
-    p.x = origin.x;
-    p.y += 62;
+    p.y += nameHeight;
+    [[user pouredDescription] drawAtPoint:CGPointMake(p.x, p.y) forWidth:(self.frame.size.width - p.x) 
+                                 withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation];
+    p.y += amountHeight;
+    
+    KBCGContextDrawLine(context, p.x, p.y, self.frame.size.width - p.x, p.y, [UIColor whiteColor].CGColor, 0.5);
+    KBCGContextDrawLine(context, p.x, p.y + 0.25, self.frame.size.width - p.x, p.y + 0.25, [UIColor colorWithWhite:0.2 alpha:0.8].CGColor, 0.25);
+    
+    // Check if we have room to draw next user
+    if ((p.y + rowHeight) > self.frame.size.height)
+      break;
+    
+    p.y += padding;
   }
 
 }

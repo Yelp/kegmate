@@ -55,6 +55,12 @@
 
 
 
+@property (nonatomic, retain) NSDate *dateCreated;
+
+//- (BOOL)validateDateCreated:(id*)value_ error:(NSError**)error_;
+
+
+
 @property (nonatomic, retain) NSNumber *ratingCount;
 
 @property int ratingCountValue;
@@ -72,12 +78,6 @@
 - (void)setRatingTotalValue:(double)value_;
 
 //- (BOOL)validateRatingTotal:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSDate *dateCreated;
-
-//- (BOOL)validateDateCreated:(id*)value_ error:(NSError**)error_;
 
 
 

@@ -33,10 +33,11 @@
 
 - (void)addPouredValue:(float)poured {
   self.volumePouredValue += poured;
+  self.pourCountValue += 1;
 }
 
-- (NSString *)volumePouredDescription {
-  return [NSString stringWithFormat:@"%0.1f liters", self.volumePouredValue];
+- (NSString *)pouredDescription {
+  return [NSString stringWithFormat:@"%d pours (%0.1f liters)", self.pourCountValue, self.volumePouredValue];
 }
 
 @end

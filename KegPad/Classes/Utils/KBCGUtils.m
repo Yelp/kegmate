@@ -1,8 +1,8 @@
 //
-//  KBLeaderboardView.h
+//  KBCGUtils.m
 //  KegPad
 //
-//  Created by Gabriel Handford on 7/30/10.
+//  Created by Gabriel Handford on 10/13/10.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBUser.h"
+#import "KBCGUtils.h"
 
-@interface KBLeaderboardView : UIView {
-  UIImage *backgroundImage_;
-  NSArray *users_;
+
+void KBCGContextDrawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGColorRef color, CGFloat lineWidth) {
+  CGContextBeginPath(context);
+  CGContextMoveToPoint(context, x1, y1);
+  CGContextAddLineToPoint(context, x2, y2);
+  CGContextSetStrokeColorWithColor(context, color);
+  CGContextSetLineWidth(context, lineWidth);
+  CGContextStrokePath(context);
 }
 
-- (void)setUsers:(NSArray *)users;
-
-@end

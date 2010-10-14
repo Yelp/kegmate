@@ -31,6 +31,12 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
   if ((self = [super initWithCoder:coder])) {
+    
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"graph_background.png"]];
+    background.contentMode = UIViewContentModeBottom;
+    [self addSubview:background];
+    [background release];
+    
     graphView_ = [[S7GraphView alloc] init];
     graphView_.dataSource = self;
     

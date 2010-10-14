@@ -23,6 +23,7 @@
 
 #import "KBKegPour.h"
 #import "KBUser.h"
+#import "KBCGUtils.h"
 
 #define kDefaultUserName @"Lone Drinker"
 
@@ -69,18 +70,10 @@
     point.x = 10;
     point.y += 32;
         
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, 0, point.y + 0.5);
-    CGContextAddLineToPoint(context, self.frame.size.width, point.y + 0.5);
-    CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1.0 alpha:0.8].CGColor);
-    CGContextSetLineWidth(context, 0.5);
-    CGContextStrokePath(context);
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, 0, point.y);
-    CGContextAddLineToPoint(context, self.frame.size.width, point.y);
-    CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0.0 alpha:0.8].CGColor);
-    CGContextSetLineWidth(context, 0.5);
-    CGContextStrokePath(context);
+    extern void KBCGContextDrawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGColorRef color, CGFloat lineWidth);
+    
+    KBCGContextDrawLine(context, 0, point.y + 0.5, self.frame.size.width, point.y + 0.5, [UIColor colorWithWhite:1.0 alpha:0.8].CGColor, 0.5);
+    KBCGContextDrawLine(context, 0, point.y, self.frame.size.width, point.y, [UIColor colorWithWhite:0.0 alpha:0.8].CGColor, 0.5);
     
     point.y += 4;
   }
