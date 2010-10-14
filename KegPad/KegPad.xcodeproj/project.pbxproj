@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00025DB61267A48C0020985D /* BeerLoop.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 00025DB51267A48C0020985D /* BeerLoop.m4v */; };
 		0017B750120208F700269CDA /* KBKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B748120208F700269CDA /* KBKeg.m */; };
 		0017B751120208F700269CDA /* KBBeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B74A120208F700269CDA /* KBBeer.m */; };
 		0017B752120208F700269CDA /* _KBKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B74C120208F700269CDA /* _KBKeg.m */; };
@@ -18,7 +19,6 @@
 		0017BA41120249D600269CDA /* _KBKegTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3B120249D600269CDA /* _KBKegTemperature.m */; };
 		0017BA42120249D600269CDA /* KBKegPour.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3D120249D600269CDA /* KBKegPour.m */; };
 		0017BA43120249D600269CDA /* KBKegTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3F120249D600269CDA /* KBKegTemperature.m */; };
-		0017BBD9120272E300269CDA /* BeerReverse400.mov in Resources */ = {isa = PBXBuildFile; fileRef = 0017BBD5120272E300269CDA /* BeerReverse400.mov */; };
 		002F096012263EE300766D62 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F095F12263EE300766D62 /* YAJLIOS.framework */; };
 		004E1B0C12655172004B0AC0 /* admin_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 004E1B0B12655172004B0AC0 /* admin_button.png */; };
 		00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00568FAE1251A493004AF3D1 /* KBUserView.m */; };
@@ -133,6 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00025DB51267A48C0020985D /* BeerLoop.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = BeerLoop.m4v; sourceTree = "<group>"; };
 		0017B748120208F700269CDA /* KBKeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKeg.m; sourceTree = "<group>"; };
 		0017B749120208F700269CDA /* KBKeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKeg.h; sourceTree = "<group>"; };
 		0017B74A120208F700269CDA /* KBBeer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeer.m; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		0017BA3D120249D600269CDA /* KBKegPour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegPour.m; sourceTree = "<group>"; };
 		0017BA3E120249D600269CDA /* KBKegTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTemperature.h; sourceTree = "<group>"; };
 		0017BA3F120249D600269CDA /* KBKegTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTemperature.m; sourceTree = "<group>"; };
-		0017BBD5120272E300269CDA /* BeerReverse400.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = BeerReverse400.mov; sourceTree = "<group>"; };
 		002F095F12263EE300766D62 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
 		004E1B0B12655172004B0AC0 /* admin_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = admin_button.png; sourceTree = "<group>"; };
 		00568FAD1251A493004AF3D1 /* KBUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserView.h; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 		0017BB4A12025DB700269CDA /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				0017BBD5120272E300269CDA /* BeerReverse400.mov */,
+				00025DB51267A48C0020985D /* BeerLoop.m4v */,
 				00CD289E1211E42C00DF808D /* license.txt */,
 			);
 			path = Videos;
@@ -798,7 +798,6 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				0017B7C712021B1A00269CDA /* KBDisplayViewController.xib in Resources */,
-				0017BBD9120272E300269CDA /* BeerReverse400.mov in Resources */,
 				00D54AB21202887D00F76724 /* thermometer.png in Resources */,
 				00D54AB31202887D00F76724 /* beer.png in Resources */,
 				00D54AB51202887D00F76724 /* Test.png in Resources */,
@@ -852,6 +851,7 @@
 				427AC490126585C50063CE3C /* flow_needle.png in Resources */,
 				427AC491126585C50063CE3C /* flow_shadow.png in Resources */,
 				427AC71D1266A5640063CE3C /* KBFlowIndicator.xib in Resources */,
+				00025DB61267A48C0020985D /* BeerLoop.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -66,7 +66,7 @@
     [self addSubview:movieView_];
   }
   
-  moviePlayerController_.currentPlaybackRate = 0.70;
+  moviePlayerController_.currentPlaybackRate = 1.0;
   [moviePlayerController_ setContentURL:URL];
   
   [moviePlayerController_ play];
@@ -74,7 +74,7 @@
 
 - (void)play {
   // 768x432 will maintain aspect on 640x360
-  NSString *moviePath = [[NSBundle mainBundle] pathForResource:@"BeerReverse400" ofType:@"mov"];
+  NSString *moviePath = [[NSBundle mainBundle] pathForResource:@"BeerLoop" ofType:@"m4v"];
   NSURL *URL = [NSURL fileURLWithPath:moviePath];
   [self play:URL];
 }
