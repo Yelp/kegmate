@@ -23,6 +23,7 @@ extern char *const KBSP_TRAILER;
 #define KB_MESSAGE_ID_RFID 0x14
 #define KB_MESSAGE_ID_MAGSTRIPE 0x16
 
+// TODO(johnb): implement message sending
 @interface KBKegboardMessage : NSObject {
   NSUInteger _messageId;
 }

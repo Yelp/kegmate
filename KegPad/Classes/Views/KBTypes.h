@@ -20,6 +20,7 @@
 //
 
 #define kLitersToOunces 33.8140227
+#define kOuncesToLiter 0.0295735296
 
 enum {
   KBRatingValueUnknown = -1, //! For internal use only

@@ -41,4 +41,4 @@ NSString *const KBDidSelectUserNotification = @"KBDidSelectUserNotification";
 
 NSString *const KBActivityNotification = @"KBActivityNotification";
 
-NSString *const KBUpdatePourNotification = @"KBUpdatePourNotification";
+NSString *const KBKegDidUpdatePourNotification = @"KBKegDidUpdatePourNotification";

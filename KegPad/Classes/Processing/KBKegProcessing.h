@@ -20,8 +20,9 @@
 //
 
 #import "KBKegboard.h"
+#import "KBTypes.h"
 
-#define KB_VOLUME_DIFFERENCE_THRESHOLD 0.001
+#define KB_VOLUME_DIFFERENCE_THRESHOLD (0.7 * kOuncesToLiter)
 // Adjust this value based on the flow meter properties
 #define KB_VOLUME_PER_TICK 0.0001639344262
 #define KB_POUR_TIMEOUT 1.5
@@ -42,9 +43,10 @@
   
   KBKegboard *_kegboard;
 
-  double _flowRate; // in litres / second
+  double _flowRate; // in liters / second
   
-  double _lastVolume;
+  double _lastVolume; // in liters
+  double _lastVolumeTimetamp;
   
   double _pourStartVolume;
   BOOL _pouring;

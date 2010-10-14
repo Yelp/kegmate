@@ -70,12 +70,16 @@
     _hasVolume = YES;
     return;
   }
-  
-  // NOTE(johnb): This is assuming we've gotten messages every second, which depends on the firmware
-  _flowRate = volume - _lastVolume;
+
+  // NOTE(johnb): According to this Stack Overflow post
+  // http://stackoverflow.com/questions/358207/iphone-how-to-get-current-milliseconds
+  // CACurrentMediaTime will usually give more accurate relative timestamps than NSDate
+  double timestamp = CACurrentMediaTime(); 
+  _flowRate = (volume - _lastVolume) / (timestamp - _lastVolumeTimetamp);
+  _lastVolumeTimetamp = timestamp;
   
   // Figure out if we've started to increase flow a lot since the last sample
-  if (fabs(volume - _lastVolume) > KB_VOLUME_DIFFERENCE_THRESHOLD) {
+  if (_flowRate > KB_VOLUME_DIFFERENCE_THRESHOLD) {
     if (!_pouring) {
       KBDebug(@"Pouring");
       [self.delegate kegProcessingDidStartPour:self]; 

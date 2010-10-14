@@ -29,7 +29,7 @@
 
 - (void)awakeFromNib {
   _minimumFlowRate = 0;
-  _maximumFlowRate = 1;
+  _maximumFlowRate = 3;
   _minimumAngle = -0.41 * M_PI;
   _maximumAngle = 0.41 * M_PI;
   _flowRate = 0;
@@ -44,7 +44,8 @@
   [self setVolume:0 animated:NO];
   //[self simulateValues];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_onUpdatePourNotification:) name:KBUpdatePourNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_onKegDidUpdatePourNotification:) name:KBKegDidUpdatePourNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_onKegDidEndPourNotification:) name:KBKegDidEndPourNotification object:nil];
 }
 
 - (void)setRotationRadians:(CGFloat)radians animated:(BOOL)animated {
@@ -122,10 +123,15 @@
   [self setFlowRate:_flowRate animated:YES];
 }
 
-- (void)_onUpdatePourNotification:(NSNotification *)notification {
+- (void)_onKegDidUpdatePourNotification:(NSNotification *)notification {
   KBKegProcessing *kegProcessing = (KBKegProcessing *)[notification object];
   [self setVolume:kegProcessing.pourVolume * kLitersToOunces animated:YES];
   [self setFlowRate:kegProcessing.flowRate * kLitersToOunces animated:YES];
+}
+
+- (void)_onKegDidEndPourNotification:(NSNotification *)notification {
+  [self setFlowRate:0 animated:YES];
+  [self setVolume:0 animated:YES];
 }
 
 @end
