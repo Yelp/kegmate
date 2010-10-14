@@ -27,6 +27,13 @@
 #import "KBKegProcessing.h"
 #import "KBTypes.h"
 
+enum {
+  KBPourIndexTimeTypeHour = 1,
+  KBPourIndexTimeTypeKegHour = 2,
+  KBPourIndexTimeTypeUserHour = 3,
+};
+typedef NSInteger KBPourIndexTimeType;
+
 
 #define KBDataStoreCheckError(__ERROR__) do { \
   if (error) NSLog(@"Error: %@; %@", error, [error localizedFailureReason]); \
@@ -148,7 +155,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @param error Out error
  @result YES if keg pour was added
  */
-- (BOOL)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
+- (BOOL)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user date:(NSDate *)date error:(NSError **)error;
 
 /*!
  Get a list of recent keg pours.
@@ -261,14 +268,20 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
 
 /*!
  Get the rate for keg pours in the last hour for user.
+ @deprecated
  @param user User, if nil will query for all users
  @param error Out error
  */
 - (float)rateForKegPoursLastHourForUser:(KBUser *)user error:(NSError **)error;
 
-/*!
- For all stats to recompute.
- */
-- (void)recomputeStats;
+
++ (NSInteger)timeIndexForForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType;
+
+- (KBPourIndex *)pourIndexForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
+
+- (KBPourIndex *)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
+
+- (NSArray */*of KBPourIndex*/)pourIndexesForStartIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex timeType:(KBPourIndexTimeType)timeType 
+                                                    keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
 
 @end

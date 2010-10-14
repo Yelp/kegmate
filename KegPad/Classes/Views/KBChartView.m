@@ -24,101 +24,102 @@
 #import "KBTypes.h"
 #import "KBDataStore.h"
 #import "KBKegPour.h"
+#import "KBPourIndex.h"
 #import "KBNotifications.h"
 #import "KBApplication.h"
+#import "KBCGUtils.h"
+
 
 @implementation KBChartView
 
 - (id)initWithCoder:(NSCoder *)coder {
   if ((self = [super initWithCoder:coder])) {
-    
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"graph_background.png"]];
-    background.contentMode = UIViewContentModeBottom;
-    [self addSubview:background];
-    [background release];
-    
-    graphView_ = [[S7GraphView alloc] init];
-    graphView_.dataSource = self;
-    
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [numberFormatter setMinimumFractionDigits:0];
-    [numberFormatter setMaximumFractionDigits:2];
-    
-    graphView_.yValuesFormatter = numberFormatter;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:kCFDateFormatterShortStyle];
-    [dateFormatter setDateStyle:kCFDateFormatterNoStyle];
-    
-    graphView_.xValuesFormatter = dateFormatter;
-    
-    [dateFormatter release];        
-    [numberFormatter release];
-    
-    graphView_.backgroundColor = [UIColor clearColor];
-    
-    graphView_.drawAxisX = YES;
-    graphView_.drawAxisY = YES;
-    graphView_.drawGridX = YES;
-    graphView_.drawGridY = YES;
-    
-    graphView_.xValuesColor = [UIColor blackColor];
-    graphView_.yValuesColor = [UIColor blackColor];
-    
-    graphView_.gridXColor = [UIColor clearColor];
-    graphView_.gridYColor = [UIColor clearColor];
-    
-    [self addSubview:graphView_];
-    [graphView_ reloadData];
+    backgroundImage_ = [[UIImage imageNamed:@"graph_background.png"] retain];
   }
   return self;
 }
 
 - (void)dealloc {
-  [graphView_ release];
-  [kegPourRates_ release];
-  [kegPourDates_ release];
+  [backgroundImage_ release];
   [super dealloc];
 }
 
-- (void)layoutSubviews {
-  [super layoutSubviews];  
-  graphView_.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-}
-
-- (void)_kegDidSavePour:(NSNotification *)notification {
-  [self recompute];
-}
-
 - (void)recompute {
-  NSArray *kegPours = [[KBApplication dataStore] recentKegPours:20 ascending:NO error:nil];
+  NSInteger endIndex = [KBDataStore timeIndexForForDate:[NSDate date] timeType:KBPourIndexTimeTypeHour];
+  NSInteger startIndex = endIndex - kHours;
+  NSArray *pourIndexes = [[KBApplication dataStore] pourIndexesForStartIndex:startIndex endIndex:endIndex 
+                                                                    timeType:KBPourIndexTimeTypeHour keg:nil user:nil error:nil];
   
-  if (!kegPourRates_)
-    kegPourRates_ = [[NSMutableArray alloc] initWithCapacity:[kegPours count]];
-  [kegPourRates_ removeAllObjects];
-  if (!kegPourDates_) 
-    kegPourDates_ = [[NSMutableArray alloc] initWithCapacity:[kegPours count]];
-  [kegPourDates_ removeAllObjects];
-  for (KBKegPour *kegPour in [kegPours reverseObjectEnumerator]) {
-    [kegPourRates_ addObject:[NSNumber numberWithFloat:[kegPour amountValue] * kLitersToOunces]];
-    [kegPourDates_ addObject:[kegPour date]];
+  // TODO(gabe): Use memset
+  for (NSInteger i = 0; i < kHours; i++)
+    values_[i] = 0;
+
+  maxValue_ = 0.0;
+  for (KBPourIndex *pourIndex in pourIndexes) {
+    float value = (float)pourIndex.volumePouredValue;
+    if (value > maxValue_) maxValue_ = value;
+    NSInteger index = pourIndex.timeIndexValue - startIndex - 1;
+    if (index >= 0 && index < kHours) {      
+      values_[index] = value;
+    } else {
+      KBError(@"Pour index out of bounds: %d", index);
+    }
   }
-  [graphView_ reloadData];
+  
+  // Miniumum max value is X liters
+  // TODO(gabe): Should this be keg total volume?
+  if (maxValue_ < 25.0) maxValue_ = 25.0;
+  
+  [self setNeedsDisplay];
 }
 
-#pragma mark DataSource (S7GraphViewDataSource)
-
-- (NSUInteger)graphViewNumberOfPlots:(S7GraphView *)graphView {
-	return 1;
+- (void)drawRect:(CGRect)rect {
+  [super drawRect:rect];
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  
+  [backgroundImage_ drawAtPoint:CGPointMake(0, 0)];
+  
+  CGFloat padding = 10;
+  CGFloat legendXHeight = 10;
+  CGFloat legendYWidth = 0;
+  
+  CGFloat unitWidth = (self.frame.size.width - (padding * 2) - legendYWidth) / (float)kHours;
+  CGFloat maxHeight = (self.frame.size.height - (padding * 3)) - legendXHeight - 5; 
+  
+  // Origin at bottom left  
+  CGPoint origin = CGPointMake(padding, self.frame.size.height - padding);
+  CGPoint p = origin;
+  UIColor *grayColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+  
+  // Legend X
+  [grayColor set];
+  p.y -= legendXHeight;
+  [@"24 hour participation" drawAtPoint:CGPointMake(p.x + 570, p.y) withFont:[UIFont systemFontOfSize:10]];
+  
+  // Legend Y
+  // TODO(gabe): Draw Y-axis legend
+  p.x += legendYWidth;
+  
+  // Draw x-axis
+  [grayColor set];
+  for (NSInteger i = 0; i < kHours; i++) {
+    CGContextFillRect(context, CGRectMake(p.x + 1, p.y - 2.0, unitWidth - 2, 2.0));
+    p.x += unitWidth;
+  }
+  
+  // Reset to origin
+  p = origin;
+  p.x += legendYWidth;
+  
+  // Draw values
+  [[UIColor colorWithRed:0.275 green:0.514 blue:0.698 alpha:1.0] set];
+  for (NSInteger i = 0; i < kHours; i++) {
+    float percentage = values_[i] / maxValue_;
+    CGFloat height = percentage * maxHeight;
+    CGContextFillRect(context, CGRectMake(p.x + 1, p.y - 15.0, unitWidth - 2, -height));
+    p.x += unitWidth;
+  }
 }
 
-- (NSArray *)graphViewXValues:(S7GraphView *)graphView {
-	return kegPourDates_;
-}
-
-- (NSArray *)graphView:(S7GraphView *)graphView yValuesForPlot:(NSUInteger)plotIndex {
-  return kegPourRates_;
-}
 
 @end

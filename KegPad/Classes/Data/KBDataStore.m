@@ -27,6 +27,7 @@
 #import "KBKegPour.h"
 #import "KBKegTemperature.h"
 #import "KBRating.h"
+#import "KBPourIndex.h"
 
 
 @implementation KBDataStore
@@ -142,6 +143,7 @@
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBBeer" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id = %@", id]];
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
   return [results gh_firstObject];
 }
 
@@ -154,8 +156,10 @@
   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
   [fetchRequest setSortDescriptors:sortDescriptors];
   [sortDescriptors release];
-  [sortDescriptor release];  
-  return [self executeFetchRequest:fetchRequest error:error];
+  [sortDescriptor release];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;
 }
 
 - (BOOL)addKegWithBeer:(KBBeer *)beer error:(NSError **)error {
@@ -172,6 +176,7 @@
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBKeg" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id = %@", id]];
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
   return [results gh_firstObject];
 }
 
@@ -219,11 +224,66 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return saved;
 }
 
-- (BOOL)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {
++ (NSInteger)timeIndexForForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType {
+  switch (timeType) {
+    case KBPourIndexTimeTypeHour:
+    case KBPourIndexTimeTypeKegHour:
+    case KBPourIndexTimeTypeUserHour: {
+      NSInteger hourIndex = ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0));
+      return hourIndex;
+    }
+  }
+  return -1;
+}
+
+- (KBPourIndex *)pourIndexForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {
+  NSInteger timeIndex = [KBDataStore timeIndexForForDate:date timeType:timeType];
+  if (timeIndex < 0) return nil;
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBPourIndex" inManagedObjectContext:[self managedObjectContext]]];
+  // TODO(gabe): Deal with optional user and keg
+  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"timeType = %@ AND timeIndex = %@", 
+                              [NSNumber numberWithInteger:timeType], [NSNumber numberWithInteger:timeIndex], keg]];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return [results gh_firstObject];
+}
+
+- (KBPourIndex *)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {
+  KBPourIndex *pourIndex = [self pourIndexForDate:date timeType:timeType keg:keg user:user error:error];
+  if (!pourIndex) {
+    pourIndex = [NSEntityDescription insertNewObjectForEntityForName:@"KBPourIndex" inManagedObjectContext:[self managedObjectContext]];
+    pourIndex.keg = keg;
+    pourIndex.user = user;
+    pourIndex.timeTypeValue = timeType;
+    NSInteger timeIndex = [KBDataStore timeIndexForForDate:date timeType:timeType];
+    pourIndex.timeIndexValue = timeIndex;
+  }
+
+  pourIndex.volumePouredValue += amount;
+  pourIndex.pourCountValue += 1;
+  KBDebug(@"Updated pour index: %@", pourIndex);
+  return pourIndex;
+}
+
+- (NSArray */*of KBPourIndex*/)pourIndexesForStartIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex timeType:(KBPourIndexTimeType)timeType 
+                                                    keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {
+
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBPourIndex" inManagedObjectContext:[self managedObjectContext]]];
+  // TODO(gabe): Deal with optional user and keg
+  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"timeType = %@ AND timeIndex >= %@ AND timeIndex <= %@", 
+                              [NSNumber numberWithInteger:timeType], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:endIndex]]];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;
+}
+
+- (BOOL)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user date:(NSDate *)date error:(NSError **)error {
   if (!keg) return NO;
   KBKegPour *kegPour = [NSEntityDescription insertNewObjectForEntityForName:@"KBKegPour" inManagedObjectContext:[self managedObjectContext]];
   kegPour.keg = keg;
-  kegPour.date = [NSDate date];
+  kegPour.date = date;
   kegPour.user = user;
   kegPour.amountValue = amount;
   
@@ -231,8 +291,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   
   [user addPouredValue:amount];
   
-  kegPour.amountHourValue = [self rateForKegPoursLastHourForUser:nil error:error];
-  kegPour.amountUserHourValue = [self rateForKegPoursLastHourForUser:kegPour.user error:error];
+  [self updatePourIndex:amount date:date timeType:KBPourIndexTimeTypeHour keg:keg user:user error:error];
   
   BOOL saved = [self save:error];
   
@@ -251,7 +310,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [self executeFetchRequest:fetchRequest error:error];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;
 }
 
 - (NSArray *)usersWithOffset:(NSUInteger)offset limit:(NSUInteger)limit error:(NSError **)error {
@@ -265,7 +326,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [self executeFetchRequest:fetchRequest error:error];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;  
 }
 
 - (NSArray */*of KBKegPour*/)recentKegPoursFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate user:(KBUser *)user error:(NSError **)error {
@@ -278,7 +341,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [self executeFetchRequest:fetchRequest error:error];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;  
 }
 
 - (float)rateForKegPoursLastHourForUser:(KBUser *)user error:(NSError **)error {
@@ -295,14 +360,6 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return (interval > 0 ? (value / interval) : 0);
 }
 
-// TODO(gabe): This is inefficient
-- (BOOL)updateKegStatsFromRecentPours:(KBUser *)user limit:(NSUInteger)limit error:(NSError **)error {
-  NSArray *kegPours = [self recentKegPours:limit ascending:NO error:nil];  
-  for (KBKegPour *pour in kegPours)
-    pour.amountHourValue = [self rateForKegPoursLastHourForUser:user error:error];
-  return [self save:error];
-}
-
 - (KBKegPour *)lastPour:(NSError **)error {
   return [[self recentKegPours:1 ascending:NO error:error] gh_firstObject];
 }
@@ -313,6 +370,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   KBDebug(@"Fetching with user: %@, beer: %@", user.firstName, beer.name);
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"user = %@ and beer = %@", user, beer]];
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
   return [results gh_firstObject];  
 }
 
@@ -364,7 +422,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBUser" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setFetchLimit:1];
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"tagId = %@", tagId]];
-  return [[self executeFetchRequest:fetchRequest error:error] gh_firstObject];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return [results gh_firstObject];  
 }
 
 - (NSArray *)topUsersByPourWithOffset:(NSUInteger)offset limit:(NSUInteger)limit error:(NSError **)error {
@@ -377,14 +437,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
-  return [self executeFetchRequest:fetchRequest error:error];  
-}
-
-- (void)recomputeStats {
-  [self updateKegStatsFromRecentPours:nil limit:1000 error:nil];
-  for (KBUser *user in [self usersWithOffset:0 limit:1000 error:nil]) {
-    [self updateKegStatsFromRecentPours:user limit:1000 error:nil];
-  }
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;
 }
 
 @end

@@ -24,6 +24,7 @@
 @interface KBRatingPicker ()
 - (NSInteger)_pointInsideIndex:(CGPoint)point; // Find index (1-5) for (touch) point
 - (void)_selectWithTouches:(NSSet *)touches; // Update selected index from touches
+- (void)_setRating:(KBRatingValue)rating; // When setting rating internally, use this
 @end
  
 @implementation KBRatingPicker
@@ -33,6 +34,7 @@
 - (id)initWithStyle:(KBRatingPickerStyle)style {
   if ((self = [self init])) {
     rating_ = KBRatingValueNone;
+    originalRating_ = KBRatingValueUnknown;
     [self setStyle:style];
   }
   return self;
@@ -110,7 +112,7 @@
 	}
 
 	// If not in any region, but inside the element, then lets clear the selection
-	self.rating = selectedStars;
+  [self _setRating:selectedStars];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -121,10 +123,20 @@
 	[self _selectWithTouches:touches];
 }
 
-- (void)setRating:(KBRatingValue)rating {
+- (void)_setRating:(KBRatingValue)rating {
 	rating_ = rating;
 	starIndex_ = rating;
 	[self setNeedsDisplay];
+}
+
+- (void)setRating:(KBRatingValue)rating {
+  NSAssert(rating != KBRatingValueUnknown, @"Can't set to unknown value");
+  originalRating_ = rating;
+  [self _setRating:rating];  
+}
+
+- (BOOL)isModified {
+  return (originalRating_ != KBRatingValueUnknown && originalRating_ != rating_);
 }
 
 - (void)drawRect:(CGRect)rect {

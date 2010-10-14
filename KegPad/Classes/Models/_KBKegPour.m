@@ -29,35 +29,17 @@
 
 
 
-@dynamic amountHour;
+@dynamic hour;
 
 
 
-- (float)amountHourValue {
-	NSNumber *result = [self amountHour];
-	return result ? [result floatValue] : 0;
+- (int)hourValue {
+	NSNumber *result = [self hour];
+	return result ? [result intValue] : 0;
 }
 
-- (void)setAmountHourValue:(float)value_ {
-	[self setAmountHour:[NSNumber numberWithFloat:value_]];
-}
-
-
-
-
-
-
-@dynamic amountUserHour;
-
-
-
-- (float)amountUserHourValue {
-	NSNumber *result = [self amountUserHour];
-	return result ? [result floatValue] : 0;
-}
-
-- (void)setAmountUserHourValue:(float)value_ {
-	[self setAmountUserHour:[NSNumber numberWithFloat:value_]];
+- (void)setHourValue:(int)value_ {
+	[self setHour:[NSNumber numberWithInt:value_]];
 }
 
 

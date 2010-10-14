@@ -90,13 +90,6 @@
 
 
 
-@dynamic dateCreated;
-
-
-
-
-
-
 @dynamic ratingCount;
 
 
@@ -133,6 +126,13 @@
 
 
 
+@dynamic dateCreated;
+
+
+
+
+
+
 @dynamic volumeAdjusted;
 
 
@@ -151,6 +151,10 @@
 
 
 
+@dynamic beer;
+
+	
+
 @dynamic temperatures;
 
 	
@@ -162,10 +166,6 @@
 }
 	
 
-@dynamic beer;
-
-	
-
 @dynamic pours;
 
 	
@@ -173,6 +173,17 @@
 	[self willAccessValueForKey:@"pours"];
 	NSMutableSet *result = [self mutableSetValueForKey:@"pours"];
 	[self didAccessValueForKey:@"pours"];
+	return result;
+}
+	
+
+@dynamic pourIndexes;
+
+	
+- (NSMutableSet*)pourIndexesSet {
+	[self willAccessValueForKey:@"pourIndexes"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"pourIndexes"];
+	[self didAccessValueForKey:@"pourIndexes"];
 	return result;
 }
 	

@@ -39,7 +39,9 @@ typedef NSUInteger KBRatingPickerStyle;
 	
 	CGSize inset_;
 	
+  KBRatingValue originalRating_;
 	KBRatingValue rating_;
+
 }
 
 @property (assign, nonatomic) KBRatingValue rating;
@@ -47,6 +49,8 @@ typedef NSUInteger KBRatingPickerStyle;
 - (id)initWithStyle:(KBRatingPickerStyle)style;
 
 - (void)setStyle:(KBRatingPickerStyle)style;
+
+- (BOOL)isModified;
 
 @end
 

@@ -125,7 +125,7 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didEndPourWithAmount:(double)amount {
   
   if (amount > 0) 
-    [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:self.loginUser error:nil];
+    [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:self.loginUser date:[NSDate date] error:nil];
   
   pouring_ = NO;
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEndPourNotification object:nil];

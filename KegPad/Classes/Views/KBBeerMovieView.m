@@ -38,10 +38,13 @@
 - (void)_playbackDidFinish:(NSNotification *)notification {
   KBDebug(@"Playback finished: %@", notification);
   // Restart so it loops
-  [moviePlayerController_ play];
+  if (!stop_) {
+    [moviePlayerController_ play];
+  }
 }
 
 - (void)play:(NSURL *)URL {
+  stop_ = NO;
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_playbackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
   if (!moviePlayerController_) {
@@ -81,6 +84,7 @@
 }
 
 - (void)stop {
+  stop_ = YES;
   KBDebug(@"Stop");  
   [moviePlayerController_ stop];
   [self _playbackDidFinish:nil];

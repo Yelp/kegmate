@@ -26,6 +26,7 @@
   
   NSTimer *timer_; // For keeping track of time during play
 
+  BOOL stop_;
 }
 
 - (void)play:(NSURL *)URL;

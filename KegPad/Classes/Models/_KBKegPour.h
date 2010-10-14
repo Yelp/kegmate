@@ -18,23 +18,13 @@
 
 
 
-@property (nonatomic, retain) NSNumber *amountHour;
+@property (nonatomic, retain) NSNumber *hour;
 
-@property float amountHourValue;
-- (float)amountHourValue;
-- (void)setAmountHourValue:(float)value_;
+@property int hourValue;
+- (int)hourValue;
+- (void)setHourValue:(int)value_;
 
-//- (BOOL)validateAmountHour:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *amountUserHour;
-
-@property float amountUserHourValue;
-- (float)amountUserHourValue;
-- (void)setAmountUserHourValue:(float)value_;
-
-//- (BOOL)validateAmountUserHour:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateHour:(id*)value_ error:(NSError**)error_;
 
 
 

@@ -154,11 +154,15 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)updateRating {
+  KBRatingValue ratingValue = KBRatingValueNone;
   NSInteger ratingCount = keg_.beer.ratingCountValue;
   if (ratingCount > 0) {
     double rating = keg_.beer.ratingTotalValue / (double)ratingCount;
-    KBRatingValue ratingValue = KBRatingValueFromRating(rating);
+    ratingValue = KBRatingValueFromRating(rating);
     KBDebug(@"Rating: %0.1f, %@ / %@", rating, keg_.beer.ratingTotal, keg_.beer.ratingCount);
+  }
+  
+  if (ratingValue != KBRatingValueNone) {
     [ratingView_ setRating:ratingValue];
     if (ratingCount == 1) {
       ratingCountLabel_.text = [NSString stringWithFormat:@"(1 rating)"];
@@ -218,8 +222,10 @@ adminButton=adminButton_, delegate=delegate_;
         [ratingPicker_ setRating:KBRatingValueNone];
       }
     } else if (user_) {
-      KBDebug(@"Saving rating: %d for user: %@", ratingPicker_.rating, user_.firstName);
-      [[KBApplication dataStore] setRating:ratingPicker_.rating user:user_ keg:keg_ error:nil];
+      if ([ratingPicker_ isModified]) {
+        KBDebug(@"Saving rating: %d for user: %@", ratingPicker_.rating, user_.firstName);
+        [[KBApplication dataStore] setRating:ratingPicker_.rating user:user_ keg:keg_ error:nil];
+      }
     }
   }
   

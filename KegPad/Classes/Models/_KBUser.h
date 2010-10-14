@@ -5,6 +5,7 @@
 
 
 @class KBRating;
+@class KBPourIndex;
 @class KBKegPour;
 
 @interface KBUserID : NSManagedObjectID {}
@@ -72,6 +73,11 @@
 
 
 
+@property (nonatomic, retain) NSSet* pourIndexes;
+- (NSMutableSet*)pourIndexesSet;
+
+
+
 @property (nonatomic, retain) NSSet* pours;
 - (NSMutableSet*)poursSet;
 
@@ -85,6 +91,11 @@
 - (void)removeRatings:(NSSet*)value_;
 - (void)addRatingsObject:(KBRating*)value_;
 - (void)removeRatingsObject:(KBRating*)value_;
+
+- (void)addPourIndexes:(NSSet*)value_;
+- (void)removePourIndexes:(NSSet*)value_;
+- (void)addPourIndexesObject:(KBPourIndex*)value_;
+- (void)removePourIndexesObject:(KBPourIndex*)value_;
 
 - (void)addPours:(NSSet*)value_;
 - (void)removePours:(NSSet*)value_;

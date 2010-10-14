@@ -19,19 +19,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "S7GraphView.h"
+#define kHours (1 * 24) // Hourly for X days
 
 /*!
- Chart view for recent pours.
- TODO(gabe): Fix x-axis
+ Chart view for pour history.
  */
-@interface KBChartView : UIView <S7GraphViewDataSource> {
+@interface KBChartView : UIView {
+
+  UIImage *backgroundImage_;
   
-  S7GraphView *graphView_;
-  
-  NSMutableArray *kegPourDates_;
-  NSMutableArray *kegPourRates_;
-  
+  float values_[kHours];
+  float maxValue_;
+
 }
 
 - (void)recompute;

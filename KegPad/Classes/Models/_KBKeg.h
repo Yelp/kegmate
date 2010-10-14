@@ -4,9 +4,10 @@
 #import <CoreData/CoreData.h>
 
 
-@class KBKegTemperature;
 @class KBBeer;
+@class KBKegTemperature;
 @class KBKegPour;
+@class KBPourIndex;
 
 @interface KBKegID : NSManagedObjectID {}
 @end
@@ -55,12 +56,6 @@
 
 
 
-@property (nonatomic, retain) NSDate *dateCreated;
-
-//- (BOOL)validateDateCreated:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) NSNumber *ratingCount;
 
 @property int ratingCountValue;
@@ -81,6 +76,12 @@
 
 
 
+@property (nonatomic, retain) NSDate *dateCreated;
+
+//- (BOOL)validateDateCreated:(id*)value_ error:(NSError**)error_;
+
+
+
 @property (nonatomic, retain) NSNumber *volumeAdjusted;
 
 @property float volumeAdjustedValue;
@@ -92,18 +93,23 @@
 
 
 
-@property (nonatomic, retain) NSSet* temperatures;
-- (NSMutableSet*)temperaturesSet;
-
-
-
 @property (nonatomic, retain) KBBeer* beer;
 //- (BOOL)validateBeer:(id*)value_ error:(NSError**)error_;
 
 
 
+@property (nonatomic, retain) NSSet* temperatures;
+- (NSMutableSet*)temperaturesSet;
+
+
+
 @property (nonatomic, retain) NSSet* pours;
 - (NSMutableSet*)poursSet;
+
+
+
+@property (nonatomic, retain) NSSet* pourIndexes;
+- (NSMutableSet*)pourIndexesSet;
 
 
 
@@ -120,5 +126,10 @@
 - (void)removePours:(NSSet*)value_;
 - (void)addPoursObject:(KBKegPour*)value_;
 - (void)removePoursObject:(KBKegPour*)value_;
+
+- (void)addPourIndexes:(NSSet*)value_;
+- (void)removePourIndexes:(NSSet*)value_;
+- (void)addPourIndexesObject:(KBPourIndex*)value_;
+- (void)removePourIndexesObject:(KBPourIndex*)value_;
 
 @end

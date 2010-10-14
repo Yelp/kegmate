@@ -115,6 +115,17 @@
 }
 	
 
+@dynamic pourIndexes;
+
+	
+- (NSMutableSet*)pourIndexesSet {
+	[self willAccessValueForKey:@"pourIndexes"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"pourIndexes"];
+	[self didAccessValueForKey:@"pourIndexes"];
+	return result;
+}
+	
+
 @dynamic pours;
 
 	
