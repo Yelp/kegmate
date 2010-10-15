@@ -71,13 +71,10 @@
     return;
   }
 
-  // NOTE(johnb): According to this Stack Overflow post
-  // http://stackoverflow.com/questions/358207/iphone-how-to-get-current-milliseconds
-  // CACurrentMediaTime will usually give more accurate relative timestamps than NSDate
-  double timestamp = CACurrentMediaTime(); 
+  double timestamp = [message timeStamp]; 
   _flowRate = (volume - _lastVolume) / (timestamp - _lastVolumeTimetamp);
   _lastVolumeTimetamp = timestamp;
-  
+
   // Figure out if we've started to increase flow a lot since the last sample
   if (_flowRate > KB_VOLUME_DIFFERENCE_THRESHOLD) {
     if (!_pouring) {

@@ -23,13 +23,14 @@ extern char *const KBSP_TRAILER;
 #define KB_MESSAGE_ID_RFID 0x14
 #define KB_MESSAGE_ID_MAGSTRIPE 0x16
 
-// TODO(johnb): implement message sending
 @interface KBKegboardMessage : NSObject {
   NSUInteger _messageId;
+  NSTimeInterval _timeStamp;
 }
 @property (readonly, nonatomic) NSUInteger messageId;
+@property (readonly, assign, nonatomic) NSTimeInterval timeStamp;
 
-+ (id)messageWithId:(NSUInteger)messageId payload:(char *)payload length:(NSUInteger)length;
++ (id)messageWithId:(NSUInteger)messageId payload:(char *)payload length:(NSUInteger)length timeStamp:(NSTimeInterval)timeStamp;
 + (NSString *)parseString:(char *)stringData length:(NSUInteger)length;
 + (NSUInteger)parseUInt32:(char *)data length:(NSUInteger)length;
 + (NSUInteger)parseUInt8:(char *)data;

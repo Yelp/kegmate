@@ -12,40 +12,43 @@ char *const KBSP_PREFIX = kKBSP_PREFIX;
 char *const KBSP_TRAILER = kKBSP_TRAILER;
 
 @interface KBKegboardMessage ()
+@property (assign, nonatomic) NSTimeInterval timeStamp;
 - (void)parsePayload:(char *)payload length:(NSUInteger)length;
 - (BOOL)parsePayload:(char *)data forTag:(NSUInteger)tag length:(NSUInteger)length;
 @end
 
 @implementation KBKegboardMessage
 
-@synthesize messageId=_messageId;
+@synthesize messageId=_messageId, timeStamp=_timeStamp;
 
-+ (id)messageWithId:(NSUInteger)messageId payload:(char *)payload length:(NSUInteger)length {
++ (id)messageWithId:(NSUInteger)messageId payload:(char *)payload length:(NSUInteger)length timeStamp:(NSTimeInterval)timeStamp {
+  KBKegboardMessage *message = nil;
   switch (messageId) {
     case KB_MESSAGE_ID_HELLO:
-      return [[[KBKegboardMessageHello alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+      message = [[[KBKegboardMessageHello alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
     case KB_MESSAGE_ID_BOARD_CONFIGURATION:
-      return [[[KBKegboardMessageBoardConfiguration alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+      message = [[[KBKegboardMessageBoardConfiguration alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
     case KB_MESSAGE_ID_METER_STATUS:
-      return [[[KBKegboardMessageMeterStatus alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+      message = [[[KBKegboardMessageMeterStatus alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
     case KB_MESSAGE_ID_TEMPERATURE_READING:
-      return [[[KBKegboardMessageTemperatureReading alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+      message = [[[KBKegboardMessageTemperatureReading alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
     case KB_MESSAGE_ID_OUTPUT_STATUS:
-      return [[[KBKegboardMessageOutputStatus alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+      message = [[[KBKegboardMessageOutputStatus alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
     case KB_MESSAGE_ID_RFID:
-      return [[[KBKegboardMessageRFID alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+      message = [[[KBKegboardMessageRFID alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
     case KB_MESSAGE_ID_MAGSTRIPE:
-      return [[[KBKegboardMessageMagStripe alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+      message = [[[KBKegboardMessageMagStripe alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
   }
-  NSLog(@"Got unknown message with ID %x", messageId);
-  return nil;
+  message.timeStamp = timeStamp;
+  if (!message) NSLog(@"Got unknown message with ID %x", messageId);
+  return message;
 }
 
 - (id)initWithMessageId:(NSUInteger)messageId payload:(char *)payload length:(NSUInteger)length {

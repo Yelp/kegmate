@@ -118,6 +118,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		4237352A127264E000C48796 /* Lagunitas_PILS.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373528127264E000C48796 /* Lagunitas_PILS.png */; };
+		4237352B127264E000C48796 /* Ommegang_BPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373529127264E000C48796 /* Ommegang_BPA.png */; };
 		427AC48C126585C50063CE3C /* flow_at_symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC486126585C50063CE3C /* flow_at_symbol.png */; };
 		427AC48D126585C50063CE3C /* flow_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC487126585C50063CE3C /* flow_background.png */; };
 		427AC48E126585C50063CE3C /* flow_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC488126585C50063CE3C /* flow_fill.png */; };
@@ -307,6 +309,8 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* KegPad_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KegPad_Prefix.pch; sourceTree = "<group>"; };
+		42373528127264E000C48796 /* Lagunitas_PILS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lagunitas_PILS.png; sourceTree = "<group>"; };
+		42373529127264E000C48796 /* Ommegang_BPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ommegang_BPA.png; sourceTree = "<group>"; };
 		427AC486126585C50063CE3C /* flow_at_symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_at_symbol.png; sourceTree = "<group>"; };
 		427AC487126585C50063CE3C /* flow_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_background.png; sourceTree = "<group>"; };
 		427AC488126585C50063CE3C /* flow_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_fill.png; sourceTree = "<group>"; };
@@ -607,6 +611,8 @@
 			isa = PBXGroup;
 			children = (
 				427ACC76126D1B790063CE3C /* Little_Sumpin_Wild.png */,
+				42373528127264E000C48796 /* Lagunitas_PILS.png */,
+				42373529127264E000C48796 /* Ommegang_BPA.png */,
 				427ACC5F126D15DC0063CE3C /* Lagunitas_IPA.png */,
 				427ACC3C126D0E500063CE3C /* New_Belgium_Ranger_IPA.png */,
 				009E8F3A126CE4B40008B159 /* Boont_Amber_Ale.png */,
@@ -881,6 +887,8 @@
 				427ACC3D126D0E500063CE3C /* New_Belgium_Ranger_IPA.png in Resources */,
 				427ACC60126D15DC0063CE3C /* Lagunitas_IPA.png in Resources */,
 				427ACC77126D1B790063CE3C /* Little_Sumpin_Wild.png in Resources */,
+				4237352A127264E000C48796 /* Lagunitas_PILS.png in Resources */,
+				4237352B127264E000C48796 /* Ommegang_BPA.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

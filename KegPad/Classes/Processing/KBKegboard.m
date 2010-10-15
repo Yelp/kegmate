@@ -97,7 +97,8 @@ static NSInteger gFileDescriptor;
   char crc[2];
   char trailer[2];
   crc_t calculatedCRC;
-
+  NSTimeInterval timeStamp;
+  
   while (YES) {
     // Find the prefix, re-aligning the messages as needed.
     BOOL loggedFrameError = NO;
@@ -106,6 +107,14 @@ static NSInteger gFileDescriptor;
     while (headerPosition < KBSP_PREFIX_LENGTH) {
       char byte;
       sleeperRead(gFileDescriptor, &byte, 1);
+      if (headerPosition == 0) {
+        // NOTE(johnb): According to this Stack Overflow post
+        // http://stackoverflow.com/questions/358207/iphone-how-to-get-current-milliseconds
+        // CACurrentMediaTime will usually give more accurate relative timestamps than NSDate
+        // Since we're mostly interested in relative timestamps (for flow rate), this is the
+        // best option.
+        timeStamp = CACurrentMediaTime();
+      }
       calculatedCRC = crc_update(calculatedCRC, (unsigned char *)&byte, 1);
       // Byte was expected
       if (byte == KBSP_PREFIX[headerPosition]) {
@@ -145,15 +154,15 @@ static NSInteger gFileDescriptor;
     if (calculatedCRC != sentCRC) {
       NSLog(@"ERROR: Bad CRC: Calculated crc is %X while sent crc is %X", calculatedCRC, sentCRC);
       continue;
-    }    
+    }
 
     if (trailer[0] != KBSP_TRAILER[0] || trailer[1] != KBSP_TRAILER[1]) {
       KBDebug(@"Bad trailer characters 0x%X 0x%X (expected 0x%X 0x%X) skipping message", trailer[0], trailer[1], KBSP_TRAILER[0], KBSP_TRAILER[1]);
       continue;
     }
-    
+
     // Create KegboardMessage from id and payload
-    KBKegboardMessage *kegboardMessage = [KBKegboardMessage messageWithId:messageId payload:payload length:messageLength];
+    KBKegboardMessage *kegboardMessage = [KBKegboardMessage messageWithId:messageId payload:payload length:messageLength timeStamp:timeStamp];
     KBDebug(@"Got message %@", kegboardMessage);
     // Notify delegate of message
     [self performSelectorOnMainThread:@selector(notifyDelegate:) withObject:kegboardMessage waitUntilDone:NO];

@@ -19,6 +19,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// TODO(johnb): implement message sending. This will allow us to reset the flow count in software
+// when we install a new keg. This way we could maintain state even if the iPad is disconnected
+// from the keg.
+
 #import "Serial.h"
 #import "KBKegboardMessage.h"
 

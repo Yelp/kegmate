@@ -79,6 +79,21 @@
   "country": "USA",
   "image": "Little_Sumpin_Wild.png",
   "abv": 7.8
+}, {
+  "id": "Lagunitas PILS",
+  "name": "Lagunitas PILS",
+  "info": "Like Adam and Eve, Issac and Ishmael, Mao and Confuscious, Good and Evil, Day and Night, Hittites and Visigoths, John and Lorena, or Groucho and Moe, Ales and Lagers are as different as can be. Still, we must love each other for who they are, seperately but equally, with liberty, and justice, for all. Cheers!",
+  "type": "Czech Style Pilsner",
+  "country": "USA",
+  "image": "Lagunitas_PILS.png",
+  "abv": 5.3
+}, {
+  "id": "Ommegang BPA",
+  "name": "Ommegang BPA",
+  "info": "BPA is brewed with 5 specialty malts and generously --though not excessively-- hopped with three hops: Columbus for bittering, three additions of Celeia for aroma, then dry-hopped with Cascade.",
+  "type": "Belgian-style Pale Ale",
+  "country": "USA",
+  "image": "Ommegang_BPA.png",
+  "abv": 6.2
 }]
-
 
