@@ -31,4 +31,19 @@
     "country": "USA",
     "image": "Pranqster.png",
     "abv": 7.6
+}, {
+    "id": "Bear Republic Hop Rod Rye Ale",
+    "name": "Bear Republic Hop Rod Rye Ale",
+    "info": "A high gravity IPA brewed with 18% rye malt. Hop Rod Rye has a floral hop aroma and subtle caramel notes with a slightly earthy and spicy rye character.",
+    "country": "USA",
+    "image": "Hop_Rod_Rye.png",
+    "abv": 8
+}, {
+    "id": "Lost Coast Great White",
+    "name": "Lost Coast Great White",
+    "info": "A crisp beer with a hint of citrus, made with two-row malted barley, unmalted wheat, a secret blend of Humboldt herbs, crystal clear mountain water and ale yeast.",
+    "type": "Witbier",
+    "country": "USA",
+    "image": "Great_White.png",
+    "abv": 4.8
 }]
