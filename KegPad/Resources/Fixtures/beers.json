@@ -63,4 +63,12 @@
   "country": "USA",
   "image": "New_Belgium_Ranger_IPA.png",
   "abv": 6.5
+}, {
+  "id": "Lagunitas IPA",
+  "name": "Lagunitas IPA",
+  "info": "Savor the moment as the raging hop character engages the imperial qualities of the Malt foundation in mortal combat on the battlefield of your palate!",
+  "type": "American IPA",
+  "country": "USA",
+  "image": "Lagunitas_IPA.png",
+  "abv": 5.7
 }]
