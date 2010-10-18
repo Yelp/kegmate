@@ -55,8 +55,8 @@
   return [[[self alloc] initWithTitle:title text:text target:target action:action context:nil showDisclosure:showDisclosure selectedAction:NULL] autorelease];
 }
 
-+ (KBUIForm *)formWithTitle:(NSString *)title target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure {
-  return [[[self alloc] initWithTitle:title text:nil target:target action:action context:context showDisclosure:showDisclosure selectedAction:NULL] autorelease];
++ (KBUIForm *)formWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure {
+  return [[[self alloc] initWithTitle:title text:text target:target action:action context:context showDisclosure:showDisclosure selectedAction:NULL] autorelease];
 }
 
 + (KBUIForm *)formWithTitle:(NSString *)title target:(id)target action:(SEL)action selectedAction:(SEL)selectedAction {

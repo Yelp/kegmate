@@ -131,7 +131,7 @@
     return;
   }
   
-  [self.delegate userEditViewController:self didAddUser:user];
+  [self.delegate userEditViewController:self didSaveUser:user];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBUserDidEditNotification object:user];
 }
 

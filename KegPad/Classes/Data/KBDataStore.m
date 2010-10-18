@@ -149,12 +149,28 @@
 }
 
 - (KBBeer *)beerWithId:(NSString *)id error:(NSError **)error {
+  if ([NSString gh_isBlank:id]) return nil;
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBBeer" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id = %@", id]];
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
   [fetchRequest release];
   return [results gh_firstObject];
+}
+
+- (NSArray */*of KBBeer*/)beersWithOffset:(NSUInteger)offset limit:(NSUInteger)limit error:(NSError **)error {
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  [fetchRequest setFetchOffset:offset];
+  [fetchRequest setFetchLimit:limit];
+  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBBeer" inManagedObjectContext:[self managedObjectContext]]];
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+  NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+  [fetchRequest setSortDescriptors:sortDescriptors];
+  [sortDescriptors release];
+  [sortDescriptor release];
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;
 }
 
 - (NSArray *)kegsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit error:(NSError **)error {
@@ -234,10 +250,12 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
 
 + (NSInteger)timeIndexForForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType {
   switch (timeType) {
-    case KBPourIndexTimeTypeHour:
-    case KBPourIndexTimeTypeKegHour:
-    case KBPourIndexTimeTypeUserHour: {
+    case KBPourIndexTimeTypeHour: {
       NSInteger hourIndex = ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0));
+      return hourIndex;
+    }
+    case KBPourIndexTimeType15Minutes: {
+      NSInteger hourIndex = ceilf(([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0 * 60)) * 15);
       return hourIndex;
     }
   }
@@ -299,7 +317,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   
   [user addPouredValue:amount];
   
-  [self updatePourIndex:amount date:date timeType:KBPourIndexTimeTypeHour keg:keg user:user error:error];
+  [self updatePourIndex:amount date:date timeType:KBPourIndexTimeType15Minutes keg:keg user:user error:error];
   
   BOOL saved = [self save:error];
   

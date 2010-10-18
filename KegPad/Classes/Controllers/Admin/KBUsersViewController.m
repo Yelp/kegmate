@@ -84,7 +84,7 @@
 
 #pragma mark KBUserEditViewControllerDelegate
 
-- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didAddUser:(KBUser *)user { 
+- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didSaveUser:(KBUser *)user { 
   [self.navigationController popToViewController:self animated:YES];
 }
 

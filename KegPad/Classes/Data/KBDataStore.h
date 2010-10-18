@@ -27,13 +27,6 @@
 #import "KBKegProcessing.h"
 #import "KBTypes.h"
 
-enum {
-  KBPourIndexTimeTypeHour = 1,
-  KBPourIndexTimeTypeKegHour = 2,
-  KBPourIndexTimeTypeUserHour = 3,
-};
-typedef NSInteger KBPourIndexTimeType;
-
 
 #define KBDataStoreCheckError(__ERROR__) do { \
   if (error) NSLog(@"Error: %@; %@", error, [error localizedFailureReason]); \
@@ -121,6 +114,15 @@ typedef NSInteger KBPourIndexTimeType;
  @result Beer
  */
 - (KBBeer *)beerWithId:(NSString *)id error:(NSError **)error;
+
+/*!
+ Get list of beers.
+ @param offset
+ @param limit
+ @param error Out error
+ @result Beers
+ */
+- (NSArray */*of KBBeer*/)beersWithOffset:(NSUInteger)offset limit:(NSUInteger)limit error:(NSError **)error;
 
 /*!
  Add a keg with beer.

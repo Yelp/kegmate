@@ -87,6 +87,8 @@ adminButton=adminButton_, delegate=delegate_;
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];    
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidSetRating:) name:KBUserDidSetRatingNotification object:nil];    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_beerDidEdit:) name:KBBeerDidEditNotification object:nil];    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEdit:) name:KBKegDidEditNotification object:nil];      
 
   [self.view sendSubviewToBack:beerMovieView_];
   
@@ -155,13 +157,13 @@ adminButton=adminButton_, delegate=delegate_;
   temperatureLabel_.text = [kegTemperature temperatureDescription];
 }
 
-- (void)updateRating {
+- (void)updateRatingFromBeer:(KBBeer *)beer {
   KBRatingValue ratingValue = KBRatingValueNone;
-  NSInteger ratingCount = keg_.beer.ratingCountValue;
+  NSInteger ratingCount = beer.ratingCountValue;
   if (ratingCount > 0) {
-    double rating = keg_.beer.ratingTotalValue / (double)ratingCount;
+    double rating = beer.ratingTotalValue / (double)ratingCount;
     ratingValue = KBRatingValueFromRating(rating);
-    KBDebug(@"Rating: %0.1f, %@ / %@", rating, keg_.beer.ratingTotal, keg_.beer.ratingCount);
+    KBDebug(@"Rating: %0.1f, %@ / %@", rating, beer.ratingTotal, beer.ratingCount);
   }
   
   if (ratingValue != KBRatingValueNone) {
@@ -190,16 +192,14 @@ adminButton=adminButton_, delegate=delegate_;
   }
 }
 
-- (void)updateKeg:(KBKeg *)keg {
-  self.view;
-  self.keg = keg;
-  if (keg.beer) {
-    nameLabel_.text = keg.beer.name;
-    infoLabel_.text = keg.beer.info;
-    typeLabel_.text = keg.beer.type;
-    countryLabel_.text = keg.beer.country;
-    abvLabel_.text = [NSString stringWithFormat:@"%0.1f", keg.beer.abvValue];
-    imageView_.image = [UIImage imageNamed:keg.beer.imageName];
+- (void)updateBeer:(KBBeer *)beer {
+  if (beer) {
+    nameLabel_.text = beer.name;
+    infoLabel_.text = beer.info;
+    typeLabel_.text = beer.type;
+    countryLabel_.text = beer.country;
+    abvLabel_.text = [NSString stringWithFormat:@"%0.1f", beer.abvValue];
+    imageView_.image = [UIImage imageNamed:beer.imageName];
   } else {
     nameLabel_.text = @"";
     infoLabel_.text = @"";
@@ -207,8 +207,14 @@ adminButton=adminButton_, delegate=delegate_;
     countryLabel_.text = @"-";
     abvLabel_.text = @"-";
     imageView_.image = nil;
-  }
-  [self updateRating];
+  }  
+  [self updateRatingFromBeer:beer];
+}
+
+- (void)updateKeg:(KBKeg *)keg {
+  self.view;
+  self.keg = keg;
+  [self updateBeer:keg.beer];
 }
 
 - (void)setUser:(KBUser *)user {  
@@ -269,6 +275,14 @@ adminButton=adminButton_, delegate=delegate_;
 
 #pragma mark - 
 
+- (void)_beerDidEdit:(NSNotification *)notification {
+  [self updateBeer:[notification object]];
+}
+
+- (void)_kegDidEdit:(NSNotification *)notification {
+  [self updateKeg:[notification object]];
+}
+
 - (void)_kegTemperatureDidChange:(NSNotification *)notification {
   [self setKegTemperature:[notification object]];
 }
@@ -290,7 +304,7 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)_userDidSetRating:(NSNotification *)notification {
-  [self updateRating];
+  [self updateRatingFromBeer:keg_.beer];
 }
 
 @end

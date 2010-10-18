@@ -80,7 +80,7 @@
 
 #pragma mark KBKegEditViewControllerDelegate
 
-- (void)kegEditViewController:(KBKegEditViewController *)kegEditViewController didAddKeg:(KBKeg *)keg {
+- (void)kegEditViewController:(KBKegEditViewController *)kegEditViewController didSaveKeg:(KBKeg *)keg {
   [self.navigationController popToViewController:self animated:YES];
 }
 
@@ -88,8 +88,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
   KBKeg *keg = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-  [[KBApplication dataStore] setKeg:keg position:0];
-  [self.tableView reloadData];
+  
+  KBKegEditViewController *kegEditViewController = [[KBKegEditViewController alloc] initWithTitle:@"Keg" useEnabled:YES];
+  kegEditViewController.delegate = self;
+  [kegEditViewController setKeg:keg];
+  [self.navigationController pushViewController:kegEditViewController animated:YES];
+  [kegEditViewController release];
 }
 
 @end

@@ -26,6 +26,8 @@
 
 @implementation KBBeersViewController
 
+@synthesize delegate=delegate_;
+
 - (id)init {
   if ((self = [super init])) { 
     self.title = @"Beers";
@@ -54,7 +56,11 @@
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
   cell.textLabel.text = [obj name];
   cell.detailTextLabel.text = [obj info];
-  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  if (delegate_) {
+    cell.accessoryType = UITableViewCellAccessoryNone;
+  } else {
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
   return cell;
 }
 
@@ -73,17 +79,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
   KBBeer *beer = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-  
-  KBBeerEditViewController *beerEditViewController = [[KBBeerEditViewController alloc] init];
-  beerEditViewController.delegate = self;
-  [beerEditViewController setBeer:beer];
-  [self.navigationController pushViewController:beerEditViewController animated:YES];
-  [beerEditViewController release];
+  if (delegate_) {
+    [delegate_ beersViewController:self didSelectBeer:beer];
+  } else {
+    KBBeerEditViewController *beerEditViewController = [[KBBeerEditViewController alloc] init];
+    beerEditViewController.delegate = self;
+    [beerEditViewController setBeer:beer];
+    [self.navigationController pushViewController:beerEditViewController animated:YES];
+    [beerEditViewController release];
+  }
 }
 
 #pragma mark KBBeerEditViewControllerDelegate
 
-- (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didAddBeer:(KBBeer *)beer { 
+- (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didSaveBeer:(KBBeer *)beer { 
   [self.navigationController popToViewController:self animated:YES];
 }
 

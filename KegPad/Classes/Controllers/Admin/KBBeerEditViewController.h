@@ -27,7 +27,7 @@
 @class KBBeerEditViewController;
 
 @protocol KBBeerEditViewControllerDelegate <NSObject>
-- (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didAddBeer:(KBBeer *)beer;
+- (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didSaveBeer:(KBBeer *)beer;
 @end
 
 @interface KBBeerEditViewController : KBUIFormViewController { 

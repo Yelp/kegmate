@@ -45,7 +45,7 @@
 - (id)initWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure selectedAction:(SEL)selectedAction;
 + (KBUIForm *)formWithTitle:(NSString *)title text:(NSString *)text;
 + (KBUIForm *)formWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action showDisclosure:(BOOL)showDisclosure;
-+ (KBUIForm *)formWithTitle:(NSString *)title target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure;
++ (KBUIForm *)formWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure;
 + (KBUIForm *)formWithTitle:(NSString *)title target:(id)target action:(SEL)action selectedAction:(SEL)selectedAction;
 
 - (void)performAction;

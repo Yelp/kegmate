@@ -75,7 +75,9 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegVolumeDidChange:) name:KBKegVolumeDidChangeNotification object:nil];    
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidStartPour:) name:KBKegDidStartPourNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];      
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_beerDidEdit:) name:KBBeerDidEditNotification object:nil];    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEdit:) name:KBKegDidEditNotification object:nil];      
 }
 
 - (void)updateLeaderboard {
@@ -86,17 +88,24 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
   [chartView_ recompute];
 }
 
+- (void)updateBeer:(KBBeer *)beer {
+  if (beer) {
+    nameLabel_.text = beer.name;
+  } else {
+    nameLabel_.text = @"";
+  }
+}
+
 - (void)updateKeg:(KBKeg *)keg {
   self.view;
   if (keg) {
-    nameLabel_.text = keg.beer.name;
     percentRemaingLabel_.text = [NSString stringWithFormat:@"%0.0f", [keg volumeRemaingPercentage]];
     totalPouredAmountLabel_.text = [NSString stringWithFormat:@"%0.1f liters", [keg volumeTotalPouredAdjustedValue]];
-  } else { 
-    nameLabel_.text = @"";
+  } else {     
     percentRemaingLabel_.text = @"";
     totalPouredAmountLabel_.text = @"-";
   }
+  [self updateBeer:keg.beer];
 }
 
 - (void)setLastKegPour:(KBKegPour *)kegPour {
@@ -131,6 +140,14 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 }
 
 #pragma mark - 
+
+- (void)_beerDidEdit:(NSNotification *)notification {
+  [self updateBeer:[notification object]];
+}
+
+- (void)_kegDidEdit:(NSNotification *)notification {
+  [self updateKeg:[notification object]];
+}
 
 - (void)_kegTemperatureDidChange:(NSNotification *)notification {
   [self setKegTemperature:[notification object]];

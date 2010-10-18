@@ -4,7 +4,7 @@
   "name": "Racer 5",
   "info": "This hoppy American IPA is a full bodied beer brewed American pale and crystal malts, and heavily hopped with Chinook, Cascade, Columbus and Centennial.",
   "type": "Pale Ale",
-  "country": "US",
+  "country": "USA",
   "image": "Racer_5.gif",
   "abv": 7.0
 }, {
@@ -24,26 +24,35 @@
   "image": "Stella_Artois.png",
   "abv": 5.0
 }, {
-    "id": "North Coast Pranqster",
-    "name": "North Coast Pranqster",
-    "info": "Pranqster Belgian Style Golden Ale is packaged in the traditional manner with yeast in the keg.",
-    "type": "Belgian Style Golden Ale",
-    "country": "USA",
-    "image": "Pranqster.png",
-    "abv": 7.6
+  "id": "North Coast Pranqster",
+  "name": "North Coast Pranqster",
+  "info": "Pranqster Belgian Style Golden Ale is packaged in the traditional manner with yeast in the keg.",
+  "type": "Belgian Style Golden Ale",
+  "country": "USA",
+  "image": "Pranqster.png",
+  "abv": 7.6
 }, {
-    "id": "Bear Republic Hop Rod Rye Ale",
-    "name": "Bear Republic Hop Rod Rye Ale",
-    "info": "A high gravity IPA brewed with 18% rye malt. Hop Rod Rye has a floral hop aroma and subtle caramel notes with a slightly earthy and spicy rye character.",
-    "country": "USA",
-    "image": "Hop_Rod_Rye.png",
-    "abv": 8
+  "id": "Bear Republic Hop Rod Rye",
+  "name": "Bear Republic Hop Rod Rye",
+  "info": "A high gravity IPA brewed with 18% rye malt. Hop Rod Rye has a floral hop aroma and subtle caramel notes with a slightly earthy and spicy rye character.",
+  "type": "Rye IPA",
+  "country": "USA",
+  "image": "Hop_Rod_Rye.png",
+  "abv": 8
 }, {
-    "id": "Lost Coast Great White",
-    "name": "Lost Coast Great White",
-    "info": "A crisp beer with a hint of citrus, made with two-row malted barley, unmalted wheat, a secret blend of Humboldt herbs, crystal clear mountain water and ale yeast.",
-    "type": "Witbier",
-    "country": "USA",
-    "image": "Great_White.png",
-    "abv": 4.8
+  "id": "Lost Coast Great White",
+  "name": "Lost Coast Great White",
+  "info": "A crisp beer with a hint of citrus, made with two-row malted barley, unmalted wheat, a secret blend of Humboldt herbs, crystal clear mountain water and ale yeast.",
+  "type": "Witbier",
+  "country": "USA",
+  "image": "Great_White.png",
+  "abv": 4.8
+}, {
+  "id": "Boont Amber Ale",
+  "name": "Boont Amber Ale",
+  "info": "Boont Amber Ale is a medium bodied pale ale with a beautiful copper color, a robust head, and the rich flavor of caramel m",
+  "type": "American-Style Amber Ale",
+  "country": "USA",
+  "image": "Boont_Amber_Ale.png",
+  "abv": 5.8
 }]

@@ -27,7 +27,7 @@
 @class KBUserEditViewController;
 
 @protocol KBUserEditViewControllerDelegate <NSObject>
-- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didAddUser:(KBUser *)user;
+- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didSaveUser:(KBUser *)user;
 @optional
 - (void)userEditViewControllerDidLogout:(KBUserEditViewController *)userEditViewController;
 @end

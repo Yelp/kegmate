@@ -66,7 +66,7 @@
     [self addSubview:movieView_];
   }
   
-  moviePlayerController_.currentPlaybackRate = 1.0;
+  moviePlayerController_.currentPlaybackRate = 0.75;
   [moviePlayerController_ setContentURL:URL];
   
   [moviePlayerController_ play];

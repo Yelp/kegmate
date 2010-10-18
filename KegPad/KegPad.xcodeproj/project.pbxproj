@@ -37,6 +37,10 @@
 		00983F2A125F052C0031006C /* KBRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 00983F29125F052C0031006C /* KBRating.m */; };
 		009840151262D63A0031006C /* KBUIFormSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 009840141262D63A0031006C /* KBUIFormSwitchCell.m */; };
 		0098401A1262D76F0031006C /* KBUIFormSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 009840191262D76F0031006C /* KBUIFormSwitch.m */; };
+		009E8F38126CE3580008B159 /* Hop_Rod_Rye.png in Resources */ = {isa = PBXBuildFile; fileRef = 009E8F36126CE3580008B159 /* Hop_Rod_Rye.png */; };
+		009E8F39126CE3580008B159 /* Great_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 009E8F37126CE3580008B159 /* Great_White.png */; };
+		009E8F3B126CE4B40008B159 /* Boont_Amber_Ale.png in Resources */ = {isa = PBXBuildFile; fileRef = 009E8F3A126CE4B40008B159 /* Boont_Amber_Ale.png */; };
+		009E8F40126CE50B0008B159 /* KBUIFormListSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 009E8F3F126CE50B0008B159 /* KBUIFormListSelect.m */; };
 		00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */; };
 		00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */; };
 		00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */; };
@@ -184,6 +188,11 @@
 		009840141262D63A0031006C /* KBUIFormSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormSwitchCell.m; sourceTree = "<group>"; };
 		009840181262D76F0031006C /* KBUIFormSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormSwitch.h; sourceTree = "<group>"; };
 		009840191262D76F0031006C /* KBUIFormSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormSwitch.m; sourceTree = "<group>"; };
+		009E8F36126CE3580008B159 /* Hop_Rod_Rye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hop_Rod_Rye.png; sourceTree = "<group>"; };
+		009E8F37126CE3580008B159 /* Great_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Great_White.png; sourceTree = "<group>"; };
+		009E8F3A126CE4B40008B159 /* Boont_Amber_Ale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boont_Amber_Ale.png; sourceTree = "<group>"; };
+		009E8F3E126CE50B0008B159 /* KBUIFormListSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUIFormListSelect.h; sourceTree = "<group>"; };
+		009E8F3F126CE50B0008B159 /* KBUIFormListSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormListSelect.m; sourceTree = "<group>"; };
 		00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserEditViewController.h; sourceTree = "<group>"; };
 		00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserEditViewController.m; sourceTree = "<group>"; };
 		00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerEditViewController.h; sourceTree = "<group>"; };
@@ -538,6 +547,8 @@
 				00D01166125334170013DF33 /* KBUIFormTextField.m */,
 				009840181262D76F0031006C /* KBUIFormSwitch.h */,
 				009840191262D76F0031006C /* KBUIFormSwitch.m */,
+				009E8F3E126CE50B0008B159 /* KBUIFormListSelect.h */,
+				009E8F3F126CE50B0008B159 /* KBUIFormListSelect.m */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -589,6 +600,9 @@
 		00D54ACA12028ECE00F76724 /* BeerLogos */ = {
 			isa = PBXGroup;
 			children = (
+				009E8F3A126CE4B40008B159 /* Boont_Amber_Ale.png */,
+				009E8F36126CE3580008B159 /* Hop_Rod_Rye.png */,
+				009E8F37126CE3580008B159 /* Great_White.png */,
 				42FAFC0B1256BDE6007DC9EB /* Pranqster.png */,
 				429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */,
 				00D54ACB12028ECE00F76724 /* Racer_5.gif */,
@@ -852,6 +866,9 @@
 				427AC491126585C50063CE3C /* flow_shadow.png in Resources */,
 				427AC71D1266A5640063CE3C /* KBFlowIndicator.xib in Resources */,
 				00025DB61267A48C0020985D /* BeerLoop.m4v in Resources */,
+				009E8F38126CE3580008B159 /* Hop_Rod_Rye.png in Resources */,
+				009E8F39126CE3580008B159 /* Great_White.png in Resources */,
+				009E8F3B126CE4B40008B159 /* Boont_Amber_Ale.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +936,7 @@
 				427AC7241266A9C90063CE3C /* KBFlowIndicator.m in Sources */,
 				0074ED161266DCB500111C14 /* _KBPourIndex.m in Sources */,
 				0074ED191266DCC800111C14 /* KBPourIndex.m in Sources */,
+				009E8F40126CE50B0008B159 /* KBUIFormListSelect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

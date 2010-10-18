@@ -33,6 +33,7 @@ extern NSString *const KBUserDidUpdateUserNotification; // With user (KBUser)
 extern NSString *const KBUserDidSetRatingNotification; // With rating (KBRating)
 
 extern NSString *const KBBeerDidEditNotification; // With beer (KBBeer)
+extern NSString *const KBKegDidEditNotification; // With keg (KBKeg)
 
 extern NSString *const KBUnknownTagIdNotification; // With tag id (NSString), if an unknown tag is read
 

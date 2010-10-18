@@ -19,7 +19,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#define kHours (1 * 24) // Hourly for X days
+#define kChunks (24)
+
+#import "KBTypes.h"
 
 /*!
  Chart view for pour history.
@@ -28,8 +30,12 @@
 
   UIImage *backgroundImage_;
   
-  float values_[kHours];
+  float values_[kChunks];
   float maxValue_;
+  
+  KBPourIndexTimeType timeType_;
+  
+  NSString *legendXText_;
 
 }
 

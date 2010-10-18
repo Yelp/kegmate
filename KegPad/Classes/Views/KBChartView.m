@@ -21,7 +21,6 @@
 
 #import "KBChartView.h"
 
-#import "KBTypes.h"
 #import "KBDataStore.h"
 #import "KBKegPour.h"
 #import "KBPourIndex.h"
@@ -35,23 +34,26 @@
 - (id)initWithCoder:(NSCoder *)coder {
   if ((self = [super initWithCoder:coder])) {
     backgroundImage_ = [[UIImage imageNamed:@"graph_background.png"] retain];
+    timeType_ = KBPourIndexTimeType15Minutes;
+    legendXText_ = @"6 hour participation";
   }
   return self;
 }
 
 - (void)dealloc {
   [backgroundImage_ release];
+  [legendXText_ release];
   [super dealloc];
 }
 
 - (void)recompute {
-  NSInteger endIndex = [KBDataStore timeIndexForForDate:[NSDate date] timeType:KBPourIndexTimeTypeHour];
-  NSInteger startIndex = endIndex - kHours;
+  NSInteger endIndex = [KBDataStore timeIndexForForDate:[NSDate date] timeType:timeType_];
+  NSInteger startIndex = endIndex - kChunks;
   NSArray *pourIndexes = [[KBApplication dataStore] pourIndexesForStartIndex:startIndex endIndex:endIndex 
-                                                                    timeType:KBPourIndexTimeTypeHour keg:nil user:nil error:nil];
+                                                                    timeType:timeType_ keg:nil user:nil error:nil];
   
   // TODO(gabe): Use memset
-  for (NSInteger i = 0; i < kHours; i++)
+  for (NSInteger i = 0; i < kChunks; i++)
     values_[i] = 0;
 
   maxValue_ = 0.0;
@@ -59,7 +61,7 @@
     float value = (float)pourIndex.volumePouredValue;
     if (value > maxValue_) maxValue_ = value;
     NSInteger index = pourIndex.timeIndexValue - startIndex - 1;
-    if (index >= 0 && index < kHours) {      
+    if (index >= 0 && index < kChunks) {      
       values_[index] = value;
     } else {
       KBError(@"Pour index out of bounds: %d", index);
@@ -83,7 +85,7 @@
   CGFloat legendXHeight = 10;
   CGFloat legendYWidth = 0;
   
-  CGFloat unitWidth = (self.frame.size.width - (padding * 2) - legendYWidth) / (float)kHours;
+  CGFloat unitWidth = (self.frame.size.width - (padding * 2) - legendYWidth) / (float)kChunks;
   CGFloat maxHeight = (self.frame.size.height - (padding * 3)) - legendXHeight - 5; 
   
   // Origin at bottom left  
@@ -94,7 +96,7 @@
   // Legend X
   [grayColor set];
   p.y -= legendXHeight;
-  [@"24 hour participation" drawAtPoint:CGPointMake(p.x + 570, p.y) withFont:[UIFont systemFontOfSize:10]];
+  [legendXText_ drawAtPoint:CGPointMake(p.x + 570, p.y) withFont:[UIFont systemFontOfSize:10]];
   
   // Legend Y
   // TODO(gabe): Draw Y-axis legend
@@ -102,7 +104,7 @@
   
   // Draw x-axis
   [grayColor set];
-  for (NSInteger i = 0; i < kHours; i++) {
+  for (NSInteger i = 0; i < kChunks; i++) {
     CGContextFillRect(context, CGRectMake(p.x + 1, p.y - 2.0, unitWidth - 2, 2.0));
     p.x += unitWidth;
   }
@@ -113,7 +115,7 @@
   
   // Draw values
   [[UIColor colorWithRed:0.275 green:0.514 blue:0.698 alpha:1.0] set];
-  for (NSInteger i = 0; i < kHours; i++) {
+  for (NSInteger i = 0; i < kChunks; i++) {
     float percentage = values_[i] / maxValue_;
     CGFloat height = percentage * maxHeight;
     CGContextFillRect(context, CGRectMake(p.x + 1, p.y - 15.0, unitWidth - 2, -height));

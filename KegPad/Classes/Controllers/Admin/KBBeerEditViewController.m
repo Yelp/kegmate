@@ -105,7 +105,7 @@
     return;
   }
   
-  [self.delegate beerEditViewController:self didAddBeer:beer];
+  [self.delegate beerEditViewController:self didSaveBeer:beer];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBBeerDidEditNotification object:beer];
 }
 

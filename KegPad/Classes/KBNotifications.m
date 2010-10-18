@@ -35,6 +35,7 @@ NSString *const KBUserDidUpdateUserNotification = @"KBUserDidUpdateUserNotificat
 NSString *const KBUserDidSetRatingNotification = @"KBUserDidSetRatingNotification";
 
 NSString *const KBBeerDidEditNotification = @"KBBeerDidEditNotification";
+NSString *const KBKegDidEditNotification = @"KBKegDidEditNotification";
 
 NSString *const KBUnknownTagIdNotification = @"KBUnknownTagIdNotification";
 NSString *const KBDidSelectUserNotification = @"KBDidSelectUserNotification";

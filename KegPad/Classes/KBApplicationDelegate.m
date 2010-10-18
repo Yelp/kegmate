@@ -85,7 +85,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegSelectionDidChange:) name:KBKegSelectionDidChangeNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogin:) name:KBUserDidLoginNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_userDidLogout:) name:KBUserDidLogoutNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknowTagId:) name:KBUnknownTagIdNotification object:nil];  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknownTagId:) name:KBUnknownTagIdNotification object:nil];  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectUser:) name:KBDidSelectUserNotification object:nil];    
   
   kegManager_ = [[KBKegManager alloc] init];
@@ -165,14 +165,14 @@
   [self editUser:[notification object]];
 }
 
-- (void)_unknowTagId:(NSNotification *)notification {
+- (void)_unknownTagId:(NSNotification *)notification {
   [self registerTagId:[notification object]];
   [[KBApplication sharedDelegate] playSystemSoundGlass];
 }
 
 #pragma mark KBUserEditViewControllerDelegate
 
-- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didAddUser:(KBUser *)user {
+- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didSaveUser:(KBUser *)user {
   [[KBApplication kegManager] login:user];
   [[KBApplication sharedDelegate] playSystemSoundGlass]; // TODO(gabe): Special welcome sound effect
   [navigationController_ dismissModalViewControllerAnimated:YES];

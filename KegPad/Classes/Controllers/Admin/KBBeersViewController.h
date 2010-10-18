@@ -23,6 +23,16 @@
 
 #import "KBBeerEditViewController.h"
 
-@interface KBBeersViewController : KBFetchedResultsViewController <KBBeerEditViewControllerDelegate> { }
+@class KBBeersViewController;
+
+@protocol KBBeersViewControllerDelegate <NSObject>
+- (void)beersViewController:(KBBeersViewController *)beersViewController didSelectBeer:(KBBeer *)beer;
+@end
+
+@interface KBBeersViewController : KBFetchedResultsViewController <KBBeerEditViewControllerDelegate> { 
+  id<KBBeersViewControllerDelegate> delegate_;
+}
+
+@property (assign, nonatomic) id<KBBeersViewControllerDelegate> delegate;
 
 @end

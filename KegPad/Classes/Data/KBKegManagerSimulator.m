@@ -45,7 +45,7 @@
   [[kegManager_ gh_proxyAfterDelay:1] kegProcessing:kegManager_.processing didChangeTemperature:10.4];
   // Simulate start and end pour with random amount
   [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
-  [[kegManager_ gh_proxyAfterDelay:12] kegProcessing:kegManager_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+  [[kegManager_ gh_proxyAfterDelay:18] kegProcessing:kegManager_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
 }
 
 - (void)temperatures {
