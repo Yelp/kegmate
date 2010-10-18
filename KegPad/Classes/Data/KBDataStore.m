@@ -251,12 +251,10 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
 + (NSInteger)timeIndexForForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType {
   switch (timeType) {
     case KBPourIndexTimeTypeHour: {
-      NSInteger hourIndex = ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0));
-      return hourIndex;
+      return ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0));
     }
-    case KBPourIndexTimeType15Minutes: {
-      NSInteger hourIndex = ceilf(([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0 * 60)) * 15);
-      return hourIndex;
+    case KBPourIndexTimeTypeMinutes15: {
+      return ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0 * 4));
     }
   }
   return -1;
@@ -317,7 +315,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   
   [user addPouredValue:amount];
   
-  [self updatePourIndex:amount date:date timeType:KBPourIndexTimeType15Minutes keg:keg user:user error:error];
+  [self updatePourIndex:amount date:date timeType:KBPourIndexTimeTypeMinutes15 keg:keg user:user error:error];
   
   BOOL saved = [self save:error];
   

@@ -42,21 +42,31 @@
 }
 
 - (void)popPushViewController:(UIViewController *)viewController {
+  animating_ = YES;
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:1.0];
+  [UIView setAnimationDelegate:self];
+  [UIView setAnimationDidStopSelector:@selector(_popPushDidStop)];
   [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:navigationController_.view cache:NO];  
   [navigationController_ popViewControllerAnimated:NO];
   if (![[navigationController_ viewControllers] containsObject:viewController])
     [navigationController_ pushViewController:viewController animated:NO];  
-  [UIView commitAnimations]; 
+  [UIView commitAnimations];
 }
 
-- (void)flip {
+- (void)_popPushDidStop {
+  animating_ = NO;
+}
+
+- (BOOL)flip {
+  if (animating_) return NO;
+  
   if (![[navigationController_ viewControllers] containsObject:statusViewController_]) {
     [self popPushViewController:statusViewController_];
   } else {
     [self popPushViewController:displayViewController_];
   }
+  return YES;
 }
 
 - (void)initializeSounds {
@@ -97,6 +107,9 @@
   } else {
     [self setKeg:keg];
   }
+  
+  // Always have admin user
+  [[KBApplication dataStore] addOrUpdateUserWithTagId:@"ADMIN" firstName:@"Yelp" lastName:@"Admin" isAdmin:YES error:nil];
   
   // Start processing
   [kegManager_ start];

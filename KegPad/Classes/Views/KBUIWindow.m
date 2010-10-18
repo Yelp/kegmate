@@ -9,12 +9,18 @@
 #import "KBUIWindow.h"
 
 #import "KBNotifications.h"
+#import "KBApplication.h"
 
 static const NSTimeInterval kMaxActivityNotificationInterval = 1.0; // Max interval between activity notifications
 
 @implementation KBUIWindow
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {  
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  // Secret 5 touch
+  if ([[event allTouches] count] == 5) {
+    [[KBApplication kegManager] loginWithTagId:@"ADMIN"];
+  }
+  
   if ([NSDate timeIntervalSinceReferenceDate] - _lastActivityTime > kMaxActivityNotificationInterval) {  
     _lastActivityTime = [NSDate timeIntervalSinceReferenceDate];
     KBDebug(@"Activity");

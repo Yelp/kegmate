@@ -56,6 +56,13 @@
 - (void)login:(KBUser *)user;
 
 /*!
+ Login user with tag id.
+ @param tagId
+ @result nil if user unknown
+ */
+- (KBUser *)loginWithTagId:(NSString *)tagId;
+
+/*!
  Logout.
  Will post logout notification.
  */

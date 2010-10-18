@@ -39,6 +39,6 @@ extern KBRatingValue KBRatingValueFromRating(double rating);
 
 enum {
   KBPourIndexTimeTypeHour = 1,
-  KBPourIndexTimeType15Minutes = 4,
+  KBPourIndexTimeTypeMinutes15 = 4,
 };
 typedef NSInteger KBPourIndexTimeType;

@@ -1,5 +1,10 @@
 // NOTE: This is temporary until the Admin section is built out
 [{
+  "tag_id": "ADMIN",
+  "first_name": "Yelp",
+  "last_name": "Admin",
+  "is_admin": true
+},{
   "tag_id": "29009426DC47",
   "first_name": "Gabriel",
   "last_name": "Handford",

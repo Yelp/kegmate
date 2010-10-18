@@ -41,6 +41,8 @@
   SystemSoundID systemSounds_[1];
   
   KBKegManager *kegManager_;
+  
+  BOOL animating_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -48,7 +50,7 @@
 
 - (void)setKeg:(KBKeg *)keg;
 
-- (void)flip;
+- (BOOL)flip;
 
 @end
 

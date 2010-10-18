@@ -86,6 +86,21 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   loginTimer_ = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_checkLoginStatus) userInfo:nil repeats:YES];
 }
 
+- (KBUser *)loginWithTagId:(NSString *)tagId {
+  // TODO(johnb): tagId is coming in with some giberish
+  tagId = [tagId gh_strip];
+  
+  if ([NSString gh_isBlank:tagId]) return nil;
+  
+  KBUser *user = (tagId ? [dataStore_ userWithTagId:tagId error:nil] : nil);
+  if (user) {
+    [self login:user];
+    [[KBApplication sharedDelegate] playSystemSoundGlass];
+    KBDebug(@"RFID=%@, user=%@", tagId, user);
+  }
+  return user;
+}  
+
 - (void)_logout:(BOOL)postNotification {
   KBUser *previousUser = [self.loginUser retain];
   self.activityTime = 0;
@@ -148,17 +163,8 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId {
-  // TODO(johnb): tagId is coming in with some giberish
-  tagId = [tagId gh_strip];
-  
-  if ([NSString gh_isBlank:tagId]) return;
-  
-  KBUser *user = (tagId ? [dataStore_ userWithTagId:tagId error:nil] : nil);
-  if (user) {
-    [self login:user];
-    [[KBApplication sharedDelegate] playSystemSoundGlass];
-    KBDebug(@"RFID=%@, user=%@", tagId, user);
-  } else {
+  KBUser *user = [self loginWithTagId:tagId];
+  if (!user) {
     [self logout];
     [[NSNotificationCenter defaultCenter] postNotificationName:KBUnknownTagIdNotification object:tagId];    
   }

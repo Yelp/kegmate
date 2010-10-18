@@ -34,7 +34,7 @@
 - (id)initWithCoder:(NSCoder *)coder {
   if ((self = [super initWithCoder:coder])) {
     backgroundImage_ = [[UIImage imageNamed:@"graph_background.png"] retain];
-    timeType_ = KBPourIndexTimeType15Minutes;
+    timeType_ = KBPourIndexTimeTypeMinutes15;
     legendXText_ = @"6 hour participation";
   }
   return self;
