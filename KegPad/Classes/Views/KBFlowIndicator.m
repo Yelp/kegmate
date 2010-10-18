@@ -22,6 +22,7 @@
 #import "KBKegProcessing.h"
 #import "KBNotifications.h"
 #import "KBTypes.h"
+#import "KBDefines.h"
 
 @implementation KBFlowIndicator
 
@@ -125,6 +126,7 @@
 
 - (void)_onKegDidUpdatePourNotification:(NSNotification *)notification {
   KBKegProcessing *kegProcessing = (KBKegProcessing *)[notification object];
+  KBDebug(@"Flow meter got Volume %f and flow rate %f", kegProcessing.pourVolume, kegProcessing.flowRate);
   [self setVolume:kegProcessing.pourVolume * kLitersToOunces animated:YES];
   [self setFlowRate:kegProcessing.flowRate * kLitersToOunces animated:YES];
 }

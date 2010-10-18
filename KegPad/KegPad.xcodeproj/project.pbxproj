@@ -126,6 +126,7 @@
 		427AC491126585C50063CE3C /* flow_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC48B126585C50063CE3C /* flow_shadow.png */; };
 		427AC71D1266A5640063CE3C /* KBFlowIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427AC71C1266A5640063CE3C /* KBFlowIndicator.xib */; };
 		427AC7241266A9C90063CE3C /* KBFlowIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 427AC7221266A9C90063CE3C /* KBFlowIndicator.m */; };
+		427ACC3D126D0E500063CE3C /* New_Belgium_Ranger_IPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 427ACC3C126D0E500063CE3C /* New_Belgium_Ranger_IPA.png */; };
 		429B08EB1202FEF600C36F76 /* Glass.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 429B08EA1202FEF600C36F76 /* Glass.aiff */; };
 		429B08EE1202FF5300C36F76 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429B08ED1202FF5300C36F76 /* AudioToolbox.framework */; };
 		429B094D1203371700C36F76 /* KBRatingPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B094C1203371700C36F76 /* KBRatingPicker.m */; };
@@ -313,6 +314,7 @@
 		427AC71C1266A5640063CE3C /* KBFlowIndicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFlowIndicator.xib; sourceTree = "<group>"; };
 		427AC7221266A9C90063CE3C /* KBFlowIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFlowIndicator.m; sourceTree = "<group>"; };
 		427AC7231266A9C90063CE3C /* KBFlowIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFlowIndicator.h; sourceTree = "<group>"; };
+		427ACC3C126D0E500063CE3C /* New_Belgium_Ranger_IPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = New_Belgium_Ranger_IPA.png; sourceTree = "<group>"; };
 		429B08EA1202FEF600C36F76 /* Glass.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Glass.aiff; sourceTree = "<group>"; };
 		429B08ED1202FF5300C36F76 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		429B094B1203371700C36F76 /* KBRatingPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRatingPicker.h; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 		00D54ACA12028ECE00F76724 /* BeerLogos */ = {
 			isa = PBXGroup;
 			children = (
+				427ACC3C126D0E500063CE3C /* New_Belgium_Ranger_IPA.png */,
 				009E8F3A126CE4B40008B159 /* Boont_Amber_Ale.png */,
 				009E8F36126CE3580008B159 /* Hop_Rod_Rye.png */,
 				009E8F37126CE3580008B159 /* Great_White.png */,
@@ -869,6 +872,7 @@
 				009E8F38126CE3580008B159 /* Hop_Rod_Rye.png in Resources */,
 				009E8F39126CE3580008B159 /* Great_White.png in Resources */,
 				009E8F3B126CE4B40008B159 /* Boont_Amber_Ale.png in Resources */,
+				427ACC3D126D0E500063CE3C /* New_Belgium_Ranger_IPA.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

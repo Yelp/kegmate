@@ -50,9 +50,17 @@
 }, {
   "id": "Boont Amber Ale",
   "name": "Boont Amber Ale",
-  "info": "Boont Amber Ale is a medium bodied pale ale with a beautiful copper color, a robust head, and the rich flavor of caramel m",
+  "info": "Boont Amber Ale is a medium bodied pale ale with a beautiful copper color, a robust head, and the rich flavor of caramel.",
   "type": "American-Style Amber Ale",
   "country": "USA",
   "image": "Boont_Amber_Ale.png",
   "abv": 5.8
+}, {
+  "id": "New Belgium Ranger IPA",
+  "name": "New Belgium Ranger IPA",
+  "info": "This clear amber beauty bursts at the starting gate with an abundance of hops. Brewed with pale and dark caramel malts that harmonize the hop flavor from start to finish",
+  "type": "IPA",
+  "country": "USA",
+  "image": "New_Belgium_Ranger_IPA.png",
+  "abv": 6.5
 }]

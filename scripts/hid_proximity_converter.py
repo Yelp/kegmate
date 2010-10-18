@@ -1,4 +1,4 @@
-#
+#!/usr/bin/python
 #  hid_proximity_converter.py
 #  KegMate
 #
@@ -170,4 +170,3 @@ if __name__ == '__main__':
 		print generate_json_for_user_dicts(user_dicts)
 	elif opts.format == 'sql':
 		print generate_sql_for_user_dicts(user_dicts)
-
