@@ -254,7 +254,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
       return ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0));
     }
     case KBPourIndexTimeTypeMinutes15: {
-      return ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0 * 4));
+      return ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0 * 0.25));
     }
   }
   return -1;
