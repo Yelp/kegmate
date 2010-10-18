@@ -83,6 +83,13 @@ typedef NSInteger KBPourIndexTimeType;
 - (NSString *)applicationDocumentsDirectory;
 
 /*!
+ Create object for entity.
+ @param entityName Name of model class
+ @param managedObjectContext Managed object context, or nil if not managed
+ */
+- (id)insertNewObjectForEntityForName:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
+/*!
  Execute fetch
  @param request
  @param error Out error
@@ -139,13 +146,13 @@ typedef NSInteger KBPourIndexTimeType;
 imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
 
 /*!
- Add a keg temperature value.
+ Add a keg temperature value for current date.
  @param temperature Temperature in celcius
  @param keg Keg
  @param error Out error
  @result YES if keg temperature was added
  */
-- (BOOL)addKegTemperature:(float)temperature keg:(KBKeg *)keg error:(NSError **)error;
+- (KBKegTemperature *)addKegTemperature:(float)temperature keg:(KBKeg *)keg error:(NSError **)error;
 
 /*!
  Add a keg pour.

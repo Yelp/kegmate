@@ -27,7 +27,19 @@
 
 @interface KBKegTemperature : _KBKegTemperature {}
 
+/*!
+ Create temperature for keg.
+ @param temperature
+ @param keg
+ @param date
+ @param managedObjectContext Specify nil for unmanaged object
+ @result Keg temperature
+ */
++ (KBKegTemperature *)kegTemperature:(float)temperature keg:(KBKeg *)keg date:(NSDate *)date inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
 - (NSString *)thermometerDescription;
+
+- (NSString *)temperatureDescription;
 
 - (NSString *)statusDescription;
 

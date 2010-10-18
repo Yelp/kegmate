@@ -20,14 +20,30 @@
 //
 
 #import "KBKegTemperature.h"
+#import "KBApplication.h"
 
 @implementation KBKegTemperature
+
++ (KBKegTemperature *)kegTemperature:(float)temperature keg:(KBKeg *)keg date:(NSDate *)date inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+  KBKegTemperature *kegTemperature = [[KBApplication dataStore] insertNewObjectForEntityForName:@"KBKegTemperature" inManagedObjectContext:managedObjectContext];
+  // TODO(gabe): Only setable if managed object context set
+  if (managedObjectContext) {
+    kegTemperature.keg = keg;
+  }
+  kegTemperature.date = date;
+  kegTemperature.temperatureValue = temperature;
+  return kegTemperature;
+}
 
 - (NSString *)thermometerDescription {
   float temperature = self.temperatureValue;  
   if (temperature < 10) return @"frosty!";
   else if (temperature < 16) return @"chilly!";
   return @"warm";
+}
+
+- (NSString *)temperatureDescription {
+  return [NSString stringWithFormat:@"%0.1f°C", [self temperatureValue]];
 }
 
 - (NSString *)statusDescription {

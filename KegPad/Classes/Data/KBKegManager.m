@@ -23,6 +23,7 @@
 
 #import "KBNotifications.h"
 #import "KBApplication.h"
+#import "KBKegTemperature.h"
 
 @interface KBKegManager ()
 @property (retain, nonatomic) KBUser *loginUser;
@@ -135,7 +136,15 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didChangeTemperature:(double)temperature {
-  [dataStore_ addKegTemperature:temperature keg:[dataStore_ kegAtPosition:0] error:nil];
+  BOOL save = NO;
+  
+  if (save) {
+    [dataStore_ addKegTemperature:temperature keg:[dataStore_ kegAtPosition:0] error:nil];
+  } else {
+    KBKegTemperature *kegTemperature = [KBKegTemperature kegTemperature:temperature keg:[dataStore_ kegAtPosition:0] date:[NSDate date]
+                                                       inManagedObjectContext:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KBKegTemperatureDidChangeNotification object:kegTemperature];
+  }
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId {

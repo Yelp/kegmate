@@ -118,7 +118,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 - (void)setKegTemperature:(KBKegTemperature *)kegTemperature {
   self.view;
   if (kegTemperature) {
-    temperatureLabel_.text = [NSString stringWithFormat:@"%0.1f°C", [kegTemperature temperatureValue]];
+    temperatureLabel_.text = [kegTemperature temperatureDescription];
     temperatureDescriptionLabel_.text = [kegTemperature statusDescription];
   } else {
     temperatureLabel_.text = @"-";

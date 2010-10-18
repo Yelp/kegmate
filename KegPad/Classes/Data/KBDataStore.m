@@ -116,6 +116,16 @@
   return saved;
 }
 
+- (id)insertNewObjectForEntityForName:(NSString *)entityName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+  if (!managedObjectContext) {    
+    NSManagedObjectModel *managedObjectModel = [self managedObjectModel];
+    NSEntityDescription *entity = [[managedObjectModel entitiesByName] objectForKey:entityName];
+    return [[[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil] autorelease];
+  } else {
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
+  }
+}
+
 - (id)objectForURI:(NSString *)URIString {
   if (!URIString) return nil;
   NSManagedObjectID *objectId = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:[NSURL URLWithString:URIString]];
@@ -213,15 +223,13 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return beer;
 }
 
-- (BOOL)addKegTemperature:(float)temperature keg:(KBKeg *)keg error:(NSError **)error {
+- (KBKegTemperature *)addKegTemperature:(float)temperature keg:(KBKeg *)keg error:(NSError **)error {
   if (!keg) return NO;
-  KBKegTemperature *kegTemperature = [NSEntityDescription insertNewObjectForEntityForName:@"KBKegTemperature" inManagedObjectContext:[self managedObjectContext]];
-  kegTemperature.keg = keg;
-  kegTemperature.date = [NSDate date];
-  kegTemperature.temperatureValue = temperature;
+  KBKegTemperature *kegTemperature = [KBKegTemperature kegTemperature:temperature keg:keg date:[NSDate date] inManagedObjectContext:[self managedObjectContext]];
   BOOL saved = [self save:error];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegTemperatureDidChangeNotification object:kegTemperature];
-  return saved;
+  if (saved) return kegTemperature;
+  return nil;
 }
 
 + (NSInteger)timeIndexForForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType {

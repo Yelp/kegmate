@@ -32,6 +32,7 @@
 @interface KBDisplayViewController ()
 @property (retain, nonatomic) KBKeg *keg;
 @property (retain, nonatomic) KBUser *user;
+- (void)_updateKegTemperature:(KBKegTemperature *)kegTemperature;
 @end
 
 
@@ -139,7 +140,8 @@ adminButton=adminButton_, delegate=delegate_;
   [self.view sendSubviewToBack:beerMovieView_];
 }
 
-- (void)_updateKegTemperatureValue:(float)temperature { 
+- (void)_updateKegTemperature:(KBKegTemperature *)kegTemperature {
+  float temperature = [kegTemperature temperatureValue];
   float percentage = ((temperature - [KBKegTemperature min]) / ([KBKegTemperature max] - [KBKegTemperature min]));
   CGFloat percentageToHeight = percentage * (chalkCircleOriginMaxY_ - chalkCircleOriginMinY_);
   CGFloat temperatureY = percentageToHeight + chalkCircleOriginMinY_;
@@ -150,7 +152,7 @@ adminButton=adminButton_, delegate=delegate_;
   chalkCircleView_.frame = CGRectMake(chalkCircleView_.frame.origin.x, temperatureY,
                                       chalkCircleView_.frame.size.width, chalkCircleView_.frame.size.height);
   
-  temperatureLabel_.text = [NSString stringWithFormat:@"%0.1f°C", temperature];
+  temperatureLabel_.text = [kegTemperature temperatureDescription];
 }
 
 - (void)updateRating {
@@ -180,7 +182,7 @@ adminButton=adminButton_, delegate=delegate_;
   if (kegTemperature) {    
     tempDescriptionLabel_.hidden = NO;
     tempDescriptionLabel_.text = [kegTemperature thermometerDescription];
-    [self _updateKegTemperatureValue:[kegTemperature temperatureValue]];
+    [self _updateKegTemperature:kegTemperature];
   } else {
     tempDescriptionLabel_.hidden = YES;
     chalkCircleView_.hidden = YES;
