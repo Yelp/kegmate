@@ -1,0 +1,38 @@
+#!/bin/bash
+# Script to deploy new KegPad builds to all KegMates
+#
+# Created by John Boiles on 10/18/10.
+#
+# Options
+#   -k  --  Nukes the sqlite data store
+
+# Parse arguments
+KILL_DATA_STORE=
+while getopts 'k' OPTION
+do
+	case $OPTION in
+	k)	KILL_DATA_STORE=1
+		;;
+	?)	printf "Usage: %s: [-k]\n" $(basename $0) >&2
+		exit 2
+		;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+KEGMATES="KegMate1.local KegMate2.local KegMate3.local"
+LOCAL_BUILD_DIR="`dirname $0`/../build"
+# Loop through all kegmates
+for KEGMATE in $KEGMATES; do
+	# Kill all running KegPad apps
+	echo "Killing KegPad process on $KEGMATE"
+	ssh -4 root@$KEGMATE "killall KegPad"
+	# Kill all data stores
+	if [ "$KILL_DATA_STORE" ]; then
+		echo "Killing data store on $KEGMATE"
+		ssh -4 root@$KEGMATE "rm /var/mobile/Documents/KegPad.sqlite"
+	fi
+	# Send data
+	echo "Installing KegPad on $KEGMATE"
+	scp -r -4 $LOCAL_BUILD_DIR/Debug-iphoneos/KegPad.app root@$KEGMATE:/Applications/
+done
