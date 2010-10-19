@@ -71,4 +71,14 @@
   "country": "USA",
   "image": "Lagunitas_IPA.png",
   "abv": 5.7
+}, {
+  "id": "Lagunitas Little Sumpin' Wild",
+  "name": "Lagunitas Little Sumpin' Wild",
+  "info": "Another Big Sister of the Little Sumpin’ Sumpin’ Ale.... Loads of Malted Wheat for a Curious Malt Foundation and a Light Color, But Our Belgian Yeast Leaves a Huge Flavor and Complexishness.",
+  "type": "Belgian Strong Ale",
+  "country": "USA",
+  "image": "Little_Sumpin_Wild.png",
+  "abv": 7.8
 }]
+
+
