@@ -95,5 +95,36 @@
   "country": "USA",
   "image": "Ommegang_BPA.png",
   "abv": 6.2
+}, {
+  "id": "Loast Coast Downtown Brown",
+  "name": "Loast Coast Downtown Brown",
+  "info": "A smooth, full-bodied nut brown ale, lightly hopped with a hint of roasted and crystal malts. This ale is dark in color without the heavy taste of porter or stout.",
+  "type": "Brown Ale",
+  "country": "USA",
+  "image": "Downtown_Brown.png",
+  "abv": 5.0
+}, {
+  "id": "Mystery Beer",
+  "name": "Mystery Beer",
+  "info": "We honestly have no idea what is in this keg. So, uh, enjoy!",
+  "type": "Beer",
+  "country": "Probably USA",
+  "image": "Mystery.png",
+  "abv": 0.0
+}, {
+  "id": "Dogfish Head Punkin Ale",
+  "name": "Dogfish Head Punkin Ale",
+  "info": "A full-bodied brown ale with smooth hints of pumpkin and brown sugar. Brewed with pumpkin meat, organic brown sugar and spices. This is the perfect beer to warm-up with, as the season cools.",
+  "type": "Ale",
+  "country": "USA",
+  "image": "Punkin_Ale.png",
+  "abv": 7.0
+}, {
+  "id": "Bruery Orchard White",
+  "name": "Bruery Orchard White",
+  "info": "Orchard White is an unfiltered, bottle conditioned Belgian-style witbier. This hazy, straw yellow beer is spiced with coriander, citrus peel and lavender added to the boil and whirlpool. A spicy, fruity yeast strain is used to add complexity, and rolled oats are added for a silky texture.",
+  "type": "Witbier",
+  "country": "USA",
+  "image": "Orchard_White.png",
+  "abv": 5.7
 }]
-

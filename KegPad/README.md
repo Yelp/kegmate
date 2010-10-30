@@ -12,3 +12,7 @@ Tap the bottom left of the screen to pull up the admin interface, which is very 
 ## Importing
 
 To import beers, kegs and users, see the JSON files in Resources/Fixtures/. These files are automatically read on startup and any data here is imported and updated. This is just temporary until the admin interface is built out.
+
+## Deploying Builds
+
+scp -r -4 build/Debug-iphoneos/KegPad.app root@kegmateaddress:/Applications/

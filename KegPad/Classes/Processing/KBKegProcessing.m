@@ -67,6 +67,7 @@
 
   if (!_hasVolume) {
     _lastVolume = volume;
+    _pourStartVolume = volume;
     _hasVolume = YES;
     return;
   }
