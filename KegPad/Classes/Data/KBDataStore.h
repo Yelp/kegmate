@@ -32,6 +32,8 @@
   if (error) NSLog(@"Error: %@; %@", error, [error localizedFailureReason]); \
 } while(0)
 
+#define KBOrNSNull(__OBJ__) (__OBJ__ ? __OBJ__ : (id)[NSNull null])
+
 
 /*!
  Main data store (CoreData).
@@ -288,9 +290,22 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
 
 - (KBPourIndex *)pourIndexForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
 
-- (KBPourIndex *)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
+/*!
+ Update pour index for keg and user for time index, and type.
+ Will store 4 values for:
+  - All kegs for all users
+  - Keg for all users
+  - User for all kegs
+  - Keg and user
+ */
+- (void)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
 
 - (NSArray */*of KBPourIndex*/)pourIndexesForStartIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex timeType:(KBPourIndexTimeType)timeType 
                                                     keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
+
+/*!
+ Pour indexes for top volume poured by day.
+ */
+- (NSArray */*of KBPourIndex*/)topVolumePourIndexesWithOffset:(NSUInteger)offset limit:(NSUInteger)limit timeType:(KBPourIndexTimeType)timeType error:(NSError **)error;
 
 @end

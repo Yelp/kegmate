@@ -32,7 +32,11 @@
 @property (assign, nonatomic, getter=isSecureTextEntry) BOOL secureTextEntry;
 @property (assign, nonatomic, getter=isEditable) BOOL editable;
 
-+ (KBUIFormTextField *)formWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable;
+- (id)initWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable;
+
++ (KBUIFormTextField *)formTextFieldWithTitle:(NSString *)title text:(NSString *)text;
+
++ (KBUIFormTextField *)formTextFieldWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable;
 
 - (UITextField *)textField;
 

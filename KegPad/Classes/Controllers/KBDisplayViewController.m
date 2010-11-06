@@ -276,7 +276,10 @@ adminButton=adminButton_, delegate=delegate_;
 #pragma mark - 
 
 - (void)_beerDidEdit:(NSNotification *)notification {
-  [self updateBeer:[notification object]];
+  // Update if the beer is in the current keg
+  KBBeer *beer = [notification object];
+  if ([keg_.beer isEqual:beer])
+    [self updateBeer:beer];
 }
 
 - (void)_kegDidEdit:(NSNotification *)notification {

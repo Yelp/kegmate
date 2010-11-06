@@ -22,6 +22,7 @@
 #import "KBLeaderboardView.h"
 
 #import "KBCGUtils.h"
+#import "KBPourIndex.h"
 
 
 @implementation KBLeaderboardView
@@ -34,15 +35,15 @@
 }
 
 - (void)dealloc {
-  [users_ release];
+  [pourIndexes_ release];
   [backgroundImage_ release];
   [super dealloc];
 }
 
-- (void)setUsers:(NSArray *)users {
-  [users retain];
-  [users_ release];
-  users_ = users;
+- (void)setPourIndexes:(NSArray *)pourIndexes {
+  [pourIndexes retain];
+  [pourIndexes_ release];
+  pourIndexes_ = pourIndexes;
   [self setNeedsDisplay];
 }
 
@@ -62,15 +63,15 @@
   CGFloat padding = 8;  
   CGFloat rowHeight = nameHeight + amountHeight + padding;
   
-  for (KBUser *user in users_) {
-    NSString *name = [user displayName];
+  for (KBPourIndex *pourIndex in pourIndexes_) {
+    NSString *name = [pourIndex.user displayName];
     [[UIColor colorWithWhite:0.1 alpha:0.9] set];
     [name drawAtPoint:p forWidth:160 withFont:nameFont lineBreakMode:UILineBreakModeTailTruncation];
     
     [[UIColor colorWithWhite:0.2 alpha:0.8] set];
     p.y += nameHeight;
-    [[user pouredDescription] drawAtPoint:CGPointMake(p.x, p.y) forWidth:(self.frame.size.width - p.x) 
-                                 withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation];
+    [[pourIndex pouredDescription] drawAtPoint:CGPointMake(p.x, p.y) forWidth:(self.frame.size.width - p.x) 
+                                      withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation];
     p.y += amountHeight;
     
     KBCGContextDrawLine(context, p.x, p.y, self.frame.size.width - p.x, p.y, [UIColor whiteColor].CGColor, 0.5);

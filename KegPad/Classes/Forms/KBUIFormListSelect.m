@@ -17,8 +17,8 @@
 
 @synthesize values=values_, selectedValue=selectedValue_;
 
-- (id)init {
-  if ((self = [super init])) {
+- (id)initWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure {
+  if ((self = [super initWithTitle:title text:text target:target action:action context:context showDisclosure:showDisclosure selectedAction:NULL])) {
     cell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
   }
   return self;
@@ -29,9 +29,9 @@
   [super dealloc];
 }
 
-+ (KBUIFormListSelect *)formWithTitle:(NSString *)title values:(NSArray */*of NSString*/)values selectedValue:(NSString *)selectedValue 
++ (KBUIFormListSelect *)formListSelectWithTitle:(NSString *)title values:(NSArray */*of NSString*/)values selectedValue:(NSString *)selectedValue 
                                target:(id)target action:(SEL)action context:(id)context {
-  KBUIFormListSelect *form = (KBUIFormListSelect *)[self formWithTitle:title text:selectedValue target:target action:action context:context showDisclosure:YES];
+  KBUIFormListSelect *form = [[KBUIFormListSelect alloc] initWithTitle:title text:selectedValue target:target action:action context:context showDisclosure:YES];
   form.selectedValue = selectedValue;
   form.values = values;
   return form;

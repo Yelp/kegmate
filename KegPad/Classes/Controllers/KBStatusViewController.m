@@ -65,6 +65,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
   [chartView_ release];
   [leaderboardView_ release];
   [flowIndicator_ release];
+  [keg_ release];
   [super dealloc];
 }
 
@@ -81,7 +82,8 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 }
 
 - (void)updateLeaderboard {
-  [leaderboardView_ setUsers:[[KBApplication dataStore] topUsersByPourWithOffset:0 limit:6 error:nil]];
+  NSArray *pourIndexes = [[KBApplication dataStore] topVolumePourIndexesWithOffset:0 limit:6 timeType:KBPourIndexTimeTypeDay error:nil];
+  [leaderboardView_ setPourIndexes:pourIndexes];
 }
 
 - (void)updateChart {
@@ -98,6 +100,9 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 
 - (void)updateKeg:(KBKeg *)keg {
   self.view;
+  [keg retain];
+  [keg_ release];
+  keg_ = keg;
   if (keg) {
     percentRemaingLabel_.text = [NSString stringWithFormat:@"%0.0f", [keg volumeRemaingPercentage]];
     totalPouredAmountLabel_.text = [NSString stringWithFormat:@"%0.1f liters", [keg volumeTotalPouredAdjustedValue]];
@@ -142,7 +147,10 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 #pragma mark - 
 
 - (void)_beerDidEdit:(NSNotification *)notification {
-  [self updateBeer:[notification object]];
+  // Update if the beer is in the current keg
+  KBBeer *beer = [notification object];
+  if ([keg_.beer isEqual:beer])
+    [self updateBeer:beer];
 }
 
 - (void)_kegDidEdit:(NSNotification *)notification {

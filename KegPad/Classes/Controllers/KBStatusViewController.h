@@ -49,6 +49,8 @@
 
   KBFlowIndicator *flowIndicator_;
   
+  KBKeg *keg_;
+  
   KBApplicationDelegate *delegate_; // weak
 }
 

@@ -13,4 +13,6 @@
 
 }
 
+- (NSString *)pouredDescription;
+
 @end

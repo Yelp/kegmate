@@ -30,7 +30,9 @@
 
 @property (assign, nonatomic, getter=isOn) BOOL on;
 
-+ (KBUIFormSwitch *)formWithTitle:(NSString *)title on:(BOOL)on;
+- (id)initWithTitle:(NSString *)title on:(BOOL)on;
+
++ (KBUIFormSwitch *)formSwitchWithTitle:(NSString *)title on:(BOOL)on;
 
 - (UISwitch *)switchField;
 

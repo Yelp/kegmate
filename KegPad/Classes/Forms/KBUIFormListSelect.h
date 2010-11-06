@@ -20,7 +20,9 @@
 
 @property (retain, nonatomic) NSString *selectedValue;
 
-+ (KBUIFormListSelect *)formWithTitle:(NSString *)title values:(NSArray */*of NSString*/)values selectedValue:(NSString *)selectedValue 
-                               target:(id)target action:(SEL)action context:(id)context;
+- (id)initWithTitle:(NSString *)title text:(NSString *)text target:(id)target action:(SEL)action context:(id)context showDisclosure:(BOOL)showDisclosure;
+
++ (KBUIFormListSelect *)formListSelectWithTitle:(NSString *)title values:(NSArray */*of NSString*/)values selectedValue:(NSString *)selectedValue 
+                                         target:(id)target action:(SEL)action context:(id)context;
 
 @end

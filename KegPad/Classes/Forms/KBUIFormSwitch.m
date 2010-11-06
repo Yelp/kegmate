@@ -26,10 +26,12 @@
 
 @synthesize on=on_;
 
-- (id)init {
-  if ((self = [super init])) {
-    self.selectEnabled = NO;
+- (id)initWithTitle:(NSString *)title on:(BOOL)on {
+  if ((self = [super initWithTitle:title text:nil target:nil action:NULL context:nil 
+                    showDisclosure:NO selectedAction:NULL])) {
     cell_ = [[KBUIFormSwitchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    on_ = on;
+    self.selectEnabled = NO;
   }
   return self;
 }
@@ -43,10 +45,8 @@
   return cell_.switchField;
 }
 
-+ (KBUIFormSwitch *)formWithTitle:(NSString *)title on:(BOOL)on {
-  KBUIFormSwitch *form = (KBUIFormSwitch *)[self formWithTitle:title text:nil];
-  form.on = on;
-  return form;
++ (KBUIFormSwitch *)formSwitchWithTitle:(NSString *)title on:(BOOL)on {
+  return [[[KBUIFormSwitch alloc] initWithTitle:title on:on] autorelease];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

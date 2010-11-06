@@ -165,6 +165,7 @@
 		0017BA3E120249D600269CDA /* KBKegTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTemperature.h; sourceTree = "<group>"; };
 		0017BA3F120249D600269CDA /* KBKegTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTemperature.m; sourceTree = "<group>"; };
 		002F095F12263EE300766D62 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
+		004080871284E5D00003B17D /* KegPad-2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "KegPad-2.xcdatamodel"; sourceTree = "<group>"; };
 		004E1B0B12655172004B0AC0 /* admin_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = admin_button.png; sourceTree = "<group>"; };
 		00568FAD1251A493004AF3D1 /* KBUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserView.h; sourceTree = "<group>"; };
 		00568FAE1251A493004AF3D1 /* KBUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserView.m; sourceTree = "<group>"; };
@@ -1070,8 +1071,9 @@
 			isa = XCVersionGroup;
 			children = (
 				28C3AD890F43EF2300507BA6 /* KegPad.xcdatamodel */,
+				004080871284E5D00003B17D /* KegPad-2.xcdatamodel */,
 			);
-			currentVersion = 28C3AD890F43EF2300507BA6 /* KegPad.xcdatamodel */;
+			currentVersion = 004080871284E5D00003B17D /* KegPad-2.xcdatamodel */;
 			path = KegPad.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

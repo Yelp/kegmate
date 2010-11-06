@@ -38,18 +38,18 @@
     self.title = title;
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(_save)] autorelease];
 
-    nameField_ = [[KBUIFormTextField formWithTitle:@"Name" text:nil] retain];
+    nameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Name" text:nil] retain];
     [nameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:nameField_];
-    infoField_ = [[KBUIFormTextField formWithTitle:@"Info" text:nil] retain];
+    infoField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Info" text:nil] retain];
     [self addForm:infoField_];
-    typeField_ = [[KBUIFormTextField formWithTitle:@"Type" text:nil] retain];
+    typeField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Type" text:nil] retain];
     [self addForm:typeField_];
-    abvField_ = [[KBUIFormTextField formWithTitle:@"ABV" text:nil] retain];
+    abvField_ = [[KBUIFormTextField formTextFieldWithTitle:@"ABV" text:nil] retain];
     [self addForm:abvField_];
-    countryField_ = [[KBUIFormTextField formWithTitle:@"Country" text:nil] retain];
+    countryField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Country" text:nil] retain];
     [self addForm:countryField_];
-    imageNameField_ = [[KBUIFormTextField formWithTitle:@"Image" text:nil] retain];
+    imageNameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Image" text:nil] retain];
     [self addForm:imageNameField_];
   }
   return self;

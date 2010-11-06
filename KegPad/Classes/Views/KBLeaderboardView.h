@@ -23,9 +23,9 @@
 
 @interface KBLeaderboardView : UIView {
   UIImage *backgroundImage_;
-  NSArray *users_;
+  NSArray */*of KBPourIndex*/pourIndexes_;
 }
 
-- (void)setUsers:(NSArray *)users;
+- (void)setPourIndexes:(NSArray *)pourIndexes;
 
 @end

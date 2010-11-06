@@ -46,18 +46,18 @@
     } else {
       self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:buttonTitle style:UIBarButtonItemStylePlain target:self action:@selector(_save)] autorelease];
     }
-    firstNameField_ = [[KBUIFormTextField formWithTitle:@"First Name" text:nil] retain];
+    firstNameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"First Name" text:nil] retain];
     firstNameField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [firstNameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:firstNameField_];
-    lastNameField_ = [[KBUIFormTextField formWithTitle:@"Last Name" text:nil] retain];
+    lastNameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Last Name" text:nil] retain];
     lastNameField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [lastNameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:lastNameField_];
-    tagField_ = [[KBUIFormTextField formWithTitle:@"Tag" text:nil] retain];
+    tagField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Tag" text:nil] retain];
     [tagField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:tagField_];
-    isAdminField_ = [[KBUIFormSwitch formWithTitle:@"Admin" on:NO] retain];
+    isAdminField_ = [[KBUIFormSwitch formSwitchWithTitle:@"Admin" on:NO] retain];
     if (adminOptionEnabled)
       [self addForm:isAdminField_];
 

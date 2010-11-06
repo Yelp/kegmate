@@ -29,14 +29,14 @@
     NSArray *beers = [[KBApplication dataStore] beersWithOffset:0 limit:200 error:nil];
     NSMutableArray *beerNames = [NSMutableArray arrayWithCapacity:[beers count]];
     for (KBBeer *beer in beers) [beerNames addObject:[beer id]];
-    beerSelect_ = [[KBUIFormListSelect formWithTitle:@"Beer" values:beerNames selectedValue:nil target:self action:@selector(_beerSelect) context:nil] retain];
+    beerSelect_ = [[KBUIFormListSelect formListSelectWithTitle:@"Beer" values:beerNames selectedValue:nil target:self action:@selector(_beerSelect) context:nil] retain];
     [self addForm:beerSelect_];
 
-    volumeAdjustedField_ = [[KBUIFormTextField formWithTitle:@"Volume adjusted" text:@"0"] retain];
+    volumeAdjustedField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Volume adjusted" text:@"0"] retain];
     [self addForm:volumeAdjustedField_];
-    volumePouredField_ = [[KBUIFormTextField formWithTitle:@"Volume poured" text:@"0"] retain];
+    volumePouredField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Volume poured" text:@"0"] retain];
     [self addForm:volumePouredField_];
-    volumeTotalField_ = [[KBUIFormTextField formWithTitle:@"Volume total" text:@"58.67"] retain];
+    volumeTotalField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Volume total" text:@"58.67"] retain];
     [self addForm:volumeTotalField_];
     
     if (useEnabled)

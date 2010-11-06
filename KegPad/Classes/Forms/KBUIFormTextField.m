@@ -25,11 +25,11 @@
 
 @synthesize secureTextEntry=secureTextEntry_, editable=editable_;
 
-- (id)init {
-  if ((self = [super init])) {
-    self.selectEnabled = NO;
+- (id)initWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable {
+  if ((self = [super initWithTitle:title text:text target:nil action:NULL context:nil showDisclosure:NO selectedAction:NULL])) {
     editable_ = YES;    
     cell_ = [[KBUIFormFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    self.selectEnabled = NO;
   }
   return self;
 }
@@ -43,10 +43,12 @@
   return cell_.textField;
 }
 
-+ (KBUIFormTextField *)formWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable {
-  KBUIFormTextField *form = (KBUIFormTextField *)[self formWithTitle:title text:text];
-  form.editable = editable;
-  return form;
++ (KBUIFormTextField *)formTextFieldWithTitle:(NSString *)title text:(NSString *)text {
+  return [self formTextFieldWithTitle:title text:text editable:YES];
+}
+
++ (KBUIFormTextField *)formTextFieldWithTitle:(NSString *)title text:(NSString *)text editable:(BOOL)editable {
+  return [[[KBUIFormTextField alloc] initWithTitle:title text:text editable:editable] autorelease];  
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {  

@@ -111,7 +111,7 @@
   BOOL saved = [[self managedObjectContext] save:error];
   
   if (error && *error) {
-    KBError(@"Error saving: %@", [*error localizedDescription]);
+    KBError(@"Error saving: %@", [*error gh_fullDescription]);
   }
   return saved;
 }
@@ -256,6 +256,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
     case KBPourIndexTimeTypeMinutes15: {
       return ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 60.0 * 0.25));
     }
+    case KBPourIndexTimeTypeDay: {
+      return ceilf([date timeIntervalSinceReferenceDate] / (double)(60.0 * 24.0));
+    }
   }
   return -1;
 }
@@ -265,15 +268,17 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   if (timeIndex < 0) return nil;
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBPourIndex" inManagedObjectContext:[self managedObjectContext]]];
-  // TODO(gabe): Deal with optional user and keg
-  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"timeType = %@ AND timeIndex = %@", 
-                              [NSNumber numberWithInteger:timeType], [NSNumber numberWithInteger:timeIndex], keg]];
+  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"timeType = %@ AND timeIndex = %@ AND keg = %@ AND user = %@", 
+                              [NSNumber numberWithInteger:timeType], 
+                              [NSNumber numberWithInteger:timeIndex], 
+                              KBOrNSNull(keg), 
+                              KBOrNSNull(user)]];
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
   [fetchRequest release];
   return [results gh_firstObject];
 }
 
-- (KBPourIndex *)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {
+- (KBPourIndex *)_updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {
   KBPourIndex *pourIndex = [self pourIndexForDate:date timeType:timeType keg:keg user:user error:error];
   if (!pourIndex) {
     pourIndex = [NSEntityDescription insertNewObjectForEntityForName:@"KBPourIndex" inManagedObjectContext:[self managedObjectContext]];
@@ -286,8 +291,18 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
 
   pourIndex.volumePouredValue += amount;
   pourIndex.pourCountValue += 1;
-  KBDebug(@"Updated pour index: %@", pourIndex);
+  //KBDebug(@"Updated pour index: %@", pourIndex);
   return pourIndex;
+}
+
+- (void)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {  
+  [self _updatePourIndex:amount date:date timeType:timeType keg:nil user:nil error:error]; // For all kegs and all users
+  if (keg)
+    [self _updatePourIndex:amount date:date timeType:timeType keg:keg user:nil error:error]; // For keg on all users
+  if (user)
+    [self _updatePourIndex:amount date:date timeType:timeType keg:nil user:user error:error]; // For user on all kegs
+  if (keg && user)
+    [self _updatePourIndex:amount date:date timeType:timeType keg:keg user:user error:error]; // For user on this keg
 }
 
 - (NSArray */*of KBPourIndex*/)pourIndexesForStartIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex timeType:(KBPourIndexTimeType)timeType 
@@ -296,8 +311,13 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBPourIndex" inManagedObjectContext:[self managedObjectContext]]];
   // TODO(gabe): Deal with optional user and keg
-  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"timeType = %@ AND timeIndex >= %@ AND timeIndex <= %@", 
-                              [NSNumber numberWithInteger:timeType], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:endIndex]]];
+  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"timeType = %@ AND timeIndex >= %@ AND timeIndex <= %@ AND keg = %@ and user = %@", 
+                              [NSNumber numberWithInteger:timeType], 
+                              [NSNumber numberWithInteger:startIndex], 
+                              [NSNumber numberWithInteger:endIndex],
+                              KBOrNSNull(keg), 
+                              KBOrNSNull(user)
+                              ]];
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
   [fetchRequest release];
   return results;
@@ -315,7 +335,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   
   [user addPouredValue:amount];
   
+  // Update pour indexes
   [self updatePourIndex:amount date:date timeType:KBPourIndexTimeTypeMinutes15 keg:keg user:user error:error];
+  [self updatePourIndex:amount date:date timeType:KBPourIndexTimeTypeDay keg:keg user:user error:error];
   
   BOOL saved = [self save:error];
   
@@ -461,6 +483,26 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [sortDescriptors release];
   [sortDescriptor release];
   
+  NSArray *results = [self executeFetchRequest:fetchRequest error:error];
+  [fetchRequest release];
+  return results;
+}
+
+- (NSArray */*of KBPourIndex*/)topVolumePourIndexesWithOffset:(NSUInteger)offset limit:(NSUInteger)limit timeType:(KBPourIndexTimeType)timeType error:(NSError **)error {
+  NSInteger timeIndex = [KBDataStore timeIndexForForDate:[NSDate date] timeType:timeType];
+  if (timeIndex < 0) return nil;
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBPourIndex" inManagedObjectContext:[self managedObjectContext]]];
+  [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"timeType = %@ AND timeIndex = %@ AND user != NULL and keg == NULL", 
+                              [NSNumber numberWithInteger:timeType], [NSNumber numberWithInteger:timeIndex]]];
+  
+  [fetchRequest setFetchOffset:offset];
+  [fetchRequest setFetchLimit:limit];
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"volumePoured" ascending:NO];
+  NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+  [fetchRequest setSortDescriptors:sortDescriptors];
+  [sortDescriptors release];
+    
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
   [fetchRequest release];
   return results;
