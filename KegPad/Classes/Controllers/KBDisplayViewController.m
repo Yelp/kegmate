@@ -283,7 +283,9 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)_kegDidEdit:(NSNotification *)notification {
-  [self updateKeg:[notification object]];
+  KBKeg *keg = [notification object];
+  if (keg_ == keg) 
+    [self updateKeg:keg];
 }
 
 - (void)_kegTemperatureDidChange:(NSNotification *)notification {

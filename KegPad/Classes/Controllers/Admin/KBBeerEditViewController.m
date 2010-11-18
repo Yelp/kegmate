@@ -62,10 +62,13 @@
   [abvField_ release];
   [countryField_ release];
   [imageNameField_ release];
+  [_beerEditId release];
   [super dealloc];
 }
 
 - (void)setBeer:(KBBeer *)beer {
+  [_beerEditId autorelease];
+  _beerEditId = [beer.id retain];
   nameField_.text = beer.name;
   infoField_.text = beer.info;
   typeField_.text = beer.type;
@@ -96,9 +99,12 @@
   NSString *country = countryField_.textField.text;
   NSString *imageName = imageNameField_.textField.text;
   float abv = [abvField_.textField.text floatValue];
-    
+  
+  NSString *identifier = _beerEditId;
+  if (!identifier) identifier = name;
+
   NSError *error = nil;
-  KBBeer *beer = [[KBApplication dataStore] addOrUpdateBeerWithId:name name:name info:info type:type country:country imageName:imageName abv:abv error:&error];
+  KBBeer *beer = [[KBApplication dataStore] addOrUpdateBeerWithId:identifier name:name info:info type:type country:country imageName:imageName abv:abv error:&error];
     
   if (!beer) {
     [self showError:error];

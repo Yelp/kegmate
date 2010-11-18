@@ -6,6 +6,7 @@
 # Options
 #   -k  --  Nukes the sqlite data store
 
+
 # Parse arguments
 KILL_DATA_STORE=
 while getopts 'k' OPTION
@@ -13,14 +14,17 @@ do
 	case $OPTION in
 	k)	KILL_DATA_STORE=1
 		;;
-	?)	printf "Usage: %s: [-k]\n" $(basename $0) >&2
+	?)	printf "Usage: %s: [-k] \n" $(basename $0) >&2
 		exit 2
 		;;
 	esac
 done
 shift $(($OPTIND - 1))
 
-KEGMATES="KegMate1.local KegMate2.local KegMate3.local"
+if [ "$KEGMATES" == "" ]; then
+	KEGMATES="KegMate1.local KegMate2.local KegMate3.local"
+fi
+
 LOCAL_BUILD_DIR="`dirname $0`/../build"
 # Loop through all kegmates
 for KEGMATE in $KEGMATES; do

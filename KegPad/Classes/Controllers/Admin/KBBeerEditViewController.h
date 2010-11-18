@@ -37,6 +37,8 @@
   KBUIFormTextField *abvField_;
   KBUIFormTextField *countryField_;
   KBUIFormTextField *imageNameField_;
+  
+  NSString *_beerEditId;
 }
 
 @property (assign, nonatomic) id<KBBeerEditViewControllerDelegate> delegate;

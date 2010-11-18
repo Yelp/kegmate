@@ -57,6 +57,11 @@
 		00C114AD121121BA009C9B51 /* KBFetchedResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */; };
 		00C114D6121128DD009C9B51 /* kegs.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C114B2121124B1009C9B51 /* kegs.json */; };
 		00C114EF1211297D009C9B51 /* KBUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C114EE1211297D009C9B51 /* KBUsersViewController.m */; };
+		00CB546E1294D9D50056FE12 /* 90_Minute_IPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB54691294D9D50056FE12 /* 90_Minute_IPA.png */; };
+		00CB546F1294D9D50056FE12 /* Punkin_Ale.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546A1294D9D50056FE12 /* Punkin_Ale.png */; };
+		00CB54701294D9D50056FE12 /* Orchard_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546B1294D9D50056FE12 /* Orchard_White.png */; };
+		00CB54711294D9D50056FE12 /* Mystery.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546C1294D9D50056FE12 /* Mystery.png */; };
+		00CB54721294D9D50056FE12 /* Downtown_Brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546D1294D9D50056FE12 /* Downtown_Brown.png */; };
 		00CD28981211DFC700DF808D /* chalk_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CD28961211DFC700DF808D /* chalk_bg.png */; };
 		00CD28991211DFC700DF808D /* wood_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CD28971211DFC700DF808D /* wood_bg.png */; };
 		00CD289F1211E42C00DF808D /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00CD289E1211E42C00DF808D /* license.txt */; };
@@ -229,6 +234,11 @@
 		00C114B2121124B1009C9B51 /* kegs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kegs.json; sourceTree = "<group>"; };
 		00C114ED1211297D009C9B51 /* KBUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUsersViewController.h; sourceTree = "<group>"; };
 		00C114EE1211297D009C9B51 /* KBUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUsersViewController.m; sourceTree = "<group>"; };
+		00CB54691294D9D50056FE12 /* 90_Minute_IPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 90_Minute_IPA.png; sourceTree = "<group>"; };
+		00CB546A1294D9D50056FE12 /* Punkin_Ale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Punkin_Ale.png; sourceTree = "<group>"; };
+		00CB546B1294D9D50056FE12 /* Orchard_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orchard_White.png; sourceTree = "<group>"; };
+		00CB546C1294D9D50056FE12 /* Mystery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mystery.png; sourceTree = "<group>"; };
+		00CB546D1294D9D50056FE12 /* Downtown_Brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Downtown_Brown.png; sourceTree = "<group>"; };
 		00CD28961211DFC700DF808D /* chalk_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk_bg.png; sourceTree = "<group>"; };
 		00CD28971211DFC700DF808D /* wood_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood_bg.png; sourceTree = "<group>"; };
 		00CD289E1211E42C00DF808D /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
@@ -611,6 +621,11 @@
 		00D54ACA12028ECE00F76724 /* BeerLogos */ = {
 			isa = PBXGroup;
 			children = (
+				00CB54691294D9D50056FE12 /* 90_Minute_IPA.png */,
+				00CB546A1294D9D50056FE12 /* Punkin_Ale.png */,
+				00CB546B1294D9D50056FE12 /* Orchard_White.png */,
+				00CB546C1294D9D50056FE12 /* Mystery.png */,
+				00CB546D1294D9D50056FE12 /* Downtown_Brown.png */,
 				427ACC76126D1B790063CE3C /* Little_Sumpin_Wild.png */,
 				42373528127264E000C48796 /* Lagunitas_PILS.png */,
 				42373529127264E000C48796 /* Ommegang_BPA.png */,
@@ -890,6 +905,11 @@
 				427ACC77126D1B790063CE3C /* Little_Sumpin_Wild.png in Resources */,
 				4237352A127264E000C48796 /* Lagunitas_PILS.png in Resources */,
 				4237352B127264E000C48796 /* Ommegang_BPA.png in Resources */,
+				00CB546E1294D9D50056FE12 /* 90_Minute_IPA.png in Resources */,
+				00CB546F1294D9D50056FE12 /* Punkin_Ale.png in Resources */,
+				00CB54701294D9D50056FE12 /* Orchard_White.png in Resources */,
+				00CB54711294D9D50056FE12 /* Mystery.png in Resources */,
+				00CB54721294D9D50056FE12 /* Downtown_Brown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,10 +1021,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KegPad_Prefix.pch;
 				INFOPLIST_FILE = "KegPad-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Libraries/YAJL\"",
-				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

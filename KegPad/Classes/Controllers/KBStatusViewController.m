@@ -154,7 +154,9 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 }
 
 - (void)_kegDidEdit:(NSNotification *)notification {
-  [self updateKeg:[notification object]];
+  KBKeg *keg = [notification object];
+  if (keg_ == keg) 
+    [self updateKeg:keg];
 }
 
 - (void)_kegTemperatureDidChange:(NSNotification *)notification {
