@@ -39,6 +39,7 @@
   KBUIFormTextField *imageNameField_;
   
   NSString *_beerEditId;
+  UIWebView *webView_;
 }
 
 @property (assign, nonatomic) id<KBBeerEditViewControllerDelegate> delegate;

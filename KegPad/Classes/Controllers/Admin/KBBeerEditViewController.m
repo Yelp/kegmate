@@ -25,9 +25,14 @@
 #import "KBApplication.h"
 #import "KBNotifications.h"
 
+@interface KBBeerEditViewController ()
+@property (readonly, retain, nonatomic) UIWebView *webView;
+@end
+
 @implementation KBBeerEditViewController
 
 @dynamic delegate;
+@synthesize webView=webView_;
 
 - (id)init {
   return [self initWithTitle:@"Beer"];
@@ -52,9 +57,10 @@
 
     imageNameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Image" text:nil] retain];
     [self addForm:imageNameField_ section:1];
-    [self addForm:[KBUIForm formWithTitle:@"Choose image from photo library" text:@"" target:self action:@selector(_selectFromPhotoLibrary) showDisclosure:NO] section:1];
+    [self addForm:[KBUIForm formWithTitle:@"Choose image from photo library" text:@"" target:self action:@selector(_selectFromPhotoLibrary) showDisclosure:NO] section:1];    
 
-    [self addForm:[KBUIForm formWithTitle:@"Google Image Search in Safari (Exits KegPad)" text:@"" target:self action:@selector(_googleImageSearch) showDisclosure:YES] section:2];
+    [self addForm:[KBUIForm formWithTitle:@"Google Search in UIWebView" text:@"" target:self action:@selector(_googleSearch) showDisclosure:YES] section:2];    
+    [self addForm:[KBUIForm formWithTitle:@"Google Image Search in Safari (Exits KegPad)" text:@"" target:self action:@selector(_googleImageSearch) showDisclosure:YES] section:2];    
   }
   return self;
 }
@@ -132,11 +138,73 @@
   [imagePickerController release];
 }
 
+#pragma mark WebView
+
+- (UIWebView *)webView {
+  if (!webView_) {
+    webView_ = [[UIWebView alloc] initWithFrame:self.view.frame];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [backButton addTarget:webView_ action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    backButton.frame = CGRectMake(10, webView_.frame.size.height - 40, 50, 30);
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [webView_ addSubview:backButton];
+
+    UIButton *useCopiedImageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [useCopiedImageButton addTarget:self action:@selector(_pasteImage) forControlEvents:UIControlEventTouchUpInside];
+    useCopiedImageButton.frame = CGRectMake(70, webView_.frame.size.height - 40, 150, 30);
+    [useCopiedImageButton setTitle:@"Use Copied Image" forState:UIControlStateNormal];
+    [webView_ addSubview:useCopiedImageButton];
+    
+    NSString *urlAddress = [NSString stringWithFormat:@"http://www.google.com/search?q=%@",
+                            [nameField_.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:urlAddress];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    // Load the request in the UIWebView.
+    [self.webView loadRequest:requestObj];
+  }
+  return webView_;
+}
+
+- (void)_googleSearch {
+  UIViewController *webViewController = [[UIViewController alloc] init];  
+  webViewController.view = self.webView;
+  [self.navigationController pushViewController:webViewController animated:YES];
+}
+
 - (void)_googleImageSearch {
   NSString *urlAddress = [NSString stringWithFormat:@"http://www.google.com/images?q=%@",
                           [nameField_.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
   NSURL *url = [NSURL URLWithString:urlAddress];
   [[UIApplication sharedApplication] openURL:url];
+}
+
+- (void)_pasteImage {  
+  //KBDebug(@"%@", [[UIPasteboard generalPasteboard] items]);
+  id data = [[[UIPasteboard generalPasteboard] dataForPasteboardType:@"Apple Web Archive pasteboard type" inItemSet:nil] gh_firstObject];
+  //KBDebug(@"%@: %@", [data class], data);
+  NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+  KBDebug(@"String UTF8: %@", dataString);
+  dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+  KBDebug(@"String ASCII: %@", dataString);
+  dataString = [[NSString alloc] initWithData:data encoding:NSNEXTSTEPStringEncoding];
+  KBDebug(@"String NS: %@", dataString);
+  dataString = [[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding];
+  KBDebug(@"String UNICODE: %@", dataString);
+  dataString = [[NSString alloc] initWithData:data encoding:NSNonLossyASCIIStringEncoding];
+  KBDebug(@"String ASCIINL: %@", dataString);
+  dataString = [[NSString alloc] initWithData:data encoding:NSUTF16StringEncoding];
+  KBDebug(@"String UTF16: %@", dataString);
+  NSString *error;
+  //NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:data format:NSPropertyListBinaryFormat_v1_0 errorDescription:&error];
+  //KBDebug(@"Plist Data: %@, %@", plistData, error);
+  //id plist = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:NSPropertyListOpenStepFormat errorDescription:nil];
+  //KBDebug(@"Plist %@", plist);
+  NSPropertyListFormat format;
+  id dma = [NSPropertyListSerialization propertyListFromData:data
+                                            mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                      format:&format
+                                            errorDescription:&error];
+  KBDebug(@"%@, %@, %d, %@", [dma class], dma, format, error);
 }
 
 #pragma mark Delegates (UIImagePickerController)
