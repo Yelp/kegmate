@@ -30,7 +30,7 @@
 - (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didSaveBeer:(KBBeer *)beer;
 @end
 
-@interface KBBeerEditViewController : KBUIFormViewController { 
+@interface KBBeerEditViewController : KBUIFormViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> { 
   KBUIFormTextField *nameField_;
   KBUIFormTextField *typeField_;  
   KBUIFormTextField *infoField_;

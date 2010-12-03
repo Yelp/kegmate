@@ -65,6 +65,7 @@
   // Since we're receiving flow values at about 1 Hz, watch for significant changes
   double volume = [message meterReading] * KB_VOLUME_PER_TICK;
 
+  // Initialize some data on our first data point
   if (!_hasVolume) {
     _lastVolume = volume;
     _pourStartVolume = volume;

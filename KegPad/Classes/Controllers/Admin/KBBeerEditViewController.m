@@ -49,8 +49,12 @@
     [self addForm:abvField_];
     countryField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Country" text:nil] retain];
     [self addForm:countryField_];
+
     imageNameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Image" text:nil] retain];
-    [self addForm:imageNameField_];
+    [self addForm:imageNameField_ section:1];
+    [self addForm:[KBUIForm formWithTitle:@"Choose image from photo library" text:@"" target:self action:@selector(_selectFromPhotoLibrary) showDisclosure:NO] section:1];
+
+    [self addForm:[KBUIForm formWithTitle:@"Google Image Search in Safari (Exits KegPad)" text:@"" target:self action:@selector(_googleImageSearch) showDisclosure:YES] section:2];
   }
   return self;
 }
@@ -114,6 +118,46 @@
   [self.delegate beerEditViewController:self didSaveBeer:beer];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBBeerDidEditNotification object:beer];
 }
+
+- (void)_selectFromPhotoLibrary {
+  UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+  imagePickerController.allowsEditing = YES;
+  imagePickerController.delegate = self;
+  imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+  UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
+  [popoverController presentPopoverFromRect:self.view.frame
+                                     inView:self.view
+                   permittedArrowDirections:UIPopoverArrowDirectionAny
+                                   animated:YES];
+  [imagePickerController release];
+}
+
+- (void)_googleImageSearch {
+  NSString *urlAddress = [NSString stringWithFormat:@"http://www.google.com/images?q=%@",
+                          [nameField_.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+  NSURL *url = [NSURL URLWithString:urlAddress];
+  [[UIApplication sharedApplication] openURL:url];
+}
+
+#pragma mark Delegates (UIImagePickerController)
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+  KBDebug(@"%@", info);
+  NSString *fileName = [NSString stringWithFormat:@"%@.png", nameField_.textField.text];
+  NSString *imagePath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@", fileName]];
+  UIImage *beerImage = [info objectForKey:UIImagePickerControllerEditedImage];
+  // Write image to PNG
+  [UIImagePNGRepresentation(beerImage) writeToFile:imagePath atomically:YES];
+  imageNameField_.textField.text = fileName;
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {}
+
+#pragma mark Delegates (UINavigationController)
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {}
 
 @end
 

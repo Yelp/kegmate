@@ -199,7 +199,14 @@ adminButton=adminButton_, delegate=delegate_;
     typeLabel_.text = beer.type;
     countryLabel_.text = beer.country;
     abvLabel_.text = [NSString stringWithFormat:@"%0.1f", beer.abvValue];
-    imageView_.image = [UIImage imageNamed:beer.imageName];
+    UIImage *beerImage = [UIImage imageNamed:beer.imageName];
+    // Also search the documents directory for beer images
+    if (!beerImage) {
+      NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
+      documentsDirectory = [documentsDirectory stringByAppendingPathComponent:beer.imageName];
+      beerImage = [UIImage imageWithContentsOfFile:documentsDirectory];
+    }
+    imageView_.image = beerImage;
   } else {
     nameLabel_.text = @"";
     infoLabel_.text = @"";

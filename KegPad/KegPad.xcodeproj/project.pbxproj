@@ -123,6 +123,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		422D27BC128A81AD00AA0C62 /* beer_image_gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */; };
+		422D27BD128A81AD00AA0C62 /* beer_image_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D27BB128A81AD00AA0C62 /* beer_image_mask.png */; };
 		4237352A127264E000C48796 /* Lagunitas_PILS.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373528127264E000C48796 /* Lagunitas_PILS.png */; };
 		4237352B127264E000C48796 /* Ommegang_BPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373529127264E000C48796 /* Ommegang_BPA.png */; };
 		427AC48C126585C50063CE3C /* flow_at_symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC486126585C50063CE3C /* flow_at_symbol.png */; };
@@ -320,6 +322,8 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* KegPad_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KegPad_Prefix.pch; sourceTree = "<group>"; };
+		422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_image_gloss.png; sourceTree = "<group>"; };
+		422D27BB128A81AD00AA0C62 /* beer_image_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_image_mask.png; sourceTree = "<group>"; };
 		42373528127264E000C48796 /* Lagunitas_PILS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lagunitas_PILS.png; sourceTree = "<group>"; };
 		42373529127264E000C48796 /* Ommegang_BPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ommegang_BPA.png; sourceTree = "<group>"; };
 		427AC486126585C50063CE3C /* flow_at_symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_at_symbol.png; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 		0017B91112022FE200269CDA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */,
+				422D27BB128A81AD00AA0C62 /* beer_image_mask.png */,
 				00D353571266AF4A005FF0B6 /* literboard_background.png */,
 				00D3534D1266ABB5005FF0B6 /* graph_background.png */,
 				00D353431266AA59005FF0B6 /* beer_button_icon.png */,
@@ -910,6 +916,8 @@
 				00CB54701294D9D50056FE12 /* Orchard_White.png in Resources */,
 				00CB54711294D9D50056FE12 /* Mystery.png in Resources */,
 				00CB54721294D9D50056FE12 /* Downtown_Brown.png in Resources */,
+				422D27BC128A81AD00AA0C62 /* beer_image_gloss.png in Resources */,
+				422D27BD128A81AD00AA0C62 /* beer_image_mask.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
