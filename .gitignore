@@ -1,4 +1,5 @@
 KegPad/build
 KegPad/KegPad.xcodeproj/*.mode1v3
 KegPad/KegPad.xcodeproj/*.pbxuser
+KegPad/KegPad.xcodeproj/*.perspectivev3
 KegBoard/board/kegboard.s#*

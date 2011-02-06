@@ -112,7 +112,9 @@
     [self showError:error];
     return;
   }
-  
+
+  // Set new keg as current keg
+  [[KBApplication dataStore] setKeg:keg position:0];
   [self.delegate kegEditViewController:self didSaveKeg:keg];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEditNotification object:keg];
 }
