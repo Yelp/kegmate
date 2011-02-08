@@ -32,8 +32,16 @@
   if ((self = [super init])) { 
     self.title = @"Beers";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_add)] autorelease];
+    searchBar_ = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
+    searchBar_.delegate = self;
+    self.tableView.tableHeaderView = searchBar_;
   }
   return self;
+}
+
+- (void)dealloc {
+  [searchBar_ release];
+  [super dealloc];
 }
 
 - (NSFetchedResultsController *)loadFetchedResultsController {
@@ -94,6 +102,42 @@
 
 - (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didSaveBeer:(KBBeer *)beer { 
   [self.navigationController popToViewController:self animated:YES];
+}
+
+#pragma mark UISearchBarDelegate
+
+- (void)_searchInDataSourceWithQuery:(NSString *)query {
+  [self.tableView disableStatusInSection:0 reloadData:NO];
+  [self.dataSource clearAll]; 
+  // Search the list of dataSources for matching items
+  for (UserTableViewCellDataSource *cellDataSource in [_userDataSource enumeratorForCellDataSources]) {
+    if ([cellDataSource respondsToSelector:@selector(user)]) {
+      NSComparisonResult result = [[cellDataSource.user name] compare:query options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)
+                                                                range:NSMakeRange(0, [query length])];
+      if (result == NSOrderedSame) {
+        [self.dataSource addCellDataSource:cellDataSource section:0];
+      }
+    }
+  }
+  
+  if ([self.dataSource count] == 0)
+    [self _showMessage:YKLocalizedString(@"NoResults") refresh:NO];
+  
+  [self reloadData];
+}
+
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+  // Search name, Info, Type for searchText
+  NSString *query = searchBar.text;
+  if ([NSString gh_isBlank:query]) {
+    [self.tableView disableStatusInSection:0 reloadData:NO];
+    [self.dataSource clearAll]; 
+    [self reloadData];
+    return;
+  }
+      124     [self _searchInDataSourceWithQuery:query];
+
 }
 
 @end

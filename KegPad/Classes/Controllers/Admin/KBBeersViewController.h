@@ -31,6 +31,7 @@
 
 @interface KBBeersViewController : KBFetchedResultsViewController <KBBeerEditViewControllerDelegate> { 
   id<KBBeersViewControllerDelegate> delegate_;
+  UISearchBar *searchBar_;
 }
 
 @property (assign, nonatomic) id<KBBeersViewControllerDelegate> delegate;
