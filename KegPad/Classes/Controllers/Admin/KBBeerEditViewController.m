@@ -124,19 +124,25 @@
   imagePickerController.allowsEditing = YES;
   imagePickerController.delegate = self;
   imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-  UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
-  [popoverController presentPopoverFromRect:self.view.frame
-                                     inView:self.view
-                   permittedArrowDirections:UIPopoverArrowDirectionAny
-                                   animated:YES];
+  _imagePickerPopoverController = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
+  _imagePickerPopoverController.delegate = self;
+  [_imagePickerPopoverController presentPopoverFromRect:self.view.frame
+                                                 inView:self.view
+                               permittedArrowDirections:UIPopoverArrowDirectionAny
+                                               animated:YES];
   [imagePickerController release];
 }
 
 - (void)_googleImageSearch {
   NSString *urlAddress = [NSString stringWithFormat:@"http://www.google.com/images?q=%@",
-                          [nameField_.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                          [nameField_.textField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
   NSURL *url = [NSURL URLWithString:urlAddress];
   [[UIApplication sharedApplication] openURL:url];
+}
+
+- (NSString *)_sanitizeFileNameString:(NSString *)fileName {
+  NSCharacterSet* illegalFileNameCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>#"];
+  return [[fileName componentsSeparatedByCharactersInSet:illegalFileNameCharacters] componentsJoinedByString:@""];
 }
 
 #pragma mark Delegates (UIImagePickerController)
@@ -144,11 +150,14 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   KBDebug(@"%@", info);
   NSString *fileName = [NSString stringWithFormat:@"%@.png", nameField_.textField.text];
+  // Sanitize the filename string
+  fileName = [self _sanitizeFileNameString:fileName];
   NSString *imagePath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@", fileName]];
   UIImage *beerImage = [info objectForKey:UIImagePickerControllerEditedImage];
   // Write image to PNG
   [UIImagePNGRepresentation(beerImage) writeToFile:imagePath atomically:YES];
   imageNameField_.textField.text = fileName;
+  [_imagePickerPopoverController dismissPopoverAnimated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {}
@@ -158,6 +167,13 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {}
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {}
+
+#pragma mark Delegates (UIPopoverController)
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  [_imagePickerPopoverController release];
+  _imagePickerPopoverController = nil;
+}
 
 @end
 

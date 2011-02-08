@@ -30,7 +30,7 @@
 - (void)beerEditViewController:(KBBeerEditViewController *)beerEditViewController didSaveBeer:(KBBeer *)beer;
 @end
 
-@interface KBBeerEditViewController : KBUIFormViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> { 
+@interface KBBeerEditViewController : KBUIFormViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate> { 
   KBUIFormTextField *nameField_;
   KBUIFormTextField *typeField_;  
   KBUIFormTextField *infoField_;
@@ -39,6 +39,7 @@
   KBUIFormTextField *imageNameField_;
   
   NSString *_beerEditId;
+  UIPopoverController *_imagePickerPopoverController;
 }
 
 @property (assign, nonatomic) id<KBBeerEditViewControllerDelegate> delegate;
