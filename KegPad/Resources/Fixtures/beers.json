@@ -127,4 +127,13 @@
   "country": "USA",
   "image": "Orchard_White.png",
   "abv": 5.7
+}, {
+  "id": "Lost Abbey - Serpents Stout",
+  "name": "Lost Abbey - Serpents Stout",
+  "info": "A very delicious bottle-conditioned stout, impressive and drinkable for 11 percent. The more it warms up the better it gets. Malt flavors are really in sync with each other. A must try in our book because it stands out from the rest of the Lost Abbey lineup as being one of their best.",
+  "type": "Imperial Stout",
+  "country": "USA",
+  "image": "",
+  "abv": 11.0
 }]
+
