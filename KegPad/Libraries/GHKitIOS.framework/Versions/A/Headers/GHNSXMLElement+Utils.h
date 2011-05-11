@@ -26,11 +26,30 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
+/*!
+ Utilities for NSXMLElement.
+ */
+@interface NSXMLElement(GHUtils)
 
-@interface NSXMLElement (GHUtils)
+/*!
+ String value at name.
+ @param name
+ @result String
+ */
+- (NSString *)gh_stringAt:(NSString *)name;
 
-- (NSString *)stringAt:(NSString *)name;
-- (NSNumber *)longLongAt:(NSString *)name;
-- (NSXMLElement *)elementAt:(NSString *)name;
+/*!
+ Long long number at name.
+ @param name
+ @result Number
+ */
+- (NSNumber *)gh_longLongAt:(NSString *)name;
+
+/*!
+ XML element at name.
+ @param name
+ @result XML element
+ */
+- (NSXMLElement *)gh_elementAt:(NSString *)name;
 
 @end

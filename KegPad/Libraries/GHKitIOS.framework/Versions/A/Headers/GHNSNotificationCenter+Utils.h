@@ -27,9 +27,18 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
+/*!
+ Utilities for NSNotificationCenter.
+ */
+@interface NSNotificationCenter(GHUtils)
 
-@interface NSNotificationCenter (GHUtils)
-
+/*!
+ Replace observer. If present, it removes and re-adds the observer.
+ @param observer
+ @param selector
+ @param name
+ @param object
+ */
 - (void)gh_replaceObserver:(id)observer selector:(SEL)selector name:(NSString *)name object:(id)object;
 
 @end

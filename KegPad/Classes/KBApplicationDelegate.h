@@ -41,12 +41,14 @@
   SystemSoundID systemSounds_[1];
   
   KBKegManager *kegManager_;
+  KBTwitterShare *twitterShare_;
   
   BOOL animating_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, readonly) KBKegManager *kegManager;
+@property (nonatomic, readonly) KBTwitterShare *twitterShare;
 
 - (void)setKeg:(KBKeg *)keg;
 

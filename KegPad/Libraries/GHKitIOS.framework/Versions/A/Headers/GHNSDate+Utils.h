@@ -26,11 +26,13 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-// Common date formats
-extern NSString *const kDateFormatShortMonthFullYearTime; // 'Dec 12, 2008 4:34 PM'
+// Common date format constant: 'Dec 12, 2008 4:34 PM'
+extern NSString *const kDateFormatShortMonthFullYearTime;
 
-
-@interface NSDate (GHUtils)
+/*!
+ Utilities for dates, for time ago in words and date component arithmentic (adding days), tomorrow, yesterday, and more.
+ */
+@interface NSDate(GHUtils)
 
 /*!
  Return new date by adding (or subtracting) days from date.
@@ -90,8 +92,59 @@ extern NSString *const kDateFormatShortMonthFullYearTime; // 'Dec 12, 2008 4:34 
 - (NSString *)gh_format:(NSString *)format useWeekday:(BOOL)useWeekday;
 
 /*!
+ Create date from date and add days and/or normalize.
+ @param date The date to start at
+ @param addDay If not 0, will add these number of days to the date.
+ @param normalize If YES will set hours, minutes, seconds to 0
+ */
++ (NSDate *)gh_dateFromDate:(NSDate *)date addDay:(NSInteger)addDay normalize:(BOOL)normalize;
+
+/*!
+ Create date with day, month, year, and add days, months or years.
+ 
+ To use the current day, month or year, specify 0 for that value.
+ 
+ For example, the use Jan, 1 30 years ago:
+ 
+ @code
+ [NSDate gh_dateWithDay:1 month:1 year:0 addDay:0 addMonth:0 addYear:-30 
+  timeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+ @endcode
+ 
+ @param day Day to set
+ @param month Month to set
+ @param year Year to set
+ @param addDay Days to add
+ @param addMonth Month to add
+ @param addYear Year to add
+ @param timeZone Time zone to use
+ @result Date
+ */
++ (NSDate *)gh_dateWithDay:(NSInteger)day month:(NSInteger)month year:(NSInteger)year 
+                    addDay:(NSInteger)addDay addMonth:(NSInteger)addMonth addYear:(NSInteger)addYear 
+                  timeZone:(NSTimeZone *)timeZone;
+
+/*!
  Time ago in words.
  For more info, especially on localization, see GHNSString+TimeInterval.h.
+ 
+ These are the localized defaults, that you can override:
+ 
+ @verbatim
+ LessThanAMinute = "less than a minute";
+ LessThanXSeconds = "less than %d seconds";
+ HalfMinute = "half a minute";
+ 1Minute = "1 minute";
+ XMinutes = "%.0f minutes";
+ About1Hour = "about 1 hour";
+ AboutXHours = "about %.0f hours";
+ 1Day = "1 day";
+ XDays = "%.0f days";
+ About1Month = "about 1 month";
+ XMonths = "%.0f months";
+ About1Year = "about 1 year";
+ OverXYears = "over %.0f years";
+ @endverbatim
  
  @param includeSeconds If YES, will include seconds (30 seconds ago), otherwise will say something like 'Less than a minute'
  @result Time ago in words

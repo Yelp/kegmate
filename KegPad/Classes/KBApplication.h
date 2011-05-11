@@ -20,9 +20,11 @@
 //
 
 #import "KBKegManager.h"
+#import "KBTwitterShare.h"
 
 @protocol KBApplicationDelegate <UIApplicationDelegate>
 - (KBKegManager *)kegManager;
+- (KBTwitterShare *)twitterShare;
 - (void)playSystemSoundGlass;
 @end
 
@@ -36,6 +38,8 @@
 + (void)setSharedDelegate:(NSObject<KBApplicationDelegate> *)sharedDelegate;
 
 + (KBKegManager *)kegManager;
+
++ (KBTwitterShare *)twitterShare;
 
 + (KBDataStore *)dataStore;
 

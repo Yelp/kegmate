@@ -27,14 +27,37 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@interface NSMutableDictionary (GHUtils)
+/*!
+ Utilities for NSMutableDictionary.
+ */
+@interface NSMutableDictionary(GHUtils)
 
+/*!
+ Set double value.
+ @param d
+ @param key
+ */
 - (void)gh_setDouble:(double)d forKey:(id)key;
 
+/*!
+ Set integer value.
+ @param n
+ @param key
+ */
 - (void)gh_setInteger:(NSInteger)n forKey:(id)key;
 
+/*!
+ Set bool.
+ @param b
+ @param key
+ */
 - (void)gh_setBool:(BOOL)b forKey:(id)key;
 
+/*!
+ Set object or [NSNull null] if nil.
+ @param object
+ @param key
+ */
 - (void)gh_setObjectMaybeNil:(id)object forKey:(id)key;
 
 /*!

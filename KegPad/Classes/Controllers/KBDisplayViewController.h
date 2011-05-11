@@ -19,7 +19,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBAdminViewController.h"
 #import "KBBeerMovieView.h"
 #import "KBBeer.h"
 #import "KBKegTemperature.h"
@@ -56,8 +55,6 @@
 
   KBRecentPoursView *recentPoursView_;
 
-  KBAdminViewController *adminViewController_;
-  
   NSTimer *timer_; // For updating screen every minute
   
   UIImageView *rateLabel_;

@@ -26,7 +26,10 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@interface NSURL (GHUtils)
+/*!
+ Utilities for URLs, for example, encoding, escaping, parsing, splitting out or sorting query params, and more.
+ */
+@interface NSURL(GHUtils)
 
 /*!
  Get dictionary from NSURL query parameter.
@@ -35,8 +38,7 @@
 - (NSMutableDictionary *)gh_queryDictionary;
 
 /*!
- @method gh_dictionaryToQueryString
- @abstract Dictionary to query string. Escapes any encoded characters.
+ Dictionary to query string. Escapes any encoded characters.
  @param queryDictionary Dictionary of key value params
  @result Query string, key1=value1&key2=value2
  */
@@ -44,8 +46,7 @@
 
 /*!
  Convert dictionary to URL query string.
- @method gh_dictionaryToQueryString
- @abstract Dictionary to params string. Escapes any encoded characters.
+ Escapes any encoded characters.
  @param queryDictionary Dictionary
  @param sort If YES, will sort items
  @result Query string, key1=value1&key2=value2
@@ -63,7 +64,6 @@
 
 /*!
  Convert URL query string to dictionary.
- @method gh_queryStringToDictionary
  @param string URL params string, key1=value1&key2=value2
  @result Dictionary
  */
@@ -97,17 +97,25 @@
 - (NSURL *)gh_canonicalWithIgnore:(NSArray *)ignore;
 
 /*!
+ Remove query params.
+ @param filterQueryParams List of keys to filter 
+ @param sort Whether to sort query params
+ @result URL without query params.
+ */
+- (NSURL *)gh_filterQueryParams:(NSArray *)filterQueryParams sort:(BOOL)sort;
+
+/*!
  Encode URL string.
  
   "~!@#$%^&*(){}[]=:/,;?+'\"\\" => ~!@#$%25%5E&*()%7B%7D%5B%5D=:/,;?+'%22%5C
  
  Doesn't encode: ~!@#$&*()=:/,;?+'
+ 
  Does encode: %^{}[]"\
  
  Should be the same as javascript's encodeURI().
  See http://xkr.us/articles/javascript/encode-compare/
  
- @method gh_encode
  @param s String to escape
  @result Encode string
  */
@@ -119,12 +127,12 @@
  "~!@#$%^&*(){}[]=:/,;?+'\"\\" => ~!%40%23%24%25%5E%26*()%7B%7D%5B%5D%3D%3A%2F%2C%3B%3F%2B'%22%5C
  
  Doesn't encode: ~!*()'
+ 
  Does encode: @#$%^&{}[]=:/,;?+"\
  
  Should be the same as javascript's encodeURIComponent().
  See http://xkr.us/articles/javascript/encode-compare/
  
- @method gh_encodeComponent
  @param s String to encode
  @result Encoded string
  */
@@ -135,7 +143,6 @@
  
  Encodes: @#$%^&{}[]=:/,;?+"\~!*()'
  
- @method gh_escapeAll
  @param s String to encode
  @result Encoded string
  */ 
@@ -148,29 +155,25 @@
  */
 + (NSString *)gh_decode:(NSString *)s;
 
-#ifndef TARGET_OS_IPHONE
+#if !TARGET_OS_IPHONE
 
 /*!
- @method copyLinkToPasteboard
- @abstract Copy URL to pasteboard
+ Copy URL to pasteboard.
  */
 - (void)gh_copyLinkToPasteboard;
 
 /*!
  Open file URL. 
  Opens path in Finder or whatever is registered for the file:// scheme.
- @method openFile
  @param path Path to open
- @abstract Open file path
+ @result YES if opened
  */
 + (BOOL)gh_openFile:(NSString *)path;
 
 /*!
  Opens directory of file at path (or the path itself if it is a directory),
  in the Finder or whatever is registered for the file:// scheme.
- @method openContainingFolder
  @param path
- @abstract Open folder (in Finder probably) for file path.
  */
 + (void)gh_openContainingFolder:(NSString *)path;
 

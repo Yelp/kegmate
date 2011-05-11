@@ -23,7 +23,7 @@
 
 #import "KBApplication.h"
 
-#import <YAJLIOS/YAJLIOS.h>
+#import <YAJLiOS/YAJL.h>
 
 @implementation KBDataImporter
 

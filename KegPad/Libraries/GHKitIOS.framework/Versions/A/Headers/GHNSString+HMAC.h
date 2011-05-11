@@ -26,14 +26,22 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@interface NSString (GHHMAC)
+/*!
+ Utilities for generating a SHA-1 HMAC on a string based on a
+ secret and Base64 encoder.
+ */
+@interface NSString(GHHMAC)
 
 /*!
  HMAC SHA1 digest.
  
- For Base 64 encoder you can user GTMBase64.
+ For the Base64 encoder you can user GTMBase64, or that implements:
+ @code
+ - (NSData *)encodeBytes:(const void *)bytes length:(NSUInteger)length;
+ @endcode
  
  @code
+ // #import <GHKit/GTMBase64.h>
  ["stringtosign" gh_HMACSHA1:@"mysecret" base64Encoder:[GTMBase64 class]];
  @endcode
  

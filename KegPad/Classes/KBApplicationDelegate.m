@@ -27,7 +27,7 @@
 
 @implementation KBApplicationDelegate
 
-@synthesize window=window_, kegManager=kegManager_;
+@synthesize window=window_, kegManager=kegManager_, twitterShare=twitterShare_;
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -99,16 +99,16 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectUser:) name:KBDidSelectUserNotification object:nil];    
   
   kegManager_ = [[KBKegManager alloc] init];
+  
+  twitterShare_ = [[KBTwitterShare alloc] init];
 
   // Set the keg (only 1 keg is currently supported)
   KBKeg *keg = [kegManager_.dataStore kegAtPosition:0];
-  if (!keg) {
-    [displayViewController_ admin:nil]; 
-  } else {
+  if (keg) {
     [self setKeg:keg];
   }
   
-  // Always have admin user
+  // Setup some defaults
   [[KBApplication dataStore] addOrUpdateUserWithTagId:@"ADMIN" firstName:@"Yelp" lastName:@"Admin" isAdmin:YES error:nil];
   
   // Start processing

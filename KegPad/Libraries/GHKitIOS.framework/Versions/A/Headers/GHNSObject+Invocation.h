@@ -34,7 +34,7 @@
  Adds performSelector methods that take a nil-terminated variable argument list,
  for when you need to pass more arguments to performSelector.
  */
-@interface NSObject (GHInvocation_GHKIT)
+@interface NSObject(GHInvocation_GHKIT)
 
 /*!
  Perform selector if responds.
@@ -58,6 +58,12 @@
  */
 - (id)gh_performSelector:(SEL)selector withObjects:object, ... NS_REQUIRES_NIL_TERMINATION;
 
+/*!
+ Invoke selector after delay with arguments.
+ @param selector
+ @param delay
+ @param withObjects nil terminated variable argument list 
+ */
 - (id)gh_performSelector:(SEL)selector afterDelay:(NSTimeInterval)delay withObjects:object, ... NS_REQUIRES_NIL_TERMINATION;
 
 /*!
@@ -76,11 +82,32 @@
  */
 - (void)gh_performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)waitUntilDone withObjects:object, ... NS_REQUIRES_NIL_TERMINATION;
 
-
+/*!
+ Invoke selector with arguments.
+ @param selector
+ @param onMainThread Whether to perform on main thread or current thread
+ @param waitUntilDone Whether to join on selector and wait for it to finish.
+ @param withObjects nil terminated variable argument list 
+ */
 - (void)gh_performSelector:(SEL)selector onMainThread:(BOOL)onMainThread waitUntilDone:(BOOL)waitUntilDone withObjects:object, ... NS_REQUIRES_NIL_TERMINATION;
 
+/*!
+ Invoke selector with arguments;
+ @param selector
+ @param onMainThread Whether to perform on main thread or current thread
+ @param waitUntilDone Whether to join on selector and wait for it to finish.
+ @param arguments List of arguments
+ */
 - (void)gh_performSelector:(SEL)selector onMainThread:(BOOL)onMainThread waitUntilDone:(BOOL)waitUntilDone arguments:(NSArray *)arguments;
 
+/*!
+ Invoke selector with arguments after delay.
+ @param selector
+ @param onMainThread Whether to perform on main thread or current thread
+ @param waitUntilDone Whether to join on selector and wait for it to finish.
+ @param afterDelay Delay in seconds
+ @param arguments List of arguments
+ */
 - (void)gh_performSelector:(SEL)selector onMainThread:(BOOL)onMainThread waitUntilDone:(BOOL)waitUntilDone 
 								afterDelay:(NSTimeInterval)delay arguments:(NSArray *)arguments;
 
@@ -136,8 +163,10 @@
  Overriding the selector only make sense when using the "argument proxy".
  For example, 
  
+ @code
  SEL selector = @selector(bar:baz:);
  [foo gh_argumentProxy:selector] arg:10 arg:YES];
+ @endcode
  
  Will call [foo bar:10 baz:YES];  (and not arg:arg: selector which doesn't exist).
  

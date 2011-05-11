@@ -323,8 +323,25 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return results;
 }
 
-- (BOOL)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user date:(NSDate *)date error:(NSError **)error {
-  if (!keg) return NO;
+- (void)addAmount:(float)amount toPour:(KBKegPour *)pour error:(NSError **)error {
+  pour.amountValue += amount;
+  pour.date = [NSDate date];
+  
+  [pour.keg addPouredValue:amount];
+  [pour.user addPouredValue:amount];
+  
+  // Update pour indexes
+  [self updatePourIndex:amount date:pour.date timeType:KBPourIndexTimeTypeMinutes15 keg:pour.keg user:pour.user error:error];
+  [self updatePourIndex:amount date:pour.date timeType:KBPourIndexTimeTypeDay keg:pour.keg user:pour.user error:error];
+  
+  [self save:error];
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegVolumeDidChangeNotification object:pour.keg];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidSavePourNotification object:pour];
+}
+
+- (KBKegPour *)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user date:(NSDate *)date error:(NSError **)error {
+  if (!keg) return nil;
   KBKegPour *kegPour = [NSEntityDescription insertNewObjectForEntityForName:@"KBKegPour" inManagedObjectContext:[self managedObjectContext]];
   kegPour.keg = keg;
   kegPour.date = date;
@@ -343,10 +360,11 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegVolumeDidChangeNotification object:keg];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidSavePourNotification object:kegPour];
-  return saved;
+  if (saved) return kegPour;
+  return nil;
 }
 
-- (NSArray */*of KBKegPour*/)recentKegPours:(NSUInteger)limit ascending:(BOOL)ascending error:(NSError **)error {
+- (NSArray */*of KBKegPour*/)recentKegPoursWithLimit:(NSUInteger)limit ascending:(BOOL)ascending error:(NSError **)error {
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   [fetchRequest setEntity:[NSEntityDescription entityForName:@"KBKegPour" inManagedObjectContext:[self managedObjectContext]]];
   [fetchRequest setFetchLimit:limit];
@@ -407,7 +425,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
 }
 
 - (KBKegPour *)lastPour:(NSError **)error {
-  return [[self recentKegPours:1 ascending:NO error:error] gh_firstObject];
+  return [[self recentKegPoursWithLimit:1 ascending:NO error:error] gh_firstObject];
 }
 
 - (KBRating *)ratingWithUser:(KBUser *)user beer:(KBBeer *)beer error:(NSError **)error {

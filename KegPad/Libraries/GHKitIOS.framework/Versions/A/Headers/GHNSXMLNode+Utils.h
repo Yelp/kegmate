@@ -27,8 +27,11 @@
 //
 
 
-@interface NSXMLNode (GHUtils)
+/*!
+ Utilities for NSXMLNode.
+ */
+@interface NSXMLNode(GHUtils)
 
-- (NSString *)stringAtXQuery:(NSString *)xQuery error:(NSError **)error;
+- (NSString *)gh_stringAtXQuery:(NSString *)xQuery error:(NSError **)error;
 
 @end

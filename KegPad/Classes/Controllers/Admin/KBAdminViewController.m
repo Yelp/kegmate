@@ -25,26 +25,28 @@
 #import "KBApplication.h"
 #import "KBDataImporter.h"
 #import "KBUIForm.h"
+#import "KBTwitterAdminViewController.h"
 
-@implementation KBAdminViewController
+
+@implementation KBAdminNavigationController
 
 - (id)init {
   if ((self = [super init])) {
     self.modalPresentationStyle = UIModalPresentationFormSheet;
-    adminOptionsController_ = [[KBAdminOptionsController alloc] init];
-    [self pushViewController:adminOptionsController_ animated:NO];
+    adminViewController_ = [[KBAdminViewController alloc] init];
+    [self pushViewController:adminViewController_ animated:NO];
   }
   return self;
 }   
 
 - (void)dealloc {
-  [adminOptionsController_ release];
+  [adminViewController_ release];
   [super dealloc];
 }
 
 @end
 
-@implementation KBAdminOptionsController
+@implementation KBAdminViewController
 
 - (id)init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
@@ -52,20 +54,12 @@
     [self addForm:[KBUIForm formWithTitle:@"Beers" text:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Kegs" text:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Users" text:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Twitter" text:@"Setup twitter." target:self action:@selector(showTwitterAdmin) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Update fixtures" text:@"Load fixture data (will reset changes from fixture data)." 
                                    target:self action:@selector(updateWithFixtures) showDisclosure:NO]];
   }
   return self;
-}
-
-- (void)dealloc {
-  [beersViewController_ release];
-  [usersViewController_ release];
-  [kegsViewController_ release];
-  simulatorViewController_.delegate = nil;
-  [simulatorViewController_ release];
-  [super dealloc];
 }
 
 - (void)viewDidLoad {
@@ -80,29 +74,34 @@
 }
 
 - (void)showBeers {
-  if (!beersViewController_) 
-    beersViewController_ = [[KBBeersViewController alloc] init];
-  [self.navigationController pushViewController:beersViewController_ animated:YES];
+  KBBeersViewController *beersViewController = [[KBBeersViewController alloc] init];
+  [self.navigationController pushViewController:beersViewController animated:YES];
+  [beersViewController release];
 }
 
 - (void)showUsers {
-  if (!usersViewController_) 
-    usersViewController_ = [[KBUsersViewController alloc] init];
-  [self.navigationController pushViewController:usersViewController_ animated:YES];
+  KBUsersViewController *usersViewController = [[KBUsersViewController alloc] init];  
+  [self.navigationController pushViewController:usersViewController animated:YES];
+  [usersViewController release];
 }
 
 - (void)showKegs {
-  if (!kegsViewController_) 
-    kegsViewController_ = [[KBKegsViewController alloc] init];
-  [self.navigationController pushViewController:kegsViewController_ animated:YES];
+  KBKegsViewController *kegsViewController = [[KBKegsViewController alloc] init];
+  [self.navigationController pushViewController:kegsViewController animated:YES];
+  [kegsViewController release];
 }
 
 - (void)showSimulator {  
-  if (!simulatorViewController_) {
-    simulatorViewController_ = [[KBSimulatorViewController alloc] init];
-    simulatorViewController_.delegate = self;
-  }
-  [self.navigationController pushViewController:simulatorViewController_ animated:YES];
+  KBSimulatorViewController *simulatorViewController = [[KBSimulatorViewController alloc] init];
+  simulatorViewController.delegate = self;
+  [self.navigationController pushViewController:simulatorViewController animated:YES];
+  [simulatorViewController release];
+}
+
+- (void)showTwitterAdmin {
+  KBTwitterAdminViewController *twitterAdminViewController = [[KBTwitterAdminViewController alloc] init];
+  [self.navigationController pushViewController:twitterAdminViewController animated:YES];
+  [twitterAdminViewController release];
 }
 
 - (void)updateWithFixtures {

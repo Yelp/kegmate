@@ -164,9 +164,9 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @param keg Keg
  @param user User, if nil is anonymous
  @param error Out error
- @result YES if keg pour was added
+ @result Keg pour that was added
  */
-- (BOOL)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user date:(NSDate *)date error:(NSError **)error;
+- (KBKegPour *)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user date:(NSDate *)date error:(NSError **)error;
 
 /*!
  Get a list of recent keg pours.
@@ -175,7 +175,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @param error Out error
  @result List of keg pours
  */
-- (NSArray */*of KBKegPour*/)recentKegPours:(NSUInteger)limit ascending:(BOOL)ascending error:(NSError **)error;
+- (NSArray */*of KBKegPour*/)recentKegPoursWithLimit:(NSUInteger)limit ascending:(BOOL)ascending error:(NSError **)error;
 
 /*!
  Get last keg pour.
@@ -183,6 +183,14 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @result Last keg pour
  */
 - (KBKegPour *)lastPour:(NSError **)error;
+
+/*!
+ Add amount to existing pour.
+ @param amount Amount to add
+ @param pour Pour to add to
+ @param error Out error
+ */
+- (void)addAmount:(float)amount toPour:(KBKegPour *)pour error:(NSError **)error;
 
 /*!
  Add/update a user.

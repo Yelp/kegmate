@@ -24,6 +24,7 @@
 #import "KBNotifications.h"
 #import "KBApplication.h"
 #import "KBKegTemperature.h"
+#import "KBKegPour.h"
 
 @interface KBKegManager ()
 @property (retain, nonatomic) KBUser *loginUser;
@@ -140,11 +141,22 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didEndPourWithAmount:(double)amount {
   
-  if (amount > 0) 
-    [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:self.loginUser date:[NSDate date] error:nil];
+  KBKegPour *kegPour = nil;
+  
+  if (amount > 0) {
+    KBKegPour *lastPour = [dataStore_ lastPour:nil];
+    // If same user and less than 30 seconds, add to the existing pour
+    if ([lastPour.user isEqual:self.loginUser] && -[lastPour.date timeIntervalSinceNow] < 30) {
+      lastPour.amountValue += amount;
+      [dataStore_ addAmount:amount toPour:lastPour error:nil];
+      kegPour = lastPour;
+    } else {  
+      kegPour = [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:self.loginUser date:[NSDate date] error:nil];
+    }
+  }
   
   pouring_ = NO;
-  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEndPourNotification object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEndPourNotification object:kegPour];
 
   // Set timer to timeout in kLoggedInTimeoutAfterPourInterval seconds after a pour
   self.activityTime = ([NSDate timeIntervalSinceReferenceDate] - kLoggedInTimeoutInterval + kLoggedInTimeoutAfterPourInterval);

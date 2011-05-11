@@ -27,9 +27,23 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@interface NSObject (GHSwizzle)
+/*!
+ Method swizzling.
+ */
+@interface NSObject(GHSwizzle)
 
+/*!
+ Swizzle method.
+ @param original
+ @param alternate
+ */
 + (void)gh_swizzleMethod:(SEL)original withMethod:(SEL)alternate;
+
+/*!
+ Swizzle class method.
+ @param original
+ @param alternate
+ */
 + (void)gh_swizzleClassMethod:(SEL)original withClassMethod:(SEL)alternate;
 
 @end

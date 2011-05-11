@@ -25,22 +25,15 @@
 #import "KBUIFormViewController.h"
 #import "KBSimulatorViewController.h"
 
-@class KBAdminOptionsController;
+@class KBAdminViewController;
 
-@interface KBAdminViewController : UINavigationController {
-  KBAdminOptionsController *adminOptionsController_;
+@interface KBAdminNavigationController : UINavigationController {
+  KBAdminViewController *adminViewController_;
 }
 
 @end
 
 
-@interface KBAdminOptionsController : KBUIFormViewController <KBUIFormViewControllerDelegate> {
-  
-  KBBeersViewController *beersViewController_;
-  KBUsersViewController *usersViewController_;
-  KBKegsViewController *kegsViewController_;
-  KBSimulatorViewController *simulatorViewController_;
-  
-}
+@interface KBAdminViewController : KBUIFormViewController <KBUIFormViewControllerDelegate> { }
 
 @end

@@ -27,6 +27,10 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
+//! @cond DEV
+
+#import "GTMLogger.h"
+
 // Alias for GTMLoggerDebug
 #define GHDebug(...) GTMLoggerDebug(__VA_ARGS__)
 
@@ -47,3 +51,5 @@
 @property (assign) GTMLoggerLevel level;
 
 @end
+
+//! @endcond

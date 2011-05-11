@@ -43,6 +43,10 @@ static NSObject<KBApplicationDelegate> *KBApplicationSharedDelegate = NULL;
   return [[self sharedDelegate] kegManager];
 }
 
++ (KBTwitterShare *)twitterShare {
+  return [[self sharedDelegate] twitterShare];
+}
+
 + (KBDataStore *)dataStore {
   return [[self sharedDelegate] kegManager].dataStore;
 }

@@ -27,6 +27,8 @@
 #import "KBApplicationDelegate.h"
 #import "KBTypes.h"
 #import "KBRating.h"
+#import "KBAdminLoginViewController.h"
+#import "KBAdminViewController.h"
 
 
 @interface KBDisplayViewController ()
@@ -58,7 +60,6 @@ adminButton=adminButton_, delegate=delegate_;
   [keg_ release];
   [user_ release];
   [beerMovieView_ release];
-  [adminViewController_ release];
   [nameLabel_ release];
   [infoLabel_ release];
   [abvLabel_ release];
@@ -95,10 +96,6 @@ adminButton=adminButton_, delegate=delegate_;
   // TODO(gabe): Fix the pixel math
   chalkCircleOriginMinY_ = 30;
   chalkCircleOriginMaxY_ = chalkCircleOriginMinY_ - (chalkCircleView_.frame.size.height/2.0) + 306; // Height of thermometer  
-  
-#if TARGET_IPHONE_SIMULATOR
-  adminButton_.hidden = NO;
-#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -134,7 +131,7 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)updateRecentPours {
-  [recentPoursView_ setRecentPours:[[KBApplication dataStore] recentKegPours:20 ascending:NO error:nil]];
+  [recentPoursView_ setRecentPours:[[KBApplication dataStore] recentKegPoursWithLimit:20 ascending:NO error:nil]];
 }
 
 - (void)_stopAnimationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
@@ -264,16 +261,21 @@ adminButton=adminButton_, delegate=delegate_;
     [UIView commitAnimations]; 
   }
 
-  adminButton_.hidden = ![user_ isAdminValue];
-
   [userView_ setUser:user_];
 }
 
 #pragma mark Actions
 
 - (IBAction)admin:(id)sender {
-  if (!adminViewController_) adminViewController_ = [[KBAdminViewController alloc] init];
-  [self presentModalViewController:adminViewController_ animated:YES];
+  if (![user_ isAdmin]) {
+    KBAdminLoginNavigationController *adminLoginNavigationController = [[KBAdminLoginNavigationController alloc] init];
+    [self presentModalViewController:adminLoginNavigationController animated:YES];
+    [adminLoginNavigationController release];
+  } else {  
+    KBAdminNavigationController *adminViewController = [[KBAdminNavigationController alloc] init];
+    [self presentModalViewController:adminViewController animated:YES];
+    [adminViewController release];
+  }
 }
 
 - (IBAction)flip:(id)sender {

@@ -42,3 +42,5 @@ extern NSString *const KBDidSelectUserNotification; // With user (KBUser)
 extern NSString *const KBActivityNotification; // If there is an user activity
 
 extern NSString *const KBKegDidUpdatePourNotification; // For when an active pour is updated
+
+extern NSString *const KBTwitterCredentialsDidChange; // When twitter credentials change

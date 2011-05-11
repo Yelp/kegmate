@@ -61,24 +61,35 @@ typedef enum {
 @end
 
 /*!
- Runtime based keychain store.
+ Keychain store adapter which works on both iOS and Mac OS X.
  
  Forwards to:
 	- GHEMKeychainStore for Mac OS X.
 	- GHSFHFKeychainStore for iPhone.
 
+ 
+ Secret from keychain:
+ 
+ @code
+ GHKeychainStore *keyChainStore = [[GHKeychainStore alloc] init];
+ NSError *error = nil;
+ NSString *secret = [keyChainStore secretFromKeychainForServiceName:@"MyApp" key:"password" error:&error];
+ if (!secret) NSLog(@"Error: %@", [error localizedDescription];
+ @endcode
+ 
+ Save to keychain:
+ 
+ @code
+ GHKeychainStore *keyChainStore = [[GHKeychainStore alloc] init];
+ NSError *error = nil;
+ BOOL saved = [keyChainStore saveToKeychainWithServiceName:@"MyApp" key:"password" secret:"12345" error:&error];
+ if (!saved) NSLog(@"Error: %@", [error localizedDescription];
+ @endcode
+ 
  */
 @interface GHKeychainStore : NSObject <GHKeychainStore> {
 	id<GHKeychainStore> _keychainStore;
 }
 
-@end
-
-// Uses SFHFKeychainUtils (iPhone)
-@interface GHSFHFKeychainStore : NSObject <GHKeychainStore> {}
-@end
-
-// Uses EMKeychainProxy (Cocoa)
-@interface GHEMKeychainStore : NSObject <GHKeychainStore> {}
 @end
 

@@ -43,3 +43,5 @@ NSString *const KBDidSelectUserNotification = @"KBDidSelectUserNotification";
 NSString *const KBActivityNotification = @"KBActivityNotification";
 
 NSString *const KBKegDidUpdatePourNotification = @"KBKegDidUpdatePourNotification";
+
+NSString *const KBTwitterCredentialsDidChange = @"KBTwitterCredentialsDidChange";

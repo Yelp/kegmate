@@ -45,7 +45,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
         break;
       }
     }
-    self.flowIndicator.frame = CGRectMake(20, 331, 402, 350);
+    self.flowIndicator.frame = CGRectMake(20, 320, 402, 350);
     [self.view addSubview:self.flowIndicator];
   }
   return self;
