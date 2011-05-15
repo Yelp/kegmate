@@ -42,7 +42,7 @@
     [status appendFormat:@",%@", [temperature temperatureDescription]];  
   }
   [status appendString:@"]"];
-  return status;
+  return [status autorelease];
 }
 
 - (float)volumeRemaingPercentage {

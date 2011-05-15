@@ -295,14 +295,18 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return pourIndex;
 }
 
-- (void)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {  
-  [self _updatePourIndex:amount date:date timeType:timeType keg:nil user:nil error:error]; // For all kegs and all users
-  if (keg)
+- (BOOL)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error {  
+  KBPourIndex *pourIndex = [self _updatePourIndex:amount date:date timeType:timeType keg:nil user:nil error:error]; // For all kegs and all users
+  if (keg) {
     [self _updatePourIndex:amount date:date timeType:timeType keg:keg user:nil error:error]; // For keg on all users
-  if (user)
+  }
+  if (user) {
     [self _updatePourIndex:amount date:date timeType:timeType keg:nil user:user error:error]; // For user on all kegs
-  if (keg && user)
+  }
+  if (keg && user) {
     [self _updatePourIndex:amount date:date timeType:timeType keg:keg user:user error:error]; // For user on this keg
+  }
+  return (!!pourIndex);
 }
 
 - (NSArray */*of KBPourIndex*/)pourIndexesForStartIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex timeType:(KBPourIndexTimeType)timeType 
@@ -323,7 +327,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   return results;
 }
 
-- (void)addAmount:(float)amount toPour:(KBKegPour *)pour error:(NSError **)error {
+- (BOOL)addAmount:(float)amount toPour:(KBKegPour *)pour error:(NSError **)error {
   pour.amountValue += amount;
   pour.date = [NSDate date];
   
@@ -334,10 +338,11 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   [self updatePourIndex:amount date:pour.date timeType:KBPourIndexTimeTypeMinutes15 keg:pour.keg user:pour.user error:error];
   [self updatePourIndex:amount date:pour.date timeType:KBPourIndexTimeTypeDay keg:pour.keg user:pour.user error:error];
   
-  [self save:error];
+  BOOL saved = [self save:error];
 
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegVolumeDidChangeNotification object:pour.keg];
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidSavePourNotification object:pour];
+  return saved;
 }
 
 - (KBKegPour *)addKegPour:(float)amount keg:(KBKeg *)keg user:(KBUser *)user date:(NSDate *)date error:(NSError **)error {

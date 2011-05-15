@@ -190,7 +190,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  @param pour Pour to add to
  @param error Out error
  */
-- (void)addAmount:(float)amount toPour:(KBKegPour *)pour error:(NSError **)error;
+- (BOOL)addAmount:(float)amount toPour:(KBKegPour *)pour error:(NSError **)error;
 
 /*!
  Add/update a user.
@@ -306,7 +306,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
   - User for all kegs
   - Keg and user
  */
-- (void)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
+- (BOOL)updatePourIndex:(float)amount date:(NSDate *)date timeType:(KBPourIndexTimeType)timeType keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;
 
 - (NSArray */*of KBPourIndex*/)pourIndexesForStartIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex timeType:(KBPourIndexTimeType)timeType 
                                                     keg:(KBKeg *)keg user:(KBUser *)user error:(NSError **)error;

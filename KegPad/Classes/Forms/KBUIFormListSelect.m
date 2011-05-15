@@ -34,7 +34,8 @@
   KBUIFormListSelect *form = [[KBUIFormListSelect alloc] initWithTitle:title text:selectedValue target:target action:action context:context showDisclosure:YES];
   form.selectedValue = selectedValue;
   form.values = values;
-  return form;
+  return [form autorelease]
+  ;
 }
 
 - (void)setSelectedValue:(NSString *)selectedValue {
