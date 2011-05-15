@@ -36,7 +36,8 @@
 
 - (NSString *)shortStatusDescriptionWithTemperature:(KBKegTemperature *)temperature {
   NSMutableString *status = [[NSMutableString alloc] init];
-  [status appendFormat:@"[keg:%0.0f%%", [self volumeRemaingPercentage]];
+  [status appendString:@"[keg:"];
+  [status appendFormat:@"%0.0f%%", [self volumeRemaingPercentage]];
   if (temperature) {
     [status appendFormat:@",%@", [temperature temperatureDescription]];  
   }

@@ -34,6 +34,8 @@
 
 - (BOOL)connect;
 
+- (NSString *)kegPadName;
+
 - (void)close;
 
 - (BOOL)sendUpdateWithStatus:(NSString *)status;

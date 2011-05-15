@@ -83,8 +83,12 @@
   return YES;
 }
 
-- (BOOL)sendUpdateWithStatus:(NSString *)status {
+- (BOOL)sendUpdateWithStatus:(NSMutableString *)status {
   if (!twitterEngine_ && ![self connect]) return NO;
+  
+  NSString *kegPadName = [self kegPadName];
+  if (kegPadName) [status appendFormat:@" (%@)", kegPadName];
+  
   [twitterEngine_ sendUpdate:status];
   return YES;
 }
@@ -96,6 +100,10 @@
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
   [self close];
   KBDebug(@"Request failed; connectionIdentifier=%@, error=%@ (%@)", connectionIdentifier, [error localizedDescription], [error userInfo]);
+}
+
+- (NSString *)kegPadName {
+  return [[NSUserDefaults standardUserDefaults] objectForKey:@"KegPadName"];
 }
 
 #pragma mark - 

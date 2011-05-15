@@ -66,6 +66,7 @@
 		00896244137F4370007748CD /* jeffmicklos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 00896240137F4370007748CD /* jeffmicklos.jpg */; };
 		00896245137F4370007748CD /* johnboiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 00896241137F4370007748CD /* johnboiles.png */; };
 		00896246137F4370007748CD /* lxdvs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 00896242137F4370007748CD /* lxdvs.jpg */; };
+		00896249137F542A007748CD /* KBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00896248137F5429007748CD /* KBSettingsViewController.m */; };
 		008FED101201F0E900BA5D07 /* KBBeerMovieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */; };
 		008FED1C1201F2F600BA5D07 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */; };
 		008FEDB01201F9B600BA5D07 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */; };
@@ -297,6 +298,8 @@
 		00896240137F4370007748CD /* jeffmicklos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jeffmicklos.jpg; sourceTree = "<group>"; };
 		00896241137F4370007748CD /* johnboiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = johnboiles.png; sourceTree = "<group>"; };
 		00896242137F4370007748CD /* lxdvs.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lxdvs.jpg; sourceTree = "<group>"; };
+		00896247137F5428007748CD /* KBSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSettingsViewController.h; sourceTree = "<group>"; };
+		00896248137F5429007748CD /* KBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSettingsViewController.m; sourceTree = "<group>"; };
 		008FED0E1201F0E900BA5D07 /* KBBeerMovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerMovieView.h; sourceTree = "<group>"; };
 		008FED0F1201F0E900BA5D07 /* KBBeerMovieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerMovieView.m; sourceTree = "<group>"; };
 		008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -773,6 +776,8 @@
 				007B78C4137A3BE3000F8040 /* KBAdminLoginViewController.m */,
 				007B791D137A501B000F8040 /* KBTwitterAdminViewController.h */,
 				007B791E137A501C000F8040 /* KBTwitterAdminViewController.m */,
+				00896247137F5428007748CD /* KBSettingsViewController.h */,
+				00896248137F5429007748CD /* KBSettingsViewController.m */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -1240,6 +1245,7 @@
 				007B7AA7137A569C000F8040 /* OATokenManager.m in Sources */,
 				007B7AB1137A5BAE000F8040 /* GTMBase64.m in Sources */,
 				0089623D137F40BB007748CD /* KBAboutViewController.m in Sources */,
+				00896249137F542A007748CD /* KBSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
