@@ -29,6 +29,7 @@
   if ((self = [super initWithTitle:title text:text target:nil action:NULL context:nil showDisclosure:NO selectedAction:NULL])) {
     editable_ = YES;    
     cell_ = [[KBUIFormFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    [self setText:text];
     self.selectEnabled = NO;
   }
   return self;
@@ -41,6 +42,16 @@
 
 - (UITextField *)textField {
   return cell_.textField;
+}
+
+// Override
+- (void)setText:(NSString *)text {
+  cell_.textField.text = text;
+}
+
+// Override
+- (NSString *)text {
+  return cell_.textField.text;
 }
 
 + (KBUIFormTextField *)formTextFieldWithTitle:(NSString *)title text:(NSString *)text {

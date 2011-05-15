@@ -29,7 +29,11 @@
 }
 
 - (NSString *)amountDescription {
-  return [NSString stringWithFormat:@"%0.1f oz.", (self.amountValue * kLitersToOunces)];
+  return [NSString stringWithFormat:@"%0.1f oz.", [self amountInOunces]];
+}
+
+- (float)amountInOunces {
+  return (self.amountValue * kLitersToOunces);
 }
 
 - (NSString *)amountDescriptionWithTimeAgo {

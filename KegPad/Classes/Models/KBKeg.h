@@ -35,4 +35,6 @@
 
 - (void)addPouredValue:(float)poured;
 
+- (NSString *)shortStatusDescriptionWithTemperature:(KBKegTemperature *)temperature;
+
 @end

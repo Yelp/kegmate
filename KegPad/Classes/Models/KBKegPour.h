@@ -31,6 +31,8 @@
 
 - (NSString *)amountDescription;
 
+- (float)amountInOunces;
+
 - (NSString *)amountDescriptionWithTimeAgo;
 
 - (NSInteger)timeAgoInteger:(NSDate *)date;

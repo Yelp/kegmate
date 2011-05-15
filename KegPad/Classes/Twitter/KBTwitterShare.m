@@ -28,12 +28,21 @@
 #import "KBKeg.h"
 #import "KBBeer.h"
 
+@interface KBTwitterShare ()
+@property (retain, nonatomic) KBKegTemperature *lastTemperature;
+@property (retain, nonatomic) KBKeg *lastKeg;
+@end
+
 
 @implementation KBTwitterShare
+
+@synthesize lastTemperature=lastTemperature_, lastKeg=lastKeg_;
 
 - (id)init {
   if ((self = [super init])) {    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBKegTemperatureDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegSelectionDidChange:) name:KBKegSelectionDidChangeNotification object:nil];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connect) name:KBTwitterCredentialsDidChange object:nil];
   }
   return self;
@@ -43,6 +52,8 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   twitterEngine_.delegate = nil;
   [twitterEngine_ release];
+  [lastTemperature_ release];
+  [lastKeg_ release];
   [super dealloc];
 }
 
@@ -89,10 +100,34 @@
 
 #pragma mark - 
 
+- (void)_kegTemperatureDidChange:(NSNotification *)notification {
+  self.lastTemperature = [notification object];
+}
+
+- (void)_kegSelectionDidChange:(NSNotification *)notification {
+  KBKeg *keg = [notification object];
+  if (![self.lastKeg isEqual:keg]) {
+    self.lastKeg = keg;
+    
+    NSMutableString *status = [NSMutableString stringWithFormat:@"\"%@\" [ABV:%@] has been tapped!",
+                               [self.lastKeg.beer name],
+                               [self.lastKeg.beer abv]];
+    [self sendUpdateWithStatus:status];
+  }
+}
+
 - (void)_kegDidEndPour:(NSNotification *)notification {
   KBKegPour *kegPour = [notification object];
-  if (kegPour) {
-    NSString *status = [NSString stringWithFormat:@"%@ just poured %@ oz. (%@)", [kegPour.user displayName], [kegPour amountValueDescriptionInOunces], [kegPour.keg.beer name]];
+  // Only tweet if larger than 3 ounces
+  if (kegPour && [kegPour amountInOunces] > 3) {
+    NSString *name = [kegPour.user displayName];
+    if (!name) name = @"I";
+    
+    NSMutableString *status = [NSMutableString stringWithFormat:@"%@ poured %@ oz. of %@. %@", 
+                               name, 
+                               [kegPour amountValueDescriptionInOunces],
+                               [kegPour.keg.beer name],
+                               [kegPour.keg shortStatusDescriptionWithTemperature:self.lastTemperature]];
     [self sendUpdateWithStatus:status];
   }
 }

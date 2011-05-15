@@ -21,9 +21,15 @@
 
 #import "MGTwitterEngine.h"
 
+#import "KBKegTemperature.h"
+#import "KBKeg.h"
+
 
 @interface KBTwitterShare : NSObject <MGTwitterEngineDelegate> {
   MGTwitterEngine *twitterEngine_;  
+  
+  KBKegTemperature *lastTemperature_;
+  KBKeg *lastKeg_;
 }
 
 - (BOOL)connect;

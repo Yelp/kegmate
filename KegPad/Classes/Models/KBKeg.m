@@ -20,6 +20,7 @@
 //
 
 #import "KBKeg.h"
+#import "KBKegTemperature.h"
 
 @implementation KBKeg
 
@@ -31,6 +32,16 @@
 
 - (float)volumeTotalPouredAdjustedValue {
   return (self.volumePouredValue + self.volumeAdjustedValue);
+}
+
+- (NSString *)shortStatusDescriptionWithTemperature:(KBKegTemperature *)temperature {
+  NSMutableString *status = [[NSMutableString alloc] init];
+  [status appendFormat:@"[keg:%0.0f%%", [self volumeRemaingPercentage]];
+  if (temperature) {
+    [status appendFormat:@",%@", [temperature temperatureDescription]];  
+  }
+  [status appendString:@"]"];
+  return status;
 }
 
 - (float)volumeRemaingPercentage {

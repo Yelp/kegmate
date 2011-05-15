@@ -42,6 +42,7 @@
   UILabel *temperatureLabel_;
   UILabel *temperatureDescriptionLabel_;
   UILabel *totalPouredAmountLabel_;
+  UILabel *footerLabel_;
   
   KBChartView *chartView_;
   
@@ -63,6 +64,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *temperatureLabel;
 @property (nonatomic, retain) IBOutlet UILabel *temperatureDescriptionLabel;
 @property (nonatomic, retain) IBOutlet UILabel *totalPouredAmountLabel;
+@property (nonatomic, retain) IBOutlet UILabel *footerLabel;
 @property (nonatomic, retain) IBOutlet KBChartView *chartView;
 @property (nonatomic, retain) IBOutlet KBLeaderboardView *leaderboardView;
 @property (nonatomic, retain) IBOutlet KBFlowIndicator *flowIndicator;

@@ -31,4 +31,6 @@
   KBUIFormTextField *passwordField_;
 }
 
+- (id)initWithEditable:(BOOL)editable;
+
 @end

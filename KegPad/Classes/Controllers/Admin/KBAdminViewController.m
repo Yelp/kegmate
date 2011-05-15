@@ -26,6 +26,7 @@
 #import "KBDataImporter.h"
 #import "KBUIForm.h"
 #import "KBTwitterAdminViewController.h"
+#import "KBAdminLoginViewController.h"
 
 
 @implementation KBAdminNavigationController
@@ -37,7 +38,7 @@
     [self pushViewController:adminViewController_ animated:NO];
   }
   return self;
-}   
+}
 
 - (void)dealloc {
   [adminViewController_ release];
@@ -51,10 +52,11 @@
 - (id)init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = @"Admin";
-    [self addForm:[KBUIForm formWithTitle:@"Beers" text:@"Show list of beers." target:self action:@selector(showBeers) showDisclosure:YES]];
-    [self addForm:[KBUIForm formWithTitle:@"Kegs" text:@"Show keg list." target:self action:@selector(showKegs) showDisclosure:YES]];
-    [self addForm:[KBUIForm formWithTitle:@"Users" text:@"Show users." target:self action:@selector(showUsers) showDisclosure:YES]];
-    [self addForm:[KBUIForm formWithTitle:@"Twitter" text:@"Setup twitter." target:self action:@selector(showTwitterAdmin) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Beers" text:nil target:self action:@selector(showBeers) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Kegs" text:nil target:self action:@selector(showKegs) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Users" text:nil target:self action:@selector(showUsers) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Twitter" text:@"Connect to twitter." target:self action:@selector(showTwitterAdmin) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Password" text:@"Admin password." target:self action:@selector(showPassword) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Update fixtures" text:@"Load fixture data (will reset changes from fixture data)." 
                                    target:self action:@selector(updateWithFixtures) showDisclosure:NO]];
@@ -102,6 +104,12 @@
   KBTwitterAdminViewController *twitterAdminViewController = [[KBTwitterAdminViewController alloc] init];
   [self.navigationController pushViewController:twitterAdminViewController animated:YES];
   [twitterAdminViewController release];
+}
+
+- (void)showPassword {
+  KBAdminLoginViewController *adminLoginViewController = [[KBAdminLoginViewController alloc] initWithEditable:YES];
+  [self.navigationController pushViewController:adminLoginViewController animated:YES];
+  [adminLoginViewController release];
 }
 
 - (void)updateWithFixtures {

@@ -38,4 +38,6 @@
 
 - (void)pourLong;
 
+- (float)randomAmount;
+
 @end

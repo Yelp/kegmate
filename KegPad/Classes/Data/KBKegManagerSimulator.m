@@ -46,7 +46,7 @@
   [[kegManager_ gh_proxyAfterDelay:1] kegProcessing:kegManager_.processing didChangeTemperature:10.4];
   // Simulate start and end pour with random amount
   [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
-  [[kegManager_ gh_proxyAfterDelay:18] kegProcessing:kegManager_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+  [[kegManager_ gh_proxyAfterDelay:18] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
 }
 
 - (void)temperatures {
@@ -68,18 +68,22 @@
   [kegManager_ kegProcessing:kegManager_.processing didReceiveRFIDTagId:randomTagId];
 }
 
+- (float)randomAmount {
+  return (0.2 + (rand() / (double)RAND_MAX));
+}
+
 - (void)pours {
   [self login:@"ADMIN"];
   [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
-  [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+  [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
   [[kegManager_ gh_proxyAfterDelay:8] kegProcessingDidStartPour:kegManager_.processing];
-  [[kegManager_ gh_proxyAfterDelay:9] kegProcessing:kegManager_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+  [[kegManager_ gh_proxyAfterDelay:9] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
 }
 
 - (void)pourShort {
-  [self login:@"ADMIN"];
+  [kegManager_ logout];
   [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
-  [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];   
+  [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
 }
 
 - (void)poursShort {
@@ -95,7 +99,7 @@
 - (void)pourLong {
   [self login:@"ADMIN"];
   [[kegManager_ gh_proxyAfterDelay:1] kegProcessingDidStartPour:kegManager_.processing];
-  [[kegManager_ gh_proxyAfterDelay:30] kegProcessing:kegManager_.processing didEndPourWithAmount:(0.2 + (rand() / (double)RAND_MAX))];
+  [[kegManager_ gh_proxyAfterDelay:30] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];
 }
 
 @end

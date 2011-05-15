@@ -34,7 +34,7 @@
 lastPourAmountLabel=lastPourAmountLabel_, lastPourAmountUnitsLabel=lastPourAmountUnitsLabel_,
 percentRemaingLabel=percentRemaingLabel_, totalPouredAmountLabel=totalPouredAmountLabel_,
 temperatureLabel=temperatureLabel_, temperatureDescriptionLabel=temperatureDescriptionLabel_,
-chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flowIndicator=flowIndicator_;
+chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flowIndicator=flowIndicator_, footerLabel=footerLabel_;
 
 - (id)init {  
   if ((self = [super initWithNibName:nil bundle:nil])) {
@@ -65,6 +65,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
   [chartView_ release];
   [leaderboardView_ release];
   [flowIndicator_ release];
+  [footerLabel_ release];
   [keg_ release];
   [super dealloc];
 }
@@ -79,6 +80,9 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidSavePour:) name:KBKegDidSavePourNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_beerDidEdit:) name:KBBeerDidEditNotification object:nil];    
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEdit:) name:KBKegDidEditNotification object:nil];      
+  
+  NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+  footerLabel_.text = [NSString stringWithFormat:@"KegPad %@.", version];
 }
 
 - (void)updateLeaderboard {

@@ -34,7 +34,7 @@
     [self addForm:[KBUIForm formWithTitle:@"Simulate unknown tag" text:@"" target:kegManagerSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
     [self addForm:[KBUIForm formWithTitle:@"Simulate pours (multiple)" text:@"" target:kegManagerSimulator_ action:@selector(pours) showDisclosure:NO]];
     [self addForm:[KBUIForm formWithTitle:@"Simulate pours (multiple short)" text:@"" target:kegManagerSimulator_ action:@selector(poursShort) showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate pours (short)" text:@"" target:kegManagerSimulator_ action:@selector(pourShort) showDisclosure:NO]];    
+    [self addForm:[KBUIForm formWithTitle:@"Simulate pour (short,anonymous)" text:@"" target:kegManagerSimulator_ action:@selector(pourShort) showDisclosure:NO]];    
     [self addForm:[KBUIForm formWithTitle:@"Simulate pour (long)" text:@"" target:kegManagerSimulator_ action:@selector(pourLong) showDisclosure:NO]];    
   }
   return self;
