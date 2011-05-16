@@ -9,8 +9,8 @@
 #import "KBRKViewController.h"
 #import "KBKegEditViewController.h"
 
-@interface KBRKKegsViewController : KBRKViewController <KBKegEditViewControllerDelegate> {
-    
-}
+@interface KBRKKegsViewController : KBRKViewController <KBKegEditViewControllerDelegate> { }
+
+- (void)loadKegs;
 
 @end

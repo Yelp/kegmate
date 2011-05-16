@@ -11,8 +11,11 @@
 
 @implementation KBRKViewController
 
+@synthesize objects=_objects;
+
 - (id)init {
   self = [super init];
+  //XXX(johnb): Move this to the application delegate
   // Initialize RestKit
   RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://kegbot.net/sfo/api"];
   
@@ -31,7 +34,29 @@
   // "2010-06-12T07:25:16Z", 
   [dateFormats addObject:@"y-MM-dTHH:mm:ssZ"];
   [mapper setDateFormats:dateFormats];
+/*
+  RKManagedObjectSeeder* seeder = [RKManagedObjectSeeder objectSeederWithObjectManager:objectManager];
+  // Seed the database with instances of RKTStatus from a snapshot of the RestKit Twitter timeline
+  [seeder seedObjectsFromFile:@"rk_kegs.json" toClass:[KBRKKeg class] keyPath:@"result.kegs"];
+  
+  // Finalize the seeding operation and output a helpful informational message
+  [seeder finalizeSeedingAndExit];
+*/
+  // Initialize object store
+  objectManager.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"RKKegPad.sqlite" usingSeedDatabaseName:RKDefaultSeedDatabaseFileName managedObjectModel:nil];
+
   return self;
+}
+
+#pragma mark Abstract
+
+- (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj { 
+  [NSException raise:NSDestinationInvalidException format:@"Subclasses must implement cell:forObject:"];
+  return cell; 
+}
+
+- (void)deleteObject:(id)obj {
+  [NSException raise:NSDestinationInvalidException format:@"Subclasses must implement deleteObject:"];
 }
 
 #pragma mark RKObjectLoaderDelegate methods

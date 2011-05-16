@@ -1,5 +1,5 @@
 //
-//  KBRKKegsViewController.m
+//  KBKegsViewController.m
 //  KegPad
 //
 //  Created by John Boiles on 5/15/11.
@@ -20,7 +20,7 @@
 
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
   KBRKKeg *keg = (KBRKKeg *)obj;
-  cell.textLabel.text = [NSString stringWithFormat:@"Keg: %@", [keg description]];
+  cell.textLabel.text = [NSString stringWithFormat:@"Keg: %@", [keg descriptionText]];
   //cell.detailTextLabel.text = [[obj dateCreated] description];
 /*
   KBKeg *keg = [[KBApplication dataStore] kegAtPosition:0];
@@ -55,7 +55,7 @@
 #pragma mark -
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
-  KBRKKeg *keg = [_objects objectAtIndex:indexPath.row];
+  KBKeg *keg = [self.objects objectAtIndex:indexPath.row];
 
   KBKegEditViewController *kegEditViewController = [[KBKegEditViewController alloc] initWithTitle:@"Keg" useEnabled:YES];
   kegEditViewController.delegate = self;
