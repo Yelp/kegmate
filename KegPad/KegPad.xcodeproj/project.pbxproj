@@ -180,10 +180,101 @@
 		429B094D1203371700C36F76 /* KBRatingPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B094C1203371700C36F76 /* KBRatingPicker.m */; };
 		429B098A12033A4000C36F76 /* KBTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B098912033A4000C36F76 /* KBTypes.m */; };
 		429B0AAC120386EE00C36F76 /* St_Bernardus_Tripel.png in Resources */ = {isa = PBXBuildFile; fileRef = 429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */; };
+		42CF4BE51380BEEC0097753C /* KBRKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CF4BE41380BEEC0097753C /* KBRKViewController.m */; };
+		42CF4BE81380BF8C0097753C /* KBRKKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CF4BE71380BF8C0097753C /* KBRKKeg.m */; };
+		42CF4BEE1380C62F0097753C /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BE91380C62F0097753C /* libRestKitCoreData.a */; };
+		42CF4BF01380C62F0097753C /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BEB1380C62F0097753C /* libRestKitNetwork.a */; };
+		42CF4BF11380C62F0097753C /* libRestKitObjectMapping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BEC1380C62F0097753C /* libRestKitObjectMapping.a */; };
+		42CF4BF21380C62F0097753C /* libRestKitSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BED1380C62F0097753C /* libRestKitSupport.a */; };
+		42CF4BF41380C6380097753C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BF31380C6370097753C /* CFNetwork.framework */; };
+		42CF4BF61380C6410097753C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BF51380C6410097753C /* MobileCoreServices.framework */; };
+		42CF4BF81380C6480097753C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BF71380C6480097753C /* SystemConfiguration.framework */; };
+		42CF4BFA1380C6860097753C /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BF91380C6860097753C /* libRestKitJSONParserJSONKit.a */; };
+		42CF4C9C1380D15F0097753C /* KBRKKegsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CF4C9B1380D15F0097753C /* KBRKKegsViewController.m */; };
 		42DDF16B1251A7A900CDA6D7 /* KBKegboardMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DDF16A1251A7A900CDA6D7 /* KBKegboardMessage.m */; };
 		42DDF19D1251B7E400CDA6D7 /* crc16ccitt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42DDF19C1251B7E400CDA6D7 /* crc16ccitt.c */; };
 		42FAFC0C1256BDE6007DC9EB /* Pranqster.png in Resources */ = {isa = PBXBuildFile; fileRef = 42FAFC0B1256BDE6007DC9EB /* Pranqster.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42CF4BC31380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 253A07FC1255161B00976E89;
+			remoteInfo = RestKitNetwork;
+		};
+		42CF4BC51380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 253A08031255162C00976E89;
+			remoteInfo = RestKitObjectMapping;
+		};
+		42CF4BC71380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 253A080C12551D3000976E89;
+			remoteInfo = RestKitSupport;
+		};
+		42CF4BC91380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2590E64F125231F600531FA8;
+			remoteInfo = "RestKitJSONParser+YAJL";
+		};
+		42CF4BCB1380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2590E66B1252353700531FA8;
+			remoteInfo = "RestKitJSONParser+SBJSON";
+		};
+		42CF4BCD1380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 73057FD11331AD2E001908EE;
+			remoteInfo = "RestKitJSONParser+JSONKit";
+		};
+		42CF4BCF1380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25BD43BD1340315800DBACDD;
+			remoteInfo = "RestKitXMLParser+Libxml";
+		};
+		42CF4BD11380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 253A081412551D5300976E89;
+			remoteInfo = RestKitCoreData;
+		};
+		42CF4BD31380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2523360511E79F090048F9B4;
+			remoteInfo = RestKitThree20;
+		};
+		42CF4BD51380BC600097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F6C39A510FE5C95008F47C5;
+			remoteInfo = UISpec;
+		};
+		42CF4BD71380BD470097753C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 255B7588133BABBF00ED76AD;
+			remoteInfo = RestKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00025DB51267A48C0020985D /* BeerLoop.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = BeerLoop.m4v; sourceTree = "<group>"; };
@@ -457,6 +548,22 @@
 		429B098812033A4000C36F76 /* KBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTypes.h; sourceTree = "<group>"; };
 		429B098912033A4000C36F76 /* KBTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTypes.m; sourceTree = "<group>"; };
 		429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = St_Bernardus_Tripel.png; sourceTree = "<group>"; };
+		42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		42CF4BE31380BEEC0097753C /* KBRKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = KBRKViewController.h; sourceTree = "<group>"; };
+		42CF4BE41380BEEC0097753C /* KBRKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKViewController.m; sourceTree = "<group>"; };
+		42CF4BE61380BF8C0097753C /* KBRKKeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKKeg.h; sourceTree = "<group>"; };
+		42CF4BE71380BF8C0097753C /* KBRKKeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKKeg.m; sourceTree = "<group>"; };
+		42CF4BE91380C62F0097753C /* libRestKitCoreData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitCoreData.a; sourceTree = SOURCE_ROOT; };
+		42CF4BEA1380C62F0097753C /* libRestKitJSONParserYAJL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitJSONParserYAJL.a; sourceTree = SOURCE_ROOT; };
+		42CF4BEB1380C62F0097753C /* libRestKitNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitNetwork.a; sourceTree = SOURCE_ROOT; };
+		42CF4BEC1380C62F0097753C /* libRestKitObjectMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitObjectMapping.a; sourceTree = SOURCE_ROOT; };
+		42CF4BED1380C62F0097753C /* libRestKitSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitSupport.a; sourceTree = SOURCE_ROOT; };
+		42CF4BF31380C6370097753C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		42CF4BF51380C6410097753C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		42CF4BF71380C6480097753C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		42CF4BF91380C6860097753C /* libRestKitJSONParserJSONKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitJSONParserJSONKit.a; sourceTree = SOURCE_ROOT; };
+		42CF4C9A1380D15F0097753C /* KBRKKegsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKKegsViewController.h; sourceTree = "<group>"; };
+		42CF4C9B1380D15F0097753C /* KBRKKegsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKKegsViewController.m; sourceTree = "<group>"; };
 		42DDF1691251A7A900CDA6D7 /* KBKegboardMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegboardMessage.h; sourceTree = "<group>"; };
 		42DDF16A1251A7A900CDA6D7 /* KBKegboardMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegboardMessage.m; sourceTree = "<group>"; };
 		42DDF19C1251B7E400CDA6D7 /* crc16ccitt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc16ccitt.c; sourceTree = "<group>"; };
@@ -471,6 +578,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				00189D7213D8D3E300A1EECB /* Security.framework in Frameworks */,
+				42CF4BFA1380C6860097753C /* libRestKitJSONParserJSONKit.a in Frameworks */,
+				42CF4BF81380C6480097753C /* SystemConfiguration.framework in Frameworks */,
+				42CF4BF61380C6410097753C /* MobileCoreServices.framework in Frameworks */,
+				42CF4BF41380C6380097753C /* CFNetwork.framework in Frameworks */,
+				42CF4BEE1380C62F0097753C /* libRestKitCoreData.a in Frameworks */,
+				42CF4BF01380C62F0097753C /* libRestKitNetwork.a in Frameworks */,
+				42CF4BF11380C62F0097753C /* libRestKitObjectMapping.a in Frameworks */,
+				42CF4BF21380C62F0097753C /* libRestKitSupport.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -550,6 +665,8 @@
 		0017BCBE120279E200269CDA /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */,
+				007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */,
 				007B7920137A569B000F8040 /* OAuthConsumer */,
 				007B78CA137A4CD9000F8040 /* MGTwitterEngine */,
 				00E6556B1256638400E4CE9E /* GTM */,
@@ -695,6 +812,8 @@
 				0017B74E120208F700269CDA /* _KBBeer.m */,
 				0017B74B120208F700269CDA /* KBBeer.h */,
 				0017B74A120208F700269CDA /* KBBeer.m */,
+				42CF4BE61380BF8C0097753C /* KBRKKeg.h */,
+				42CF4BE71380BF8C0097753C /* KBRKKeg.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -759,12 +878,16 @@
 				00C1147212111B75009C9B51 /* KBAdminViewController.m */,
 				00C114AB121121BA009C9B51 /* KBFetchedResultsViewController.h */,
 				00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */,
+				42CF4BE31380BEEC0097753C /* KBRKViewController.h */,
+				42CF4BE41380BEEC0097753C /* KBRKViewController.m */,
 				00C1147312111B75009C9B51 /* KBBeersViewController.h */,
 				00C1147412111B75009C9B51 /* KBBeersViewController.m */,
 				00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */,
 				00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */,
 				00C1147512111B75009C9B51 /* KBKegsViewController.h */,
 				00C1147612111B75009C9B51 /* KBKegsViewController.m */,
+				42CF4C9A1380D15F0097753C /* KBRKKegsViewController.h */,
+				42CF4C9B1380D15F0097753C /* KBRKKegsViewController.m */,
 				00AA3F9D1255B9B400CB3F6B /* KBKegEditViewController.h */,
 				00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */,
 				00C114ED1211297D009C9B51 /* KBUsersViewController.h */,
@@ -950,6 +1073,15 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				42CF4BF91380C6860097753C /* libRestKitJSONParserJSONKit.a */,
+				42CF4BF71380C6480097753C /* SystemConfiguration.framework */,
+				42CF4BF51380C6410097753C /* MobileCoreServices.framework */,
+				42CF4BF31380C6370097753C /* CFNetwork.framework */,
+				42CF4BE91380C62F0097753C /* libRestKitCoreData.a */,
+				42CF4BEA1380C62F0097753C /* libRestKitJSONParserYAJL.a */,
+				42CF4BEB1380C62F0097753C /* libRestKitNetwork.a */,
+				42CF4BEC1380C62F0097753C /* libRestKitObjectMapping.a */,
+				42CF4BED1380C62F0097753C /* libRestKitSupport.a */,
 				00AA3FFF1255C07400CB3F6B /* README.md */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				0017BCBE120279E200269CDA /* Libraries */,
@@ -1026,6 +1158,23 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		42CF4BB01380BC5F0097753C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42CF4BC41380BC600097753C /* libRestKitNetwork.a */,
+				42CF4BC61380BC600097753C /* libRestKitObjectMapping.a */,
+				42CF4BC81380BC600097753C /* libRestKitSupport.a */,
+				42CF4BCA1380BC600097753C /* libRestKitJSONParserYAJL.a */,
+				42CF4BCC1380BC600097753C /* libRestKitJSONParserSBJSON.a */,
+				42CF4BCE1380BC600097753C /* libRestKitJSONParserJSONKit.a */,
+				42CF4BD01380BC600097753C /* libRestKitXMLParserLibxml.a */,
+				42CF4BD21380BC600097753C /* libRestKitCoreData.a */,
+				42CF4BD41380BC600097753C /* libRestKitThree20.a */,
+				42CF4BD61380BC600097753C /* UISpec.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1040,6 +1189,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				42CF4BD81380BD470097753C /* PBXTargetDependency */,
 			);
 			name = KegPad;
 			productName = KegPad;
@@ -1060,15 +1210,95 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 42CF4BB01380BC5F0097753C /* Products */;
+					ProjectRef = 42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* KegPad */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		42CF4BC41380BC600097753C /* libRestKitNetwork.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitNetwork.a;
+			remoteRef = 42CF4BC31380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BC61380BC600097753C /* libRestKitObjectMapping.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitObjectMapping.a;
+			remoteRef = 42CF4BC51380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BC81380BC600097753C /* libRestKitSupport.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitSupport.a;
+			remoteRef = 42CF4BC71380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BCA1380BC600097753C /* libRestKitJSONParserYAJL.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitJSONParserYAJL.a;
+			remoteRef = 42CF4BC91380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BCC1380BC600097753C /* libRestKitJSONParserSBJSON.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitJSONParserSBJSON.a;
+			remoteRef = 42CF4BCB1380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BCE1380BC600097753C /* libRestKitJSONParserJSONKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitJSONParserJSONKit.a;
+			remoteRef = 42CF4BCD1380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BD01380BC600097753C /* libRestKitXMLParserLibxml.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitXMLParserLibxml.a;
+			remoteRef = 42CF4BCF1380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BD21380BC600097753C /* libRestKitCoreData.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitCoreData.a;
+			remoteRef = 42CF4BD11380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BD41380BC600097753C /* libRestKitThree20.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKitThree20.a;
+			remoteRef = 42CF4BD31380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		42CF4BD61380BC600097753C /* UISpec.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = UISpec.app;
+			remoteRef = 42CF4BD51380BC600097753C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -1250,10 +1480,21 @@
 				007B7AB1137A5BAE000F8040 /* GTMBase64.m in Sources */,
 				0089623D137F40BB007748CD /* KBAboutViewController.m in Sources */,
 				00896249137F542A007748CD /* KBSettingsViewController.m in Sources */,
+				42CF4BE51380BEEC0097753C /* KBRKViewController.m in Sources */,
+				42CF4BE81380BF8C0097753C /* KBRKKeg.m in Sources */,
+				42CF4C9C1380D15F0097753C /* KBRKKegsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		42CF4BD81380BD470097753C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 42CF4BD71380BD470097753C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -1273,6 +1514,12 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "KegPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries/RestKit/Examples/RKDiscussionBoardExample/DiscussionBoard/Libraries/three20\"",
+					"\"$(SRCROOT)/Libraries/RestKit/Specs/Runner/OCMock\"",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1297,6 +1544,12 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "KegPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries/RestKit/Examples/RKDiscussionBoardExample/DiscussionBoard/Libraries/three20\"",
+					"\"$(SRCROOT)/Libraries/RestKit/Specs/Runner/OCMock\"",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1308,13 +1561,18 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0089620D137F199F007748CD /* Shared.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1323,14 +1581,19 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0089620D137F199F007748CD /* Shared.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build\"";
+				LIBRARY_SEARCH_PATHS = "\"$(SOURCE_ROOT)/Libraries/RestKit/Build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = 2;

@@ -1,0 +1,3 @@
+[submodule "KegPad/Libraries/RestKit"]
+	path = KegPad/Libraries/RestKit
+	url = git://github.com/twotoasters/RestKit.git

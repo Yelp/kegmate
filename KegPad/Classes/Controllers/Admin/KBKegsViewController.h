@@ -22,6 +22,8 @@
 #import "KBFetchedResultsViewController.h"
 #import "KBKegEditViewController.h"
 
+#include <RestKit/RestKit.h>
+
 @interface KBKegsViewController : KBFetchedResultsViewController <KBKegEditViewControllerDelegate> { }
 
 @end

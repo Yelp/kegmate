@@ -27,7 +27,7 @@
 #import "KBUIForm.h"
 #import "KBTwitterAdminViewController.h"
 #import "KBSettingsViewController.h"
-
+#import "KBRKKegsViewController.h"
 
 @implementation KBAdminNavigationController
 
@@ -88,7 +88,8 @@
 }
 
 - (void)showKegs {
-  KBKegsViewController *kegsViewController = [[KBKegsViewController alloc] init];
+  KBRKKegsViewController *kegsViewController = [[KBRKKegsViewController alloc] init];
+  [kegsViewController loadKegs];
   [self.navigationController pushViewController:kegsViewController animated:YES];
   [kegsViewController release];
 }
