@@ -26,6 +26,11 @@ scp -r -4 build/Debug-iphoneos/KegPad.app root@kegmateaddress:/Applications/
 
 Then tap the KegPad icon on the iPad, and it should show output to your terminal.
 
+## Installing
+
+- Download the KegPad app from https://github.com/Yelp/kegmate/downloads and extract it.
+- Copy the app to the iPad's /Applications (replace with the iPad's real IP address): `scp -r -4 KegPad.app root@1.2.3.4:/Applications/`
+
 ## Permissions
 
 Ensure all files in /var/mobile/Documents have their permissions set to the mobile user.
