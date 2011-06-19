@@ -33,4 +33,4 @@ Then tap the KegPad icon on the iPad, and it should show output to your terminal
 
 ## Permissions
 
-Ensure all files in /var/mobile/Documents have their permissions set to the mobile user.
+Ensure all files in /var/mobile/Documents have their permissions set to the mobile user. If the /var/mobile/Documents folder does not exist, create it.
