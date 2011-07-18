@@ -1,6 +1,6 @@
 /**
  * kegboard.pde - Kegboard v3 Arduino project
- * Copyright 2003-2009 Mike Wakerly <opensource@hoho.com>
+ * Copyright 2003-2011 Mike Wakerly <opensource@hoho.com>
  *
  * This file is part of the Kegbot package of the Kegbot project.
  * For more information on Kegbot, see http://kegbot.org/
@@ -51,11 +51,6 @@
 #include "ds1820.h"
 #include "KegboardPacket.h"
 #include "version.h"
-#include "PCInterrupt.h"
-
-#if KB_ENABLE_ID12
-#include "NewSoftSerial.h"
-#endif
 
 #if (KB_ENABLE_ONEWIRE_THERMO || KB_ENABLE_ONEWIRE_PRESENCE)
 #include "OneWire.h"
@@ -65,14 +60,17 @@
 #include "buzzer.h"
 #endif
 
-#if KB_ENABLE_SERIAL_LCD
-#include <SoftwareSerial.h>
-SoftwareSerial gSerialLcd = SoftwareSerial(KB_PIN_SERIAL_LCD_RX,
-    KB_PIN_SERIAL_LCD_TX);
+#if KB_ENABLE_ID12_RFID
+#include "NewSoftSerial.h"
+NewSoftSerial gSerialRfid = NewSoftSerial(KB_PIN_SERIAL_RFID_RX, -1);
+int gRfidPos = -1;
+unsigned char gRfidChecksum = 0;
+unsigned char gRfidBuf[RFID_PAYLOAD_CHARS];
 #endif
 
 #if KB_ENABLE_MAGSTRIPE
 #include "MagStripe.h"
+#include "PCInterrupt.h"
 #endif
 
 //
@@ -82,12 +80,14 @@ SoftwareSerial gSerialLcd = SoftwareSerial(KB_PIN_SERIAL_LCD_RX,
 // Up to 6 meters supported if using Arduino Mega
 static unsigned long volatile gMeters[] = {0, 0, 0, 0, 0, 0};
 static unsigned long volatile gLastMeters[] = {0, 0, 0, 0, 0, 0};
-static bool volatile gRelayStatus[] = {false, false};
-static uint8_t gOutputPins[] = {KB_PIN_RELAY_A, KB_PIN_RELAY_B};
-
-#if KB_ENABLE_ANALOG_TEMP
-static long analogtemp = 0;
-#endif
+static uint8_t gOutputPins[] = {
+  KB_PIN_RELAY_A,
+  KB_PIN_RELAY_B,
+  KB_PIN_RELAY_C,
+  KB_PIN_RELAY_D,
+  KB_PIN_LED_FLOW_A,
+  KB_PIN_LED_FLOW_B
+};
 
 static KegboardPacket gInputPacket;
 
@@ -99,6 +99,14 @@ typedef struct {
 } RxPacketStat;
 
 static RxPacketStat gPacketStat;
+
+// Relay output status.
+typedef struct {
+  bool enabled;
+  unsigned long touched_timestamp_ms;
+} RelayOutputStat;
+
+static RelayOutputStat gRelayStatus[KB_NUM_RELAY_OUTPUTS];
 
 // Structure to keep information about this device's uptime. 
 typedef struct {
@@ -142,7 +150,17 @@ PROGMEM prog_uint16_t BOOT_MELODY[] = {
 
   MELODY_NOTE(0, NOTE_SILENCE, 0)
 };
-#endif
+
+#if (KB_ENABLE_ID12_RFID || KB_ENABLE_ONEWIRE_PRESENCE)
+PROGMEM prog_uint16_t AUTH_ON_MELODY[] = {
+  MELODY_NOTE(4, 1, 50), MELODY_NOTE(0, NOTE_SILENCE, 10),
+  MELODY_NOTE(4, 4, 50 ), MELODY_NOTE(0, NOTE_SILENCE, 10),
+  MELODY_NOTE(4, 8, 50),
+
+  MELODY_NOTE(0, NOTE_SILENCE, 0)
+};
+#endif  // KB_ENABLE_ID12_RFID || KB_ENABLE_ONEWIRE_PRESENCE
+#endif  // KB_ENABLE_BUZZER
 
 #if KB_ENABLE_ONEWIRE_THERMO
 static OneWire gOnewireThermoBus(KB_PIN_ONEWIRE_THERMO);
@@ -151,10 +169,6 @@ static DS1820Sensor gThermoSensor;
 
 #if KB_ENABLE_ONEWIRE_PRESENCE
 static OneWire gOnewireIdBus(KB_PIN_ONEWIRE_PRESENCE);
-#endif
-
-#if KB_ENABLE_ID12
-static NewSoftSerial gID12Serial(KB_PIN_ID12, KB_PIN_ID12 + 1);
 #endif
 
 #if KB_ENABLE_MAGSTRIPE
@@ -220,8 +234,8 @@ void writeHelloPacket()
 {
   int foo = FIRMWARE_VERSION;
   KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_HELLO_ID);
-  packet.AddTag(KB_MESSAGE_TYPE_HELLO_TAG_FIRMWARE_VERSION, sizeof(foo), (char*)&foo);
+  packet.SetType(KBM_HELLO_ID);
+  packet.AddTag(KBM_HELLO_TAG_FIRMWARE_VERSION, sizeof(foo), (char*)&foo);
   packet.Print();
 }
 
@@ -251,28 +265,28 @@ void writeThermoPacket(DS1820Sensor *sensor)
     pos += 2;
   }
   KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_THERMO_READING);
-  packet.AddTag(KB_MESSAGE_TYPE_THERMO_READING_TAG_SENSOR_NAME, 23, name);
-  packet.AddTag(KB_MESSAGE_TYPE_THERMO_READING_TAG_SENSOR_READING, sizeof(temp), (char*)(&temp));
+  packet.SetType(KBM_THERMO_READING);
+  packet.AddTag(KBM_THERMO_READING_TAG_SENSOR_NAME, 23, name);
+  packet.AddTag(KBM_THERMO_READING_TAG_SENSOR_READING, sizeof(temp), (char*)(&temp));
   packet.Print();
 }
 #endif
 
 void writeRelayPacket(int channel)
 {
-  char name[7] = "relay-";
-  int status = (int)(gRelayStatus[channel]);
-  name[6] = 0x30 + channel;
+  char name[6] = "relay";
+  int status = (int) (gRelayStatus[channel].enabled);
+  name[5] = 0x30 + channel;
   KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_OUTPUT_STATUS);
-  packet.AddTag(KB_MESSAGE_TYPE_OUTPUT_STATUS_TAG_OUTPUT_NAME, 7, name);
-  packet.AddTag(KB_MESSAGE_TYPE_OUTPUT_STATUS_TAG_OUTPUT_READING, sizeof(status), (char*)(&status));
+  packet.SetType(KBM_OUTPUT_STATUS);
+  packet.AddTag(KBM_OUTPUT_STATUS_TAG_OUTPUT_NAME, 6, name);
+  packet.AddTag(KBM_OUTPUT_STATUS_TAG_OUTPUT_READING, sizeof(status), (char*)(&status));
   packet.Print();
 }
 
 void writeMeterPacket(int channel)
 {
-  char name[6] = "flow";
+  char name[5] = "flow";
   unsigned long status = gMeters[channel];
   if (status == gLastMeters[channel]) {
     return;
@@ -280,130 +294,27 @@ void writeMeterPacket(int channel)
     gLastMeters[channel] = status;
   }
   name[4] = 0x30 + channel;
-  name[5] = 0;
   KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_METER_STATUS);
-  packet.AddTag(KB_MESSAGE_TYPE_METER_STATUS_TAG_METER_NAME, 6, name);
-  packet.AddTag(KB_MESSAGE_TYPE_METER_STATUS_TAG_METER_READING, sizeof(status), (char*)(&status));
+  packet.SetType(KBM_METER_STATUS);
+  packet.AddTag(KBM_METER_STATUS_TAG_METER_NAME, 5, name);
+  packet.AddTag(KBM_METER_STATUS_TAG_METER_READING, sizeof(status), (char*)(&status));
   packet.Print();
 }
 
-#if KB_ENABLE_ANALOG_TEMP
-void writeAnalTempPacket(int channel)
-{
-  char name[5] = "anlg";
-  name[4] = 0;
-  long status = analogRead(channel);
-  if ((status <= analogtemp+5) && status >= (analogtemp-5)) {
-    return;
-  } else {
-    analogtemp = status;
-  }
+void writeAuthPacket(char* device_name, uint8_t* token, int token_len,
+    char status) {
   KegboardPacket packet;
-  status = (status * 482 - 273000);
-  packet.SetType(KB_MESSAGE_TYPE_THERMO_READING);
-  packet.AddTag(KB_MESSAGE_TYPE_THERMO_READING_TAG_SENSOR_NAME, 5, name);
-  packet.AddTag(KB_MESSAGE_TYPE_THERMO_READING_TAG_SENSOR_READING, sizeof(status), (char*)(&status));
+  packet.SetType(KBM_AUTH_TOKEN);
+  packet.AddTag(KBM_AUTH_TOKEN_TAG_DEVICE, strlen(device_name), device_name);
+  packet.AddTag(KBM_AUTH_TOKEN_TAG_TOKEN, token_len, (char*)token);
+  packet.AddTag(KBM_AUTH_TOKEN_TAG_STATUS, 1, &status);
   packet.Print();
-}
+#if KB_ENABLE_BUZZER
+  if (status == 1) {
+    playMelody(AUTH_ON_MELODY);
+  }
 #endif
-
-#if KB_ENABLE_ID12
-// Takes an ascii char representing a 4 bit hex value (0-9a-f) and returns the
-// corresponding value
-char charFromAsciiHexChar(char asciiHexChar) {
-  char value;
-  if ((asciiHexChar >= '0') && (asciiHexChar <= '9')) {
-    value = asciiHexChar - '0';
-  } else if ((asciiHexChar >= 'A') && (asciiHexChar <= 'F')) {
-    value = 10 + asciiHexChar - 'A';
-  }
-  return value;
 }
-
-void writeID12Packet()
-{
-  char name[5] = "rfid";
-  name[4] = 0;
-  if (gID12Serial.available() < 16) {
-    return;
-  }
-
-  // Should be STX (0x02)
-  if (gID12Serial.read() != 0x02) {
-    gID12Serial.flush();
-    return;
-  };
-
-  char buf[10];
-  int i=0;
-  for (i=0;i<10;i++) {
-    buf[i]=(char)gID12Serial.read();
-  }
-
-  // Calculate the checksum, compare with the sent checksum
-  char calculatedChecksum = 0;
-  for (int i = 0; i < 5; i++) {
-    calculatedChecksum ^= charFromAsciiHexChar(buf[2 * i]) << 4;
-    calculatedChecksum ^= charFromAsciiHexChar(buf[2 * i + 1]);
-  }
-  
-  char receivedChecksum = charFromAsciiHexChar(gID12Serial.read()) << 4;
-  receivedChecksum |= charFromAsciiHexChar(gID12Serial.read());
-
-  if (calculatedChecksum != receivedChecksum) {
-    gID12Serial.flush();
-    return;
-  }
-  
-  // After the checksum we expect CR LF ETX(0x03)
-  if ((gID12Serial.read() != '\r')
-      || (gID12Serial.read() != '\n')
-      || (gID12Serial.read() != 0x03)) {
-    gID12Serial.flush();
-    return;
-  }
-
-  KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_ID12);
-  packet.AddTag(KB_MESSAGE_TYPE_ID12_READER_NAME, 5, name);
-  packet.AddTag(KB_MESSAGE_TYPE_ID12_TAG_ID, 10, buf);
-  packet.Print();
-  // Reset the buffer (in case things got wonky)
-  gID12Serial.flush();
-}
-#endif
-
-#if KB_ENABLE_MAGSTRIPE
-void writeMagStripePacket()
-{
-  // Return if there is no data
-  char *data;
-  int dataSize = gMagStripe.getData(&data);
-  if (dataSize <= 0) return;
-
-  char name[10] = "magstripe";
-  name[9] = 0;
-  
-  KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_MAGSTRIPE);
-  packet.AddTag(KB_MESSAGE_TYPE_MAGSTRIPE_READER_NAME, 10, name);
-  packet.AddTag(KB_MESSAGE_TYPE_MAGSTRIPE_CARD_ID, dataSize, data);
-  packet.Print();
-}
-#endif
-
-#if KB_ENABLE_ONEWIRE_PRESENCE
-void writeOnewirePresencePacket(uint64_t* id, bool present) {
-  char status = present ? 1 : 0;
-
-  KegboardPacket packet;
-  packet.SetType(KB_MESSAGE_TYPE_ONEWIRE_PRESENCE);
-  packet.AddTag(KB_MESSAGE_TYPE_ONEWIRE_PRESENCE_TAG_DEVICE_ID, 8, (char*)id);
-  packet.AddTag(KB_MESSAGE_TYPE_ONEWIRE_PRESENCE_TAG_STATUS, 1, &status);
-  packet.Print();
-}
-#endif
 
 #if KB_ENABLE_SELFTEST
 void doTestPulse()
@@ -468,6 +379,10 @@ void setup()
 
   pinMode(KB_PIN_RELAY_A, OUTPUT);
   pinMode(KB_PIN_RELAY_B, OUTPUT);
+  pinMode(KB_PIN_RELAY_C, OUTPUT);
+  pinMode(KB_PIN_RELAY_D, OUTPUT);
+  pinMode(KB_PIN_LED_FLOW_A, OUTPUT);
+  pinMode(KB_PIN_LED_FLOW_B, OUTPUT);
   pinMode(KB_PIN_ALARM, OUTPUT);
   pinMode(KB_PIN_TEST_PULSE, OUTPUT);
 
@@ -479,30 +394,17 @@ void setup()
   playMelody(BOOT_MELODY);
 #endif
 
-#if KB_ENABLE_SERIAL_LCD
-  pinMode(KB_PIN_SERIAL_LCD_RX, INPUT);
-  pinMode(KB_PIN_SERIAL_LCD_TX, OUTPUT);
-  gSerialLcd.begin(9600);
-
-  // Clear display
-  gSerialLcd.print('\x0c');
-
-  // Disable cursor
-  gSerialLcd.print('\xfe');
-  gSerialLcd.print('\x54');
-
-  gSerialLcd.print("Kegbot!");
-#endif
-
-#if KB_ENABLE_ID12
-  gID12Serial.begin(9600);
+#if KB_ENABLE_ID12_RFID
+  gSerialRfid.begin(9600);
+  pinMode(KB_PIN_RFID_RESET, OUTPUT);
+  digitalWrite(KB_PIN_RFID_RESET, HIGH);
 #endif
 
 #if KB_ENABLE_MAGSTRIPE
   PCattachInterrupt(KB_PIN_MAGSTRIPE_CLOCK, magStripeClockInterrupt, FALLING);
 #endif
 
-writeHelloPacket();
+  writeHelloPacket();
 }
 
 void updateTimekeeping() {
@@ -571,7 +473,7 @@ void stepOnewireIdBus() {
       entry->present_count -= 1;
       if (entry->present_count == 0) {
         entry->valid = false;
-        writeOnewirePresencePacket(&entry->id, false);
+        writeAuthPacket("onewire", (uint8_t*)&(entry->id), 8, 0);
       }
     }
     return;
@@ -608,7 +510,7 @@ void stepOnewireIdBus() {
       entry->valid = true;
       entry->present_count = ONEWIRE_CACHE_MAX_MISSING_SEARCHES;
       entry->id = addr;
-      writeOnewirePresencePacket(&entry->id, true);
+      writeAuthPacket("onewire", (uint8_t*)&(entry->id), 8, 1);
       return;
     }
   }
@@ -621,13 +523,81 @@ static void readSerialBytes(char *dest_buf, int num_bytes, int offset) {
   }
 }
 
-void debug(const char* msg) {
-#if KB_ENABLE_SERIAL_LCD
-  gSerialLcd.print('\x0c');
-  gSerialLcd.print(msg);
-  delay(500);
-#endif
+#if KB_ENABLE_ID12_RFID
+static void doProcessRfid() {
+  if (gSerialRfid.available() == 0) {
+    return;
+  }
+
+  if (gRfidPos == -1) {
+    if (gSerialRfid.read() != 0x02) {
+      return;
+    } else {
+      gRfidPos = 0;
+      gRfidChecksum = 0;
+    }
+  }
+
+  while (gRfidPos < 12) {
+    unsigned char b;
+    int rfid_index = (RFID_PAYLOAD_CHARS/2 - 1) - gRfidPos / 2;
+    if (gSerialRfid.available() == 0) {
+      return;
+    }
+
+    b = gSerialRfid.read();
+    if (b == CR || b == LF || b == STX || b == ETX) {
+      goto out_reset;
+    }
+
+    // ASCII to hex
+    if (b >= '0' && b <= '9') {
+      b -= '0';
+    } else if (b >= 'A' && b <= 'F') {
+      b -= 'A';
+      b += 10;
+    }
+
+    if ((gRfidPos % 2) == 0) {
+      // Clears previous value.
+      gRfidBuf[rfid_index] = b << 4;
+    } else {
+      gRfidBuf[rfid_index] |= b;
+      gRfidChecksum ^= gRfidBuf[rfid_index];
+    }
+
+    gRfidPos++;
+  }
+
+  if (gRfidPos == RFID_PAYLOAD_CHARS) {
+    if (gRfidChecksum == 0) {
+      writeAuthPacket("core.rfid", gRfidBuf+1, 5, 1);
+      writeAuthPacket("core.rfid", gRfidBuf+1, 5, 0);
+    }
+  }
+
+  digitalWrite(KB_PIN_RFID_RESET, LOW);
+  delay(200);
+  digitalWrite(KB_PIN_RFID_RESET, HIGH);
+
+out_reset:
+  gRfidPos = -1;
+  gRfidChecksum = 0;
 }
+#endif
+
+#if KB_ENABLE_MAGSTRIPE
+void doProcessMagStripe()
+{
+  // Return if there is no data
+  uint8_t* data;
+  int dataSize = gMagStripe.getData(&data);
+  if (dataSize <= 0) return;
+
+  writeAuthPacket("magstripe", data, dataSize, 1);
+  writeAuthPacket("magstripe", data, dataSize, 0);
+}
+#endif
 
 void resetInputPacket() {
   memset(&gPacketStat, 0, sizeof(RxPacketStat));
@@ -728,6 +698,20 @@ out_reset:
   resetInputPacket();
 }
 
+void setRelayOutput(uint8_t id, uint8_t mode) {
+  gRelayStatus[id].touched_timestamp_ms = millis();
+  if (mode == OUTPUT_DISABLED && gRelayStatus[id].enabled) {
+    digitalWrite(gOutputPins[id], LOW);
+    gRelayStatus[id].enabled = false;
+  } else if (mode == OUTPUT_ENABLED && !gRelayStatus[id].enabled) {
+    digitalWrite(gOutputPins[id], HIGH);
+    gRelayStatus[id].enabled = true;
+  } else {
+    return;
+  }
+  writeRelayPacket(id);
+}
+
 void handleInputPacket() {
   if (!gPacketStat.have_packet) {
     return;
@@ -735,27 +719,21 @@ void handleInputPacket() {
 
   // Process the input packet.
   switch (gInputPacket.GetType()) {
-    case KB_MESSAGE_TYPE_PING:
+    case KBM_PING:
       writeHelloPacket();
       break;
 
-    case KB_MESSAGE_TYPE_SET_OUTPUT: {
+    case KBM_SET_OUTPUT: {
       uint8_t id, mode;
-      if (!gInputPacket.ReadTag(KB_MESSAGE_TYPE_SET_OUTPUT_TAG_OUTPUT_ID, &id)
-        || !gInputPacket.ReadTag(KB_MESSAGE_TYPE_SET_OUTPUT_TAG_OUTPUT_MODE, &mode))
-        {
-          break;
+
+      if (!gInputPacket.ReadTag(KBM_SET_OUTPUT_TAG_OUTPUT_ID, &id)
+          || !gInputPacket.ReadTag(KBM_SET_OUTPUT_TAG_OUTPUT_MODE, &mode)) {
+        break;
       }
 
-      // TODO(mikey): bounds check id
-      if (mode == OUTPUT_DISABLED) {
-        digitalWrite(gOutputPins[id], LOW);
-        gRelayStatus[id] = false;
-      } else {
-        digitalWrite(gOutputPins[id], HIGH);
-        gRelayStatus[id] = true;
+      if (id < KB_NUM_RELAY_OUTPUTS) {
+        setRelayOutput(id, mode);
       }
-      writeRelayPacket(id);
       break;
     }
   }
@@ -770,23 +748,36 @@ void writeMeterPackets() {
   // sent.
   if ((now - gUptimeStat.last_meter_event) > KB_METER_UPDATE_INTERVAL_MS) {
     gUptimeStat.last_meter_event = now;
+  } else {
+    return;
+  }
 
-    writeMeterPacket(0);
+  writeMeterPacket(0);
 #ifdef KB_PIN_METER_B
-    writeMeterPacket(1);
+  writeMeterPacket(1);
 #endif
 #ifdef KB_PIN_METER_C
-    writeMeterPacket(2);
+  writeMeterPacket(2);
 #endif
 #ifdef KB_PIN_METER_D
-    writeMeterPacket(3);
+  writeMeterPacket(3);
 #endif
 #ifdef KB_PIN_METER_E
-    writeMeterPacket(4);
+  writeMeterPacket(4);
 #endif
 #ifdef KB_PIN_METER_F
-    writeMeterPacket(5);
+  writeMeterPacket(5);
 #endif
+}
+
+void stepRelayWatchdog() {
+  for (int i = 0; i < KB_NUM_RELAY_OUTPUTS; i++) {
+    if (gRelayStatus[i].enabled == true) {
+      unsigned long now = millis();
+      if ((now - gRelayStatus[i].touched_timestamp_ms) > KB_RELAY_WATCHDOG_MS) {
+        setRelayOutput(i, OUTPUT_DISABLED);
+      }
+    }
   }
 }
 
@@ -798,28 +789,22 @@ void loop()
   handleInputPacket();
 
   writeMeterPackets();
-
-  //writeRelayPacket(0);
-  //writeRelayPacket(1);
+  stepRelayWatchdog();
 
 #if KB_ENABLE_ONEWIRE_THERMO
   stepOnewireThermoBus();
 #endif
 
-#if KB_ENABLE_ID12
-  writeID12Packet();
+#if KB_ENABLE_ONEWIRE_PRESENCE
+  stepOnewireIdBus();
+#endif
+
+#if KB_ENABLE_ID12_RFID
+  doProcessRfid();
 #endif
 
 #if KB_ENABLE_MAGSTRIPE
-  writeMagStripePacket();
-#endif
-
-#if KB_ENABLE_ANALOG_TEMP
-  writeAnalTempPacket(KB_PIN_ANALOG_TEMP);
-#endif
-
-#if KB_ENABLE_ONEWIRE_PRESENCE
-  stepOnewireIdBus();
+  doProcessMagStripe();
 #endif
 
 #if KB_ENABLE_SELFTEST

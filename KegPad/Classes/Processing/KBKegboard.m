@@ -78,11 +78,8 @@ static NSInteger gFileDescriptor;
     case KB_MESSAGE_ID_OUTPUT_STATUS:
       [self.delegate kegboard:self didReceiveOutputStatus:(KBKegboardMessageOutputStatus *)message];
       break;
-    case KB_MESSAGE_ID_RFID:
-      [self.delegate kegboard:self didReceiveRFID:(KBKegboardMessageRFID *)message];
-      break;
-    case KB_MESSAGE_ID_MAGSTRIPE:
-      [self.delegate kegboard:self didReceiveMagStripe:(KBKegboardMessageMagStripe *)message];
+    case KB_MESSAGE_ID_AUTH_TOKEN:
+      [self.delegate kegboard:self didReceiveAuthToken:(KBKegboardMessageAuthToken *)message];
       break;
   }
 }

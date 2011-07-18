@@ -14,14 +14,13 @@
 extern char *const KBSP_PREFIX;
 extern char *const KBSP_TRAILER;
 
-// TODO(johnb): onewire_presence, last_events, watchdog_alarm
+// TODO(johnb): last_events, watchdog_alarm
 #define KB_MESSAGE_ID_HELLO 0x01
 #define KB_MESSAGE_ID_BOARD_CONFIGURATION 0x02
 #define KB_MESSAGE_ID_METER_STATUS 0x10
 #define KB_MESSAGE_ID_TEMPERATURE_READING 0x11
 #define KB_MESSAGE_ID_OUTPUT_STATUS 0x12
-#define KB_MESSAGE_ID_RFID 0x14
-#define KB_MESSAGE_ID_MAGSTRIPE 0x16
+#define KB_MESSAGE_ID_AUTH_TOKEN 0x14
 
 @interface KBKegboardMessage : NSObject {
   NSUInteger _messageId;
@@ -86,18 +85,12 @@ extern char *const KBSP_TRAILER;
 @property (readonly, nonatomic) BOOL outputReading;
 @end
 
-@interface KBKegboardMessageRFID : KBKegboardMessage {
-  NSString *_readerName;
-  NSString *_tagID;
+@interface KBKegboardMessageAuthToken : KBKegboardMessage {
+  NSString *_deviceName;
+  NSString *_token;
+  BOOL _status;
 }
-@property (readonly, nonatomic) NSString *readerName;
-@property (readonly, nonatomic) NSString *tagID;
-@end
-
-@interface KBKegboardMessageMagStripe : KBKegboardMessage {
-  NSString *_readerName;
-  NSString *_cardID;
-}
-@property (readonly, nonatomic) NSString *readerName;
-@property (readonly, nonatomic) NSString *cardID;
+@property (readonly, nonatomic) NSString *deviceName;
+@property (readonly, nonatomic) NSString *token;
+@property (readonly, nonatomic) BOOL status; // YES if present, NO if removed
 @end

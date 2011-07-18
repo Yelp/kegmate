@@ -6,7 +6,7 @@ Copyright (c) 2006 David A. Mellis.  All rights reserved.
    multi-instance support, porting to 8MHz processors,
    various optimizations, PROGMEM delay tables, inverse logic and 
    direct port writing by Mikal Hart.
--- Support for using the separate PCInterrupt code by John Boiles
+-- Support for using the PCInterrupt by John Boiles
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -185,7 +185,7 @@ inline void NewSoftSerial::tunedDelay(uint16_t delay) {
     "cpi %A0, 0xFF \n\t"
     "cpc %B0, %1 \n\t"
     "brne .-10 \n\t"
-    : "+r" (delay), "+a" (tmp)
+    : "+w" (delay), "+a" (tmp)
     : "0" (delay)
     );
 }

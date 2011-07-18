@@ -99,12 +99,9 @@
 
 - (void)kegboard:(KBKegboard *)kegboard didReceiveOutputStatus:(KBKegboardMessageOutputStatus *)message { }
 
-- (void)kegboard:(KBKegboard *)kegboard didReceiveRFID:(KBKegboardMessageRFID *)message {
-  [self.delegate kegProcessing:self didReceiveRFIDTagId:[message tagID]];
-}
-
-- (void)kegboard:(KBKegboard *)kegboard didReceiveMagStripe:(KBKegboardMessageMagStripe *)message {
-  [self.delegate kegProcessing:self didReceiveRFIDTagId:[message cardID]];
+- (void)kegboard:(KBKegboard *)kegboard didReceiveAuthToken:(KBKegboardMessageAuthToken *)message {
+  // Only send a message when the card becomes present
+  if ([message status]) [self.delegate kegProcessing:self didReceiveRFIDTagId:[message token]];
 }
 
 @end

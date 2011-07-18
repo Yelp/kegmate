@@ -39,11 +39,8 @@ char *const KBSP_TRAILER = kKBSP_TRAILER;
     case KB_MESSAGE_ID_OUTPUT_STATUS:
       message = [[[KBKegboardMessageOutputStatus alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
-    case KB_MESSAGE_ID_RFID:
-      message = [[[KBKegboardMessageRFID alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
-      break;
-    case KB_MESSAGE_ID_MAGSTRIPE:
-      message = [[[KBKegboardMessageMagStripe alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
+    case KB_MESSAGE_ID_AUTH_TOKEN:
+      message = [[[KBKegboardMessageAuthToken alloc] initWithMessageId:messageId payload:payload length:length] autorelease];
       break;
   }
   message.timeStamp = timeStamp;
@@ -267,22 +264,24 @@ char *const KBSP_TRAILER = kKBSP_TRAILER;
 @end
 
 
-@implementation KBKegboardMessageRFID
-@synthesize readerName=_readerName, tagID=_tagID;
-
+@implementation KBKegboardMessageAuthToken
+@synthesize deviceName=_deviceName, token=_token, status=_status;
 - (void)dealloc {
-  [_readerName dealloc];
-  [_tagID dealloc];
+  [_deviceName dealloc];
+  [_token dealloc];
   [super dealloc];
 }
 
 - (BOOL)parsePayload:(char *)data forTag:(NSUInteger)tag length:(NSUInteger)length {
   switch (tag) {
     case 0x01:
-      _readerName = [[KBKegboardMessage parseString:data length:length] retain];
+      _deviceName = [[KBKegboardMessage parseString:data length:length] retain];
       break;
     case 0x02:
-      _tagID = [[KBKegboardMessage parseString:data length:length] retain];
+      _token = [[KBKegboardMessage parseString:data length:length] retain];
+      break;
+    case 0x03:
+      _status = [KBKegboardMessage parseBool:data];
       break;
     default:
       return NO;
@@ -291,36 +290,7 @@ char *const KBSP_TRAILER = kKBSP_TRAILER;
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"KBKegboardMessageRFID with _readerName %@ _tagID %@", _readerName, _tagID];
-}
-
-@end
-
-
-@implementation KBKegboardMessageMagStripe
-@synthesize readerName=_readerName, cardID=_cardID;
-- (void)dealloc {
-  [_readerName dealloc];
-  [_cardID dealloc];
-  [super dealloc];
-}
-
-- (BOOL)parsePayload:(char *)data forTag:(NSUInteger)tag length:(NSUInteger)length {
-  switch (tag) {
-    case 0x01:
-      _readerName = [[KBKegboardMessage parseString:data length:length] retain];
-      break;
-    case 0x02:
-      _cardID = [[KBKegboardMessage parseString:data length:length] retain];
-      break;
-    default:
-      return NO;
-  }
-  return YES;
-}
-
-- (NSString *)description {
-  return [NSString stringWithFormat:@"KBKegboardMessageRFID with _readerName %@ _cardID %@", _readerName, _cardID];
+  return [NSString stringWithFormat:@"KBKegboardMessageAuthToken with _deviceName %@ _token %@ _stats %d", _deviceName, _token, _status];
 }
 
 @end

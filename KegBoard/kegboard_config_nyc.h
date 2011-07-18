@@ -21,7 +21,7 @@
 #define KB_ENABLE_ID12_RFID 1
 
 // Enable MagStripe reader?
-#define KB_ENABLE_MAGSTRIPE 0
+#define KB_ENABLE_MAGSTRIPE 1
 
 //
 // Pin configuration - KEGBOARD VERSION
@@ -53,7 +53,7 @@
 //
 
 #define KB_PIN_METER_A            2
-#define KB_PIN_METER_B            3
+//#define KB_PIN_METER_B            3
 #define KB_PIN_LED_FLOW_A         4
 #define KB_PIN_LED_FLOW_B         5
 #define KB_PIN_SERIAL_RFID_RX     6
