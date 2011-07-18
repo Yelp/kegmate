@@ -4,3 +4,6 @@ KegPad/KegPad.xcodeproj/*.pbxuser
 KegPad/KegPad.xcodeproj/*.perspectivev3
 KegPad/KegPad.xcodeproj/*.xcuserdatad
 KegBoard/board/kegboard.s#*
+.DS_Store
+KegPad/KegPad.xcodeproj/project.xcworkspace/
+KegPad/KegPad.xcodeproj/xcuserdata/
