@@ -143,7 +143,9 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   
   KBKegPour *kegPour = nil;
   
-  if (amount > 0) {
+  double maxPourAmountInLiters = [[NSUserDefaults standardUserDefaults] gh_doubleForKey:@"MaxPourAmountInLiters" withDefault:2.5];
+  
+  if (amount > 0 && amount <= maxPourAmountInLiters) {
     KBKegPour *lastPour = [dataStore_ lastPour:nil];
     // If same user and less than 30 seconds, add to the existing pour
     if ([lastPour.user isEqual:self.loginUser] && -[lastPour.date timeIntervalSinceNow] < 30) {

@@ -27,6 +27,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 extern void GHContextAddRoundedRect(CGContextRef context, CGRect rect, CGFloat cornerWidth, CGFloat cornerHeight, CGFloat strokeWidth);
 

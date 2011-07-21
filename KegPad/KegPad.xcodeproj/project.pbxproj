@@ -18,6 +18,7 @@
 		0017BA41120249D600269CDA /* _KBKegTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3B120249D600269CDA /* _KBKegTemperature.m */; };
 		0017BA42120249D600269CDA /* KBKegPour.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3D120249D600269CDA /* KBKegPour.m */; };
 		0017BA43120249D600269CDA /* KBKegTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3F120249D600269CDA /* KBKegTemperature.m */; };
+		00189D7213D8D3E300A1EECB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00189D7113D8D3E300A1EECB /* Security.framework */; };
 		004E1B0C12655172004B0AC0 /* admin_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 004E1B0B12655172004B0AC0 /* admin_button.png */; };
 		00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00568FAE1251A493004AF3D1 /* KBUserView.m */; };
 		0074ED161266DCB500111C14 /* _KBPourIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0074ED141266DCB500111C14 /* _KBPourIndex.m */; };
@@ -206,6 +207,7 @@
 		0017BA3D120249D600269CDA /* KBKegPour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegPour.m; sourceTree = "<group>"; };
 		0017BA3E120249D600269CDA /* KBKegTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTemperature.h; sourceTree = "<group>"; };
 		0017BA3F120249D600269CDA /* KBKegTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTemperature.m; sourceTree = "<group>"; };
+		00189D7113D8D3E300A1EECB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		004080871284E5D00003B17D /* KegPad-2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "KegPad-2.xcdatamodel"; sourceTree = "<group>"; };
 		004E1B0B12655172004B0AC0 /* admin_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = admin_button.png; sourceTree = "<group>"; };
 		00568FAD1251A493004AF3D1 /* KBUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserView.h; sourceTree = "<group>"; };
@@ -288,7 +290,7 @@
 		007B7A1E137A569C000F8040 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		007B7AAF137A5BAE000F8040 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		007B7AB0137A5BAE000F8040 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
-		007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLiOS.framework; sourceTree = "<group>"; };
+		007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLiOS.framework; path = Libraries/YAJLiOS.framework; sourceTree = "<group>"; };
 		0089620D137F199F007748CD /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		00896221137F32DD007748CD /* KBFlowIndicator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBFlowIndicator.xib; sourceTree = "<group>"; };
 		00896239137F40AA007748CD /* KBAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBAboutViewController.xib; sourceTree = "<group>"; };
@@ -419,7 +421,7 @@
 		00D54E5F1202DBD500F76724 /* top_gradient_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_gradient_mask.png; sourceTree = "<group>"; };
 		00DDE98D12037E3600B24BA5 /* KBLeaderboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBLeaderboardView.h; sourceTree = "<group>"; };
 		00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBLeaderboardView.m; sourceTree = "<group>"; };
-		00E654571256565B00E4CE9E /* GHKitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHKitIOS.framework; sourceTree = "<group>"; };
+		00E654571256565B00E4CE9E /* GHKitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHKitIOS.framework; path = Libraries/GHKitIOS.framework; sourceTree = "<group>"; };
 		00E6556D1256638400E4CE9E /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLogger.h; sourceTree = "<group>"; };
 		00E6556E1256638400E4CE9E /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMLogger.m; sourceTree = "<group>"; };
 		00E6556F1256638400E4CE9E /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00189D7213D8D3E300A1EECB /* Security.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -547,11 +550,9 @@
 		0017BCBE120279E200269CDA /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */,
 				007B7920137A569B000F8040 /* OAuthConsumer */,
 				007B78CA137A4CD9000F8040 /* MGTwitterEngine */,
 				00E6556B1256638400E4CE9E /* GTM */,
-				00E654571256565B00E4CE9E /* GHKitIOS.framework */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -989,6 +990,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00E654571256565B00E4CE9E /* GHKitIOS.framework */,
+				007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */,
+				00189D7113D8D3E300A1EECB /* Security.framework */,
 				008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */,
 				008FEDB31201F9C400BA5D07 /* QuartzCore.framework */,
 				008FED1B1201F2F600BA5D07 /* MediaPlayer.framework */,

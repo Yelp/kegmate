@@ -86,6 +86,12 @@
   [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
 }
 
+- (void)pourShortAdmin {
+  [self login:@"ADMIN"];
+  [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
+  [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
+}
+
 - (void)poursShort {
   [self login:@"ADMIN"];
   [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
@@ -100,6 +106,12 @@
   [self login:@"ADMIN"];
   [[kegManager_ gh_proxyAfterDelay:1] kegProcessingDidStartPour:kegManager_.processing];
   [[kegManager_ gh_proxyAfterDelay:30] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];
+}
+
+- (void)pourLarge {
+  [self login:@"ADMIN"];
+  [[kegManager_ gh_proxyAfterDelay:1] kegProcessingDidStartPour:kegManager_.processing];
+  [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:10.0];
 }
 
 @end

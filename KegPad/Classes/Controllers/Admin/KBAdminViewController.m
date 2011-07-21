@@ -56,7 +56,7 @@
     [self addForm:[KBUIForm formWithTitle:@"Kegs" text:nil target:self action:@selector(showKegs) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Users" text:nil target:self action:@selector(showUsers) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Twitter" text:@"Connect to twitter." target:self action:@selector(showTwitterAdmin) showDisclosure:YES]];
-    [self addForm:[KBUIForm formWithTitle:@"Settings" text:@"Name and admin password." target:self action:@selector(showSettings) showDisclosure:YES]];
+    [self addForm:[KBUIForm formWithTitle:@"Settings" text:@"Settings like name and admin password." target:self action:@selector(showSettings) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Simulator" text:@"For testing." target:self action:@selector(showSimulator) showDisclosure:YES]];
     [self addForm:[KBUIForm formWithTitle:@"Update fixtures" text:@"Load fixture data (will reset changes from fixture data)." 
                                    target:self action:@selector(updateWithFixtures) showDisclosure:NO]];

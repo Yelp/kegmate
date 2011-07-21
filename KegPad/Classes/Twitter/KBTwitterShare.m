@@ -39,7 +39,7 @@
 @synthesize lastTemperature=lastTemperature_, lastKeg=lastKeg_;
 
 - (id)init {
-  if ((self = [super init])) {    
+  if ((self = [super init])) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBKegTemperatureDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegSelectionDidChange:) name:KBKegSelectionDidChangeNotification object:nil];    
@@ -125,10 +125,14 @@
 }
 
 - (void)_kegDidEndPour:(NSNotification *)notification {
+  BOOL tweetAnonymous = [[NSUserDefaults standardUserDefaults] gh_boolForKey:@"TweetAnonymous" withDefault:NO];
+  
   KBKegPour *kegPour = [notification object];
   // Only tweet if larger than 3 ounces
   if (kegPour && [kegPour amountInOunces] > 3) {
     NSString *name = [kegPour.user displayName];
+    if (!name && !tweetAnonymous) return;
+    
     if (!name) name = @"I";
     
     NSMutableString *status = [NSMutableString stringWithFormat:@"%@ poured %@ oz. of %@. %@", 

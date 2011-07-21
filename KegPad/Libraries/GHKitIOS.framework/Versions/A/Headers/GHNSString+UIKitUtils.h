@@ -27,6 +27,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#import <UIKit/UIKit.h>
+#import <CoreGraphics/CoreGraphics.h>
+
 enum {
   GHNSStringAlignmentHorizontalCenter = 1 << 0,
   GHNSStringAlignmentVerticalCenter = 1 << 1,
