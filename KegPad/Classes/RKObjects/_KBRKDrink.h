@@ -13,7 +13,7 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKDrink : RKManagedObject { }
+@interface _KBRKDrink : NSObject { }
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

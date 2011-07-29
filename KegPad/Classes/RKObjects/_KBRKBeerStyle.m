@@ -12,8 +12,8 @@
 
 @implementation _KBRKBeerStyle
 
-@dynamic identifier;
-@dynamic name;
+@synthesize identifier;
+@synthesize name;
 
 #pragma mark RKObjectMappable methods
 

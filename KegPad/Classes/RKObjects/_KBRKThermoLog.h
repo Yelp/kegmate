@@ -11,7 +11,7 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKThermoLog : RKManagedObject { }
+@interface _KBRKThermoLog : NSObject { }
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

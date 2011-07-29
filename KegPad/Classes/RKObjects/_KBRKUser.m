@@ -12,23 +12,9 @@
 
 @implementation _KBRKUser
 
-@dynamic username;
-@dynamic mugshotUrl;
-@dynamic isActive;
-
-#pragma mark RKObjectMappable methods
-
-+ (NSDictionary*)elementToPropertyMappings {
-  return [NSDictionary dictionaryWithKeysAndObjects:
-          @"username", @"username",
-          @"mugshot_url", @"mugshotUrl",
-          @"is_active", @"isActive",
-          nil];
-}
-
-+ (NSString*)primaryKeyProperty {
-  return @"identifier";
-}
+@synthesize username;
+@synthesize mugshotUrl;
+@synthesize isActive;
 
 #pragma mark -
 

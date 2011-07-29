@@ -19,8 +19,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-@interface KBRecentPoursView : UIView {
-  NSArray *recentPours_;
+#import <RestKit/RestKit.h>
+
+@interface KBRecentPoursView : UIView <RKObjectLoaderDelegate> {
+  NSArray */*of KBRKDrink*/recentPours_;
 }
 
 - (void)setRecentPours:(NSArray *)recentPours;

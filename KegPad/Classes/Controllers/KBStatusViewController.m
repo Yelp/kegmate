@@ -22,11 +22,10 @@
 #import "KBStatusViewController.h"
 
 #import "KBNotifications.h"
-
 #import "KBDataStore.h"
 #import "KBApplication.h"
 #import "KBApplicationDelegate.h"
-
+#import "KBRKThermoLog.h"
 
 @implementation KBStatusViewController
 
@@ -73,7 +72,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 - (void)viewDidLoad {
   [super viewDidLoad];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBKegTemperatureDidChangeNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBRKThermoLogDidChangeNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegVolumeDidChange:) name:KBKegVolumeDidChangeNotification object:nil];    
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidStartPour:) name:KBKegDidStartPourNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
@@ -103,7 +102,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 }
 
 - (void)updateKeg:(KBKeg *)keg {
-  self.view;
+  [self view];
   [keg retain];
   [keg_ release];
   keg_ = keg;
@@ -118,7 +117,7 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
 }
 
 - (void)setLastKegPour:(KBKegPour *)kegPour {
-  self.view;
+  [self view];
   if (kegPour) {
     NSDate *date = [kegPour date];
     lastPourTimeLabel_.text = [NSString stringWithFormat:@"%d", [kegPour timeAgoInteger:date]];
@@ -133,8 +132,8 @@ chartView=chartView_, leaderboardView=leaderboardView_, delegate=delegate_, flow
   }
 }
 
-- (void)setKegTemperature:(KBKegTemperature *)kegTemperature {
-  self.view;
+- (void)setKegTemperature:(KBRKThermoLog *)kegTemperature {
+  [self view];
   if (kegTemperature) {
     temperatureLabel_.text = [kegTemperature temperatureDescription];
     temperatureDescriptionLabel_.text = [kegTemperature statusDescription];

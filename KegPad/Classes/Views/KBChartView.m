@@ -22,7 +22,6 @@
 #import "KBChartView.h"
 
 #import "KBDataStore.h"
-#import "KBKegPour.h"
 #import "KBPourIndex.h"
 #import "KBNotifications.h"
 #import "KBApplication.h"

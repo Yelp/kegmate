@@ -11,7 +11,7 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKUser : RKManagedObject { }
+@interface _KBRKUser : NSObject { }
 
 //! Unique identifier for the user.
 @property (retain, nonatomic) NSNumber *username;

@@ -19,11 +19,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+#import <RestKit/RestKit.h>
 #import "KBApplicationDelegate.h"
-
 #import "KBNotifications.h"
 #import "KBDataImporter.h"
 #import "KBUserEditViewController.h"
+#import "KBRKKeg.h"
+#import "KBRKBeerType.h"
+#import "KBRKUser.h"
+#import "KBRKDrink.h"
 
 @implementation KBApplicationDelegate
 
@@ -76,7 +80,90 @@
   AudioServicesCreateSystemSoundID(soundURL, &systemSounds_[0]);
 }
 
+- (void)initializeRestKit {
+  // Initialize RestKit
+  // TODO(johnb): Make the host configurable
+  RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://people.yelpcorp.com:16001/api"];
+
+  // Enable automatic network activity indicator management
+  [RKRequestQueue sharedQueue].showsNetworkActivityIndicatorWhenBusy = YES;
+  
+  RKObjectMapping *kegMapping = [RKObjectMapping mappingForClass:[KBRKKeg class]];
+  [kegMapping mapKeyPathsToAttributes:@"id", @"identifier",
+   @"type_id", @"typeId",
+   @"size_id", @"sizeId",
+   @"size_name", @"sizeName",
+   @"size_volume_ml", @"sizeVolumeMl",
+   @"volume_ml_remain", @"volumeMlRemain",
+   @"percent_full", @"percentFull",
+   @"started_time", @"startedTime",
+   @"finished_time", @"finishedTime",
+   @"status", @"status",
+   @"description", @"descriptionText",
+   @"spilled_ml", @"spilledMl",
+   nil];
+  [kegMapping.dateFormatStrings addObject:@"y-MM-dTHH:mm:ssZ"];
+  // Add our element to object mappings
+  [objectManager.mappingProvider registerMapping:kegMapping withRootKeyPath:@"result.kegs"];
+
+  RKObjectMapping *beerTypeMapping = [RKObjectMapping mappingForClass:[KBRKBeerType class]];
+  [beerTypeMapping mapKeyPathsToAttributes:
+  @"id", @"identifier",
+  @"name", @"name",
+   nil];
+  [objectManager.mappingProvider registerMapping:beerTypeMapping withRootKeyPath:@"result.beer_types"];
+
+  RKObjectMapping *userMapping = [RKObjectMapping mappingForClass:[KBRKUser class]];
+  [userMapping mapKeyPathsToAttributes:
+   @"username", @"username",
+   @"mugshot_url", @"mugshotUrl",
+   @"is_active", @"isActive",
+   nil];
+  [objectManager.mappingProvider registerMapping:userMapping withRootKeyPath:@"result.users"];
+
+  RKObjectMapping *drinkMapping = [RKObjectMapping mappingForClass:[KBRKDrink class]];
+  [drinkMapping mapKeyPathsToAttributes:
+   @"id", @"identifier",
+   @"ticks", @"ticks",
+   @"volume_ml", @"volumeMl",
+   @"session_id", @"sessionId",
+   @"pour_time", @"pourTime",
+   @"duration", @"duration",
+   @"status", @"status",
+   @"keg_id", @"kegId",
+   @"user_id", @"userId",
+   @"auth_token_id", @"authTokenId",
+   nil];
+  [objectManager.mappingProvider registerMapping:drinkMapping withRootKeyPath:@"result.drinks"];
+
+  // Set Up Router
+	// The router is responsible for generating the appropriate resource path to
+	// GET/POST/PUT/DELETE an object representation. This prevents your code from
+	// becoming littered with identical resource paths as you manipulate common 
+	// objects across your application. Note that a single object representation
+	// can be loaded from any number of resource paths. You can also PUT/POST
+	// an object to arbitrary paths by configuring the object loader yourself. The
+	// router is just for configuring the default 'home address' for an object.
+	[objectManager.router routeClass:[KBRKKeg class] toResourcePath:@"/kegs/(identifier)" forMethod:RKRequestMethodGET];
+	[objectManager.router routeClass:[KBRKKeg class] toResourcePath:@"/kegs/(identifier)" forMethod:RKRequestMethodPUT];
+	[objectManager.router routeClass:[KBRKKeg class] toResourcePath:@"/kegs/(identifier)" forMethod:RKRequestMethodDELETE];
+  /*
+   RKManagedObjectSeeder* seeder = [RKManagedObjectSeeder objectSeederWithObjectManager:objectManager];
+   // Seed the database with instances of RKTStatus from a snapshot of the RestKit Twitter timeline
+   [seeder seedObjectsFromFile:@"rk_kegs.json" toClass:[KBRKKeg class] keyPath:@"result.kegs"];
+   
+   // Finalize the seeding operation and output a helpful informational message
+   [seeder finalizeSeedingAndExit];
+*/
+  
+  // Initialize object store
+  //objectManager.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"RKKegPad.sqlite" usingSeedDatabaseName:nil managedObjectModel:nil delegate:nil];
+
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {  
+  [self initializeRestKit];
+
   [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
   displayViewController_ = [[KBDisplayViewController alloc] init];
@@ -126,8 +213,8 @@
 }
 
 - (void)setKeg:(KBKeg *)keg {
-  displayViewController_.view;
-  statusViewController_.view;
+  [displayViewController_ view];
+  [statusViewController_ view];
   
   [displayViewController_ updateKeg:keg];
   [displayViewController_ updateRecentPours];

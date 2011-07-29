@@ -21,14 +21,14 @@
 
 #import "MGTwitterEngine.h"
 
-#import "KBKegTemperature.h"
+#import "KBRKThermoLog.h"
 #import "KBKeg.h"
 
 
 @interface KBTwitterShare : NSObject <MGTwitterEngineDelegate> {
   MGTwitterEngine *twitterEngine_;  
   
-  KBKegTemperature *lastTemperature_;
+  KBRKThermoLog *lastThermoLog_;
   KBKeg *lastKeg_;
 }
 

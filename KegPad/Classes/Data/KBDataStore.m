@@ -243,7 +243,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   if (!keg) return NO;
   KBKegTemperature *kegTemperature = [KBKegTemperature kegTemperature:temperature keg:keg date:[NSDate date] inManagedObjectContext:[self managedObjectContext]];
   BOOL saved = [self save:error];
-  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegTemperatureDidChangeNotification object:kegTemperature];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBRKThermoLogDidChangeNotification object:kegTemperature];
   if (saved) return kegTemperature;
   return nil;
 }

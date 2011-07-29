@@ -51,4 +51,9 @@ static NSObject<KBApplicationDelegate> *KBApplicationSharedDelegate = NULL;
   return [[self sharedDelegate] kegManager].dataStore;
 }
 
++ (NSString *)apiKey {
+  //return @"1000000249cb88df1f5cabfc339c5a45973ef2ab";
+  return @"100000031923c5aed75d84bcd46b345a67e91c3b";
+}
+
 @end

@@ -21,7 +21,7 @@
 
 #import "KBKeg.h"
 #import "KBKegPour.h"
-#import "KBKegTemperature.h"
+#import "KBRKThermoLog.h"
 #import "KBChartView.h"
 #import "KBLeaderboardView.h"
 #import "KBFlowIndicator.h"
@@ -75,7 +75,7 @@
 
 - (void)setLastKegPour:(KBKegPour *)kegPour;
 
-- (void)setKegTemperature:(KBKegTemperature *)kegTemperature;
+- (void)setKegTemperature:(KBRKThermoLog *)kegTemperature;
 
 - (void)updateLeaderboard;
 

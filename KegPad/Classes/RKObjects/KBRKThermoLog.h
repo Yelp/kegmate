@@ -11,4 +11,16 @@
 
 @interface KBRKThermoLog : _KBRKThermoLog { }
 
++ (float)min;
+
++ (float)max;
+
+- (RKRequest *)postToAPIWithDelegate:(id)delegate;
+
+- (NSString *)thermometerDescription;
+
+- (NSString *)temperatureDescription;
+
+- (NSString *)statusDescription;
+
 @end

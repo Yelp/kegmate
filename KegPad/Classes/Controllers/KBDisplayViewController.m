@@ -30,11 +30,10 @@
 #import "KBAdminLoginViewController.h"
 #import "KBAdminViewController.h"
 
-
 @interface KBDisplayViewController ()
 @property (retain, nonatomic) KBKeg *keg;
 @property (retain, nonatomic) KBUser *user;
-- (void)_updateKegTemperature:(KBKegTemperature *)kegTemperature;
+- (void)_updateKegTemperature:(KBRKThermoLog *)kegTemperature;
 @end
 
 
@@ -82,7 +81,7 @@ adminButton=adminButton_, delegate=delegate_;
 - (void)viewDidLoad {
   [super viewDidLoad];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBKegTemperatureDidChangeNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBRKThermoLogDidChangeNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegVolumeDidChange:) name:KBKegVolumeDidChangeNotification object:nil];    
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidStartPour:) name:KBKegDidStartPourNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
@@ -111,7 +110,7 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)startPour {
-  self.view;
+  [self view];
   beerMovieView_.alpha = 0.0;
   [self.view bringSubviewToFront:beerMovieView_];
   [UIView beginAnimations:nil context:NULL];
@@ -139,9 +138,9 @@ adminButton=adminButton_, delegate=delegate_;
   [self.view sendSubviewToBack:beerMovieView_];
 }
 
-- (void)_updateKegTemperature:(KBKegTemperature *)kegTemperature {
-  float temperature = [kegTemperature temperatureValue];
-  float percentage = ((temperature - [KBKegTemperature min]) / ([KBKegTemperature max] - [KBKegTemperature min]));
+- (void)_updateKegTemperature:(KBRKThermoLog *)kegTemperature {
+  float temperature = [[kegTemperature temperatureC] doubleValue];
+  float percentage = ((temperature - [KBRKThermoLog min]) / ([KBRKThermoLog max] - [KBRKThermoLog min]));
   CGFloat percentageToHeight = percentage * (chalkCircleOriginMaxY_ - chalkCircleOriginMinY_);
   CGFloat temperatureY = percentageToHeight + chalkCircleOriginMinY_;
   if (temperatureY < chalkCircleOriginMinY_) temperatureY = chalkCircleOriginMinY_;
@@ -176,8 +175,8 @@ adminButton=adminButton_, delegate=delegate_;
   }
 }
 
-- (void)setKegTemperature:(KBKegTemperature *)kegTemperature {
-  self.view;
+- (void)setKegTemperature:(KBRKThermoLog *)kegTemperature {
+  [self view];
   if (kegTemperature) {    
     tempDescriptionLabel_.hidden = NO;
     tempDescriptionLabel_.text = [kegTemperature thermometerDescription];
@@ -216,7 +215,7 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)updateKeg:(KBKeg *)keg {
-  self.view;
+  [self view];
   self.keg = keg;
   [self updateBeer:keg.beer];
 }

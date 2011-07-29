@@ -22,7 +22,7 @@
 #import "KBNotifications.h"
 
 NSString *const KBKegSelectionDidChangeNotification = @"KBKegSelectionDidChangeNotification";
-NSString *const KBKegTemperatureDidChangeNotification = @"KBKegTemperatureDidChangeNotification";
+NSString *const KBRKThermoLogDidChangeNotification = @"KBRKThermoLogDidChangeNotification";
 NSString *const KBKegVolumeDidChangeNotification = @"KBKegVolumeDidChangeNotification";
 NSString *const KBKegDidStartPourNotification = @"KBKegDidStartPourNotification";
 NSString *const KBKegDidEndPourNotification = @"KBKegDidEndPourNotification";

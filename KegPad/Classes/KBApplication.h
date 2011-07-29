@@ -43,4 +43,6 @@
 
 + (KBDataStore *)dataStore;
 
++ (NSString *)apiKey;
+
 @end

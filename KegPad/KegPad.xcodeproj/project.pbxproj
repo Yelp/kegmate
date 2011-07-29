@@ -10,10 +10,6 @@
 		00025DB61267A48C0020985D /* BeerLoop.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 00025DB51267A48C0020985D /* BeerLoop.m4v */; };
 		0017B7C5120219BC00269CDA /* KBDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B7C4120219BC00269CDA /* KBDisplayViewController.m */; };
 		0017B8CB12022CDD00269CDA /* KBNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B8CA12022CDD00269CDA /* KBNotifications.m */; };
-		0017BA40120249D600269CDA /* _KBKegPour.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA39120249D600269CDA /* _KBKegPour.m */; };
-		0017BA41120249D600269CDA /* _KBKegTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3B120249D600269CDA /* _KBKegTemperature.m */; };
-		0017BA42120249D600269CDA /* KBKegPour.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3D120249D600269CDA /* KBKegPour.m */; };
-		0017BA43120249D600269CDA /* KBKegTemperature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017BA3F120249D600269CDA /* KBKegTemperature.m */; };
 		00189D7213D8D3E300A1EECB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00189D7113D8D3E300A1EECB /* Security.framework */; };
 		004E1B0C12655172004B0AC0 /* admin_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 004E1B0B12655172004B0AC0 /* admin_button.png */; };
 		00568FAF1251A493004AF3D1 /* KBUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00568FAE1251A493004AF3D1 /* KBUserView.m */; };
@@ -74,7 +70,7 @@
 		009E8F3B126CE4B40008B159 /* Boont_Amber_Ale.png in Resources */ = {isa = PBXBuildFile; fileRef = 009E8F3A126CE4B40008B159 /* Boont_Amber_Ale.png */; };
 		009E8F40126CE50B0008B159 /* KBUIFormListSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 009E8F3F126CE50B0008B159 /* KBUIFormListSelect.m */; };
 		00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */; };
-		00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */; };
+		00AA3F411255B3B400CB3F6B /* KBRKBeerTypeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F401255B3B400CB3F6B /* KBRKBeerTypeEditViewController.m */; };
 		00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */; };
 		00C02581121351E60020483D /* KBApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257D121351E60020483D /* KBApplicationDelegate.m */; };
 		00C02582121351E60020483D /* KBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257F121351E60020483D /* KBApplication.m */; };
@@ -165,12 +161,14 @@
 		4225C33F138240F50065FEE5 /* KBPourIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C32F138240F50065FEE5 /* KBPourIndex.m */; };
 		4225C340138240F50065FEE5 /* KBRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C331138240F50065FEE5 /* KBRating.m */; };
 		4225C341138240F50065FEE5 /* KBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C333138240F50065FEE5 /* KBUser.m */; };
-		4225C40E138245E90065FEE5 /* KBRKBeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C40D138245E80065FEE5 /* KBRKBeersViewController.m */; };
+		4225C40E138245E90065FEE5 /* KBRKBeerTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C40D138245E80065FEE5 /* KBRKBeerTypesViewController.m */; };
 		4225C42813824B110065FEE5 /* rk_kegs.json in Resources */ = {isa = PBXBuildFile; fileRef = 4225C42713824B110065FEE5 /* rk_kegs.json */; };
 		422D27BC128A81AD00AA0C62 /* beer_image_gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */; };
 		422D27BD128A81AD00AA0C62 /* beer_image_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D27BB128A81AD00AA0C62 /* beer_image_mask.png */; };
 		4237352A127264E000C48796 /* Lagunitas_PILS.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373528127264E000C48796 /* Lagunitas_PILS.png */; };
 		4237352B127264E000C48796 /* Ommegang_BPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373529127264E000C48796 /* Ommegang_BPA.png */; };
+		423F976913E26B4000D10061 /* _KBRKThermoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 423F976613E26B3F00D10061 /* _KBRKThermoLog.m */; };
+		423F976A13E26B4000D10061 /* KBRKThermoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 423F976813E26B4000D10061 /* KBRKThermoLog.m */; };
 		425F840F13824EE600309065 /* KBRKDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 425F840D13824EE600309065 /* KBRKDataModel.xcdatamodeld */; };
 		427AC48C126585C50063CE3C /* flow_at_symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC486126585C50063CE3C /* flow_at_symbol.png */; };
 		427AC48D126585C50063CE3C /* flow_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AC487126585C50063CE3C /* flow_background.png */; };
@@ -182,39 +180,22 @@
 		427ACC3D126D0E500063CE3C /* New_Belgium_Ranger_IPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 427ACC3C126D0E500063CE3C /* New_Belgium_Ranger_IPA.png */; };
 		427ACC60126D15DC0063CE3C /* Lagunitas_IPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 427ACC5F126D15DC0063CE3C /* Lagunitas_IPA.png */; };
 		427ACC77126D1B790063CE3C /* Little_Sumpin_Wild.png in Resources */ = {isa = PBXBuildFile; fileRef = 427ACC76126D1B790063CE3C /* Little_Sumpin_Wild.png */; };
+		42956A5D13E1E5A800209781 /* KBRKKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A5C13E1E5A800209781 /* KBRKKeg.m */; };
+		42956A7313E1FBDE00209781 /* _KBRKBeerType.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A7013E1FBDE00209781 /* _KBRKBeerType.m */; };
+		42956A7413E1FBDE00209781 /* KBRKBeerType.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A7213E1FBDE00209781 /* KBRKBeerType.m */; };
+		42956A7913E2046300209781 /* _KBRKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A7613E2046200209781 /* _KBRKUser.m */; };
+		42956A7A13E2046300209781 /* KBRKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A7813E2046300209781 /* KBRKUser.m */; };
+		42956A7D13E2079F00209781 /* KBRKUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A7C13E2079E00209781 /* KBRKUsersViewController.m */; };
+		42956A8013E20A4F00209781 /* KBRKKegEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A7F13E20A4E00209781 /* KBRKKegEditViewController.m */; };
+		42956A8513E2165900209781 /* _KBRKDrink.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A8213E2165800209781 /* _KBRKDrink.m */; };
+		42956A8613E2165900209781 /* KBRKDrink.m in Sources */ = {isa = PBXBuildFile; fileRef = 42956A8413E2165800209781 /* KBRKDrink.m */; };
 		429B08EB1202FEF600C36F76 /* Glass.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 429B08EA1202FEF600C36F76 /* Glass.aiff */; };
 		429B08EE1202FF5300C36F76 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429B08ED1202FF5300C36F76 /* AudioToolbox.framework */; };
 		429B094D1203371700C36F76 /* KBRatingPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B094C1203371700C36F76 /* KBRatingPicker.m */; };
 		429B098A12033A4000C36F76 /* KBTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 429B098912033A4000C36F76 /* KBTypes.m */; };
 		429B0AAC120386EE00C36F76 /* St_Bernardus_Tripel.png in Resources */ = {isa = PBXBuildFile; fileRef = 429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */; };
-		42A0BA261382599F00D6186B /* _KBRKAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9F11382599F00D6186B /* _KBRKAuthToken.m */; };
-		42A0BA271382599F00D6186B /* _KBRKBeerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9F31382599F00D6186B /* _KBRKBeerStyle.m */; };
-		42A0BA281382599F00D6186B /* _KBRKBeerType.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9F51382599F00D6186B /* _KBRKBeerType.m */; };
-		42A0BA291382599F00D6186B /* _KBRKBrewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9F71382599F00D6186B /* _KBRKBrewer.m */; };
-		42A0BA2A1382599F00D6186B /* _KBRKDrink.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9F91382599F00D6186B /* _KBRKDrink.m */; };
-		42A0BA2B1382599F00D6186B /* _KBRKKegSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9FB1382599F00D6186B /* _KBRKKegSize.m */; };
-		42A0BA2C1382599F00D6186B /* _KBRKKegTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9FD1382599F00D6186B /* _KBRKKegTap.m */; };
-		42A0BA2D1382599F00D6186B /* _KBRKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0B9FF1382599F00D6186B /* _KBRKSession.m */; };
-		42A0BA2E1382599F00D6186B /* _KBRKSystemEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA011382599F00D6186B /* _KBRKSystemEvent.m */; };
-		42A0BA2F1382599F00D6186B /* _KBRKThermoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA031382599F00D6186B /* _KBRKThermoLog.m */; };
-		42A0BA301382599F00D6186B /* _KBRKThermoSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA051382599F00D6186B /* _KBRKThermoSensor.m */; };
-		42A0BA311382599F00D6186B /* _KBRKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA071382599F00D6186B /* _KBRKUser.m */; };
-		42A0BA321382599F00D6186B /* _KBRKUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA091382599F00D6186B /* _KBRKUserSession.m */; };
-		42A0BA331382599F00D6186B /* KBRKAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA0B1382599F00D6186B /* KBRKAuthToken.m */; };
-		42A0BA341382599F00D6186B /* KBRKBeerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA0D1382599F00D6186B /* KBRKBeerStyle.m */; };
-		42A0BA351382599F00D6186B /* KBRKBeerType.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA0F1382599F00D6186B /* KBRKBeerType.m */; };
-		42A0BA361382599F00D6186B /* KBRKBrewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA111382599F00D6186B /* KBRKBrewer.m */; };
-		42A0BA371382599F00D6186B /* KBRKDrink.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA131382599F00D6186B /* KBRKDrink.m */; };
-		42A0BA381382599F00D6186B /* KBRKKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA151382599F00D6186B /* KBRKKeg.m */; };
-		42A0BA391382599F00D6186B /* KBRKKegSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA171382599F00D6186B /* KBRKKegSize.m */; };
-		42A0BA3A1382599F00D6186B /* KBRKKegTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA191382599F00D6186B /* KBRKKegTap.m */; };
-		42A0BA3B1382599F00D6186B /* KBRKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA1B1382599F00D6186B /* KBRKSession.m */; };
-		42A0BA3C1382599F00D6186B /* KBRKSystemEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA1D1382599F00D6186B /* KBRKSystemEvent.m */; };
-		42A0BA3D1382599F00D6186B /* KBRKThermoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA1F1382599F00D6186B /* KBRKThermoLog.m */; };
-		42A0BA3E1382599F00D6186B /* KBRKThermoSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA211382599F00D6186B /* KBRKThermoSensor.m */; };
-		42A0BA3F1382599F00D6186B /* KBRKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA231382599F00D6186B /* KBRKUser.m */; };
-		42A0BA401382599F00D6186B /* KBRKUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA251382599F00D6186B /* KBRKUserSession.m */; };
 		42A0BA43138259E300D6186B /* _KBRKKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA42138259E300D6186B /* _KBRKKeg.m */; };
+		42BEC81213E28AF8004ABA0F /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEC81113E28AF8004ABA0F /* KBBeerEditViewController.m */; };
 		42C9846013825C140072A896 /* RKSeedDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42C9845F13825C140072A896 /* RKSeedDatabase.sqlite */; };
 		42CF4BE51380BEEC0097753C /* KBRKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CF4BE41380BEEC0097753C /* KBRKViewController.m */; };
 		42CF4BEE1380C62F0097753C /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BE91380C62F0097753C /* libRestKitCoreData.a */; };
@@ -317,14 +298,6 @@
 		0017B7C4120219BC00269CDA /* KBDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDisplayViewController.m; sourceTree = "<group>"; };
 		0017B8C912022CDD00269CDA /* KBNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNotifications.h; sourceTree = "<group>"; };
 		0017B8CA12022CDD00269CDA /* KBNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNotifications.m; sourceTree = "<group>"; };
-		0017BA38120249D600269CDA /* _KBKegPour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBKegPour.h; sourceTree = "<group>"; };
-		0017BA39120249D600269CDA /* _KBKegPour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBKegPour.m; sourceTree = "<group>"; };
-		0017BA3A120249D600269CDA /* _KBKegTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBKegTemperature.h; sourceTree = "<group>"; };
-		0017BA3B120249D600269CDA /* _KBKegTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBKegTemperature.m; sourceTree = "<group>"; };
-		0017BA3C120249D600269CDA /* KBKegPour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegPour.h; sourceTree = "<group>"; };
-		0017BA3D120249D600269CDA /* KBKegPour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegPour.m; sourceTree = "<group>"; };
-		0017BA3E120249D600269CDA /* KBKegTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTemperature.h; sourceTree = "<group>"; };
-		0017BA3F120249D600269CDA /* KBKegTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTemperature.m; sourceTree = "<group>"; };
 		00189D7113D8D3E300A1EECB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		004080871284E5D00003B17D /* KegPad-2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "KegPad-2.xcdatamodel"; sourceTree = "<group>"; };
 		004E1B0B12655172004B0AC0 /* admin_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = admin_button.png; sourceTree = "<group>"; };
@@ -434,8 +407,8 @@
 		009E8F3F126CE50B0008B159 /* KBUIFormListSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUIFormListSelect.m; sourceTree = "<group>"; };
 		00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserEditViewController.h; sourceTree = "<group>"; };
 		00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUserEditViewController.m; sourceTree = "<group>"; };
-		00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerEditViewController.h; sourceTree = "<group>"; };
-		00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerEditViewController.m; sourceTree = "<group>"; };
+		00AA3F3F1255B3B400CB3F6B /* KBRKBeerTypeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeerTypeEditViewController.h; sourceTree = "<group>"; };
+		00AA3F401255B3B400CB3F6B /* KBRKBeerTypeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeerTypeEditViewController.m; sourceTree = "<group>"; };
 		00AA3F9D1255B9B400CB3F6B /* KBKegEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegEditViewController.h; sourceTree = "<group>"; };
 		00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegEditViewController.m; sourceTree = "<group>"; };
 		00AA3FFF1255C07400CB3F6B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -569,13 +542,17 @@
 		4225C331138240F50065FEE5 /* KBRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRating.m; sourceTree = "<group>"; };
 		4225C332138240F50065FEE5 /* KBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUser.h; sourceTree = "<group>"; };
 		4225C333138240F50065FEE5 /* KBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUser.m; sourceTree = "<group>"; };
-		4225C40C138245E80065FEE5 /* KBRKBeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeersViewController.h; sourceTree = "<group>"; };
-		4225C40D138245E80065FEE5 /* KBRKBeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeersViewController.m; sourceTree = "<group>"; };
+		4225C40C138245E80065FEE5 /* KBRKBeerTypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeerTypesViewController.h; sourceTree = "<group>"; };
+		4225C40D138245E80065FEE5 /* KBRKBeerTypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeerTypesViewController.m; sourceTree = "<group>"; };
 		4225C42713824B110065FEE5 /* rk_kegs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rk_kegs.json; sourceTree = "<group>"; };
 		422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_image_gloss.png; sourceTree = "<group>"; };
 		422D27BB128A81AD00AA0C62 /* beer_image_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_image_mask.png; sourceTree = "<group>"; };
 		42373528127264E000C48796 /* Lagunitas_PILS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lagunitas_PILS.png; sourceTree = "<group>"; };
 		42373529127264E000C48796 /* Ommegang_BPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ommegang_BPA.png; sourceTree = "<group>"; };
+		423F976513E26B3F00D10061 /* _KBRKThermoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKThermoLog.h; sourceTree = "<group>"; };
+		423F976613E26B3F00D10061 /* _KBRKThermoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKThermoLog.m; sourceTree = "<group>"; };
+		423F976713E26B3F00D10061 /* KBRKThermoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKThermoLog.h; sourceTree = "<group>"; };
+		423F976813E26B4000D10061 /* KBRKThermoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKThermoLog.m; sourceTree = "<group>"; };
 		425F840E13824EE600309065 /* KBRKDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KBRKDataModel.xcdatamodel; sourceTree = "<group>"; };
 		427AC486126585C50063CE3C /* flow_at_symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_at_symbol.png; sourceTree = "<group>"; };
 		427AC487126585C50063CE3C /* flow_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flow_background.png; sourceTree = "<group>"; };
@@ -588,6 +565,24 @@
 		427ACC3C126D0E500063CE3C /* New_Belgium_Ranger_IPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = New_Belgium_Ranger_IPA.png; sourceTree = "<group>"; };
 		427ACC5F126D15DC0063CE3C /* Lagunitas_IPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lagunitas_IPA.png; sourceTree = "<group>"; };
 		427ACC76126D1B790063CE3C /* Little_Sumpin_Wild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Little_Sumpin_Wild.png; sourceTree = "<group>"; };
+		42956A5B13E1E5A800209781 /* KBRKKeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKKeg.h; sourceTree = "<group>"; };
+		42956A5C13E1E5A800209781 /* KBRKKeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKKeg.m; sourceTree = "<group>"; };
+		42956A6F13E1FBDE00209781 /* _KBRKBeerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKBeerType.h; sourceTree = "<group>"; };
+		42956A7013E1FBDE00209781 /* _KBRKBeerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKBeerType.m; sourceTree = "<group>"; };
+		42956A7113E1FBDE00209781 /* KBRKBeerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeerType.h; sourceTree = "<group>"; };
+		42956A7213E1FBDE00209781 /* KBRKBeerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeerType.m; sourceTree = "<group>"; };
+		42956A7513E2046200209781 /* _KBRKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKUser.h; sourceTree = "<group>"; };
+		42956A7613E2046200209781 /* _KBRKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKUser.m; sourceTree = "<group>"; };
+		42956A7713E2046300209781 /* KBRKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKUser.h; sourceTree = "<group>"; };
+		42956A7813E2046300209781 /* KBRKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKUser.m; sourceTree = "<group>"; };
+		42956A7B13E2079D00209781 /* KBRKUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKUsersViewController.h; sourceTree = "<group>"; };
+		42956A7C13E2079E00209781 /* KBRKUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKUsersViewController.m; sourceTree = "<group>"; };
+		42956A7E13E20A4D00209781 /* KBRKKegEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKKegEditViewController.h; sourceTree = "<group>"; };
+		42956A7F13E20A4E00209781 /* KBRKKegEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKKegEditViewController.m; sourceTree = "<group>"; };
+		42956A8113E2165700209781 /* _KBRKDrink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKDrink.h; sourceTree = "<group>"; };
+		42956A8213E2165800209781 /* _KBRKDrink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKDrink.m; sourceTree = "<group>"; };
+		42956A8313E2165800209781 /* KBRKDrink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKDrink.h; sourceTree = "<group>"; };
+		42956A8413E2165800209781 /* KBRKDrink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKDrink.m; sourceTree = "<group>"; };
 		429B08EA1202FEF600C36F76 /* Glass.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Glass.aiff; sourceTree = "<group>"; };
 		429B08ED1202FF5300C36F76 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		429B094B1203371700C36F76 /* KBRatingPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRatingPicker.h; sourceTree = "<group>"; };
@@ -595,62 +590,10 @@
 		429B098812033A4000C36F76 /* KBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTypes.h; sourceTree = "<group>"; };
 		429B098912033A4000C36F76 /* KBTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTypes.m; sourceTree = "<group>"; };
 		429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = St_Bernardus_Tripel.png; sourceTree = "<group>"; };
-		42A0B9F01382599F00D6186B /* _KBRKAuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKAuthToken.h; sourceTree = "<group>"; };
-		42A0B9F11382599F00D6186B /* _KBRKAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKAuthToken.m; sourceTree = "<group>"; };
-		42A0B9F21382599F00D6186B /* _KBRKBeerStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKBeerStyle.h; sourceTree = "<group>"; };
-		42A0B9F31382599F00D6186B /* _KBRKBeerStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKBeerStyle.m; sourceTree = "<group>"; };
-		42A0B9F41382599F00D6186B /* _KBRKBeerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKBeerType.h; sourceTree = "<group>"; };
-		42A0B9F51382599F00D6186B /* _KBRKBeerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKBeerType.m; sourceTree = "<group>"; };
-		42A0B9F61382599F00D6186B /* _KBRKBrewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKBrewer.h; sourceTree = "<group>"; };
-		42A0B9F71382599F00D6186B /* _KBRKBrewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKBrewer.m; sourceTree = "<group>"; };
-		42A0B9F81382599F00D6186B /* _KBRKDrink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKDrink.h; sourceTree = "<group>"; };
-		42A0B9F91382599F00D6186B /* _KBRKDrink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKDrink.m; sourceTree = "<group>"; };
-		42A0B9FA1382599F00D6186B /* _KBRKKegSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKKegSize.h; sourceTree = "<group>"; };
-		42A0B9FB1382599F00D6186B /* _KBRKKegSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKKegSize.m; sourceTree = "<group>"; };
-		42A0B9FC1382599F00D6186B /* _KBRKKegTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKKegTap.h; sourceTree = "<group>"; };
-		42A0B9FD1382599F00D6186B /* _KBRKKegTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKKegTap.m; sourceTree = "<group>"; };
-		42A0B9FE1382599F00D6186B /* _KBRKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKSession.h; sourceTree = "<group>"; };
-		42A0B9FF1382599F00D6186B /* _KBRKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKSession.m; sourceTree = "<group>"; };
-		42A0BA001382599F00D6186B /* _KBRKSystemEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKSystemEvent.h; sourceTree = "<group>"; };
-		42A0BA011382599F00D6186B /* _KBRKSystemEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKSystemEvent.m; sourceTree = "<group>"; };
-		42A0BA021382599F00D6186B /* _KBRKThermoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKThermoLog.h; sourceTree = "<group>"; };
-		42A0BA031382599F00D6186B /* _KBRKThermoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKThermoLog.m; sourceTree = "<group>"; };
-		42A0BA041382599F00D6186B /* _KBRKThermoSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKThermoSensor.h; sourceTree = "<group>"; };
-		42A0BA051382599F00D6186B /* _KBRKThermoSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKThermoSensor.m; sourceTree = "<group>"; };
-		42A0BA061382599F00D6186B /* _KBRKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKUser.h; sourceTree = "<group>"; };
-		42A0BA071382599F00D6186B /* _KBRKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKUser.m; sourceTree = "<group>"; };
-		42A0BA081382599F00D6186B /* _KBRKUserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKUserSession.h; sourceTree = "<group>"; };
-		42A0BA091382599F00D6186B /* _KBRKUserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKUserSession.m; sourceTree = "<group>"; };
-		42A0BA0A1382599F00D6186B /* KBRKAuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKAuthToken.h; sourceTree = "<group>"; };
-		42A0BA0B1382599F00D6186B /* KBRKAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKAuthToken.m; sourceTree = "<group>"; };
-		42A0BA0C1382599F00D6186B /* KBRKBeerStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeerStyle.h; sourceTree = "<group>"; };
-		42A0BA0D1382599F00D6186B /* KBRKBeerStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeerStyle.m; sourceTree = "<group>"; };
-		42A0BA0E1382599F00D6186B /* KBRKBeerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeerType.h; sourceTree = "<group>"; };
-		42A0BA0F1382599F00D6186B /* KBRKBeerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeerType.m; sourceTree = "<group>"; };
-		42A0BA101382599F00D6186B /* KBRKBrewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBrewer.h; sourceTree = "<group>"; };
-		42A0BA111382599F00D6186B /* KBRKBrewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBrewer.m; sourceTree = "<group>"; };
-		42A0BA121382599F00D6186B /* KBRKDrink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKDrink.h; sourceTree = "<group>"; };
-		42A0BA131382599F00D6186B /* KBRKDrink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKDrink.m; sourceTree = "<group>"; };
-		42A0BA141382599F00D6186B /* KBRKKeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKKeg.h; sourceTree = "<group>"; };
-		42A0BA151382599F00D6186B /* KBRKKeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKKeg.m; sourceTree = "<group>"; };
-		42A0BA161382599F00D6186B /* KBRKKegSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKKegSize.h; sourceTree = "<group>"; };
-		42A0BA171382599F00D6186B /* KBRKKegSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKKegSize.m; sourceTree = "<group>"; };
-		42A0BA181382599F00D6186B /* KBRKKegTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKKegTap.h; sourceTree = "<group>"; };
-		42A0BA191382599F00D6186B /* KBRKKegTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKKegTap.m; sourceTree = "<group>"; };
-		42A0BA1A1382599F00D6186B /* KBRKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKSession.h; sourceTree = "<group>"; };
-		42A0BA1B1382599F00D6186B /* KBRKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKSession.m; sourceTree = "<group>"; };
-		42A0BA1C1382599F00D6186B /* KBRKSystemEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKSystemEvent.h; sourceTree = "<group>"; };
-		42A0BA1D1382599F00D6186B /* KBRKSystemEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKSystemEvent.m; sourceTree = "<group>"; };
-		42A0BA1E1382599F00D6186B /* KBRKThermoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKThermoLog.h; sourceTree = "<group>"; };
-		42A0BA1F1382599F00D6186B /* KBRKThermoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKThermoLog.m; sourceTree = "<group>"; };
-		42A0BA201382599F00D6186B /* KBRKThermoSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKThermoSensor.h; sourceTree = "<group>"; };
-		42A0BA211382599F00D6186B /* KBRKThermoSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKThermoSensor.m; sourceTree = "<group>"; };
-		42A0BA221382599F00D6186B /* KBRKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKUser.h; sourceTree = "<group>"; };
-		42A0BA231382599F00D6186B /* KBRKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKUser.m; sourceTree = "<group>"; };
-		42A0BA241382599F00D6186B /* KBRKUserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKUserSession.h; sourceTree = "<group>"; };
-		42A0BA251382599F00D6186B /* KBRKUserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKUserSession.m; sourceTree = "<group>"; };
 		42A0BA41138259E300D6186B /* _KBRKKeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKKeg.h; sourceTree = "<group>"; };
 		42A0BA42138259E300D6186B /* _KBRKKeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKKeg.m; sourceTree = "<group>"; };
+		42BEC81013E28AF8004ABA0F /* KBBeerEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerEditViewController.h; sourceTree = "<group>"; };
+		42BEC81113E28AF8004ABA0F /* KBBeerEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerEditViewController.m; sourceTree = "<group>"; };
 		42C9845F13825C140072A896 /* RKSeedDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = RKSeedDatabase.sqlite; path = Resources/RKSeedDatabase.sqlite; sourceTree = SOURCE_ROOT; };
 		42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		42CF4BE31380BEEC0097753C /* KBRKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKViewController.h; sourceTree = "<group>"; };
@@ -940,26 +883,19 @@
 		00C1147012111B75009C9B51 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				42956A6813E1FACD00209781 /* Deprecated */,
 				00C1147112111B75009C9B51 /* KBAdminViewController.h */,
 				00C1147212111B75009C9B51 /* KBAdminViewController.m */,
 				00C114AB121121BA009C9B51 /* KBFetchedResultsViewController.h */,
 				00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */,
 				42CF4BE31380BEEC0097753C /* KBRKViewController.h */,
 				42CF4BE41380BEEC0097753C /* KBRKViewController.m */,
-				00C1147312111B75009C9B51 /* KBBeersViewController.h */,
-				00C1147412111B75009C9B51 /* KBBeersViewController.m */,
-				4225C40C138245E80065FEE5 /* KBRKBeersViewController.h */,
-				4225C40D138245E80065FEE5 /* KBRKBeersViewController.m */,
-				00AA3F3F1255B3B400CB3F6B /* KBBeerEditViewController.h */,
-				00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */,
-				00C1147512111B75009C9B51 /* KBKegsViewController.h */,
-				00C1147612111B75009C9B51 /* KBKegsViewController.m */,
+				4225C40C138245E80065FEE5 /* KBRKBeerTypesViewController.h */,
+				4225C40D138245E80065FEE5 /* KBRKBeerTypesViewController.m */,
+				00AA3F3F1255B3B400CB3F6B /* KBRKBeerTypeEditViewController.h */,
+				00AA3F401255B3B400CB3F6B /* KBRKBeerTypeEditViewController.m */,
 				42CF4C9A1380D15F0097753C /* KBRKKegsViewController.h */,
 				42CF4C9B1380D15F0097753C /* KBRKKegsViewController.m */,
-				00AA3F9D1255B9B400CB3F6B /* KBKegEditViewController.h */,
-				00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */,
-				00C114ED1211297D009C9B51 /* KBUsersViewController.h */,
-				00C114EE1211297D009C9B51 /* KBUsersViewController.m */,
 				00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */,
 				00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */,
 				007551831250554700C5538C /* KBSimulatorViewController.h */,
@@ -970,6 +906,10 @@
 				007B791E137A501C000F8040 /* KBTwitterAdminViewController.m */,
 				00896247137F5428007748CD /* KBSettingsViewController.h */,
 				00896248137F5429007748CD /* KBSettingsViewController.m */,
+				42956A7B13E2079D00209781 /* KBRKUsersViewController.h */,
+				42956A7C13E2079E00209781 /* KBRKUsersViewController.m */,
+				42956A7E13E20A4D00209781 /* KBRKKegEditViewController.h */,
+				42956A7F13E20A4E00209781 /* KBRKKegEditViewController.m */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -1244,63 +1184,27 @@
 		4225C3B7138243350065FEE5 /* RKObjects */ = {
 			isa = PBXGroup;
 			children = (
+				423F976513E26B3F00D10061 /* _KBRKThermoLog.h */,
+				423F976613E26B3F00D10061 /* _KBRKThermoLog.m */,
+				423F976713E26B3F00D10061 /* KBRKThermoLog.h */,
+				423F976813E26B4000D10061 /* KBRKThermoLog.m */,
+				42956A8113E2165700209781 /* _KBRKDrink.h */,
+				42956A8213E2165800209781 /* _KBRKDrink.m */,
+				42956A8313E2165800209781 /* KBRKDrink.h */,
+				42956A8413E2165800209781 /* KBRKDrink.m */,
+				42956A7513E2046200209781 /* _KBRKUser.h */,
+				42956A7613E2046200209781 /* _KBRKUser.m */,
+				42956A7713E2046300209781 /* KBRKUser.h */,
+				42956A7813E2046300209781 /* KBRKUser.m */,
 				42C9845F13825C140072A896 /* RKSeedDatabase.sqlite */,
-				42A0B9F01382599F00D6186B /* _KBRKAuthToken.h */,
-				42A0B9F11382599F00D6186B /* _KBRKAuthToken.m */,
-				42A0B9F21382599F00D6186B /* _KBRKBeerStyle.h */,
-				42A0B9F31382599F00D6186B /* _KBRKBeerStyle.m */,
-				42A0B9F41382599F00D6186B /* _KBRKBeerType.h */,
-				42A0B9F51382599F00D6186B /* _KBRKBeerType.m */,
-				42A0B9F61382599F00D6186B /* _KBRKBrewer.h */,
-				42A0B9F71382599F00D6186B /* _KBRKBrewer.m */,
-				42A0B9F81382599F00D6186B /* _KBRKDrink.h */,
-				42A0B9F91382599F00D6186B /* _KBRKDrink.m */,
+				42956A6F13E1FBDE00209781 /* _KBRKBeerType.h */,
+				42956A7013E1FBDE00209781 /* _KBRKBeerType.m */,
+				42956A7113E1FBDE00209781 /* KBRKBeerType.h */,
+				42956A7213E1FBDE00209781 /* KBRKBeerType.m */,
+				42956A5B13E1E5A800209781 /* KBRKKeg.h */,
+				42956A5C13E1E5A800209781 /* KBRKKeg.m */,
 				42A0BA41138259E300D6186B /* _KBRKKeg.h */,
 				42A0BA42138259E300D6186B /* _KBRKKeg.m */,
-				42A0B9FA1382599F00D6186B /* _KBRKKegSize.h */,
-				42A0B9FB1382599F00D6186B /* _KBRKKegSize.m */,
-				42A0B9FC1382599F00D6186B /* _KBRKKegTap.h */,
-				42A0B9FD1382599F00D6186B /* _KBRKKegTap.m */,
-				42A0B9FE1382599F00D6186B /* _KBRKSession.h */,
-				42A0B9FF1382599F00D6186B /* _KBRKSession.m */,
-				42A0BA001382599F00D6186B /* _KBRKSystemEvent.h */,
-				42A0BA011382599F00D6186B /* _KBRKSystemEvent.m */,
-				42A0BA021382599F00D6186B /* _KBRKThermoLog.h */,
-				42A0BA031382599F00D6186B /* _KBRKThermoLog.m */,
-				42A0BA041382599F00D6186B /* _KBRKThermoSensor.h */,
-				42A0BA051382599F00D6186B /* _KBRKThermoSensor.m */,
-				42A0BA061382599F00D6186B /* _KBRKUser.h */,
-				42A0BA071382599F00D6186B /* _KBRKUser.m */,
-				42A0BA081382599F00D6186B /* _KBRKUserSession.h */,
-				42A0BA091382599F00D6186B /* _KBRKUserSession.m */,
-				42A0BA0A1382599F00D6186B /* KBRKAuthToken.h */,
-				42A0BA0B1382599F00D6186B /* KBRKAuthToken.m */,
-				42A0BA0C1382599F00D6186B /* KBRKBeerStyle.h */,
-				42A0BA0D1382599F00D6186B /* KBRKBeerStyle.m */,
-				42A0BA0E1382599F00D6186B /* KBRKBeerType.h */,
-				42A0BA0F1382599F00D6186B /* KBRKBeerType.m */,
-				42A0BA101382599F00D6186B /* KBRKBrewer.h */,
-				42A0BA111382599F00D6186B /* KBRKBrewer.m */,
-				42A0BA121382599F00D6186B /* KBRKDrink.h */,
-				42A0BA131382599F00D6186B /* KBRKDrink.m */,
-				42A0BA141382599F00D6186B /* KBRKKeg.h */,
-				42A0BA151382599F00D6186B /* KBRKKeg.m */,
-				42A0BA161382599F00D6186B /* KBRKKegSize.h */,
-				42A0BA171382599F00D6186B /* KBRKKegSize.m */,
-				42A0BA181382599F00D6186B /* KBRKKegTap.h */,
-				42A0BA191382599F00D6186B /* KBRKKegTap.m */,
-				42A0BA1A1382599F00D6186B /* KBRKSession.h */,
-				42A0BA1B1382599F00D6186B /* KBRKSession.m */,
-				42A0BA1C1382599F00D6186B /* KBRKSystemEvent.h */,
-				42A0BA1D1382599F00D6186B /* KBRKSystemEvent.m */,
-				42A0BA1E1382599F00D6186B /* KBRKThermoLog.h */,
-				42A0BA1F1382599F00D6186B /* KBRKThermoLog.m */,
-				42A0BA201382599F00D6186B /* KBRKThermoSensor.h */,
-				42A0BA211382599F00D6186B /* KBRKThermoSensor.m */,
-				42A0BA221382599F00D6186B /* KBRKUser.h */,
-				42A0BA231382599F00D6186B /* KBRKUser.m */,
-				42A0BA241382599F00D6186B /* KBRKUserSession.h */,
-				42A0BA251382599F00D6186B /* KBRKUserSession.m */,
 				425F840D13824EE600309065 /* KBRKDataModel.xcdatamodeld */,
 			);
 			path = RKObjects;
@@ -1317,6 +1221,23 @@
 				427AC48B126585C50063CE3C /* flow_shadow.png */,
 			);
 			path = FlowMeter;
+			sourceTree = "<group>";
+		};
+		42956A6813E1FACD00209781 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				42BEC81013E28AF8004ABA0F /* KBBeerEditViewController.h */,
+				42BEC81113E28AF8004ABA0F /* KBBeerEditViewController.m */,
+				00AA3F9D1255B9B400CB3F6B /* KBKegEditViewController.h */,
+				00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */,
+				00C114ED1211297D009C9B51 /* KBUsersViewController.h */,
+				00C114EE1211297D009C9B51 /* KBUsersViewController.m */,
+				00C1147312111B75009C9B51 /* KBBeersViewController.h */,
+				00C1147412111B75009C9B51 /* KBBeersViewController.m */,
+				00C1147512111B75009C9B51 /* KBKegsViewController.h */,
+				00C1147612111B75009C9B51 /* KBKegsViewController.m */,
+			);
+			name = Deprecated;
 			sourceTree = "<group>";
 		};
 		429B08E91202FEF600C36F76 /* Sounds */ = {
@@ -1370,6 +1291,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "KegPad" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -1598,7 +1522,7 @@
 				00D01169125334170013DF33 /* KBUIFormViewController.m in Sources */,
 				00D0116A125334170013DF33 /* KBUIFormTextField.m in Sources */,
 				00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */,
-				00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */,
+				00AA3F411255B3B400CB3F6B /* KBRKBeerTypeEditViewController.m in Sources */,
 				00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */,
 				00E655701256638400E4CE9E /* GTMLogger.m in Sources */,
 				00983D8E125EE8520031006C /* KBUIWindow.m in Sources */,
@@ -1653,36 +1577,21 @@
 				4225C33F138240F50065FEE5 /* KBPourIndex.m in Sources */,
 				4225C340138240F50065FEE5 /* KBRating.m in Sources */,
 				4225C341138240F50065FEE5 /* KBUser.m in Sources */,
-				4225C40E138245E90065FEE5 /* KBRKBeersViewController.m in Sources */,
+				4225C40E138245E90065FEE5 /* KBRKBeerTypesViewController.m in Sources */,
 				425F840F13824EE600309065 /* KBRKDataModel.xcdatamodeld in Sources */,
-				42A0BA261382599F00D6186B /* _KBRKAuthToken.m in Sources */,
-				42A0BA271382599F00D6186B /* _KBRKBeerStyle.m in Sources */,
-				42A0BA281382599F00D6186B /* _KBRKBeerType.m in Sources */,
-				42A0BA291382599F00D6186B /* _KBRKBrewer.m in Sources */,
-				42A0BA2A1382599F00D6186B /* _KBRKDrink.m in Sources */,
-				42A0BA2B1382599F00D6186B /* _KBRKKegSize.m in Sources */,
-				42A0BA2C1382599F00D6186B /* _KBRKKegTap.m in Sources */,
-				42A0BA2D1382599F00D6186B /* _KBRKSession.m in Sources */,
-				42A0BA2E1382599F00D6186B /* _KBRKSystemEvent.m in Sources */,
-				42A0BA2F1382599F00D6186B /* _KBRKThermoLog.m in Sources */,
-				42A0BA301382599F00D6186B /* _KBRKThermoSensor.m in Sources */,
-				42A0BA311382599F00D6186B /* _KBRKUser.m in Sources */,
-				42A0BA321382599F00D6186B /* _KBRKUserSession.m in Sources */,
-				42A0BA331382599F00D6186B /* KBRKAuthToken.m in Sources */,
-				42A0BA341382599F00D6186B /* KBRKBeerStyle.m in Sources */,
-				42A0BA351382599F00D6186B /* KBRKBeerType.m in Sources */,
-				42A0BA361382599F00D6186B /* KBRKBrewer.m in Sources */,
-				42A0BA371382599F00D6186B /* KBRKDrink.m in Sources */,
-				42A0BA381382599F00D6186B /* KBRKKeg.m in Sources */,
-				42A0BA391382599F00D6186B /* KBRKKegSize.m in Sources */,
-				42A0BA3A1382599F00D6186B /* KBRKKegTap.m in Sources */,
-				42A0BA3B1382599F00D6186B /* KBRKSession.m in Sources */,
-				42A0BA3C1382599F00D6186B /* KBRKSystemEvent.m in Sources */,
-				42A0BA3D1382599F00D6186B /* KBRKThermoLog.m in Sources */,
-				42A0BA3E1382599F00D6186B /* KBRKThermoSensor.m in Sources */,
-				42A0BA3F1382599F00D6186B /* KBRKUser.m in Sources */,
-				42A0BA401382599F00D6186B /* KBRKUserSession.m in Sources */,
 				42A0BA43138259E300D6186B /* _KBRKKeg.m in Sources */,
+				42956A5D13E1E5A800209781 /* KBRKKeg.m in Sources */,
+				42956A7313E1FBDE00209781 /* _KBRKBeerType.m in Sources */,
+				42956A7413E1FBDE00209781 /* KBRKBeerType.m in Sources */,
+				42956A7913E2046300209781 /* _KBRKUser.m in Sources */,
+				42956A7A13E2046300209781 /* KBRKUser.m in Sources */,
+				42956A7D13E2079F00209781 /* KBRKUsersViewController.m in Sources */,
+				42956A8013E20A4F00209781 /* KBRKKegEditViewController.m in Sources */,
+				42956A8513E2165900209781 /* _KBRKDrink.m in Sources */,
+				42956A8613E2165900209781 /* KBRKDrink.m in Sources */,
+				423F976913E26B4000D10061 /* _KBRKThermoLog.m in Sources */,
+				423F976A13E26B4000D10061 /* KBRKThermoLog.m in Sources */,
+				42BEC81213E28AF8004ABA0F /* KBBeerEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,8 +39,6 @@
 
 - (NSString *)thermometerDescription;
 
-- (NSString *)temperatureDescription;
-
 - (NSString *)statusDescription;
 
 + (float)min;

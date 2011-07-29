@@ -23,8 +23,8 @@
 
 #import "KBNotifications.h"
 #import "KBApplication.h"
-#import "KBKegTemperature.h"
-#import "KBKegPour.h"
+#import "KBRKDrink.h"
+#import "KBRKThermoLog.h"
 
 @interface KBKegManager ()
 @property (retain, nonatomic) KBUser *loginUser;
@@ -140,12 +140,21 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didEndPourWithAmount:(double)amount {
-  
-  KBKegPour *kegPour = nil;
-  
+
+  KBRKDrink *drink = [[KBRKDrink alloc] init];
+  drink.ticks = [NSNumber numberWithInt:(amount / KB_VOLUME_PER_TICK)];
+  drink.volumeMl = [NSNumber numberWithDouble:(amount * 1000)];
+  drink.pourTime = [NSDate date];
+  drink.status = @"valid";
+  //drink.kegId = currentKeg.identifier
+  //drink.authTokenId = self.authId
+
   double maxPourAmountInLiters = [[NSUserDefaults standardUserDefaults] gh_doubleForKey:@"MaxPourAmountInLiters" withDefault:2.5];
-  
+
   if (amount > 0 && amount <= maxPourAmountInLiters) {
+    [drink postToAPIWithDelegate:nil];
+    // XXX(johnb): Bring this feature back
+    /*
     KBKegPour *lastPour = [dataStore_ lastPour:nil];
     // If same user and less than 30 seconds, add to the existing pour
     if ([lastPour.user isEqual:self.loginUser] && -[lastPour.date timeIntervalSinceNow] < 30) {
@@ -155,10 +164,11 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
     } else {  
       kegPour = [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:self.loginUser date:[NSDate date] error:nil];
     }
+     */
   }
-  
+
   pouring_ = NO;
-  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEndPourNotification object:kegPour];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidEndPourNotification object:drink];
 
   // Set timer to timeout in kLoggedInTimeoutAfterPourInterval seconds after a pour
   self.activityTime = ([NSDate timeIntervalSinceReferenceDate] - kLoggedInTimeoutInterval + kLoggedInTimeoutAfterPourInterval);
@@ -168,11 +178,14 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   BOOL save = NO;
   
   if (save) {
-    [dataStore_ addKegTemperature:temperature keg:[dataStore_ kegAtPosition:0] error:nil];
+    //[dataStore_ addKegTemperature:temperature keg:[dataStore_ kegAtPosition:0] error:nil];
   } else {
-    KBKegTemperature *kegTemperature = [KBKegTemperature kegTemperature:temperature keg:[dataStore_ kegAtPosition:0] date:[NSDate date]
-                                                       inManagedObjectContext:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:KBKegTemperatureDidChangeNotification object:kegTemperature];
+    KBRKThermoLog *thermoLog = [[KBRKThermoLog alloc] init];
+    thermoLog.temperatureC = [NSNumber numberWithDouble:temperature];
+    // TODO(johnb): Make the sensor id configurable?
+    thermoLog.sensorId = @"1";
+    [thermoLog postToAPIWithDelegate:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KBRKThermoLogDidChangeNotification object:thermoLog];
   }
 }
 

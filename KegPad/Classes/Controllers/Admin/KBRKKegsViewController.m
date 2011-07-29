@@ -11,11 +11,19 @@
 
 @implementation KBRKKegsViewController
 
-- (void)loadKegs {
-  // Load the object model via RestKit
+- (id)init {
+  if ((self = [super init])) { 
+    self.title = @"Kegs";
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_add)] autorelease];
+  }
+  return self;
+}
+
+- (void)refresh {
+  // Load the object model via RestKit	
   RKObjectManager* objectManager = [RKObjectManager sharedManager];
-  RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:@"/kegs" objectClass:[KBRKKeg class] delegate:self];
-  loader.keyPath = @"result.kegs";
+  RKObjectMapping *kegMapping = [objectManager.mappingProvider objectMappingForKeyPath:@"keg"];
+  [objectManager loadObjectsAtResourcePath:@"/kegs" objectMapping:kegMapping delegate:self];
 }
 
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
@@ -23,6 +31,7 @@
   cell.textLabel.text = [NSString stringWithFormat:@"Keg: %@", [keg descriptionText]];
   //cell.detailTextLabel.text = [[obj dateCreated] description];
 /*
+  // Check if this keg is the current keg
   KBKeg *keg = [[KBApplication dataStore] kegAtPosition:0];
   if ([keg isEqual:obj]) {
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -34,7 +43,7 @@
 }
 
 - (void)_add {
-  KBKegEditViewController *kegEditViewController = [[KBKegEditViewController alloc] init];
+  KBRKKegEditViewController *kegEditViewController = [[KBRKKegEditViewController alloc] init];
   kegEditViewController.delegate = self;
   [self.navigationController pushViewController:kegEditViewController animated:YES];
   [kegEditViewController release];
@@ -48,16 +57,16 @@
 
 #pragma mark KBKegEditViewControllerDelegate
 
-- (void)kegEditViewController:(KBKegEditViewController *)kegEditViewController didSaveKeg:(KBKeg *)keg {
+- (void)kegEditViewController:(KBRKKegEditViewController *)kegEditViewController didSaveKeg:(KBRKKeg *)keg {
   [self.navigationController popToViewController:self animated:YES];
 }
 
 #pragma mark -
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
-  KBKeg *keg = [self.objects objectAtIndex:indexPath.row];
+  KBRKKeg *keg = [self.objects objectAtIndex:indexPath.row];
 
-  KBKegEditViewController *kegEditViewController = [[KBKegEditViewController alloc] initWithTitle:@"Keg" useEnabled:YES];
+  KBRKKegEditViewController *kegEditViewController = [[KBRKKegEditViewController alloc] initWithTitle:@"Keg" useEnabled:YES];
   kegEditViewController.delegate = self;
   [kegEditViewController setKeg:keg];
   [self.navigationController pushViewController:kegEditViewController animated:YES];

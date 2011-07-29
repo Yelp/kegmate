@@ -23,25 +23,25 @@
 #import "KBTwitterShare.h"
 
 #import "KBNotifications.h"
-#import "KBKegPour.h"
+#import "KBRKDrink.h"
 #import "KBUser.h"
 #import "KBKeg.h"
 #import "KBBeer.h"
 
 @interface KBTwitterShare ()
-@property (retain, nonatomic) KBKegTemperature *lastTemperature;
+@property (retain, nonatomic) KBRKThermoLog *lastThermoLog;
 @property (retain, nonatomic) KBKeg *lastKeg;
 @end
 
 
 @implementation KBTwitterShare
 
-@synthesize lastTemperature=lastTemperature_, lastKeg=lastKeg_;
+@synthesize lastThermoLog=lastThermoLog_, lastKeg=lastKeg_;
 
 - (id)init {
   if ((self = [super init])) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegDidEndPour:) name:KBKegDidEndPourNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBKegTemperatureDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegTemperatureDidChange:) name:KBRKThermoLogDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_kegSelectionDidChange:) name:KBKegSelectionDidChangeNotification object:nil];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connect) name:KBTwitterCredentialsDidChange object:nil];
   }
@@ -52,7 +52,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   twitterEngine_.delegate = nil;
   [twitterEngine_ release];
-  [lastTemperature_ release];
+  [lastThermoLog_ release];
   [lastKeg_ release];
   [super dealloc];
 }
@@ -109,7 +109,7 @@
 #pragma mark - 
 
 - (void)_kegTemperatureDidChange:(NSNotification *)notification {
-  self.lastTemperature = [notification object];
+  self.lastThermoLog = [notification object];
 }
 
 - (void)_kegSelectionDidChange:(NSNotification *)notification {
@@ -126,22 +126,23 @@
 
 - (void)_kegDidEndPour:(NSNotification *)notification {
   BOOL tweetAnonymous = [[NSUserDefaults standardUserDefaults] gh_boolForKey:@"TweetAnonymous" withDefault:NO];
-  
-  KBKegPour *kegPour = [notification object];
+/*
+  KBRKDrink *drink = [KBRKDrink object];
   // Only tweet if larger than 3 ounces
-  if (kegPour && [kegPour amountInOunces] > 3) {
-    NSString *name = [kegPour.user displayName];
+  if (drink && [drink amountInOunces] > 3) {
+    NSString *name = drink.username;
     if (!name && !tweetAnonymous) return;
-    
+
     if (!name) name = @"I";
-    
-    NSMutableString *status = [NSMutableString stringWithFormat:@"%@ poured %@ oz. of %@. %@", 
-                               name, 
-                               [kegPour amountValueDescriptionInOunces],
-                               [kegPour.keg.beer name],
-                               [kegPour.keg shortStatusDescriptionWithTemperature:self.lastTemperature]];
+
+    //NSMutableString *status = [NSMutableString stringWithFormat:@"%@ poured %@ oz. of %@. %@", 
+    //                           name, 
+    //                           [drink amountValueDescriptionInOunces],
+    //                           [drink.keg.beer name],
+    //                           [drink.keg shortStatusDescriptionWithTemperature:self.lastThermoLog]];
     [self sendUpdateWithStatus:status];
   }
+*/
 }
 
 @end

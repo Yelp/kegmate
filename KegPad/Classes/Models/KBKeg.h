@@ -24,6 +24,7 @@
 //
 
 #import "_KBKeg.h"
+#import "KBRKThermoLog.h"
 
 @interface KBKeg : _KBKeg {}
 
@@ -35,6 +36,6 @@
 
 - (void)addPouredValue:(float)poured;
 
-- (NSString *)shortStatusDescriptionWithTemperature:(KBKegTemperature *)temperature;
+- (NSString *)shortStatusDescriptionWithTemperature:(KBRKThermoLog *)temperature;
 
 @end

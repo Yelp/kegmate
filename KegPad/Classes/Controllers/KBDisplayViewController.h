@@ -21,7 +21,7 @@
 
 #import "KBBeerMovieView.h"
 #import "KBBeer.h"
-#import "KBKegTemperature.h"
+#import "KBRKThermoLog.h"
 #import "KBRecentPoursView.h"
 #import "KBRatingPicker.h"
 #import "KBUserView.h"
@@ -97,7 +97,7 @@
 
 - (void)updateKeg:(KBKeg *)keg;
 
-- (void)setKegTemperature:(KBKegTemperature *)kegTemperature;
+- (void)setKegTemperature:(KBRKThermoLog *)kegTemperature;
 
 - (void)updateRecentPours;
 

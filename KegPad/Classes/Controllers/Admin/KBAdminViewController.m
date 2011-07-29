@@ -76,20 +76,22 @@
 }
 
 - (void)showBeers {
-  KBBeersViewController *beersViewController = [[KBBeersViewController alloc] init];
+  KBRKBeerTypesViewController *beersViewController = [[KBRKBeerTypesViewController alloc] init];
+  [beersViewController refresh];
   [self.navigationController pushViewController:beersViewController animated:YES];
   [beersViewController release];
 }
 
 - (void)showUsers {
-  KBUsersViewController *usersViewController = [[KBUsersViewController alloc] init];  
+  KBRKUsersViewController *usersViewController = [[KBRKUsersViewController alloc] init];
+  [usersViewController refresh];
   [self.navigationController pushViewController:usersViewController animated:YES];
   [usersViewController release];
 }
 
 - (void)showKegs {
   KBRKKegsViewController *kegsViewController = [[KBRKKegsViewController alloc] init];
-  [kegsViewController loadKegs];
+  [kegsViewController refresh];
   [self.navigationController pushViewController:kegsViewController animated:YES];
   [kegsViewController release];
 }

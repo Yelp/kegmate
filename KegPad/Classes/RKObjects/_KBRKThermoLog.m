@@ -12,26 +12,9 @@
 
 @implementation _KBRKThermoLog
 
-@dynamic identifier;
-@dynamic sensorId;
-@dynamic temperatureC;
-@dynamic recordTime;
-
-#pragma mark RKObjectMappable methods
-
-+ (NSDictionary*)elementToPropertyMappings {
-  return [NSDictionary dictionaryWithKeysAndObjects:
-          @"id", @"identifier",
-          @"sensor_id", @"sensorId",
-          @"temperature_c", @"temperatureC",
-          @"record_time", @"recordTime",
-          nil];
-}
-
-+ (NSString*)primaryKeyProperty {
-  return @"identifier";
-}
-
-#pragma mark -
+@synthesize identifier;
+@synthesize sensorId;
+@synthesize temperatureC;
+@synthesize recordTime;
 
 @end

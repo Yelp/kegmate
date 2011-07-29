@@ -20,8 +20,7 @@
 //
 
 #import "KBRecentPoursView.h"
-
-#import "KBKegPour.h"
+#import "KBRKDrink.h"
 #import "KBUser.h"
 #import "KBCGUtils.h"
 
@@ -36,9 +35,14 @@
 }
 
 - (void)setRecentPours:(NSArray *)recentPours {
-  [recentPours retain];
-  [recentPours_ release];
-  recentPours_ = recentPours;
+  // TODO(johnb): Ghetto, fix me
+  RKObjectManager* objectManager = [RKObjectManager sharedManager];
+  RKObjectMapping *drinkMapping = [objectManager.mappingProvider objectMappingForKeyPath:@"drink"];
+  [objectManager loadObjectsAtResourcePath:@"/drinks" objectMapping:drinkMapping delegate:self];
+
+  //[recentPours retain];
+  //[recentPours_ release];
+  //recentPours_ = recentPours;
   [self setNeedsDisplay];
 }
 
@@ -48,8 +52,8 @@
   UIFont *nameFont = [UIFont fontWithName:@"Helvetica-Bold" size:22];
   UIFont *amountFont = [UIFont fontWithName:@"Helvetica-Bold" size:15];
   
-  for (KBKegPour *pour in recentPours_) {
-    NSString *name = [pour.user displayName];
+  for (KBRKDrink *drink in recentPours_) {
+    NSString *name = drink.userId;
     if (!name) name = kDefaultUserName;
 
     // TODO(gabe): Use CATextLayer or cells instead of ghetto shadow
@@ -60,11 +64,11 @@
     
     point.x += 168;
     [[UIColor colorWithWhite:1.0 alpha:0.5] set];
-    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.5, self.frame.size.width - point.x - 10, 20) 
+    [[drink amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.5, self.frame.size.width - point.x - 10, 20) 
                                            withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation 
                                           alignment:UITextAlignmentRight];
     [[UIColor colorWithWhite:0.0 alpha:0.8] set];
-    [[pour amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.0, self.frame.size.width - point.x - 10, 20) 
+    [[drink amountDescriptionWithTimeAgo] drawInRect:CGRectMake(point.x, point.y + 4.0, self.frame.size.width - point.x - 10, 20) 
                                            withFont:amountFont lineBreakMode:UILineBreakModeTailTruncation 
                                           alignment:UITextAlignmentRight];
     point.x = 10;
@@ -77,6 +81,15 @@
     
     point.y += 4;
   }
+}
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {}
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+  [objects retain];
+  [recentPours_ release];
+  recentPours_ = objects;
+  [self setNeedsDisplay];
 }
 
 @end

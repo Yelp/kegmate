@@ -20,7 +20,7 @@
 //
 
 extern NSString *const KBKegSelectionDidChangeNotification;
-extern NSString *const KBKegTemperatureDidChangeNotification;
+extern NSString *const KBRKThermoLogDidChangeNotification;
 extern NSString *const KBKegVolumeDidChangeNotification;
 extern NSString *const KBKegDidStartPourNotification;
 extern NSString *const KBKegDidEndPourNotification;

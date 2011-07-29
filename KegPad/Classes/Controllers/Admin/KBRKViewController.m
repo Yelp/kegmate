@@ -15,40 +15,14 @@
 
 - (id)init {
   self = [super init];
-  //XXX(johnb): Move this to the application delegate
-  // Initialize RestKit
-  RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://kegbot.net/sfo/api"];
-  
-  // Enable automatic network activity indicator management
-  [RKRequestQueue sharedQueue].showsNetworkActivityIndicatorWhenBusy = YES;
-
-  RKObjectMapper* mapper = objectManager.mapper;
-
-  // Add our element to object mappings
-  [mapper registerClass:[KBRKKeg class] forElementNamed:@"keg"];
-
-  // Update date format so that we can parse twitter dates properly
-  NSMutableArray* dateFormats = [[[mapper dateFormats] mutableCopy] autorelease];
-  // Wed Sep 29 15:31:08 +0000 2010
-  //[dateFormats addObject:@"E MMM d HH:mm:ss Z y"];
-  // "2010-06-12T07:25:16Z", 
-  [dateFormats addObject:@"y-MM-dTHH:mm:ssZ"];
-  [mapper setDateFormats:dateFormats];
-/*
-  RKManagedObjectSeeder* seeder = [RKManagedObjectSeeder objectSeederWithObjectManager:objectManager];
-  // Seed the database with instances of RKTStatus from a snapshot of the RestKit Twitter timeline
-  [seeder seedObjectsFromFile:@"rk_kegs.json" toClass:[KBRKKeg class] keyPath:@"result.kegs"];
-  
-  // Finalize the seeding operation and output a helpful informational message
-  [seeder finalizeSeedingAndExit];
-*/
-  // Initialize object store
-  objectManager.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"RKKegPad.sqlite" usingSeedDatabaseName:RKDefaultSeedDatabaseFileName managedObjectModel:nil];
-
   return self;
 }
 
 #pragma mark Abstract
+
+- (void)refresh {
+  [NSException raise:NSDestinationInvalidException format:@"Subclasses must implement refresh"];
+}
 
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj { 
   [NSException raise:NSDestinationInvalidException format:@"Subclasses must implement cell:forObject:"];
@@ -66,7 +40,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-  NSLog(@"Loaded statuses: %@", objects);    
+  NSLog(@"Loaded objects: %@", objects);    
   [_objects release];
   _objects = [objects retain];
   [self.tableView reloadData];

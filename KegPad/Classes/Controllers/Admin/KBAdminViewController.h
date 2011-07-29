@@ -19,8 +19,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBBeersViewController.h"
-#import "KBUsersViewController.h"
+#import "KBRKBeerTypesViewController.h"
+#import "KBRKUsersViewController.h"
 #import "KBKegsViewController.h"
 #import "KBUIFormViewController.h"
 #import "KBSimulatorViewController.h"

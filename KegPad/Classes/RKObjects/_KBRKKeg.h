@@ -14,7 +14,7 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKKeg : RKManagedObject { }
+@interface _KBRKKeg : NSObject { }
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

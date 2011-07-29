@@ -12,6 +12,9 @@
 
 @implementation _KBRKKeg
 
+@synthesize identifier=_identifier, typeId=_typeId, sizeId=_sizeId, sizeName=_sizeName, sizeVolumeMl=_sizeVolumeMl, volumeMlRemain=_volumeMlRemain, percentFull=_percentFull, startedTime=_startedTime,
+finishedTime=_finishedTime, status=_status, descriptionText=_descriptionText, spilledMl=_spilledMl;
+/*
 @dynamic identifier;
 @dynamic typeId;
 @dynamic sizeId;
@@ -24,29 +27,7 @@
 @dynamic status;
 @dynamic descriptionText;
 @dynamic spilledMl;
-
-#pragma mark RKObjectMappable methods
-
-+ (NSDictionary*)elementToPropertyMappings {
-  return [NSDictionary dictionaryWithKeysAndObjects:
-          @"id", @"identifier",
-          @"type_id", @"typeId",
-          @"size_id", @"sizeId",
-          @"size_name", @"sizeName",
-          @"size_volume_ml", @"sizeVolumeMl",
-          @"volume_ml_remain", @"volumeMlRemain",
-          @"percent_full", @"percentFull",
-          @"started_time", @"startedTime",
-          @"finished_time", @"finishedTime",
-          @"status", @"status",
-          @"description", @"descriptionText",
-          @"spilled_ml", @"spilledMl",
-          nil];
-}
-
-+ (NSString*)primaryKeyProperty {
-  return @"identifier";
-}
+*/
 
 #pragma mark -
 

@@ -13,4 +13,10 @@
 
 @interface KBRKDrink : _KBRKDrink { }
 
+- (NSString *)amountDescriptionWithTimeAgo;
+
+- (RKRequest *)postToAPIWithDelegate:(id)delegate;
+
+- (float)amountInOunces;
+
 @end

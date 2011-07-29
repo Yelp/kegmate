@@ -14,6 +14,8 @@
 }
 @property (readonly, nonatomic) NSArray *objects;
 
+- (void)refresh;
+
 // Abstract
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj;
 

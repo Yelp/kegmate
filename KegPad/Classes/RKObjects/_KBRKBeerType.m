@@ -12,16 +12,16 @@
 
 @implementation _KBRKBeerType
 
-@dynamic identifier;
-@dynamic name;
-@dynamic brewerId;
-@dynamic styleId;
-@dynamic edition;
-@dynamic caloriesOz;
-@dynamic carbsOz;
-@dynamic abv;
-@dynamic originalGravity;
-@dynamic specificGravity;
+@synthesize identifier;
+@synthesize name;
+@synthesize brewerId;
+@synthesize styleId;
+@synthesize edition;
+@synthesize caloriesOz;
+@synthesize carbsOz;
+@synthesize abv;
+@synthesize originalGravity;
+@synthesize specificGravity;
 
 #pragma mark RKObjectMappable methods
 
