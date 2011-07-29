@@ -38,6 +38,7 @@
 
 @property (retain, nonatomic) NSString *title;
 @property (retain, nonatomic) NSString *text;
+@property (retain, nonatomic) id context;
 @property (readonly, nonatomic) BOOL showDisclosure;
 @property (readonly, nonatomic, getter=isSelected) BOOL selected;
 @property (assign, nonatomic, getter=isSelectEnabled) BOOL selectEnabled;

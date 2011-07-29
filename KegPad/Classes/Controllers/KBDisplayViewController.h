@@ -27,6 +27,7 @@
 #import "KBUserView.h"
 #import "KBChalkLabel.h"
 
+
 @class KBApplicationDelegate;
 
 /*!
@@ -94,6 +95,7 @@
 
 - (IBAction)admin:(id)sender;
 - (IBAction)flip:(id)sender;
+- (IBAction)kegTime:(id)sender;
 
 - (void)updateKeg:(KBKeg *)keg;
 

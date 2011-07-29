@@ -32,6 +32,7 @@
 @interface KBUIFormViewController : UITableViewController {
 
   NSMutableDictionary *sections_;
+  NSInteger sectionCount_;
   
   id<KBUIFormViewControllerDelegate> delegate_;
 }
@@ -41,6 +42,10 @@
 - (void)addForm:(KBUIForm *)form;
 
 - (void)addForm:(KBUIForm *)form section:(NSInteger)section;
+
+- (void)removeFromSection:(NSInteger)section;
+
+- (NSArray *)formsForSection:(NSInteger)section;
 
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message;
 - (void)showError:(NSError *)error;
