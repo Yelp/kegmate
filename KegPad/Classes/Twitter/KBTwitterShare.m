@@ -117,9 +117,13 @@
   if (![self.lastKeg isEqual:keg]) {
     self.lastKeg = keg;
     
-    NSMutableString *status = [NSMutableString stringWithFormat:@"\"%@\" [ABV:%@] has been tapped!",
-                               [self.lastKeg.beer name],
-                               [self.lastKeg.beer abv]];
+    NSMutableString *status = [NSMutableString stringWithString:[self.lastKeg.beer name]];
+    NSNumber *abv = [self.lastKeg.beer abv];
+    if (abv) {
+      [status appendFormat:@" [ABV:%0.1f]", [abv floatValue]];
+    }
+    [status appendString:@" has been tapped!"];
+    
     [self sendUpdateWithStatus:status];
   }
 }

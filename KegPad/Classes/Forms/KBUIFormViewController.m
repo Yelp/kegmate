@@ -55,6 +55,7 @@
 }
 
 - (void)addForm:(KBUIForm *)form section:(NSInteger)section {
+  if (section > (sectionCount_ - 1)) sectionCount_ = (section + 1);
   NSNumber *key = [NSNumber numberWithInteger:section];
   NSMutableArray *forms = [sections_ objectForKey:key];
   if (!forms) {
@@ -62,6 +63,16 @@
     [sections_ setObject:forms forKey:key];
   }
   [forms addObject:form];
+}
+
+- (void)removeFromSection:(NSInteger)section {
+  NSNumber *key = [NSNumber numberWithInteger:section];
+  [sections_ removeObjectForKey:key];
+}
+
+- (NSArray *)formsForSection:(NSInteger)section {
+  NSNumber *key = [NSNumber numberWithInteger:section];
+  return [sections_ objectForKey:key];
 }
 
 - (KBUIForm *)formForIndexPath:(NSIndexPath *)indexPath {
@@ -77,7 +88,7 @@
 #pragma mark -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return [sections_ count];
+  return sectionCount_; //[sections_ count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {

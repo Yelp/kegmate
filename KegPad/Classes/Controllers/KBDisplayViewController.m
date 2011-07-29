@@ -29,6 +29,7 @@
 #import "KBRating.h"
 #import "KBAdminLoginViewController.h"
 #import "KBAdminViewController.h"
+#import "KBKegTimeSearchViewController.h"
 
 
 @interface KBDisplayViewController ()
@@ -111,7 +112,7 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)startPour {
-  self.view;
+  [self view];
   beerMovieView_.alpha = 0.0;
   [self.view bringSubviewToFront:beerMovieView_];
   [UIView beginAnimations:nil context:NULL];
@@ -177,7 +178,7 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)setKegTemperature:(KBKegTemperature *)kegTemperature {
-  self.view;
+  [self view];
   if (kegTemperature) {    
     tempDescriptionLabel_.hidden = NO;
     tempDescriptionLabel_.text = [kegTemperature thermometerDescription];
@@ -216,7 +217,7 @@ adminButton=adminButton_, delegate=delegate_;
 }
 
 - (void)updateKeg:(KBKeg *)keg {
-  self.view;
+  [self view];
   self.keg = keg;
   [self updateBeer:keg.beer];
 }
@@ -276,6 +277,12 @@ adminButton=adminButton_, delegate=delegate_;
     [self presentModalViewController:adminViewController animated:YES];
     [adminViewController release];
   }
+}
+
+- (IBAction)kegTime:(id)sender {
+  KBKegTimeSearchNavigationController *kegTimeSearchNavigationController = [[KBKegTimeSearchNavigationController alloc] init];
+  [self presentModalViewController:kegTimeSearchNavigationController animated:YES];
+  [kegTimeSearchNavigationController release];
 }
 
 - (IBAction)flip:(id)sender {

@@ -8,6 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		00025DB61267A48C0020985D /* BeerLoop.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 00025DB51267A48C0020985D /* BeerLoop.m4v */; };
+		000C945213E10BAD009B1B1E /* FFAVCaptureSessionReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C940613E10BAD009B1B1E /* FFAVCaptureSessionReader.m */; };
+		000C945713E10BAD009B1B1E /* FFAVUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C941013E10BAD009B1B1E /* FFAVUtils.m */; };
+		000C945A13E10BAD009B1B1E /* FFGLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C941913E10BAD009B1B1E /* FFGLDrawable.m */; };
+		000C945E13E10BAD009B1B1E /* FFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C942213E10BAD009B1B1E /* FFReader.m */; };
+		000C946013E10BAD009B1B1E /* FFTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C942613E10BAD009B1B1E /* FFTypes.m */; };
+		000C946113E10BAD009B1B1E /* FFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C942813E10BAD009B1B1E /* FFUtils.m */; };
+		000C946213E10BAD009B1B1E /* GHGLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C942D13E10BAD009B1B1E /* GHGLTexture.m */; };
+		000C946313E10BAD009B1B1E /* GHGLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943013E10BAD009B1B1E /* GHGLUtils.m */; };
+		000C946413E10BAD009B1B1E /* GHGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943213E10BAD009B1B1E /* GHGLView.m */; };
+		000C946513E10BAD009B1B1E /* GHGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943413E10BAD009B1B1E /* GHGLViewController.m */; };
+		000C946613E10BAD009B1B1E /* GHTextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943713E10BAD009B1B1E /* GHTextureManager.m */; };
+		000C946813E10BAD009B1B1E /* PBRConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943C13E10BAD009B1B1E /* PBRConnection.m */; };
+		000C946E13E10BAD009B1B1E /* PBRStreamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C944A13E10BAD009B1B1E /* PBRStreamUtils.m */; };
+		000C946F13E10BAD009B1B1E /* PBRTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C944C13E10BAD009B1B1E /* PBRTCPServer.m */; };
+		000C947013E10BAD009B1B1E /* FFReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C944F13E10BAD009B1B1E /* FFReaderView.m */; };
+		000C947113E10BAD009B1B1E /* FFReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C945113E10BAD009B1B1E /* FFReaderViewController.m */; };
+		000C947413E11034009B1B1E /* GTMNSData+zlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C947213E11034009B1B1E /* GTMNSData+zlib.m */; };
+		000C947613E11052009B1B1E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947513E11052009B1B1E /* OpenGLES.framework */; };
+		000C947813E11083009B1B1E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947713E11083009B1B1E /* libz.dylib */; };
+		000C947A13E1115C009B1B1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947913E1115C009B1B1E /* AVFoundation.framework */; };
+		000C947D13E1195E009B1B1E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947C13E1195D009B1B1E /* CoreVideo.framework */; };
+		000C947F13E11973009B1B1E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947E13E11973009B1B1E /* CoreMedia.framework */; };
 		0017B750120208F700269CDA /* KBKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B748120208F700269CDA /* KBKeg.m */; };
 		0017B751120208F700269CDA /* KBBeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B74A120208F700269CDA /* KBBeer.m */; };
 		0017B752120208F700269CDA /* _KBKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017B74C120208F700269CDA /* _KBKeg.m */; };
@@ -59,6 +81,9 @@
 		007B7AA7137A569C000F8040 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B7A1C137A569C000F8040 /* OATokenManager.m */; };
 		007B7AB1137A5BAE000F8040 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B7AB0137A5BAE000F8040 /* GTMBase64.m */; };
 		007B7AB9137A5C5F000F8040 /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */; };
+		008668A313E89869008E48BD /* FFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A113E89869008E48BD /* FFPlayerView.m */; };
+		008668A713E898DE008E48BD /* FFGLImaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A613E898DE008E48BD /* FFGLImaging.m */; };
+		008668A813E898DE008E48BD /* FFGLImaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A613E898DE008E48BD /* FFGLImaging.m */; };
 		0089620E137F199F007748CD /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0089620D137F199F007748CD /* Shared.xcconfig */; };
 		00896222137F32DD007748CD /* KBFlowIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00896221137F32DD007748CD /* KBFlowIndicator.xib */; };
 		0089623A137F40AA007748CD /* KBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00896239137F40AA007748CD /* KBAboutViewController.xib */; };
@@ -83,6 +108,47 @@
 		00AA3F3E1255B3A600CB3F6B /* KBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */; };
 		00AA3F411255B3B400CB3F6B /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F401255B3B400CB3F6B /* KBBeerEditViewController.m */; };
 		00AA3F9F1255B9B400CB3F6B /* KBKegEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA3F9E1255B9B400CB3F6B /* KBKegEditViewController.m */; };
+		00BD695613E363BD00D0587F /* FFAVCaptureSessionReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C940613E10BAD009B1B1E /* FFAVCaptureSessionReader.m */; };
+		00BD695713E363C500D0587F /* FFGLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C941913E10BAD009B1B1E /* FFGLDrawable.m */; };
+		00BD695913E363CF00D0587F /* FFTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C942613E10BAD009B1B1E /* FFTypes.m */; };
+		00BD695A13E363D900D0587F /* GHGLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C942D13E10BAD009B1B1E /* GHGLTexture.m */; };
+		00BD695B13E363DD00D0587F /* GHGLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943013E10BAD009B1B1E /* GHGLUtils.m */; };
+		00BD695C13E363DF00D0587F /* GHGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943213E10BAD009B1B1E /* GHGLView.m */; };
+		00BD695D13E363E300D0587F /* GHGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943413E10BAD009B1B1E /* GHGLViewController.m */; };
+		00BD695E13E363E600D0587F /* GHTextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943713E10BAD009B1B1E /* GHTextureManager.m */; };
+		00BD695F13E363E900D0587F /* PBRConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C943C13E10BAD009B1B1E /* PBRConnection.m */; };
+		00BD696413E363F700D0587F /* PBRStreamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C944A13E10BAD009B1B1E /* PBRStreamUtils.m */; };
+		00BD696513E363FA00D0587F /* PBRTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C944C13E10BAD009B1B1E /* PBRTCPServer.m */; };
+		00BD696613E363FC00D0587F /* PBRService.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C7A80513E1D67100E359EE /* PBRService.m */; };
+		00BD696713E363FF00D0587F /* PBRAVCaptureClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C7A80813E1E52E00E359EE /* PBRAVCaptureClient.m */; };
+		00BD696813E3640100D0587F /* PBRAVCaptureService.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA859E13E1F0BD008DA12B /* PBRAVCaptureService.m */; };
+		00BD696913E3640400D0587F /* PBRServiceBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85AF13E224CC008DA12B /* PBRServiceBrowser.m */; };
+		00BD696C13E3642D00D0587F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947513E11052009B1B1E /* OpenGLES.framework */; };
+		00BD696D13E3643700D0587F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947C13E1195D009B1B1E /* CoreVideo.framework */; };
+		00BD696E13E3644200D0587F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947913E1115C009B1B1E /* AVFoundation.framework */; };
+		00BD696F13E3645300D0587F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947E13E11973009B1B1E /* CoreMedia.framework */; };
+		00BD697113E364E400D0587F /* FFReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C944F13E10BAD009B1B1E /* FFReaderView.m */; };
+		00BD697213E364E700D0587F /* FFReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C945113E10BAD009B1B1E /* FFReaderViewController.m */; };
+		00BD697313E3650200D0587F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDAF1201F9B600BA5D07 /* CoreFoundation.framework */; };
+		00BD697413E3651100D0587F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008FEDB31201F9C400BA5D07 /* QuartzCore.framework */; };
+		00BD697513E3652900D0587F /* FFAVUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C941013E10BAD009B1B1E /* FFAVUtils.m */; };
+		00BD697A13E3689A00D0587F /* KBKegTimeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85B613E23A2A008DA12B /* KBKegTimeSearchViewController.m */; };
+		00BD697B13E368A700D0587F /* KBUIFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01160125334170013DF33 /* KBUIFormFieldCell.m */; };
+		00BD697C13E368A900D0587F /* KBUIFormSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 009840141262D63A0031006C /* KBUIFormSwitchCell.m */; };
+		00BD697D13E368AC00D0587F /* KBUIForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01162125334170013DF33 /* KBUIForm.m */; };
+		00BD697E13E368AF00D0587F /* KBUIFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01164125334170013DF33 /* KBUIFormViewController.m */; };
+		00BD697F13E368B200D0587F /* KBUIFormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D01166125334170013DF33 /* KBUIFormTextField.m */; };
+		00BD698013E368B400D0587F /* KBUIFormSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 009840191262D76F0031006C /* KBUIFormSwitch.m */; };
+		00BD698113E368B700D0587F /* KBUIFormListSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 009E8F3F126CE50B0008B159 /* KBUIFormListSelect.m */; };
+		00BD698213E3690400D0587F /* GHKitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E654571256565B00E4CE9E /* GHKitIOS.framework */; };
+		00BD698313E3690700D0587F /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */; };
+		00BD698413E3691600D0587F /* KBKegTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85B813E23A2A008DA12B /* KBKegTimeViewController.m */; };
+		00BD698513E369C400D0587F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00189D7113D8D3E300A1EECB /* Security.framework */; };
+		00BD698613E369D500D0587F /* GTMNSData+zlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 000C947213E11034009B1B1E /* GTMNSData+zlib.m */; };
+		00BD698713E369D800D0587F /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B7AB0137A5BAE000F8040 /* GTMBase64.m */; };
+		00BD698813E369DA00D0587F /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6556E1256638400E4CE9E /* GTMLogger.m */; };
+		00BD698913E369F000D0587F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 000C947713E11083009B1B1E /* libz.dylib */; };
+		00BD698A13E36B5000D0587F /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0075514B125043A400C5538C /* Icon-72.png */; };
 		00C02581121351E60020483D /* KBApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257D121351E60020483D /* KBApplicationDelegate.m */; };
 		00C02582121351E60020483D /* KBApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C0257F121351E60020483D /* KBApplication.m */; };
 		00C1135112110639009C9B51 /* KBDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1135012110639009C9B51 /* KBDataStore.m */; };
@@ -96,6 +162,23 @@
 		00C114AD121121BA009C9B51 /* KBFetchedResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */; };
 		00C114D6121128DD009C9B51 /* kegs.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C114B2121124B1009C9B51 /* kegs.json */; };
 		00C114EF1211297D009C9B51 /* KBUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C114EE1211297D009C9B51 /* KBUsersViewController.m */; };
+		00C7A80613E1D67100E359EE /* PBRService.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C7A80513E1D67100E359EE /* PBRService.m */; };
+		00C7A80913E1E52E00E359EE /* PBRAVCaptureClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C7A80813E1E52E00E359EE /* PBRAVCaptureClient.m */; };
+		00CA859F13E1F0BE008DA12B /* PBRAVCaptureService.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA859E13E1F0BD008DA12B /* PBRAVCaptureService.m */; };
+		00CA85B013E224CD008DA12B /* PBRServiceBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85AF13E224CC008DA12B /* PBRServiceBrowser.m */; };
+		00CA85B913E23A2A008DA12B /* KBKegTimeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85B613E23A2A008DA12B /* KBKegTimeSearchViewController.m */; };
+		00CA85BA13E23A2A008DA12B /* KBKegTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85B813E23A2A008DA12B /* KBKegTimeViewController.m */; };
+		00CA85C613E35237008DA12B /* keg_time_active_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CA85C413E35237008DA12B /* keg_time_active_icon.png */; };
+		00CA85C713E35237008DA12B /* keg_time_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CA85C513E35237008DA12B /* keg_time_icon.png */; };
+		00CA85CE13E360FC008DA12B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		00CA85CF13E360FC008DA12B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		00CA85D013E360FC008DA12B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		00CA85D613E360FD008DA12B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00CA85D413E360FD008DA12B /* InfoPlist.strings */; };
+		00CA85D913E360FD008DA12B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85D813E360FD008DA12B /* main.m */; };
+		00CA85DC13E360FD008DA12B /* KegTimeClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85DB13E360FD008DA12B /* KegTimeClientAppDelegate.m */; };
+		00CA85DF13E360FD008DA12B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00CA85DD13E360FD008DA12B /* MainWindow.xib */; };
+		00CA85E213E360FD008DA12B /* KegTimeClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85E113E360FD008DA12B /* KegTimeClientViewController.m */; };
+		00CA85E513E360FD008DA12B /* KegTimeClientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00CA85E313E360FD008DA12B /* KegTimeClientViewController.xib */; };
 		00CB546E1294D9D50056FE12 /* 90_Minute_IPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB54691294D9D50056FE12 /* 90_Minute_IPA.png */; };
 		00CB546F1294D9D50056FE12 /* Punkin_Ale.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546A1294D9D50056FE12 /* Punkin_Ale.png */; };
 		00CB54701294D9D50056FE12 /* Orchard_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546B1294D9D50056FE12 /* Orchard_White.png */; };
@@ -187,6 +270,53 @@
 
 /* Begin PBXFileReference section */
 		00025DB51267A48C0020985D /* BeerLoop.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = BeerLoop.m4v; sourceTree = "<group>"; };
+		000C940513E10BAD009B1B1E /* FFAVCaptureSessionReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAVCaptureSessionReader.h; sourceTree = "<group>"; };
+		000C940613E10BAD009B1B1E /* FFAVCaptureSessionReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAVCaptureSessionReader.m; sourceTree = "<group>"; };
+		000C940F13E10BAD009B1B1E /* FFAVUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAVUtils.h; sourceTree = "<group>"; };
+		000C941013E10BAD009B1B1E /* FFAVUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAVUtils.m; sourceTree = "<group>"; };
+		000C941713E10BAD009B1B1E /* FFFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFFilter.h; sourceTree = "<group>"; };
+		000C941813E10BAD009B1B1E /* FFGLDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGLDrawable.h; sourceTree = "<group>"; };
+		000C941913E10BAD009B1B1E /* FFGLDrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGLDrawable.m; sourceTree = "<group>"; };
+		000C942113E10BAD009B1B1E /* FFReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFReader.h; sourceTree = "<group>"; };
+		000C942213E10BAD009B1B1E /* FFReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFReader.m; sourceTree = "<group>"; };
+		000C942313E10BAD009B1B1E /* FFReading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFReading.h; sourceTree = "<group>"; };
+		000C942513E10BAD009B1B1E /* FFTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTypes.h; sourceTree = "<group>"; };
+		000C942613E10BAD009B1B1E /* FFTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFTypes.m; sourceTree = "<group>"; };
+		000C942713E10BAD009B1B1E /* FFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFUtils.h; sourceTree = "<group>"; };
+		000C942813E10BAD009B1B1E /* FFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFUtils.m; sourceTree = "<group>"; };
+		000C942A13E10BAD009B1B1E /* GHGLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGLCommon.h; sourceTree = "<group>"; };
+		000C942B13E10BAD009B1B1E /* GHGLDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGLDefines.h; sourceTree = "<group>"; };
+		000C942C13E10BAD009B1B1E /* GHGLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGLTexture.h; sourceTree = "<group>"; };
+		000C942D13E10BAD009B1B1E /* GHGLTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHGLTexture.m; sourceTree = "<group>"; };
+		000C942E13E10BAD009B1B1E /* GHGLUCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGLUCommon.h; sourceTree = "<group>"; };
+		000C942F13E10BAD009B1B1E /* GHGLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGLUtils.h; sourceTree = "<group>"; };
+		000C943013E10BAD009B1B1E /* GHGLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHGLUtils.m; sourceTree = "<group>"; };
+		000C943113E10BAD009B1B1E /* GHGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGLView.h; sourceTree = "<group>"; };
+		000C943213E10BAD009B1B1E /* GHGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHGLView.m; sourceTree = "<group>"; };
+		000C943313E10BAD009B1B1E /* GHGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGLViewController.h; sourceTree = "<group>"; };
+		000C943413E10BAD009B1B1E /* GHGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHGLViewController.m; sourceTree = "<group>"; };
+		000C943513E10BAD009B1B1E /* GHQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHQuaternion.h; sourceTree = "<group>"; };
+		000C943613E10BAD009B1B1E /* GHTextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTextureManager.h; sourceTree = "<group>"; };
+		000C943713E10BAD009B1B1E /* GHTextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextureManager.m; sourceTree = "<group>"; };
+		000C943B13E10BAD009B1B1E /* PBRConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRConnection.h; sourceTree = "<group>"; };
+		000C943C13E10BAD009B1B1E /* PBRConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRConnection.m; sourceTree = "<group>"; };
+		000C943D13E10BAD009B1B1E /* PBRDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRDefines.h; sourceTree = "<group>"; };
+		000C944013E10BAD009B1B1E /* PBRStreamDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRStreamDefines.h; sourceTree = "<group>"; };
+		000C944913E10BAD009B1B1E /* PBRStreamUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRStreamUtils.h; sourceTree = "<group>"; };
+		000C944A13E10BAD009B1B1E /* PBRStreamUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRStreamUtils.m; sourceTree = "<group>"; };
+		000C944B13E10BAD009B1B1E /* PBRTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRTCPServer.h; sourceTree = "<group>"; };
+		000C944C13E10BAD009B1B1E /* PBRTCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRTCPServer.m; sourceTree = "<group>"; };
+		000C944E13E10BAD009B1B1E /* FFReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFReaderView.h; sourceTree = "<group>"; };
+		000C944F13E10BAD009B1B1E /* FFReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFReaderView.m; sourceTree = "<group>"; };
+		000C945013E10BAD009B1B1E /* FFReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFReaderViewController.h; sourceTree = "<group>"; };
+		000C945113E10BAD009B1B1E /* FFReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFReaderViewController.m; sourceTree = "<group>"; };
+		000C947213E11034009B1B1E /* GTMNSData+zlib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSData+zlib.m"; sourceTree = "<group>"; };
+		000C947313E11034009B1B1E /* GTMNSData+zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSData+zlib.h"; sourceTree = "<group>"; };
+		000C947513E11052009B1B1E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		000C947713E11083009B1B1E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		000C947913E1115C009B1B1E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		000C947C13E1195D009B1B1E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		000C947E13E11973009B1B1E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		0017B748120208F700269CDA /* KBKeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKeg.m; sourceTree = "<group>"; };
 		0017B749120208F700269CDA /* KBKeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKeg.h; sourceTree = "<group>"; };
 		0017B74A120208F700269CDA /* KBBeer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeer.m; sourceTree = "<group>"; };
@@ -291,6 +421,10 @@
 		007B7AAF137A5BAE000F8040 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		007B7AB0137A5BAE000F8040 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLiOS.framework; path = Libraries/YAJLiOS.framework; sourceTree = "<group>"; };
+		008668A113E89869008E48BD /* FFPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFPlayerView.m; sourceTree = "<group>"; };
+		008668A213E89869008E48BD /* FFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPlayerView.h; sourceTree = "<group>"; };
+		008668A513E898DE008E48BD /* FFGLImaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGLImaging.h; sourceTree = "<group>"; };
+		008668A613E898DE008E48BD /* FFGLImaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGLImaging.m; sourceTree = "<group>"; };
 		0089620D137F199F007748CD /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		00896221137F32DD007748CD /* KBFlowIndicator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBFlowIndicator.xib; sourceTree = "<group>"; };
 		00896239137F40AA007748CD /* KBAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBAboutViewController.xib; sourceTree = "<group>"; };
@@ -350,6 +484,31 @@
 		00C114B2121124B1009C9B51 /* kegs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kegs.json; sourceTree = "<group>"; };
 		00C114ED1211297D009C9B51 /* KBUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUsersViewController.h; sourceTree = "<group>"; };
 		00C114EE1211297D009C9B51 /* KBUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBUsersViewController.m; sourceTree = "<group>"; };
+		00C7A80413E1D67100E359EE /* PBRService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRService.h; sourceTree = "<group>"; };
+		00C7A80513E1D67100E359EE /* PBRService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRService.m; sourceTree = "<group>"; };
+		00C7A80713E1E52E00E359EE /* PBRAVCaptureClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRAVCaptureClient.h; sourceTree = "<group>"; };
+		00C7A80813E1E52E00E359EE /* PBRAVCaptureClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRAVCaptureClient.m; sourceTree = "<group>"; };
+		00CA859D13E1F0BD008DA12B /* PBRAVCaptureService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRAVCaptureService.h; sourceTree = "<group>"; };
+		00CA859E13E1F0BD008DA12B /* PBRAVCaptureService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRAVCaptureService.m; sourceTree = "<group>"; };
+		00CA85AE13E224CC008DA12B /* PBRServiceBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRServiceBrowser.h; sourceTree = "<group>"; };
+		00CA85AF13E224CC008DA12B /* PBRServiceBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRServiceBrowser.m; sourceTree = "<group>"; };
+		00CA85B513E23A2A008DA12B /* KBKegTimeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTimeSearchViewController.h; sourceTree = "<group>"; };
+		00CA85B613E23A2A008DA12B /* KBKegTimeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTimeSearchViewController.m; sourceTree = "<group>"; };
+		00CA85B713E23A2A008DA12B /* KBKegTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTimeViewController.h; sourceTree = "<group>"; };
+		00CA85B813E23A2A008DA12B /* KBKegTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTimeViewController.m; sourceTree = "<group>"; };
+		00CA85C413E35237008DA12B /* keg_time_active_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keg_time_active_icon.png; sourceTree = "<group>"; };
+		00CA85C513E35237008DA12B /* keg_time_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keg_time_icon.png; sourceTree = "<group>"; };
+		00CA85CC13E360FC008DA12B /* KegTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KegTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00CA85D313E360FD008DA12B /* KegTimeClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KegTimeClient-Info.plist"; sourceTree = "<group>"; };
+		00CA85D513E360FD008DA12B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00CA85D713E360FD008DA12B /* KegTimeClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KegTimeClient-Prefix.pch"; sourceTree = "<group>"; };
+		00CA85D813E360FD008DA12B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00CA85DA13E360FD008DA12B /* KegTimeClientAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KegTimeClientAppDelegate.h; sourceTree = "<group>"; };
+		00CA85DB13E360FD008DA12B /* KegTimeClientAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KegTimeClientAppDelegate.m; sourceTree = "<group>"; };
+		00CA85DE13E360FD008DA12B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		00CA85E013E360FD008DA12B /* KegTimeClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KegTimeClientViewController.h; sourceTree = "<group>"; };
+		00CA85E113E360FD008DA12B /* KegTimeClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KegTimeClientViewController.m; sourceTree = "<group>"; };
+		00CA85E413E360FD008DA12B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KegTimeClientViewController.xib; sourceTree = "<group>"; };
 		00CB54691294D9D50056FE12 /* 90_Minute_IPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 90_Minute_IPA.png; sourceTree = "<group>"; };
 		00CB546A1294D9D50056FE12 /* Punkin_Ale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Punkin_Ale.png; sourceTree = "<group>"; };
 		00CB546B1294D9D50056FE12 /* Orchard_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orchard_White.png; sourceTree = "<group>"; };
@@ -466,10 +625,35 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		00CA85C913E360FC008DA12B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00BD698913E369F000D0587F /* libz.dylib in Frameworks */,
+				00CA85CE13E360FC008DA12B /* UIKit.framework in Frameworks */,
+				00BD696C13E3642D00D0587F /* OpenGLES.framework in Frameworks */,
+				00BD697413E3651100D0587F /* QuartzCore.framework in Frameworks */,
+				00BD698213E3690400D0587F /* GHKitIOS.framework in Frameworks */,
+				00BD696D13E3643700D0587F /* CoreVideo.framework in Frameworks */,
+				00BD698513E369C400D0587F /* Security.framework in Frameworks */,
+				00BD698313E3690700D0587F /* YAJLiOS.framework in Frameworks */,
+				00CA85CF13E360FC008DA12B /* Foundation.framework in Frameworks */,
+				00BD696F13E3645300D0587F /* CoreMedia.framework in Frameworks */,
+				00BD696E13E3644200D0587F /* AVFoundation.framework in Frameworks */,
+				00BD697313E3650200D0587F /* CoreFoundation.framework in Frameworks */,
+				00CA85D013E360FC008DA12B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000C947F13E11973009B1B1E /* CoreMedia.framework in Frameworks */,
+				000C947D13E1195E009B1B1E /* CoreVideo.framework in Frameworks */,
+				000C947A13E1115C009B1B1E /* AVFoundation.framework in Frameworks */,
+				000C947813E11083009B1B1E /* libz.dylib in Frameworks */,
+				000C947613E11052009B1B1E /* OpenGLES.framework in Frameworks */,
 				00189D7213D8D3E300A1EECB /* Security.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -487,10 +671,101 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000C940313E10BAD009B1B1E /* FFProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				008668A413E898DE008E48BD /* FFImaging */,
+				000C940413E10BAD009B1B1E /* AVFoundation */,
+				000C941713E10BAD009B1B1E /* FFFilter.h */,
+				000C941813E10BAD009B1B1E /* FFGLDrawable.h */,
+				000C941913E10BAD009B1B1E /* FFGLDrawable.m */,
+				000C942113E10BAD009B1B1E /* FFReader.h */,
+				000C942213E10BAD009B1B1E /* FFReader.m */,
+				000C942313E10BAD009B1B1E /* FFReading.h */,
+				000C942513E10BAD009B1B1E /* FFTypes.h */,
+				000C942613E10BAD009B1B1E /* FFTypes.m */,
+				000C942713E10BAD009B1B1E /* FFUtils.h */,
+				000C942813E10BAD009B1B1E /* FFUtils.m */,
+				000C942913E10BAD009B1B1E /* OpenGL */,
+				000C943813E10BAD009B1B1E /* PBR */,
+				000C944D13E10BAD009B1B1E /* UI */,
+			);
+			path = FFProcessing;
+			sourceTree = "<group>";
+		};
+		000C940413E10BAD009B1B1E /* AVFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				000C940513E10BAD009B1B1E /* FFAVCaptureSessionReader.h */,
+				000C940613E10BAD009B1B1E /* FFAVCaptureSessionReader.m */,
+				000C940F13E10BAD009B1B1E /* FFAVUtils.h */,
+				000C941013E10BAD009B1B1E /* FFAVUtils.m */,
+			);
+			path = AVFoundation;
+			sourceTree = "<group>";
+		};
+		000C942913E10BAD009B1B1E /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				000C942A13E10BAD009B1B1E /* GHGLCommon.h */,
+				000C942B13E10BAD009B1B1E /* GHGLDefines.h */,
+				000C942C13E10BAD009B1B1E /* GHGLTexture.h */,
+				000C942D13E10BAD009B1B1E /* GHGLTexture.m */,
+				000C942E13E10BAD009B1B1E /* GHGLUCommon.h */,
+				000C942F13E10BAD009B1B1E /* GHGLUtils.h */,
+				000C943013E10BAD009B1B1E /* GHGLUtils.m */,
+				000C943113E10BAD009B1B1E /* GHGLView.h */,
+				000C943213E10BAD009B1B1E /* GHGLView.m */,
+				000C943313E10BAD009B1B1E /* GHGLViewController.h */,
+				000C943413E10BAD009B1B1E /* GHGLViewController.m */,
+				000C943513E10BAD009B1B1E /* GHQuaternion.h */,
+				000C943613E10BAD009B1B1E /* GHTextureManager.h */,
+				000C943713E10BAD009B1B1E /* GHTextureManager.m */,
+			);
+			path = OpenGL;
+			sourceTree = "<group>";
+		};
+		000C943813E10BAD009B1B1E /* PBR */ = {
+			isa = PBXGroup;
+			children = (
+				000C943B13E10BAD009B1B1E /* PBRConnection.h */,
+				000C943C13E10BAD009B1B1E /* PBRConnection.m */,
+				000C943D13E10BAD009B1B1E /* PBRDefines.h */,
+				000C944013E10BAD009B1B1E /* PBRStreamDefines.h */,
+				000C944913E10BAD009B1B1E /* PBRStreamUtils.h */,
+				000C944A13E10BAD009B1B1E /* PBRStreamUtils.m */,
+				000C944B13E10BAD009B1B1E /* PBRTCPServer.h */,
+				000C944C13E10BAD009B1B1E /* PBRTCPServer.m */,
+				00C7A80413E1D67100E359EE /* PBRService.h */,
+				00C7A80513E1D67100E359EE /* PBRService.m */,
+				00C7A80713E1E52E00E359EE /* PBRAVCaptureClient.h */,
+				00C7A80813E1E52E00E359EE /* PBRAVCaptureClient.m */,
+				00CA859D13E1F0BD008DA12B /* PBRAVCaptureService.h */,
+				00CA859E13E1F0BD008DA12B /* PBRAVCaptureService.m */,
+				00CA85AE13E224CC008DA12B /* PBRServiceBrowser.h */,
+				00CA85AF13E224CC008DA12B /* PBRServiceBrowser.m */,
+			);
+			path = PBR;
+			sourceTree = "<group>";
+		};
+		000C944D13E10BAD009B1B1E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				008668A113E89869008E48BD /* FFPlayerView.m */,
+				008668A213E89869008E48BD /* FFPlayerView.h */,
+				000C944E13E10BAD009B1B1E /* FFReaderView.h */,
+				000C944F13E10BAD009B1B1E /* FFReaderView.m */,
+				000C945013E10BAD009B1B1E /* FFReaderViewController.h */,
+				000C945113E10BAD009B1B1E /* FFReaderViewController.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		0017B7581202124C00269CDA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				00C1147012111B75009C9B51 /* Admin */,
+				00CA85B413E23A2A008DA12B /* KegTime */,
 				0017B7C3120219BC00269CDA /* KBDisplayViewController.h */,
 				0017B7C4120219BC00269CDA /* KBDisplayViewController.m */,
 				007B78C6137A3FA3000F8040 /* KBDisplayViewController.xib */,
@@ -507,6 +782,7 @@
 		0017B91112022FE200269CDA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				00CA85C313E35237008DA12B /* KegTime */,
 				0089623E137F4370007748CD /* About */,
 				422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */,
 				422D27BB128A81AD00AA0C62 /* beer_image_mask.png */,
@@ -550,6 +826,7 @@
 		0017BCBE120279E200269CDA /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				000C940313E10BAD009B1B1E /* FFProcessing */,
 				007B7920137A569B000F8040 /* OAuthConsumer */,
 				007B78CA137A4CD9000F8040 /* MGTwitterEngine */,
 				00E6556B1256638400E4CE9E /* GTM */,
@@ -651,6 +928,15 @@
 				007B79FD137A569C000F8040 /* NSURL+Base.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		008668A413E898DE008E48BD /* FFImaging */ = {
+			isa = PBXGroup;
+			children = (
+				008668A513E898DE008E48BD /* FFGLImaging.h */,
+				008668A613E898DE008E48BD /* FFGLImaging.m */,
+			);
+			path = FFImaging;
 			sourceTree = "<group>";
 		};
 		0089623E137F4370007748CD /* About */ = {
@@ -783,6 +1069,51 @@
 			path = Admin;
 			sourceTree = "<group>";
 		};
+		00CA85B413E23A2A008DA12B /* KegTime */ = {
+			isa = PBXGroup;
+			children = (
+				00CA85B513E23A2A008DA12B /* KBKegTimeSearchViewController.h */,
+				00CA85B613E23A2A008DA12B /* KBKegTimeSearchViewController.m */,
+				00CA85B713E23A2A008DA12B /* KBKegTimeViewController.h */,
+				00CA85B813E23A2A008DA12B /* KBKegTimeViewController.m */,
+			);
+			path = KegTime;
+			sourceTree = "<group>";
+		};
+		00CA85C313E35237008DA12B /* KegTime */ = {
+			isa = PBXGroup;
+			children = (
+				00CA85C413E35237008DA12B /* keg_time_active_icon.png */,
+				00CA85C513E35237008DA12B /* keg_time_icon.png */,
+			);
+			path = KegTime;
+			sourceTree = "<group>";
+		};
+		00CA85D113E360FC008DA12B /* KegTimeClient */ = {
+			isa = PBXGroup;
+			children = (
+				00CA85DA13E360FD008DA12B /* KegTimeClientAppDelegate.h */,
+				00CA85DB13E360FD008DA12B /* KegTimeClientAppDelegate.m */,
+				00CA85DD13E360FD008DA12B /* MainWindow.xib */,
+				00CA85E013E360FD008DA12B /* KegTimeClientViewController.h */,
+				00CA85E113E360FD008DA12B /* KegTimeClientViewController.m */,
+				00CA85E313E360FD008DA12B /* KegTimeClientViewController.xib */,
+				00CA85D213E360FD008DA12B /* Supporting Files */,
+			);
+			path = KegTimeClient;
+			sourceTree = "<group>";
+		};
+		00CA85D213E360FD008DA12B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00CA85D313E360FD008DA12B /* KegTimeClient-Info.plist */,
+				00CA85D413E360FD008DA12B /* InfoPlist.strings */,
+				00CA85D713E360FD008DA12B /* KegTimeClient-Prefix.pch */,
+				00CA85D813E360FD008DA12B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		00D0115E125334170013DF33 /* Forms */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,6 +1240,8 @@
 		00E6556C1256638400E4CE9E /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				000C947313E11034009B1B1E /* GTMNSData+zlib.h */,
+				000C947213E11034009B1B1E /* GTMNSData+zlib.m */,
 				007B7AAF137A5BAE000F8040 /* GTMBase64.h */,
 				007B7AB0137A5BAE000F8040 /* GTMBase64.m */,
 				00E6556D1256638400E4CE9E /* GTMLogger.h */,
@@ -943,6 +1276,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* KegPad.app */,
+				00CA85CC13E360FC008DA12B /* KegTime.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -955,6 +1289,7 @@
 				0017BCBE120279E200269CDA /* Libraries */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				00CA85D113E360FC008DA12B /* KegTimeClient */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -990,6 +1325,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				000C947E13E11973009B1B1E /* CoreMedia.framework */,
+				000C947C13E1195D009B1B1E /* CoreVideo.framework */,
+				000C947913E1115C009B1B1E /* AVFoundation.framework */,
+				000C947713E11083009B1B1E /* libz.dylib */,
+				000C947513E11052009B1B1E /* OpenGLES.framework */,
 				00E654571256565B00E4CE9E /* GHKitIOS.framework */,
 				007B7AB8137A5C5F000F8040 /* YAJLiOS.framework */,
 				00189D7113D8D3E300A1EECB /* Security.framework */,
@@ -1029,6 +1369,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		00CA85CB13E360FC008DA12B /* KegTimeClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00CA85E613E360FD008DA12B /* Build configuration list for PBXNativeTarget "KegTimeClient" */;
+			buildPhases = (
+				00CA85C813E360FC008DA12B /* Sources */,
+				00CA85C913E360FC008DA12B /* Frameworks */,
+				00CA85CA13E360FC008DA12B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KegTimeClient;
+			productName = KegTimeClient;
+			productReference = 00CA85CC13E360FC008DA12B /* KegTime.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1D6058900D05DD3D006BFB54 /* KegPad */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "KegPad" */;
@@ -1060,17 +1417,30 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* KegPad */,
+				00CA85CB13E360FC008DA12B /* KegTimeClient */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		00CA85CA13E360FC008DA12B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CA85D613E360FD008DA12B /* InfoPlist.strings in Resources */,
+				00CA85DF13E360FD008DA12B /* MainWindow.xib in Resources */,
+				00CA85E513E360FD008DA12B /* KegTimeClientViewController.xib in Resources */,
+				00BD698A13E36B5000D0587F /* Icon-72.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1152,12 +1522,55 @@
 				00896244137F4370007748CD /* jeffmicklos.jpg in Resources */,
 				00896245137F4370007748CD /* johnboiles.png in Resources */,
 				00896246137F4370007748CD /* lxdvs.jpg in Resources */,
+				00CA85C613E35237008DA12B /* keg_time_active_icon.png in Resources */,
+				00CA85C713E35237008DA12B /* keg_time_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		00CA85C813E360FC008DA12B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00CA85D913E360FD008DA12B /* main.m in Sources */,
+				00CA85DC13E360FD008DA12B /* KegTimeClientAppDelegate.m in Sources */,
+				00CA85E213E360FD008DA12B /* KegTimeClientViewController.m in Sources */,
+				00BD695613E363BD00D0587F /* FFAVCaptureSessionReader.m in Sources */,
+				00BD695713E363C500D0587F /* FFGLDrawable.m in Sources */,
+				00BD695913E363CF00D0587F /* FFTypes.m in Sources */,
+				00BD695A13E363D900D0587F /* GHGLTexture.m in Sources */,
+				00BD695B13E363DD00D0587F /* GHGLUtils.m in Sources */,
+				00BD695C13E363DF00D0587F /* GHGLView.m in Sources */,
+				00BD695D13E363E300D0587F /* GHGLViewController.m in Sources */,
+				00BD695E13E363E600D0587F /* GHTextureManager.m in Sources */,
+				00BD695F13E363E900D0587F /* PBRConnection.m in Sources */,
+				00BD696413E363F700D0587F /* PBRStreamUtils.m in Sources */,
+				00BD696513E363FA00D0587F /* PBRTCPServer.m in Sources */,
+				00BD696613E363FC00D0587F /* PBRService.m in Sources */,
+				00BD696713E363FF00D0587F /* PBRAVCaptureClient.m in Sources */,
+				00BD696813E3640100D0587F /* PBRAVCaptureService.m in Sources */,
+				00BD696913E3640400D0587F /* PBRServiceBrowser.m in Sources */,
+				00BD697113E364E400D0587F /* FFReaderView.m in Sources */,
+				00BD697213E364E700D0587F /* FFReaderViewController.m in Sources */,
+				00BD697513E3652900D0587F /* FFAVUtils.m in Sources */,
+				00BD697A13E3689A00D0587F /* KBKegTimeSearchViewController.m in Sources */,
+				00BD697B13E368A700D0587F /* KBUIFormFieldCell.m in Sources */,
+				00BD697C13E368A900D0587F /* KBUIFormSwitchCell.m in Sources */,
+				00BD697D13E368AC00D0587F /* KBUIForm.m in Sources */,
+				00BD697E13E368AF00D0587F /* KBUIFormViewController.m in Sources */,
+				00BD697F13E368B200D0587F /* KBUIFormTextField.m in Sources */,
+				00BD698013E368B400D0587F /* KBUIFormSwitch.m in Sources */,
+				00BD698113E368B700D0587F /* KBUIFormListSelect.m in Sources */,
+				00BD698413E3691600D0587F /* KBKegTimeViewController.m in Sources */,
+				00BD698613E369D500D0587F /* GTMNSData+zlib.m in Sources */,
+				00BD698713E369D800D0587F /* GTMBase64.m in Sources */,
+				00BD698813E369DA00D0587F /* GTMLogger.m in Sources */,
+				008668A813E898DE008E48BD /* FFGLImaging.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1250,17 +1663,129 @@
 				007B7AB1137A5BAE000F8040 /* GTMBase64.m in Sources */,
 				0089623D137F40BB007748CD /* KBAboutViewController.m in Sources */,
 				00896249137F542A007748CD /* KBSettingsViewController.m in Sources */,
+				000C945213E10BAD009B1B1E /* FFAVCaptureSessionReader.m in Sources */,
+				000C945713E10BAD009B1B1E /* FFAVUtils.m in Sources */,
+				000C945A13E10BAD009B1B1E /* FFGLDrawable.m in Sources */,
+				000C945E13E10BAD009B1B1E /* FFReader.m in Sources */,
+				000C946013E10BAD009B1B1E /* FFTypes.m in Sources */,
+				000C946113E10BAD009B1B1E /* FFUtils.m in Sources */,
+				000C946213E10BAD009B1B1E /* GHGLTexture.m in Sources */,
+				000C946313E10BAD009B1B1E /* GHGLUtils.m in Sources */,
+				000C946413E10BAD009B1B1E /* GHGLView.m in Sources */,
+				000C946513E10BAD009B1B1E /* GHGLViewController.m in Sources */,
+				000C946613E10BAD009B1B1E /* GHTextureManager.m in Sources */,
+				000C946813E10BAD009B1B1E /* PBRConnection.m in Sources */,
+				000C946E13E10BAD009B1B1E /* PBRStreamUtils.m in Sources */,
+				000C946F13E10BAD009B1B1E /* PBRTCPServer.m in Sources */,
+				000C947013E10BAD009B1B1E /* FFReaderView.m in Sources */,
+				000C947113E10BAD009B1B1E /* FFReaderViewController.m in Sources */,
+				000C947413E11034009B1B1E /* GTMNSData+zlib.m in Sources */,
+				00C7A80613E1D67100E359EE /* PBRService.m in Sources */,
+				00C7A80913E1E52E00E359EE /* PBRAVCaptureClient.m in Sources */,
+				00CA859F13E1F0BE008DA12B /* PBRAVCaptureService.m in Sources */,
+				00CA85B013E224CD008DA12B /* PBRServiceBrowser.m in Sources */,
+				00CA85B913E23A2A008DA12B /* KBKegTimeSearchViewController.m in Sources */,
+				00CA85BA13E23A2A008DA12B /* KBKegTimeViewController.m in Sources */,
+				008668A313E89869008E48BD /* FFPlayerView.m in Sources */,
+				008668A713E898DE008E48BD /* FFGLImaging.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		00CA85D413E360FD008DA12B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00CA85D513E360FD008DA12B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00CA85DD13E360FD008DA12B /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00CA85DE13E360FD008DA12B /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		00CA85E313E360FD008DA12B /* KegTimeClientViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00CA85E413E360FD008DA12B /* en */,
+			);
+			name = KegTimeClientViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		00CA85E713E360FD008DA12B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KegTimeClient/KegTimeClient-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "KegTimeClient/KegTimeClient-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = KegTime;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		00CA85E813E360FD008DA12B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KegTimeClient/KegTimeClient-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "KegTimeClient/KegTimeClient-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = KegTime;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1271,6 +1796,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KegPad_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "KegPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_LDFLAGS = (
@@ -1278,7 +1804,6 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = KegPad;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1295,6 +1820,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = KegPad_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "KegPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_LDFLAGS = (
@@ -1340,6 +1866,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		00CA85E613E360FD008DA12B /* Build configuration list for PBXNativeTarget "KegTimeClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00CA85E713E360FD008DA12B /* Debug */,
+				00CA85E813E360FD008DA12B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "KegPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

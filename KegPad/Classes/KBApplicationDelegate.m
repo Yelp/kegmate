@@ -31,6 +31,9 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [videoServer_ release];
+  [twitterShare_ release];
+  [kegManager_ release];
   [store_ release];
   [window_ release];
   displayViewController_.delegate = nil;
@@ -113,7 +116,13 @@
   
   // Start processing
   [kegManager_ start];
-
+  
+  // Start video server
+  if ([PBRAVCaptureService isSupported]) {
+    videoServer_ = [[PBRAVCaptureService alloc] init];
+    [videoServer_ start:nil];
+    [videoServer_ enableBonjourWithName:nil];
+  }
   return YES;
 }
 
@@ -126,8 +135,8 @@
 }
 
 - (void)setKeg:(KBKeg *)keg {
-  displayViewController_.view;
-  statusViewController_.view;
+  [displayViewController_ view];
+  [statusViewController_ view];
   
   [displayViewController_ updateKeg:keg];
   [displayViewController_ updateRecentPours];

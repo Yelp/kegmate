@@ -33,7 +33,9 @@ static NSInteger gFileDescriptor;
     if (gFileDescriptor <= 0) {
       gFileDescriptor = openPort(SERIAL_PORT, BAUD_RATE);
 #if !TARGET_IPHONE_SIMULATOR
-      NSAssert(gFileDescriptor != -1, @"Port failed to open");
+      if (gFileDescriptor == -1) {
+        NSLog(@"Port failed to open");
+      }
 #endif
       [self start];
     }

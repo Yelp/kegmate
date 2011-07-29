@@ -25,6 +25,7 @@
 #import "KBKegManager.h"
 #import "KBApplication.h"
 #import <AudioToolbox/AudioServices.h>
+#import "PBRAVCaptureService.h"
 
 /*!
  Main application delegate.
@@ -42,6 +43,8 @@
   
   KBKegManager *kegManager_;
   KBTwitterShare *twitterShare_;
+  
+  PBRAVCaptureService *videoServer_;
   
   BOOL animating_;
 }
