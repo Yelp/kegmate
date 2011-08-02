@@ -25,6 +25,7 @@
 #import "KBApplication.h"
 #import "KBRKDrink.h"
 #import "KBRKThermoLog.h"
+#import "KBRKAuthToken.h"
 
 @interface KBKegManager ()
 @property (retain, nonatomic) KBUser *loginUser;
@@ -91,18 +92,31 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   // TODO(johnb): tagId is coming in with some giberish
   tagId = [tagId gh_strip];
   
-  if ([NSString gh_isBlank:tagId]) return nil;
+  KBRKAuthToken *authToken = [[KBRKAuthToken alloc] init];
+  authToken.identifier = tagId;
+  [authToken getWithDelegate:self];
+
+  RKObjectManager* objectManager = [RKObjectManager sharedManager];
+  RKObjectMapping *authTokenMapping = [objectManager.mappingProvider objectMappingForKeyPath:@"auth_token"];
+  [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"/auth-tokens/magstripe.%@/?api_key=%@", tagId, [KBApplication apiKey], nil]
+                             objectMapping:authTokenMapping
+                                  delegate:self];
   
-  KBUser *user = (tagId ? [dataStore_ userWithTagId:tagId error:nil] : nil);
-  if (user) {
-    [self login:user];
-    [[KBApplication sharedDelegate] playSystemSoundGlass];
-    KBDebug(@"RFID=%@, user=%@", tagId, user);
-  }
-  return user;
-}  
+//  if ([NSString gh_isBlank:tagId]) return nil;
+//
+//  KBUser *user = (tagId ? [dataStore_ userWithTagId:tagId error:nil] : nil);
+//  if (user) {
+//    [self login:user];
+//    [[KBApplication sharedDelegate] playSystemSoundGlass];
+//    KBDebug(@"RFID=%@, user=%@", tagId, user);
+//  }
+//  return user;
+  return nil;
+}
 
 - (void)_logout:(BOOL)postNotification {
+  //[tagId_ release];
+  //tagId_ = nil;
   KBUser *previousUser = [self.loginUser retain];
   self.activityTime = 0;
   self.loginUser = nil;
@@ -147,7 +161,7 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   drink.pourTime = [NSDate date];
   drink.status = @"valid";
   //drink.kegId = currentKeg.identifier
-  //drink.authTokenId = self.authId
+  drink.username = username_;
 
   double maxPourAmountInLiters = [[NSUserDefaults standardUserDefaults] gh_doubleForKey:@"MaxPourAmountInLiters" withDefault:2.5];
 
@@ -161,7 +175,7 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
       lastPour.amountValue += amount;
       [dataStore_ addAmount:amount toPour:lastPour error:nil];
       kegPour = lastPour;
-    } else {  
+    } else {
       kegPour = [dataStore_ addKegPour:amount keg:[dataStore_ kegAtPosition:0] user:self.loginUser date:[NSDate date] error:nil];
     }
      */
@@ -190,15 +204,34 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId {
-  KBUser *user = [self loginWithTagId:tagId];
-  if (!user) {
-    [self logout];
-    [[NSNotificationCenter defaultCenter] postNotificationName:KBUnknownTagIdNotification object:tagId];    
-  }
+  [self loginWithTagId:tagId];
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didUpdatePourWithAmount:(double)amount flowRate:(double)flowRate {
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidUpdatePourNotification object:kegProcessing];
+}
+
+#pragma mark RKObjectLoaderDelegate
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+  NSLog(@"Loaded objects: %@", objects);
+  id object = [objects gh_firstObject];
+  if ([object isKindOfClass:[KBRKAuthToken class]]) {
+    username_ = [object username];
+  }
+}
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
+  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+  [alert show];
+  NSLog(@"Hit error: %@", error);
+}
+
+#pragma mark RKRequestDelegate
+
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
+  NSLog(@"%@", response);
+  
 }
 
 @end

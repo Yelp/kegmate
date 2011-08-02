@@ -23,10 +23,11 @@
 }
 
 - (RKRequest *)postToAPIWithDelegate:(id)delegate {
-  NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+  NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                           self.ticks, @"ticks",
                           [KBApplication apiKey], @"api_key",
                           nil];
+  if (self.username) [params setObject:self.username forKey:@"username"];
   return [[RKClient sharedClient] post:@"/taps/kegboard.flow0/" params:params delegate:delegate];
 }
 

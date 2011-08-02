@@ -14,7 +14,20 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKKeg : NSObject { }
+@interface _KBRKKeg : NSObject {
+  NSString *identifier;
+  NSString *typeId;
+  NSString *sizeId;
+  NSString *sizeName;
+  NSNumber *sizeVolumeMl;
+  NSNumber *volumeMlRemain;
+  NSNumber *percentFull;
+  NSDate *startedTime;
+  NSDate *finishedTime;
+  NSString *status;
+  NSString *descriptionText;
+  NSNumber *spilledMl;
+}
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

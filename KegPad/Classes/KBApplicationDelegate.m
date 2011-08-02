@@ -28,6 +28,9 @@
 #import "KBRKBeerType.h"
 #import "KBRKUser.h"
 #import "KBRKDrink.h"
+#import "KBRKBrewer.h"
+#import "KBRKBeerStyle.h"
+#import "KBRKAuthToken.h"
 
 @implementation KBApplicationDelegate
 
@@ -83,7 +86,7 @@
 - (void)initializeRestKit {
   // Initialize RestKit
   // TODO(johnb): Make the host configurable
-  RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://people.yelpcorp.com:16001/api"];
+  RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://people.yelpcorp.com:16000/api"];
 
   // Enable automatic network activity indicator management
   [RKRequestQueue sharedQueue].showsNetworkActivityIndicatorWhenBusy = YES;
@@ -108,8 +111,16 @@
 
   RKObjectMapping *beerTypeMapping = [RKObjectMapping mappingForClass:[KBRKBeerType class]];
   [beerTypeMapping mapKeyPathsToAttributes:
-  @"id", @"identifier",
-  @"name", @"name",
+   @"id", @"identifier",
+   @"name", @"name",
+   @"brewer_id", @"brewerId",
+   @"style_id", @"styleId",
+   @"edition", @"edition",
+   @"calories_oz", @"caloriesOz",
+   @"carbs_oz", @"carbsOz",
+   @"abv", @"abv",
+   @"original_gravity", @"originalGravity",
+   @"specific_gravity", @"specificGravity",
    nil];
   [objectManager.mappingProvider registerMapping:beerTypeMapping withRootKeyPath:@"result.beer_types"];
 
@@ -135,6 +146,39 @@
    @"auth_token_id", @"authTokenId",
    nil];
   [objectManager.mappingProvider registerMapping:drinkMapping withRootKeyPath:@"result.drinks"];
+
+  RKObjectMapping *brewerMapping = [RKObjectMapping mappingForClass:[KBRKBrewer class]];
+  [brewerMapping mapKeyPathsToAttributes:
+   @"id", @"identifier",
+   @"name", @"name",
+   @"country", @"country",
+   @"origin_state", @"originState",
+   @"origin_city", @"originCity",
+   @"production", @"production",
+   @"url", @"url",
+   @"description", @"descriptionText",
+   nil];
+  [objectManager.mappingProvider registerMapping:brewerMapping withRootKeyPath:@"result.brewers"];
+
+  RKObjectMapping *beerStyleMapping = [RKObjectMapping mappingForClass:[KBRKBeerStyle class]];
+  [beerStyleMapping mapKeyPathsToAttributes:
+   @"id", @"identifier",
+   @"name", @"name",
+   nil];
+  [objectManager.mappingProvider registerMapping:beerStyleMapping withRootKeyPath:@"result.beer_styles"];
+
+  RKObjectMapping *authTokenMapping = [RKObjectMapping mappingForClass:[KBRKAuthToken class]];
+  [authTokenMapping mapKeyPathsToAttributes:
+   @"id", @"identifier",
+   @"auth_device", @"authDevice",
+   @"token_value", @"tokenValue",
+   @"username", @"username",
+   @"nice_name", @"niceName",
+   @"enabled", @"enabled",
+   @"created_time", @"createdTime",
+   @"expire_time", @"expireTime",
+   nil];
+  [objectManager.mappingProvider registerMapping:authTokenMapping withRootKeyPath:@"result.auth_token"];
 
   // Set Up Router
 	// The router is responsible for generating the appropriate resource path to

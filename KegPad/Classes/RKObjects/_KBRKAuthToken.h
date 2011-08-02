@@ -9,9 +9,17 @@
 //  An AuthToken object represents a unique key that identifies a user.
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKAuthToken : RKManagedObject { }
+@interface _KBRKAuthToken : NSObject {
+  NSString *identifier;
+  NSString *authDevice;
+  NSString *tokenValue;
+  NSString *username;
+  NSString *niceName;
+  NSNumber *enabled;
+  NSDate *createdTime;
+  NSDate *expireTime;
+}
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

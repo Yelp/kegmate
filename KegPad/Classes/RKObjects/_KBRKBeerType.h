@@ -13,7 +13,18 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKBeerType : NSObject { }
+@interface _KBRKBeerType : NSObject {
+  NSString *identifier;
+  NSString *name;
+  NSString *brewerId;
+  NSString *styleId;
+  NSString *edition;
+  NSNumber *caloriesOz;
+  NSNumber *carbsOz;
+  NSNumber *abv;
+  NSNumber *originalGravity;
+  NSNumber *specificGravity;
+}
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

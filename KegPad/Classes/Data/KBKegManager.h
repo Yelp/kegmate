@@ -27,7 +27,7 @@
  Interfaces to keg processing (may multiple in the future) and the data store; Keeps track of current user, pouring status,
  and triggering all the notifications.
  */
-@interface KBKegManager : NSObject <KBKegProcessingDelegate> {
+@interface KBKegManager : NSObject <KBKegProcessingDelegate, RKObjectLoaderDelegate> {
 
   KBUser *loginUser_;
   NSTimeInterval activityTime_; // The time of last activity from the reference date
@@ -38,6 +38,8 @@
   KBDataStore *dataStore_;
 
   NSTimer *loginTimer_;
+
+  NSString *username_;
 }
 
 @property (readonly, retain, nonatomic) KBUser *loginUser;

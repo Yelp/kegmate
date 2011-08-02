@@ -34,6 +34,8 @@
 
 - (void)login:(NSString *)tagId;
 
+- (void)login;
+
 - (void)pours;
 
 - (void)pourLong;

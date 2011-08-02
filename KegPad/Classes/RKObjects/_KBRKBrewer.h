@@ -8,10 +8,16 @@
 //
 //  A Brewer is a producer of beer.
 
-#import <RestKit/RestKit.h>
-#import <RestKit/CoreData/CoreData.h>
-
-@interface _KBRKBrewer : RKManagedObject { }
+@interface _KBRKBrewer : NSObject {
+  NSString *identifier;
+  NSString *name;
+  NSString *country;
+  NSString *originState;
+  NSString *originCity;
+  NSString *production;
+  NSNumber *url;
+  NSString *descriptionText;
+}
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

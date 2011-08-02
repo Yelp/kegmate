@@ -147,6 +147,11 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		4208435213E3354B00498211 /* KBRKBeerStylesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4208435113E3354B00498211 /* KBRKBeerStylesViewController.m */; };
+		4208435713E3359C00498211 /* _KBRKBeerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4208435413E3359C00498211 /* _KBRKBeerStyle.m */; };
+		4208435813E3359C00498211 /* KBRKBeerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4208435613E3359C00498211 /* KBRKBeerStyle.m */; };
+		4208435D13E34AB200498211 /* _KBRKAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4208435A13E34AB100498211 /* _KBRKAuthToken.m */; };
+		4208435E13E34AB200498211 /* KBRKAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4208435C13E34AB100498211 /* KBRKAuthToken.m */; };
 		4225C334138240F50065FEE5 /* _KBBeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C319138240F50065FEE5 /* _KBBeer.m */; };
 		4225C335138240F50065FEE5 /* _KBKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C31B138240F50065FEE5 /* _KBKeg.m */; };
 		4225C336138240F50065FEE5 /* _KBKegPour.m in Sources */ = {isa = PBXBuildFile; fileRef = 4225C31D138240F50065FEE5 /* _KBKegPour.m */; };
@@ -196,6 +201,9 @@
 		429B0AAC120386EE00C36F76 /* St_Bernardus_Tripel.png in Resources */ = {isa = PBXBuildFile; fileRef = 429B0AAB120386EE00C36F76 /* St_Bernardus_Tripel.png */; };
 		42A0BA43138259E300D6186B /* _KBRKKeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0BA42138259E300D6186B /* _KBRKKeg.m */; };
 		42BEC81213E28AF8004ABA0F /* KBBeerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEC81113E28AF8004ABA0F /* KBBeerEditViewController.m */; };
+		42BEC81913E32A41004ABA0F /* KBRKBrewersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEC81813E32A41004ABA0F /* KBRKBrewersViewController.m */; };
+		42BEC81E13E32DD5004ABA0F /* _KBRKBrewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEC81B13E32DD3004ABA0F /* _KBRKBrewer.m */; };
+		42BEC81F13E32DD5004ABA0F /* KBRKBrewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEC81D13E32DD4004ABA0F /* KBRKBrewer.m */; };
 		42C9846013825C140072A896 /* RKSeedDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42C9845F13825C140072A896 /* RKSeedDatabase.sqlite */; };
 		42CF4BE51380BEEC0097753C /* KBRKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CF4BE41380BEEC0097753C /* KBRKViewController.m */; };
 		42CF4BEE1380C62F0097753C /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF4BE91380C62F0097753C /* libRestKitCoreData.a */; };
@@ -514,6 +522,16 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* KegPad_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KegPad_Prefix.pch; sourceTree = "<group>"; };
+		4208435013E3354B00498211 /* KBRKBeerStylesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeerStylesViewController.h; sourceTree = "<group>"; };
+		4208435113E3354B00498211 /* KBRKBeerStylesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeerStylesViewController.m; sourceTree = "<group>"; };
+		4208435313E3359C00498211 /* _KBRKBeerStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKBeerStyle.h; sourceTree = "<group>"; };
+		4208435413E3359C00498211 /* _KBRKBeerStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKBeerStyle.m; sourceTree = "<group>"; };
+		4208435513E3359C00498211 /* KBRKBeerStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBeerStyle.h; sourceTree = "<group>"; };
+		4208435613E3359C00498211 /* KBRKBeerStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBeerStyle.m; sourceTree = "<group>"; };
+		4208435913E34AB100498211 /* _KBRKAuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKAuthToken.h; sourceTree = "<group>"; };
+		4208435A13E34AB100498211 /* _KBRKAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKAuthToken.m; sourceTree = "<group>"; };
+		4208435B13E34AB100498211 /* KBRKAuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKAuthToken.h; sourceTree = "<group>"; };
+		4208435C13E34AB100498211 /* KBRKAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKAuthToken.m; sourceTree = "<group>"; };
 		4225C318138240F50065FEE5 /* _KBBeer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBBeer.h; sourceTree = "<group>"; };
 		4225C319138240F50065FEE5 /* _KBBeer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBBeer.m; sourceTree = "<group>"; };
 		4225C31A138240F50065FEE5 /* _KBKeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBKeg.h; sourceTree = "<group>"; };
@@ -594,6 +612,12 @@
 		42A0BA42138259E300D6186B /* _KBRKKeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKKeg.m; sourceTree = "<group>"; };
 		42BEC81013E28AF8004ABA0F /* KBBeerEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBeerEditViewController.h; sourceTree = "<group>"; };
 		42BEC81113E28AF8004ABA0F /* KBBeerEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBeerEditViewController.m; sourceTree = "<group>"; };
+		42BEC81713E32A41004ABA0F /* KBRKBrewersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBrewersViewController.h; sourceTree = "<group>"; };
+		42BEC81813E32A41004ABA0F /* KBRKBrewersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBrewersViewController.m; sourceTree = "<group>"; };
+		42BEC81A13E32DD3004ABA0F /* _KBRKBrewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKBrewer.h; sourceTree = "<group>"; };
+		42BEC81B13E32DD3004ABA0F /* _KBRKBrewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBRKBrewer.m; sourceTree = "<group>"; };
+		42BEC81C13E32DD4004ABA0F /* KBRKBrewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKBrewer.h; sourceTree = "<group>"; };
+		42BEC81D13E32DD4004ABA0F /* KBRKBrewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBRKBrewer.m; sourceTree = "<group>"; };
 		42C9845F13825C140072A896 /* RKSeedDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = RKSeedDatabase.sqlite; path = Resources/RKSeedDatabase.sqlite; sourceTree = SOURCE_ROOT; };
 		42CF4BAF1380BC5F0097753C /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		42CF4BE31380BEEC0097753C /* KBRKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRKViewController.h; sourceTree = "<group>"; };
@@ -886,8 +910,6 @@
 				42956A6813E1FACD00209781 /* Deprecated */,
 				00C1147112111B75009C9B51 /* KBAdminViewController.h */,
 				00C1147212111B75009C9B51 /* KBAdminViewController.m */,
-				00C114AB121121BA009C9B51 /* KBFetchedResultsViewController.h */,
-				00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */,
 				42CF4BE31380BEEC0097753C /* KBRKViewController.h */,
 				42CF4BE41380BEEC0097753C /* KBRKViewController.m */,
 				4225C40C138245E80065FEE5 /* KBRKBeerTypesViewController.h */,
@@ -896,8 +918,6 @@
 				00AA3F401255B3B400CB3F6B /* KBRKBeerTypeEditViewController.m */,
 				42CF4C9A1380D15F0097753C /* KBRKKegsViewController.h */,
 				42CF4C9B1380D15F0097753C /* KBRKKegsViewController.m */,
-				00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */,
-				00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */,
 				007551831250554700C5538C /* KBSimulatorViewController.h */,
 				007551841250554700C5538C /* KBSimulatorViewController.m */,
 				007B78C3137A3BE3000F8040 /* KBAdminLoginViewController.h */,
@@ -910,6 +930,10 @@
 				42956A7C13E2079E00209781 /* KBRKUsersViewController.m */,
 				42956A7E13E20A4D00209781 /* KBRKKegEditViewController.h */,
 				42956A7F13E20A4E00209781 /* KBRKKegEditViewController.m */,
+				42BEC81713E32A41004ABA0F /* KBRKBrewersViewController.h */,
+				42BEC81813E32A41004ABA0F /* KBRKBrewersViewController.m */,
+				4208435013E3354B00498211 /* KBRKBeerStylesViewController.h */,
+				4208435113E3354B00498211 /* KBRKBeerStylesViewController.m */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -1184,6 +1208,18 @@
 		4225C3B7138243350065FEE5 /* RKObjects */ = {
 			isa = PBXGroup;
 			children = (
+				4208435913E34AB100498211 /* _KBRKAuthToken.h */,
+				4208435A13E34AB100498211 /* _KBRKAuthToken.m */,
+				4208435B13E34AB100498211 /* KBRKAuthToken.h */,
+				4208435C13E34AB100498211 /* KBRKAuthToken.m */,
+				4208435313E3359C00498211 /* _KBRKBeerStyle.h */,
+				4208435413E3359C00498211 /* _KBRKBeerStyle.m */,
+				4208435513E3359C00498211 /* KBRKBeerStyle.h */,
+				4208435613E3359C00498211 /* KBRKBeerStyle.m */,
+				42BEC81A13E32DD3004ABA0F /* _KBRKBrewer.h */,
+				42BEC81B13E32DD3004ABA0F /* _KBRKBrewer.m */,
+				42BEC81C13E32DD4004ABA0F /* KBRKBrewer.h */,
+				42BEC81D13E32DD4004ABA0F /* KBRKBrewer.m */,
 				423F976513E26B3F00D10061 /* _KBRKThermoLog.h */,
 				423F976613E26B3F00D10061 /* _KBRKThermoLog.m */,
 				423F976713E26B3F00D10061 /* KBRKThermoLog.h */,
@@ -1196,7 +1232,6 @@
 				42956A7613E2046200209781 /* _KBRKUser.m */,
 				42956A7713E2046300209781 /* KBRKUser.h */,
 				42956A7813E2046300209781 /* KBRKUser.m */,
-				42C9845F13825C140072A896 /* RKSeedDatabase.sqlite */,
 				42956A6F13E1FBDE00209781 /* _KBRKBeerType.h */,
 				42956A7013E1FBDE00209781 /* _KBRKBeerType.m */,
 				42956A7113E1FBDE00209781 /* KBRKBeerType.h */,
@@ -1205,6 +1240,7 @@
 				42956A5C13E1E5A800209781 /* KBRKKeg.m */,
 				42A0BA41138259E300D6186B /* _KBRKKeg.h */,
 				42A0BA42138259E300D6186B /* _KBRKKeg.m */,
+				42C9845F13825C140072A896 /* RKSeedDatabase.sqlite */,
 				425F840D13824EE600309065 /* KBRKDataModel.xcdatamodeld */,
 			);
 			path = RKObjects;
@@ -1226,6 +1262,10 @@
 		42956A6813E1FACD00209781 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
+				00AA3F3C1255B3A600CB3F6B /* KBUserEditViewController.h */,
+				00AA3F3D1255B3A600CB3F6B /* KBUserEditViewController.m */,
+				00C114AB121121BA009C9B51 /* KBFetchedResultsViewController.h */,
+				00C114AC121121BA009C9B51 /* KBFetchedResultsViewController.m */,
 				42BEC81013E28AF8004ABA0F /* KBBeerEditViewController.h */,
 				42BEC81113E28AF8004ABA0F /* KBBeerEditViewController.m */,
 				00AA3F9D1255B9B400CB3F6B /* KBKegEditViewController.h */,
@@ -1592,6 +1632,14 @@
 				423F976913E26B4000D10061 /* _KBRKThermoLog.m in Sources */,
 				423F976A13E26B4000D10061 /* KBRKThermoLog.m in Sources */,
 				42BEC81213E28AF8004ABA0F /* KBBeerEditViewController.m in Sources */,
+				42BEC81913E32A41004ABA0F /* KBRKBrewersViewController.m in Sources */,
+				42BEC81E13E32DD5004ABA0F /* _KBRKBrewer.m in Sources */,
+				42BEC81F13E32DD5004ABA0F /* KBRKBrewer.m in Sources */,
+				4208435213E3354B00498211 /* KBRKBeerStylesViewController.m in Sources */,
+				4208435713E3359C00498211 /* _KBRKBeerStyle.m in Sources */,
+				4208435813E3359C00498211 /* KBRKBeerStyle.m in Sources */,
+				4208435D13E34AB200498211 /* _KBRKAuthToken.m in Sources */,
+				4208435E13E34AB200498211 /* KBRKAuthToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,7 +34,7 @@
 
 @interface KBUserEditViewController : KBUIFormViewController { 
   KBUIFormTextField *firstNameField_;
-  KBUIFormTextField *lastNameField_;  
+  KBUIFormTextField *lastNameField_;
   KBUIFormTextField *tagField_;
   KBUIFormSwitch * isAdminField_;
 }

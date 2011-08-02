@@ -11,12 +11,16 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKUser : NSObject { }
+@interface _KBRKUser : NSObject {
+  NSString *username;
+  NSString *mugshotUrl;
+  NSNumber *isActive;
+}
 
 //! Unique identifier for the user.
-@property (retain, nonatomic) NSNumber *username;
+@property (retain, nonatomic) NSString *username;
 //! URL to the mugshot for this user.
-@property (retain, nonatomic) NSNumber *mugshotUrl;
+@property (retain, nonatomic) NSString *mugshotUrl;
 //! True if this is an active user.
 @property (retain, nonatomic) NSNumber *isActive;
 

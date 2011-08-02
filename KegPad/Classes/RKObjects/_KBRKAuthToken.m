@@ -12,14 +12,14 @@
 
 @implementation _KBRKAuthToken
 
-@dynamic identifier;
-@dynamic authDevice;
-@dynamic tokenValue;
-@dynamic username;
-@dynamic niceName;
-@dynamic enabled;
-@dynamic createdTime;
-@dynamic expireTime;
+@synthesize identifier;
+@synthesize authDevice;
+@synthesize tokenValue;
+@synthesize username;
+@synthesize niceName;
+@synthesize enabled;
+@synthesize createdTime;
+@synthesize expireTime;
 
 #pragma mark RKObjectMappable methods
 

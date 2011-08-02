@@ -9,9 +9,11 @@
 //  A BeerStyle describes a particular style of beer.
 
 #import <RestKit/RestKit.h>
-//#import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKBeerStyle : NSObject { }
+@interface _KBRKBeerStyle : NSObject {
+  NSString *identifier;
+  NSString *name;
+}
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;

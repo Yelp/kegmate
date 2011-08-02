@@ -30,7 +30,8 @@
     kegManagerSimulator_ = [[KBKegManagerSimulator alloc] initWithKegProcessor:[KBApplication kegManager]];
     [self addForm:[KBUIForm formWithTitle:@"Simulate temperature and pour" text:@"" target:kegManagerSimulator_ action:@selector(temperatureAndPour) showDisclosure:NO]];
     [self addForm:[KBUIForm formWithTitle:@"Simulate temperatures (multiple)" text:@"" target:kegManagerSimulator_ action:@selector(temperatures) showDisclosure:NO]];
-    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Admin)" text:nil target:kegManagerSimulator_ action:@selector(login:) context:@"ADMIN" showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate Pour (james)" text:@"" target:kegManagerSimulator_ action:@selector(pourJames) showDisclosure:NO]];
+    [self addForm:[KBUIForm formWithTitle:@"Simulate login (Admin)" text:nil target:kegManagerSimulator_ action:@selector(login) showDisclosure:NO]];
     [self addForm:[KBUIForm formWithTitle:@"Simulate unknown tag" text:@"" target:kegManagerSimulator_ action:@selector(unknownTag) showDisclosure:NO]];
     [self addForm:[KBUIForm formWithTitle:@"Simulate pours (multiple)" text:@"" target:kegManagerSimulator_ action:@selector(pours) showDisclosure:NO]];
     [self addForm:[KBUIForm formWithTitle:@"Simulate pours (multiple short)" text:@"" target:kegManagerSimulator_ action:@selector(poursShort) showDisclosure:NO]];

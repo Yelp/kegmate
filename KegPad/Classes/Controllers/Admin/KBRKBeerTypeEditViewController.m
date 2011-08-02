@@ -41,50 +41,64 @@
     nameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Name" text:nil] retain];
     [nameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:nameField_];
-    infoField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Info" text:nil] retain];
-    [self addForm:infoField_];
-    typeField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Type" text:nil] retain];
-    [self addForm:typeField_];
+
+    brewerField_ = [[KBUIFormListSelect formListSelectWithTitle:@"Brewer" values:nil selectedValue:nil target:self action:@selector(_brewerSelect) context:nil] retain];
+    [self addForm:brewerField_];
+
+    styleField_ = [[KBUIFormListSelect formListSelectWithTitle:@"Style" values:nil selectedValue:nil target:self action:@selector(_styleSelect) context:nil] retain];
+    [self addForm:styleField_];
+
     abvField_ = [[KBUIFormTextField formTextFieldWithTitle:@"ABV" text:nil] retain];
     [self addForm:abvField_];
-    countryField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Country" text:nil] retain];
-    [self addForm:countryField_];
 
     imageNameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Image" text:nil] retain];
     [self addForm:imageNameField_ section:1];
     [self addForm:[KBUIForm formWithTitle:@"Choose image from photo library" text:@"" target:self action:@selector(_selectFromPhotoLibrary) showDisclosure:NO] section:1];
 
-    [self addForm:[KBUIForm formWithTitle:@"Google Image Search in Safari (Exits KegPad)" text:@"" target:self action:@selector(_googleImageSearch) showDisclosure:YES] section:2];
+    [self addForm:[KBUIForm formWithTitle:@"Google Image Search in Safari" text:@"" target:self action:@selector(_googleImageSearch) showDisclosure:YES] section:2];
   }
   return self;
 }
 
 - (void)dealloc {
   [nameField_ release];
-  [typeField_ release];
-  [infoField_ release];
+  [brewerField_ release];
+  [styleField_ release];
   [abvField_ release];
-  [countryField_ release];
   [imageNameField_ release];
-  [_beerEditId release];
+  [beerEditId_ release];
   [super dealloc];
 }
 
 - (void)setBeerType:(KBRKBeerType *)beerType {
-  [_beerEditId autorelease];
-  _beerEditId = [beerType.identifier retain];
+  [beerEditId_ autorelease];
+  beerEditId_ = [beerType.identifier retain];
   nameField_.text = beerType.name;
-  //infoField_.text = beer.info;
-  //typeField_.text = beer.type;
+  brewerField_.text = beerType.brewerId;
+  styleField_.text = beerType.styleId;
   abvField_.text = [NSString stringWithFormat:@"%0.2f", [beerType.abv floatValue]];
-  // Country Info
-  //countryField_.text = beer.country;
   //imageNameField_.text = beer.imageName;
 }
 
 - (BOOL)validate {
   NSString *name = nameField_.textField.text;
   return (!([NSString gh_isBlank:name]));
+}
+
+- (void)_brewerSelect {
+  KBRKBrewersViewController *brewersViewController = [[KBRKBrewersViewController alloc] init];
+  [brewersViewController refresh];
+  brewersViewController.delegate = self;
+  [self.navigationController pushViewController:brewersViewController animated:YES];
+  [brewersViewController release];
+}
+
+- (void)_styleSelect {
+  KBRKBeerStylesViewController *beerStylesViewController = [[KBRKBeerStylesViewController alloc] init];
+  [beerStylesViewController refresh];
+  beerStylesViewController.delegate = self;
+  [self.navigationController pushViewController:beerStylesViewController animated:YES];
+  [beerStylesViewController release];
 }
 
 - (void)_updateNavigationItem {
@@ -97,24 +111,21 @@
 
 - (void)_save {
   if (![self validate]) return;
-  
+
   NSString *name = nameField_.textField.text;
-  NSString *info = infoField_.textField.text;
-  NSString *type = typeField_.textField.text;
-  NSString *country = countryField_.textField.text;
-  NSString *imageName = imageNameField_.textField.text;
+  //NSString *imageName = imageNameField_.textField.text;
   float abv = [abvField_.textField.text floatValue];
   
-  NSString *identifier = _beerEditId;
+  NSString *identifier = beerEditId_;
   if (!identifier) identifier = name;
 
-  NSError *error = nil;
   KBRKBeerType *beerType = [[KBRKBeerType alloc] init];
   beerType.identifier = identifier;
   beerType.name = name;
   beerType.abv = [NSNumber numberWithFloat:abv];
+
+  //NSError *error = nil;
   //KBBeer *beer = [[KBApplication dataStore] addOrUpdateBeerWithId:identifier name:name info:info type:type country:country imageName:imageName abv:abv error:&error];
-    
   //if (!beer) {
   //  [self showError:error];
   //  return;
@@ -178,6 +189,19 @@
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
   [_imagePickerPopoverController release];
   _imagePickerPopoverController = nil;
+}
+
+#pragma mark KBRKBrewersViewControllerDelegate
+
+- (void)brewersViewController:(KBRKBrewersViewController *)brewersViewController didSelectBrewer:(KBRKBrewer *)brewer {
+  brewerField_.selectedValue = brewer.identifier;
+}
+
+#pragma mark KBRKBeerStylesViewControllerDelegate
+
+- (void)beerStylesViewController:(KBRKBeerStylesViewController *)beerStylesViewController didSelectBeerStyle:(KBRKBeerStyle *)beerStyle {
+  styleField_.selectedValue = beerStyle.identifier;
+  [self.navigationController popToViewController:self animated:YES];
 }
 
 @end

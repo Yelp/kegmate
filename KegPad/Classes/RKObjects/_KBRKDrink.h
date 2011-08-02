@@ -13,7 +13,20 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKDrink : NSObject { }
+@interface _KBRKDrink : NSObject {
+  NSString *identifier;
+  NSNumber *ticks;
+  NSNumber *volumeMl;
+  NSString * sessionId;
+  NSDate *pourTime;
+  NSNumber *duration;
+  NSString * status;
+  NSString * kegId;
+  NSString * userId;
+  NSString * authTokenId;
+  // Only used for post
+  NSString * username;
+}
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;
@@ -35,5 +48,7 @@
 @property (retain, nonatomic) NSString *userId;
 //! The AuthToken used to pour the drink, or null if not known.
 @property (retain, nonatomic) NSString *authTokenId;
+
+@property (retain, nonatomic) NSString *username;
 
 @end

@@ -28,6 +28,8 @@
 #import "KBTwitterAdminViewController.h"
 #import "KBSettingsViewController.h"
 #import "KBRKKegsViewController.h"
+#import "KBRKBrewersViewController.h"
+#import "KBRKBeerStylesViewController.h"
 
 @implementation KBAdminNavigationController
 

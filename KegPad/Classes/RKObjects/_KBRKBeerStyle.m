@@ -15,19 +15,4 @@
 @synthesize identifier;
 @synthesize name;
 
-#pragma mark RKObjectMappable methods
-
-+ (NSDictionary*)elementToPropertyMappings {
-  return [NSDictionary dictionaryWithKeysAndObjects:
-          @"id", @"identifier",
-          @"name", @"name",
-          nil];
-}
-
-+ (NSString*)primaryKeyProperty {
-  return @"identifier";
-}
-
-#pragma mark -
-
 @end

@@ -12,22 +12,18 @@
 
 @implementation _KBRKKeg
 
-@synthesize identifier=_identifier, typeId=_typeId, sizeId=_sizeId, sizeName=_sizeName, sizeVolumeMl=_sizeVolumeMl, volumeMlRemain=_volumeMlRemain, percentFull=_percentFull, startedTime=_startedTime,
-finishedTime=_finishedTime, status=_status, descriptionText=_descriptionText, spilledMl=_spilledMl;
-/*
-@dynamic identifier;
-@dynamic typeId;
-@dynamic sizeId;
-@dynamic sizeName;
-@dynamic sizeVolumeMl;
-@dynamic volumeMlRemain;
-@dynamic percentFull;
-@dynamic startedTime;
-@dynamic finishedTime;
-@dynamic status;
-@dynamic descriptionText;
-@dynamic spilledMl;
-*/
+@synthesize identifier;
+@synthesize typeId;
+@synthesize sizeId;
+@synthesize sizeName;
+@synthesize sizeVolumeMl;
+@synthesize volumeMlRemain;
+@synthesize percentFull;
+@synthesize startedTime;
+@synthesize finishedTime;
+@synthesize status;
+@synthesize descriptionText;
+@synthesize spilledMl;
 
 #pragma mark -
 

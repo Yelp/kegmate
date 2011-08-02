@@ -11,4 +11,6 @@
 
 @interface KBRKAuthToken : _KBRKAuthToken { }
 
+- (RKRequest *)getWithDelegate:(id)delegate;
+
 @end

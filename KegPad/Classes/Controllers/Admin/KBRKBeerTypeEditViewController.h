@@ -22,7 +22,10 @@
 
 #import "KBUIFormViewController.h"
 #import "KBUIFormTextField.h"
+#import "KBUIFormListSelect.h"
 #import "KBRKBeerType.h"
+#import "KBRKBrewersViewController.h"
+#import "KBRKBeerStylesViewController.h"
 
 @class KBRKBeerTypeEditViewController;
 
@@ -30,15 +33,16 @@
 - (void)beerEditViewController:(KBRKBeerTypeEditViewController *)beerEditViewController didSaveBeerType:(KBRKBeerType *)beerType;
 @end
 
-@interface KBRKBeerTypeEditViewController : KBUIFormViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate> { 
+@interface KBRKBeerTypeEditViewController : KBUIFormViewController <UIImagePickerControllerDelegate,
+UINavigationControllerDelegate, UIPopoverControllerDelegate, KBRKBrewersViewControllerDelegate,
+KBRKBeerStylesViewControllerDelegate> { 
   KBUIFormTextField *nameField_;
-  KBUIFormTextField *typeField_;  
-  KBUIFormTextField *infoField_;
+  KBUIFormListSelect *brewerField_;
+  KBUIFormListSelect *styleField_;
   KBUIFormTextField *abvField_;
-  KBUIFormTextField *countryField_;
+
+  NSString *beerEditId_;
   KBUIFormTextField *imageNameField_;
-  
-  NSString *_beerEditId;
   UIPopoverController *_imagePickerPopoverController;
 }
 

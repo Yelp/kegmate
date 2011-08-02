@@ -22,6 +22,8 @@
 @synthesize kegId;
 @synthesize userId;
 @synthesize authTokenId;
+// Only used for post
+@synthesize username;
 
 #pragma mark -
 

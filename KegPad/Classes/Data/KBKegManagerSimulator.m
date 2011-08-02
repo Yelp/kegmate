@@ -58,9 +58,11 @@
 }
 
 - (void)login:(NSString *)tagId {
-  KBUser *user = [kegManager_.dataStore userWithTagId:tagId error:nil];
-  KBDebug(@"User: %@", user);
-  [kegManager_ login:user];
+  [kegManager_ kegProcessing:kegManager_.processing didReceiveRFIDTagId:tagId];
+}
+
+- (void)login {
+  [self login:@"ADMIN"];
 }
 
 - (void)unknownTag {  
@@ -74,6 +76,14 @@
 
 - (void)pours {
   [self login:@"ADMIN"];
+  [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
+  [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
+  [[kegManager_ gh_proxyAfterDelay:8] kegProcessingDidStartPour:kegManager_.processing];
+  [[kegManager_ gh_proxyAfterDelay:9] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
+}
+
+- (void)pourJames {
+  [self login:@"JAMES"];
   [[kegManager_ gh_proxyAfterDelay:2] kegProcessingDidStartPour:kegManager_.processing];
   [[kegManager_ gh_proxyAfterDelay:3] kegProcessing:kegManager_.processing didEndPourWithAmount:[self randomAmount]];   
   [[kegManager_ gh_proxyAfterDelay:8] kegProcessingDidStartPour:kegManager_.processing];

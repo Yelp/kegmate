@@ -7,8 +7,15 @@
 //
 
 #import "KBRKAuthToken.h"
-
+#import "KBApplication.h"
 
 @implementation KBRKAuthToken
+
+- (RKRequest *)getWithDelegate:(id)delegate {
+  NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [KBApplication apiKey], @"api_key",
+                          nil];
+  return [[RKClient sharedClient] get:[NSString stringWithFormat:@"/auth-tokens/magstripe.%@/", self.identifier] queryParams:params delegate:delegate];
+}
 
 @end

@@ -9,6 +9,6 @@
 #import "KBRKViewController.h"
 #import "KBUserEditViewController.h"
 
-@interface KBRKUsersViewController : KBRKViewController <KBUserEditViewControllerDelegate>
+@interface KBRKUsersViewController : KBRKViewController //<KBUserEditViewControllerDelegate>
 
 @end

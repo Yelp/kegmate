@@ -27,7 +27,7 @@
 
 - (void)_add {
   KBUserEditViewController *userEditViewController = [[KBUserEditViewController alloc] init];
-  userEditViewController.delegate = self;
+  //userEditViewController.delegate = self;
   [self.navigationController pushViewController:userEditViewController animated:YES];
   [userEditViewController release];
 }
@@ -39,8 +39,7 @@
 }
 
 - (UITableViewCell *)cell:(UITableViewCell *)cell forObject:(id)obj {
-  cell.textLabel.text = [obj fullName];
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"Tag Id: %@, Volume poured: %@", [obj tagId], [obj pouredDescription]];
+  cell.textLabel.text = [obj username];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   return cell;
 }
@@ -59,9 +58,10 @@
 
 #pragma mark KBUserEditViewControllerDelegate
 
-- (void)userEditViewController:(KBUserEditViewController *)userEditViewController didSaveUser:(KBUser *)user { 
+/*
+- (void)userEditViewController:(KBRKUserEditViewController *)userEditViewController didSaveUser:(KBRKUser *)user { 
   [self.navigationController popToViewController:self animated:YES];
 }
-
+*/
 
 @end

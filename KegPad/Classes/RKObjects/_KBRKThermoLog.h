@@ -11,7 +11,12 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 
-@interface _KBRKThermoLog : NSObject { }
+@interface _KBRKThermoLog : NSObject {
+  NSString *identifier;
+  NSString *sensorId;
+  NSNumber *temperatureC;
+  NSDate *recordTime;
+}
 
 //! An opaque, unique identifier for this object.
 @property (retain, nonatomic) NSString *identifier;
