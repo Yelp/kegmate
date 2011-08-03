@@ -12,7 +12,7 @@
 
 @implementation PBRService
 
-@synthesize connections=_connections;
+@synthesize connections=_connections, server=_server;
 
 - (id)init {
   if ((self = [super init])) {

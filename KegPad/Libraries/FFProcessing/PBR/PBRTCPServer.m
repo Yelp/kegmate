@@ -52,17 +52,20 @@
 
 #import "PBRTCPServer.h"
 #import "PBRDefines.h"
+#import "PBRStreamUtils.h"
+
 
 NSString *const PBRTCPServerErrorDomain = @"PBRTCPServerErrorDomain";
 
 @interface PBRTCPServer ()
 @property (retain, nonatomic) NSNetService *netService;
-@property (assign) uint16_t port;
+@property (assign, nonatomic) uint16_t port;
+@property (retain, nonatomic) NSString *address;
 @end
 
 @implementation PBRTCPServer
 
-@synthesize delegate=_delegate, netService=_netService, port=_port;
+@synthesize delegate=_delegate, netService=_netService, port=_port, address=_address;
 
 - (void)dealloc {
   [self stop];
@@ -148,8 +151,7 @@ static void PBRTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType 
 	NSData *addr = [(NSData *)CFSocketCopyAddress(_ipv4socket) autorelease];
 	memcpy(&addr4, [addr bytes], [addr length]);
 	self.port = ntohs(addr4.sin_port);
-  PBRDebug(@"Started on port: %d", (NSUInteger)self.port);
-	
+  PBRDebug(@"Port: %d", self.port);
 	
   // set up the run loop sources for the sockets
   CFRunLoopRef cfrl = CFRunLoopGetCurrent();
@@ -170,12 +172,10 @@ static void PBRTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType 
 		CFRelease(_ipv4socket);
 		_ipv4socket = NULL;
 	}
-	
-	
   return YES;
 }
 
-- (BOOL)enableBonjourWithDomain:(NSString*)domain applicationProtocol:(NSString*)protocol name:(NSString*)name {
+- (BOOL)enableBonjourWithDomain:(NSString *)domain applicationProtocol:(NSString *)protocol name:(NSString* )name {
 	if (![domain length])
 		domain = @""; //Will use default Bonjour registration doamins, typically just ".local"
 	if (![name length])

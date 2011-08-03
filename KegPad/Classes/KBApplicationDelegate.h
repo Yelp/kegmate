@@ -44,7 +44,7 @@
   KBKegManager *kegManager_;
   KBTwitterShare *twitterShare_;
   
-  PBRAVCaptureService *videoServer_;
+  PBRAVCaptureService *captureService_;
   
   BOOL animating_;
 }
@@ -52,6 +52,7 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, readonly) KBKegManager *kegManager;
 @property (nonatomic, readonly) KBTwitterShare *twitterShare;
+@property (nonatomic, readonly) PBRAVCaptureService *captureService;
 
 - (void)setKeg:(KBKeg *)keg;
 

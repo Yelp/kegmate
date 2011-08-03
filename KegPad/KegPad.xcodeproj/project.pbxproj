@@ -84,6 +84,8 @@
 		008668A313E89869008E48BD /* FFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A113E89869008E48BD /* FFPlayerView.m */; };
 		008668A713E898DE008E48BD /* FFGLImaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A613E898DE008E48BD /* FFGLImaging.m */; };
 		008668A813E898DE008E48BD /* FFGLImaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A613E898DE008E48BD /* FFGLImaging.m */; };
+		008668CE13E92303008E48BD /* FFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A113E89869008E48BD /* FFPlayerView.m */; };
+		008668D113E9BAB0008E48BD /* KegTimeHostEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668D013E9BAB0008E48BD /* KegTimeHostEditViewController.m */; };
 		0089620E137F199F007748CD /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0089620D137F199F007748CD /* Shared.xcconfig */; };
 		00896222137F32DD007748CD /* KBFlowIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00896221137F32DD007748CD /* KBFlowIndicator.xib */; };
 		0089623A137F40AA007748CD /* KBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00896239137F40AA007748CD /* KBAboutViewController.xib */; };
@@ -177,8 +179,6 @@
 		00CA85D913E360FD008DA12B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85D813E360FD008DA12B /* main.m */; };
 		00CA85DC13E360FD008DA12B /* KegTimeClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85DB13E360FD008DA12B /* KegTimeClientAppDelegate.m */; };
 		00CA85DF13E360FD008DA12B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00CA85DD13E360FD008DA12B /* MainWindow.xib */; };
-		00CA85E213E360FD008DA12B /* KegTimeClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CA85E113E360FD008DA12B /* KegTimeClientViewController.m */; };
-		00CA85E513E360FD008DA12B /* KegTimeClientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00CA85E313E360FD008DA12B /* KegTimeClientViewController.xib */; };
 		00CB546E1294D9D50056FE12 /* 90_Minute_IPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB54691294D9D50056FE12 /* 90_Minute_IPA.png */; };
 		00CB546F1294D9D50056FE12 /* Punkin_Ale.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546A1294D9D50056FE12 /* Punkin_Ale.png */; };
 		00CB54701294D9D50056FE12 /* Orchard_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 00CB546B1294D9D50056FE12 /* Orchard_White.png */; };
@@ -425,6 +425,8 @@
 		008668A213E89869008E48BD /* FFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPlayerView.h; sourceTree = "<group>"; };
 		008668A513E898DE008E48BD /* FFGLImaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGLImaging.h; sourceTree = "<group>"; };
 		008668A613E898DE008E48BD /* FFGLImaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGLImaging.m; sourceTree = "<group>"; };
+		008668CF13E9BAAF008E48BD /* KegTimeHostEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KegTimeHostEditViewController.h; sourceTree = "<group>"; };
+		008668D013E9BAB0008E48BD /* KegTimeHostEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KegTimeHostEditViewController.m; sourceTree = "<group>"; };
 		0089620D137F199F007748CD /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		00896221137F32DD007748CD /* KBFlowIndicator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBFlowIndicator.xib; sourceTree = "<group>"; };
 		00896239137F40AA007748CD /* KBAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBAboutViewController.xib; sourceTree = "<group>"; };
@@ -506,9 +508,6 @@
 		00CA85DA13E360FD008DA12B /* KegTimeClientAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KegTimeClientAppDelegate.h; sourceTree = "<group>"; };
 		00CA85DB13E360FD008DA12B /* KegTimeClientAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KegTimeClientAppDelegate.m; sourceTree = "<group>"; };
 		00CA85DE13E360FD008DA12B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		00CA85E013E360FD008DA12B /* KegTimeClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KegTimeClientViewController.h; sourceTree = "<group>"; };
-		00CA85E113E360FD008DA12B /* KegTimeClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KegTimeClientViewController.m; sourceTree = "<group>"; };
-		00CA85E413E360FD008DA12B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KegTimeClientViewController.xib; sourceTree = "<group>"; };
 		00CB54691294D9D50056FE12 /* 90_Minute_IPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 90_Minute_IPA.png; sourceTree = "<group>"; };
 		00CB546A1294D9D50056FE12 /* Punkin_Ale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Punkin_Ale.png; sourceTree = "<group>"; };
 		00CB546B1294D9D50056FE12 /* Orchard_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orchard_White.png; sourceTree = "<group>"; };
@@ -751,8 +750,8 @@
 		000C944D13E10BAD009B1B1E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				008668A113E89869008E48BD /* FFPlayerView.m */,
 				008668A213E89869008E48BD /* FFPlayerView.h */,
+				008668A113E89869008E48BD /* FFPlayerView.m */,
 				000C944E13E10BAD009B1B1E /* FFReaderView.h */,
 				000C944F13E10BAD009B1B1E /* FFReaderView.m */,
 				000C945013E10BAD009B1B1E /* FFReaderViewController.h */,
@@ -1076,6 +1075,8 @@
 				00CA85B613E23A2A008DA12B /* KBKegTimeSearchViewController.m */,
 				00CA85B713E23A2A008DA12B /* KBKegTimeViewController.h */,
 				00CA85B813E23A2A008DA12B /* KBKegTimeViewController.m */,
+				008668CF13E9BAAF008E48BD /* KegTimeHostEditViewController.h */,
+				008668D013E9BAB0008E48BD /* KegTimeHostEditViewController.m */,
 			);
 			path = KegTime;
 			sourceTree = "<group>";
@@ -1095,9 +1096,6 @@
 				00CA85DA13E360FD008DA12B /* KegTimeClientAppDelegate.h */,
 				00CA85DB13E360FD008DA12B /* KegTimeClientAppDelegate.m */,
 				00CA85DD13E360FD008DA12B /* MainWindow.xib */,
-				00CA85E013E360FD008DA12B /* KegTimeClientViewController.h */,
-				00CA85E113E360FD008DA12B /* KegTimeClientViewController.m */,
-				00CA85E313E360FD008DA12B /* KegTimeClientViewController.xib */,
 				00CA85D213E360FD008DA12B /* Supporting Files */,
 			);
 			path = KegTimeClient;
@@ -1436,7 +1434,6 @@
 			files = (
 				00CA85D613E360FD008DA12B /* InfoPlist.strings in Resources */,
 				00CA85DF13E360FD008DA12B /* MainWindow.xib in Resources */,
-				00CA85E513E360FD008DA12B /* KegTimeClientViewController.xib in Resources */,
 				00BD698A13E36B5000D0587F /* Icon-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1536,7 +1533,6 @@
 			files = (
 				00CA85D913E360FD008DA12B /* main.m in Sources */,
 				00CA85DC13E360FD008DA12B /* KegTimeClientAppDelegate.m in Sources */,
-				00CA85E213E360FD008DA12B /* KegTimeClientViewController.m in Sources */,
 				00BD695613E363BD00D0587F /* FFAVCaptureSessionReader.m in Sources */,
 				00BD695713E363C500D0587F /* FFGLDrawable.m in Sources */,
 				00BD695913E363CF00D0587F /* FFTypes.m in Sources */,
@@ -1568,6 +1564,7 @@
 				00BD698713E369D800D0587F /* GTMBase64.m in Sources */,
 				00BD698813E369DA00D0587F /* GTMLogger.m in Sources */,
 				008668A813E898DE008E48BD /* FFGLImaging.m in Sources */,
+				008668CE13E92303008E48BD /* FFPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1688,6 +1685,7 @@
 				00CA85BA13E23A2A008DA12B /* KBKegTimeViewController.m in Sources */,
 				008668A313E89869008E48BD /* FFPlayerView.m in Sources */,
 				008668A713E898DE008E48BD /* FFGLImaging.m in Sources */,
+				008668D113E9BAB0008E48BD /* KegTimeHostEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1708,14 +1706,6 @@
 				00CA85DE13E360FD008DA12B /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		00CA85E313E360FD008DA12B /* KegTimeClientViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00CA85E413E360FD008DA12B /* en */,
-			);
-			name = KegTimeClientViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -10,6 +10,8 @@
 
 #import "KBKegTimeViewController.h"
 #import "PBRDefines.h"
+#import "KBApplication.h"
+#import "PBRStreamUtils.h"
 
 
 @implementation KBKegTimeSearchNavigationController
@@ -56,11 +58,29 @@
 - (void)dealloc {
   _searchService.delegate = nil;
   [_searchService release];
+  [_footerLabel release];
   [super dealloc];
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  if (!_footerLabel) {
+    _footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    _footerLabel.backgroundColor = [UIColor clearColor];
+    _footerLabel.textAlignment = UITextAlignmentCenter;
+  }
+  self.tableView.tableFooterView = _footerLabel;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  PBRAVCaptureService *captureService = [[KBApplication sharedDelegate] captureService];
+  _footerLabel.text = @"";
+  if (captureService) {
+    NSString *address = [PBRStreamUtils ipv4Address];
+    _footerLabel.text = [NSString stringWithFormat:@"%@:%d", address, captureService.port];
+  }
+  
   if (!_searchService) {
     [self _refresh];
   }

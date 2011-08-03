@@ -21,10 +21,12 @@
 
 #import "KBKegManager.h"
 #import "KBTwitterShare.h"
+#import "PBRAVCaptureService.h"
 
 @protocol KBApplicationDelegate <UIApplicationDelegate>
 - (KBKegManager *)kegManager;
 - (KBTwitterShare *)twitterShare;
+- (PBRAVCaptureService *)captureService;
 - (void)playSystemSoundGlass;
 @end
 

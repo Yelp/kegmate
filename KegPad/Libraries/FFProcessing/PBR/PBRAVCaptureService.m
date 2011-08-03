@@ -22,6 +22,14 @@
   return [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] > 0;
 }
 
+- (NSUInteger)port {
+  return self.server.port;
+}
+
+- (NSString *)address {
+  return self.server.address;
+}
+
 - (void)didAcceptConnection:(PBRConnection *)connection {
   [self startStreamingVideo];
 }

@@ -17,6 +17,12 @@
 
 + (BOOL)containsCurrentAddress:(NSSet *)addresses;
 
++ (NSString *)addressFromData:(NSData *)data;
+
++ (NSArray *)currentAddresses;
+
++ (NSString *)ipv4Address;
+
 + (NSSet *)addressStringsFromNetService:(NSNetService *)netService;
 
 @end

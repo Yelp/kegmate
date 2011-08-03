@@ -10,7 +10,7 @@
 #import "PBRStreamDefines.h"
 #import "PBRDefines.h"
 
-#define MAX_MESSAGE_SIZE (200 * 1024)
+#define MAX_MESSAGE_SIZE (100 * 1024)
 
 @interface PBRAVCaptureClient ()
 @property (retain, nonatomic) NSNetService *service;
@@ -92,6 +92,7 @@
   PBRDebug(@"Resetting");
   _messageLength = 0;
   _messageIndex = 0;
+  [self reconnect];
 }
 
 - (void)connectionDidClose:(PBRConnection *)connection {

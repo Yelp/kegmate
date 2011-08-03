@@ -19,6 +19,7 @@
 }
 
 @property (readonly, nonatomic) NSArray */*of PBRConnection*/connections;
+@property (readonly, nonatomic) PBRTCPServer *server;
 
 - (BOOL)start:(NSError **)error;
 - (void)stop;
