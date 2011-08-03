@@ -30,6 +30,6 @@
 
 - (BOOL)search;
 
-- (void)stopSearch;
+- (void)stop;
 
 @end

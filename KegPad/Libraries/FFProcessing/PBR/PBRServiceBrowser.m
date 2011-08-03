@@ -17,12 +17,12 @@
 @synthesize delegate=_delegate, searching=_searching;
 
 - (void)dealloc {
-  [self stopSearch];
+  [self stop];
   [super dealloc];
 }
 
 - (BOOL)search {
-  PBRDebug(@"Searching bonjour");
+  PBRDebug(@"Starting service browser");
   if (!_serviceBrowser) {
     _serviceBrowser = [[NSNetServiceBrowser alloc] init];
     [_serviceBrowser setDelegate:self];
@@ -32,13 +32,8 @@
   return YES;
 }
 
-- (void)stopResolvingService:(NSNetService *)service {
-  [service stop];
-  [service setDelegate:nil];
-  [_resolvingServices removeObject:service];
-}
-
-- (void)stopSearch {
+- (void)stop {
+  PBRDebug(@"Stopping service browser");
   for (NSNetService *service in _resolvingServices) {
     [service setDelegate:nil];
   }
@@ -46,10 +41,17 @@
   [_resolvingServices release];
   _resolvingServices = nil;
   
+  [_serviceBrowser setDelegate:nil];
   [_serviceBrowser stop];
   [_serviceBrowser release];
   _serviceBrowser = nil;
   _searching = NO;
+}
+
+- (void)stopResolvingService:(NSNetService *)service {
+  [service stop];
+  [service setDelegate:nil];
+  [_resolvingServices removeObject:service];
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didFindService:(NSNetService *)netService moreComing:(BOOL)moreComing {
@@ -90,7 +92,6 @@
 - (void)netService:(NSNetService *)netService didNotResolve:(NSDictionary *)errorInfo {
   PBRDebug(@"Did not resolve, %@", errorInfo);
   [self stopResolvingService:netService];
-  [self stopSearch];
   //[_delegate searchService:self didError:nil]; // TODO(gabe): Create NSError
 }
 
@@ -98,12 +99,12 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didNotSearch:(NSDictionary *)errorInfo {
   PBRDebug(@"Did not search, %@", errorInfo);
-  // NSNetServicesCollisionError
-  [self stopSearch];
+  [self stop];
   [_delegate searchService:self didError:nil]; // TODO(gabe): Create NSError
 }
 
 - (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)netServiceBrowser {
+  [self stop];
   _searching = NO;
 }
 

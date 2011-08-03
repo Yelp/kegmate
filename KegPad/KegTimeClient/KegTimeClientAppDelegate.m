@@ -19,7 +19,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+  //[application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
   _viewController = [[KBKegTimeSearchNavigationController alloc] init];
   _viewController.kegTimeSearchViewController.navigationItem.leftBarButtonItem = nil;
   _viewController.navigationBar.tintColor = [UIColor blackColor];

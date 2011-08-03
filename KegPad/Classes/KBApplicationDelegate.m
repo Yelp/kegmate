@@ -27,11 +27,11 @@
 
 @implementation KBApplicationDelegate
 
-@synthesize window=window_, kegManager=kegManager_, twitterShare=twitterShare_;
+@synthesize window=window_, kegManager=kegManager_, twitterShare=twitterShare_, captureService=captureService_;
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [videoServer_ release];
+  [captureService_ release];
   [twitterShare_ release];
   [kegManager_ release];
   [store_ release];
@@ -119,9 +119,9 @@
   
   // Start video server
   if ([PBRAVCaptureService isSupported]) {
-    videoServer_ = [[PBRAVCaptureService alloc] init];
-    [videoServer_ start:nil];
-    [videoServer_ enableBonjourWithName:nil];
+    captureService_ = [[PBRAVCaptureService alloc] init];
+    [captureService_ start:nil];
+    [captureService_ enableBonjourWithName:nil];
   }
   return YES;
 }

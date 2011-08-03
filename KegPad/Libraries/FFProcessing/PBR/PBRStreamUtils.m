@@ -51,6 +51,17 @@
   return address;
 }
 
++ (NSString *)ipv4Address {
+  // TODO(gabe): Fix
+  return [[[NSHost currentHost] addresses] gh_objectAtIndex:1];
+}
+
++ (NSArray *)currentAddresses {
+  NSHost *currentHost = [NSHost currentHost];
+  //PBRDebug(@"Our addresses: %@", [currentHost addresses]);
+  return [currentHost addresses];
+}
+
 + (BOOL)containsCurrentAddress:(NSSet *)addresses {
   // TODO(gabe): NSHost is private
   NSHost *currentHost = [NSHost currentHost];
@@ -63,17 +74,24 @@
   return NO;
 }
 
++ (NSString *)addressFromData:(NSData *)data {
+  char addressBuffer[100];    
+  struct sockaddr_in *socketAddress = (struct sockaddr_in *)[data bytes];    
+  int sockFamily = socketAddress->sin_family;    
+  if (sockFamily == AF_INET || sockFamily == AF_INET6) {      
+    const char *addressStr = inet_ntop(sockFamily, &(socketAddress->sin_addr), addressBuffer, sizeof(addressBuffer));      
+    //int port = ntohs(socketAddress->sin_port);      
+    return [NSString stringWithUTF8String:addressStr];
+  }
+  return nil;
+}
+
 + (NSSet *)addressStringsFromNetService:(NSNetService *)netService {
   NSMutableSet *addresses = [[NSMutableSet alloc] init];
   for (NSData *data in [netService addresses]) {
-    char addressBuffer[100];    
-    struct sockaddr_in *socketAddress = (struct sockaddr_in *)[data bytes];    
-    int sockFamily = socketAddress->sin_family;    
-    if (sockFamily == AF_INET || sockFamily == AF_INET6) {
-      
-      const char *addressStr = inet_ntop(sockFamily, &(socketAddress->sin_addr), addressBuffer, sizeof(addressBuffer));      
-      //int port = ntohs(socketAddress->sin_port);      
-      [addresses addObject:[NSString stringWithUTF8String:addressStr]];
+    NSString *address = [self addressFromData:data];
+    if (address) {
+      [addresses addObject:address];
     }
   }
   return addresses;

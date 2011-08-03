@@ -69,9 +69,13 @@ typedef enum {
 @private
 	id _delegate;
   uint16_t _port;
+  NSString *_address;
 	CFSocketRef _ipv4socket;
 	NSNetService *_netService;
 }
+
+@property (readonly, assign, nonatomic) uint16_t port;
+@property (readonly, retain, nonatomic) NSString *address;
 
 - (BOOL)start:(NSError **)error;
 - (BOOL)stop;

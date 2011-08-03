@@ -21,4 +21,7 @@
 
 + (BOOL)isSupported;
 
+- (NSString *)address;
+- (NSUInteger)port;
+
 @end
