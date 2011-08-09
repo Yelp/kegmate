@@ -12,13 +12,8 @@
 
 #define MAX_MESSAGE_SIZE (100 * 1024)
 
-@interface PBRAVCaptureClient ()
-@property (retain, nonatomic) NSNetService *service;
-@end
 
 @implementation PBRAVCaptureClient
-
-@synthesize service=_service;
 
 - (id)init {
   if ((self = [super init])) {
@@ -30,17 +25,21 @@
 - (void)dealloc {
   [self close];
   free(_messageData);
-  [_service release];
   // TODO(gabe): Who is releasing these?
   //FFVFrameRelease(_frame);
   [super dealloc];
 }
 
-- (void)close {
-  _connection.delegate = nil;
-  [_connection close];
-  [_connection release];
-  _connection = nil;
+- (void)close { }
+
+- (BOOL)connect {
+  return NO;
+}
+
+- (void)reconnect {
+  PBRDebug(@"Reconnecting");
+  [self close];
+  [self connect];
 }
 
 - (FFVFrameRef)nextFrame:(NSError **)error {  
@@ -52,22 +51,6 @@
 - (BOOL)start:(NSError **)error { 
   // Nothing to do
   return YES;
-}
-
-- (void)connectToService:(NSNetService *)service {
-  [self close];  
-  self.service = service;
-  if (service) {
-    _connection = [[PBRConnection alloc] init];
-    _connection.delegate = self;
-    [_connection openWithService:service];
-  }
-}
-
-- (void)reconnect {
-  PBRDebug(@"Reconnecting");
-  [self close];
-  [self connectToService:_service];
 }
 
 - (void)receivedMessage:(uint8_t *)messageData length:(uint32_t)length {
@@ -92,10 +75,6 @@
   PBRDebug(@"Resetting");
   _messageLength = 0;
   _messageIndex = 0;
-  [self reconnect];
-}
-
-- (void)connectionDidClose:(PBRConnection *)connection {
   [self reconnect];
 }
 
@@ -150,10 +129,6 @@
     _messageIndex += length;
     //PBRDebug(@"[RECV] Message: %d/%d", _messageIndex, _messageLength);
   }
-}
-
-- (void)connection:(PBRConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length {
-  [self readBytes:bytes length:length];
 }
 
 

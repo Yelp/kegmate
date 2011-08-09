@@ -9,7 +9,6 @@
 #import "FFReader.h"
 
 #import "FFUtils.h"
-#import "FFEncoderOptions.h"
 
 @implementation FFReader
 

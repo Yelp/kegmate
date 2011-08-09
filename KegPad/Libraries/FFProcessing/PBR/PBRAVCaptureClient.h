@@ -7,13 +7,9 @@
 //
 
 #import "FFReader.h"
-#import "PBRConnection.h"
 
 
-@interface PBRAVCaptureClient : NSObject <FFReader, PBRConnectionDelegate> {
-  
-  NSNetService *_service;
-  PBRConnection *_connection;
+@interface PBRAVCaptureClient : NSObject <FFReader> {
   
   FFVFrameRef _frame;
   uint8_t *_frameData;
@@ -24,6 +20,12 @@
   uint8_t *_messageData;
 }
 
-- (void)connectToService:(NSNetService *)netService;
+- (void)readBytes:(uint8_t *)bytes length:(NSUInteger)length;
+
+- (void)close;
+
+- (BOOL)connect;
+
+- (void)reconnect;
 
 @end

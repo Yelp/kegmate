@@ -10,6 +10,7 @@
 
 #import "PBRServiceBrowser.h"
 #import "KBUIFormTextField.h"
+#import "KegTimeHostEditViewController.h"
 
 
 @class KBKegTimeSearchViewController;
@@ -24,7 +25,7 @@
 @end
 
 
-@interface KBKegTimeSearchViewController : KBUIFormViewController <PBRServiceBrowserDelegate> {
+@interface KBKegTimeSearchViewController : KBUIFormViewController <PBRServiceBrowserDelegate, KegTimeHostEditViewControllerDelegate> {
   PBRServiceBrowser *_searchService;
   
   UILabel *_footerLabel;

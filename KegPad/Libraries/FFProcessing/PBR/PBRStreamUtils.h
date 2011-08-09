@@ -13,7 +13,7 @@
 
 }
 
-+ (NSData *)addressForHost:(NSString *)host port:(int)port;
++ (NSData *)dataForIPAddress:(NSString *)address;
 
 + (BOOL)containsCurrentAddress:(NSSet *)addresses;
 

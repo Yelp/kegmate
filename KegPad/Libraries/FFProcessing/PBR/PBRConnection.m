@@ -8,6 +8,7 @@
 
 #import "PBRConnection.h"
 #import "PBRDefines.h"
+#import "PBRStreamUtils.h"
 
 
 @interface PBRConnection ()
@@ -51,6 +52,7 @@
 }  
 
 - (BOOL)openWithInputStream:(NSInputStream *)inputStream outputStream:(NSOutputStream *)outputStream {
+  [self _close];
   self.input = inputStream;
   self.output = outputStream;
   [self _openStreams];
@@ -58,6 +60,7 @@
 }
 
 - (BOOL)openWithService:(NSNetService *)service {
+  [self _close];
   self.serviceName = service.name;
   BOOL success = [service getInputStream:&_input outputStream:&_output];
   PBRDebug(@"Open net service: %d (%@)", success, service);
@@ -66,6 +69,24 @@
     return YES;
   }
   PBRDebug(@"Failed to open net service");
+  return NO;
+}
+
+- (BOOL)openWithName:(NSString *)name ipAddress:(NSString *)ipAddress port:(SInt32)port {
+  [self _close];
+  self.serviceName = name;
+  NSData *address = [PBRStreamUtils dataForIPAddress:ipAddress];
+  
+  CFHostRef host = CFHostCreateWithAddress(NULL, (CFDataRef)address);
+  CFReadStreamRef readStream;
+  CFWriteStreamRef writeStream;
+  CFStreamCreatePairWithSocketToCFHost(NULL, host, port, &readStream, &writeStream);
+  _input = (NSInputStream *)readStream;
+  _output = (NSOutputStream *)writeStream;
+  if (_input && _output) {
+    [self _openStreams];
+    return YES;
+  }
   return NO;
 }
 
@@ -148,7 +169,7 @@
       break;
     }
     case NSStreamEventErrorOccurred: {
-      PBRDebug(@"Connection error");
+      PBRDebug(@"Connection error: %@", [[stream streamError] gh_fullDescription]);
       [self close];
       break;
     }

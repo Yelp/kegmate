@@ -1,0 +1,5 @@
+#!/bin/sh
+
+SCRIPT_PATH=$(cd `dirname $0` && pwd)
+cd $SCRIPT_PATH
+mogenerator --model $SCRIPT_PATH/../Resources/KegTime.xcdatamodeld/KegTime.xcdatamodel && mv _*.m _*.h $SCRIPT_PATH/../Classes/Models/KegTime && rm *.m *.h

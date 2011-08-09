@@ -86,6 +86,10 @@
 		008668A813E898DE008E48BD /* FFGLImaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A613E898DE008E48BD /* FFGLImaging.m */; };
 		008668CE13E92303008E48BD /* FFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668A113E89869008E48BD /* FFPlayerView.m */; };
 		008668D113E9BAB0008E48BD /* KegTimeHostEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668D013E9BAB0008E48BD /* KegTimeHostEditViewController.m */; };
+		008668F313E9E9A6008E48BD /* _KBKegTimeHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668F213E9E9A6008E48BD /* _KBKegTimeHost.m */; };
+		008668F413E9E9A6008E48BD /* _KBKegTimeHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668F213E9E9A6008E48BD /* _KBKegTimeHost.m */; };
+		008668F713E9E9D9008E48BD /* KBKegTimeHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668F513E9E9D9008E48BD /* KBKegTimeHost.m */; };
+		008668F813E9E9D9008E48BD /* KBKegTimeHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 008668F513E9E9D9008E48BD /* KBKegTimeHost.m */; };
 		0089620E137F199F007748CD /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0089620D137F199F007748CD /* Shared.xcconfig */; };
 		00896222137F32DD007748CD /* KBFlowIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00896221137F32DD007748CD /* KBFlowIndicator.xib */; };
 		0089623A137F40AA007748CD /* KBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00896239137F40AA007748CD /* KBAboutViewController.xib */; };
@@ -233,6 +237,12 @@
 		00D54CDD1202BCC100F76724 /* controls_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 00D54CDB1202BCC100F76724 /* controls_bg.jpg */; };
 		00D54CDF1202BDB200F76724 /* controls_top_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54CDE1202BDB200F76724 /* controls_top_dial.png */; };
 		00D54E601202DBD500F76724 /* top_gradient_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D54E5F1202DBD500F76724 /* top_gradient_mask.png */; };
+		00D83A0413F0E9DC00913229 /* PBRAVCaptureServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D83A0313F0E9DC00913229 /* PBRAVCaptureServiceClient.m */; };
+		00D83A0513F0E9DC00913229 /* PBRAVCaptureServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D83A0313F0E9DC00913229 /* PBRAVCaptureServiceClient.m */; };
+		00D83A0813F0EB3600913229 /* PBRAVCaptureRemoteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D83A0713F0EB3600913229 /* PBRAVCaptureRemoteClient.m */; };
+		00D83A0913F0EB3600913229 /* PBRAVCaptureRemoteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D83A0713F0EB3600913229 /* PBRAVCaptureRemoteClient.m */; };
+		00D83A1113F0F12B00913229 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D83A1013F0F12B00913229 /* CFNetwork.framework */; };
+		00D83A1213F0F13700913229 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D83A1013F0F12B00913229 /* CFNetwork.framework */; };
 		00DDE98F12037E3600B24BA5 /* KBLeaderboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */; };
 		00E654581256565B00E4CE9E /* GHKitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E654571256565B00E4CE9E /* GHKitIOS.framework */; };
 		00E655701256638400E4CE9E /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E6556E1256638400E4CE9E /* GTMLogger.m */; };
@@ -338,6 +348,7 @@
 		0017BA3E120249D600269CDA /* KBKegTemperature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTemperature.h; sourceTree = "<group>"; };
 		0017BA3F120249D600269CDA /* KBKegTemperature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTemperature.m; sourceTree = "<group>"; };
 		00189D7113D8D3E300A1EECB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		001D3EDC13ECBFA500C79E89 /* KegPad-3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "KegPad-3.xcdatamodel"; sourceTree = "<group>"; };
 		004080871284E5D00003B17D /* KegPad-2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "KegPad-2.xcdatamodel"; sourceTree = "<group>"; };
 		004E1B0B12655172004B0AC0 /* admin_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = admin_button.png; sourceTree = "<group>"; };
 		00568FAD1251A493004AF3D1 /* KBUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserView.h; sourceTree = "<group>"; };
@@ -427,6 +438,10 @@
 		008668A613E898DE008E48BD /* FFGLImaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGLImaging.m; sourceTree = "<group>"; };
 		008668CF13E9BAAF008E48BD /* KegTimeHostEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KegTimeHostEditViewController.h; sourceTree = "<group>"; };
 		008668D013E9BAB0008E48BD /* KegTimeHostEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KegTimeHostEditViewController.m; sourceTree = "<group>"; };
+		008668F113E9E9A6008E48BD /* _KBKegTimeHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBKegTimeHost.h; sourceTree = "<group>"; };
+		008668F213E9E9A6008E48BD /* _KBKegTimeHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KBKegTimeHost.m; sourceTree = "<group>"; };
+		008668F513E9E9D9008E48BD /* KBKegTimeHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBKegTimeHost.m; sourceTree = "<group>"; };
+		008668F613E9E9D9008E48BD /* KBKegTimeHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBKegTimeHost.h; sourceTree = "<group>"; };
 		0089620D137F199F007748CD /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		00896221137F32DD007748CD /* KBFlowIndicator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBFlowIndicator.xib; sourceTree = "<group>"; };
 		00896239137F40AA007748CD /* KBAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBAboutViewController.xib; sourceTree = "<group>"; };
@@ -577,6 +592,11 @@
 		00D54CDB1202BCC100F76724 /* controls_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = controls_bg.jpg; sourceTree = "<group>"; };
 		00D54CDE1202BDB200F76724 /* controls_top_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_top_dial.png; sourceTree = "<group>"; };
 		00D54E5F1202DBD500F76724 /* top_gradient_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_gradient_mask.png; sourceTree = "<group>"; };
+		00D83A0213F0E9DC00913229 /* PBRAVCaptureServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRAVCaptureServiceClient.h; sourceTree = "<group>"; };
+		00D83A0313F0E9DC00913229 /* PBRAVCaptureServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRAVCaptureServiceClient.m; sourceTree = "<group>"; };
+		00D83A0613F0EB3500913229 /* PBRAVCaptureRemoteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRAVCaptureRemoteClient.h; sourceTree = "<group>"; };
+		00D83A0713F0EB3600913229 /* PBRAVCaptureRemoteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRAVCaptureRemoteClient.m; sourceTree = "<group>"; };
+		00D83A1013F0F12B00913229 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		00DDE98D12037E3600B24BA5 /* KBLeaderboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBLeaderboardView.h; sourceTree = "<group>"; };
 		00DDE98E12037E3600B24BA5 /* KBLeaderboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBLeaderboardView.m; sourceTree = "<group>"; };
 		00E654571256565B00E4CE9E /* GHKitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHKitIOS.framework; path = Libraries/GHKitIOS.framework; sourceTree = "<group>"; };
@@ -640,6 +660,7 @@
 				00BD696F13E3645300D0587F /* CoreMedia.framework in Frameworks */,
 				00BD696E13E3644200D0587F /* AVFoundation.framework in Frameworks */,
 				00BD697313E3650200D0587F /* CoreFoundation.framework in Frameworks */,
+				00D83A1213F0F13700913229 /* CFNetwork.framework in Frameworks */,
 				00CA85D013E360FC008DA12B /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,6 +669,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D83A1113F0F12B00913229 /* CFNetwork.framework in Frameworks */,
 				000C947F13E11973009B1B1E /* CoreMedia.framework in Frameworks */,
 				000C947D13E1195E009B1B1E /* CoreVideo.framework in Frameworks */,
 				000C947A13E1115C009B1B1E /* AVFoundation.framework in Frameworks */,
@@ -739,6 +761,10 @@
 				00C7A80513E1D67100E359EE /* PBRService.m */,
 				00C7A80713E1E52E00E359EE /* PBRAVCaptureClient.h */,
 				00C7A80813E1E52E00E359EE /* PBRAVCaptureClient.m */,
+				00D83A0213F0E9DC00913229 /* PBRAVCaptureServiceClient.h */,
+				00D83A0313F0E9DC00913229 /* PBRAVCaptureServiceClient.m */,
+				00D83A0613F0EB3500913229 /* PBRAVCaptureRemoteClient.h */,
+				00D83A0713F0EB3600913229 /* PBRAVCaptureRemoteClient.m */,
 				00CA859D13E1F0BD008DA12B /* PBRAVCaptureService.h */,
 				00CA859E13E1F0BD008DA12B /* PBRAVCaptureService.m */,
 				00CA85AE13E224CC008DA12B /* PBRServiceBrowser.h */,
@@ -938,6 +964,17 @@
 			path = FFImaging;
 			sourceTree = "<group>";
 		};
+		008668F013E9E9A6008E48BD /* KegTime */ = {
+			isa = PBXGroup;
+			children = (
+				008668F513E9E9D9008E48BD /* KBKegTimeHost.m */,
+				008668F613E9E9D9008E48BD /* KBKegTimeHost.h */,
+				008668F113E9E9A6008E48BD /* _KBKegTimeHost.h */,
+				008668F213E9E9A6008E48BD /* _KBKegTimeHost.m */,
+			);
+			path = KegTime;
+			sourceTree = "<group>";
+		};
 		0089623E137F4370007748CD /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +989,7 @@
 		008FED091201F0BE00BA5D07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				008668F013E9E9A6008E48BD /* KegTime */,
 				0074ED151266DCB500111C14 /* _KBPourIndex.h */,
 				0074ED141266DCB500111C14 /* _KBPourIndex.m */,
 				0074ED171266DCC800111C14 /* KBPourIndex.h */,
@@ -1323,6 +1361,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00D83A1013F0F12B00913229 /* CFNetwork.framework */,
 				000C947E13E11973009B1B1E /* CoreMedia.framework */,
 				000C947C13E1195D009B1B1E /* CoreVideo.framework */,
 				000C947913E1115C009B1B1E /* AVFoundation.framework */,
@@ -1565,6 +1604,10 @@
 				00BD698813E369DA00D0587F /* GTMLogger.m in Sources */,
 				008668A813E898DE008E48BD /* FFGLImaging.m in Sources */,
 				008668CE13E92303008E48BD /* FFPlayerView.m in Sources */,
+				008668F413E9E9A6008E48BD /* _KBKegTimeHost.m in Sources */,
+				008668F813E9E9D9008E48BD /* KBKegTimeHost.m in Sources */,
+				00D83A0513F0E9DC00913229 /* PBRAVCaptureServiceClient.m in Sources */,
+				00D83A0913F0EB3600913229 /* PBRAVCaptureRemoteClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1686,6 +1729,10 @@
 				008668A313E89869008E48BD /* FFPlayerView.m in Sources */,
 				008668A713E898DE008E48BD /* FFGLImaging.m in Sources */,
 				008668D113E9BAB0008E48BD /* KegTimeHostEditViewController.m in Sources */,
+				008668F313E9E9A6008E48BD /* _KBKegTimeHost.m in Sources */,
+				008668F713E9E9D9008E48BD /* KBKegTimeHost.m in Sources */,
+				00D83A0413F0E9DC00913229 /* PBRAVCaptureServiceClient.m in Sources */,
+				00D83A0813F0EB3600913229 /* PBRAVCaptureRemoteClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1891,8 +1938,9 @@
 			children = (
 				28C3AD890F43EF2300507BA6 /* KegPad.xcdatamodel */,
 				004080871284E5D00003B17D /* KegPad-2.xcdatamodel */,
+				001D3EDC13ECBFA500C79E89 /* KegPad-3.xcdatamodel */,
 			);
-			currentVersion = 004080871284E5D00003B17D /* KegPad-2.xcdatamodel */;
+			currentVersion = 001D3EDC13ECBFA500C79E89 /* KegPad-3.xcdatamodel */;
 			path = KegPad.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
