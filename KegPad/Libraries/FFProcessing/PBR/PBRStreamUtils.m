@@ -27,7 +27,8 @@
 
 @implementation PBRStreamUtils
 
-+ (NSData *)addressForHost:(NSString *)host port:(int)port {
+/*
++ (NSData *)addressInfoForHost:(NSString *)host port:(int)port {
   struct addrinfo hints, *res, *res0;
   
   memset(&hints, 0, sizeof(hints));
@@ -47,8 +48,25 @@
       address = [NSData dataWithBytes:res->ai_addr length:res->ai_addrlen];
     }
   }
-  freeaddrinfo(res0);
+  freeaddrinfo(res0); 
   return address;
+}
+ */
+
++ (NSData *)dataForIPAddress:(NSString *)address {
+  struct addrinfo hints;
+  struct addrinfo *result = NULL;
+  memset(&hints, 0, sizeof(hints));
+  hints.ai_flags = AI_NUMERICHOST;
+  hints.ai_family = PF_UNSPEC;
+  hints.ai_socktype = SOCK_STREAM;
+  hints.ai_protocol = 0;
+  int errorStatus = getaddrinfo([address cStringUsingEncoding:NSASCIIStringEncoding], NULL, &hints, &result);
+  if (errorStatus != 0) return nil;
+  CFDataRef addressRef = CFDataCreate(NULL, (UInt8 *)result->ai_addr, result->ai_addrlen);
+  if (addressRef == nil) return nil;
+  freeaddrinfo(result);
+  return [(NSData *)addressRef autorelease];
 }
 
 + (NSString *)ipv4Address {

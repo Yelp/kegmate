@@ -26,6 +26,7 @@
 #import "KBBeer.h"
 #import "KBKegProcessing.h"
 #import "KBTypes.h"
+#import "KBKegTimeHost.h"
 
 
 #define KBDataStoreCheckError(__ERROR__) do { \
@@ -45,7 +46,11 @@
   NSManagedObjectModel *managedObjectModel_;
   NSPersistentStoreCoordinator *persistentStoreCoordinator_;
   
+  NSString *name_;
+  NSString *path_;
 }
+
+- (id)initWithName:(NSString *)name path:(NSString *)path;
 
 /*!
  Save.
@@ -293,6 +298,7 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error;
  */
 - (float)rateForKegPoursLastHourForUser:(KBUser *)user error:(NSError **)error;
 
+- (KBKegTimeHost *)kegTimeHostWithName:(NSString *)name ipAddress:(NSString *)ipAddress port:(NSInteger)port;
 
 + (NSInteger)timeIndexForForDate:(NSDate *)date timeType:(KBPourIndexTimeType)timeType;
 

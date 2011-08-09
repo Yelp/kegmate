@@ -42,6 +42,8 @@
 
 - (BOOL)openWithInputStream:(NSInputStream *)inputStream outputStream:(NSOutputStream *)outputStream;
 
+- (BOOL)openWithName:(NSString *)name ipAddress:(NSString *)ipAddress port:(SInt32)port;
+
 - (NSInteger)writeBytes:(uint8_t *)bytes length:(NSUInteger)length;
 
 - (BOOL)writeMessage:(NSData *)message;

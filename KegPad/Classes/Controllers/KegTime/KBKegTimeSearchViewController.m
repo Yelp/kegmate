@@ -12,6 +12,7 @@
 #import "PBRDefines.h"
 #import "KBApplication.h"
 #import "PBRStreamUtils.h"
+#import "KBKegTimeHost.h"
 
 
 @implementation KBKegTimeSearchNavigationController
@@ -49,8 +50,7 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(_refresh)] autorelease];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close)] autorelease];
     
-    // For testing
-    //[self addForm:[KBUIForm formWithTitle:@"Camera" text:nil target:self action:@selector(_camera) context:nil showDisclosure:YES] section:3];    
+    [self addForm:[KBUIForm formWithTitle:@"Add Host" text:nil target:self action:@selector(_addHost) context:nil showDisclosure:YES] section:3];    
   }
   return self;
 }
@@ -108,11 +108,29 @@
   [kegTimeViewController release];
 }
 
-- (void)_kegPadSelect:(NSNetService *)netService {
+- (KBKegTimeViewController *)_kegTimeViewController {
   KBKegTimeViewController *kegTimeViewController = [[KBKegTimeViewController alloc] init];
-  [kegTimeViewController setNetService:netService];
+  kegTimeViewController.videoSize = CGSizeMake(540, 720);
   [self.navigationController pushViewController:kegTimeViewController animated:YES];
   [kegTimeViewController release];
+  return kegTimeViewController;
+}
+
+- (void)_kegPadSelectService:(NSNetService *)service {
+  KBKegTimeViewController *kegTimeViewController = [self _kegTimeViewController];
+  [kegTimeViewController connectToService:service];
+}
+
+- (void)_kegPadSelectHost:(KBKegTimeHost *)host {
+  KBKegTimeViewController *kegTimeViewController = [self _kegTimeViewController];
+  [kegTimeViewController connectToHost:host];
+}
+
+- (void)_addHost {
+  KegTimeHostEditViewController *kegTimeHostEditViewController = [[KegTimeHostEditViewController alloc] init];
+  kegTimeHostEditViewController.delegate = self;
+  [self.navigationController pushViewController:kegTimeHostEditViewController animated:YES];
+  [kegTimeHostEditViewController release];
 }
 
 - (void)searchService:(PBRServiceBrowser *)searchService didFindAndResolveService:(NSNetService *)netService {
@@ -125,7 +143,7 @@
   }
   
   KBDebug(@"Adding: %@", netService.name);
-  [self addForm:[KBUIForm formWithTitle:netService.name text:nil target:self action:@selector(_kegPadSelect:) context:netService showDisclosure:YES] section:1];    
+  [self addForm:[KBUIForm formWithTitle:netService.name text:nil target:self action:@selector(_kegPadSelectService:) context:netService showDisclosure:YES] section:1];    
   [self reload];  
 }
 
@@ -133,6 +151,12 @@
   PBRDebug(@"Error: %@", error);
   //[self showAlertWithTitle:@"Error" message:@"We had a problem"]; // TODO(gabe): Real error
   [[_searchService gh_proxyAfterDelay:2] search];
+}
+
+- (void)kegTimeHostEditViewController:(KegTimeHostEditViewController *)kegTimeHostEditViewController didAddHost:(KBKegTimeHost *)host {  
+  [self addForm:[KBUIForm formWithTitle:host.name text:[NSString stringWithFormat:@"%@:%@", host.ipAddress, host.port] target:self action:@selector(_kegPadSelectHost:) context:host showDisclosure:YES] section:2];    
+  [self reload];
+  [self.navigationController popToViewController:self animated:YES];
 }
 
 @end

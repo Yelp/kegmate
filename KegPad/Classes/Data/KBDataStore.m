@@ -28,14 +28,29 @@
 #import "KBKegTemperature.h"
 #import "KBRating.h"
 #import "KBPourIndex.h"
+#import "KBKegTimeHost.h"
 
 
 @implementation KBDataStore
+
+- (id)init {
+  return [self initWithName:@"KegPad" path:@"KegPad.sqlite"];
+}
+
+- (id)initWithName:(NSString *)name path:(NSString *)path {
+  if ((self = [super init])) {
+    name_ = [name retain];
+    path_ = [path retain];
+  }
+  return self;
+}
 
 - (void)dealloc {  
   [managedObjectContext_ release];
   [managedObjectModel_ release];
   [persistentStoreCoordinator_ release];
+  [name_ release];
+  [path_ release];
   [super dealloc];
 }
 
@@ -52,7 +67,7 @@
 
 - (NSManagedObjectModel *)managedObjectModel {  
   if (managedObjectModel_) return managedObjectModel_;
-  NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"KegPad" ofType:@"momd"];
+  NSString *modelPath = [[NSBundle mainBundle] pathForResource:name_ ofType:@"momd"];
   NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
   managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
   return managedObjectModel_;
@@ -62,7 +77,7 @@
   
   if (persistentStoreCoordinator_) return persistentStoreCoordinator_;
   
-  NSString *path = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"KegPad.sqlite"];
+  NSString *path = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:path_];
   KBDebug(@"Path: %@", path);
   NSURL *storeURL = [NSURL fileURLWithPath:path];
   
@@ -441,6 +456,14 @@ imageName:(NSString *)imageName abv:(float)abv error:(NSError **)error {
   NSArray *results = [self executeFetchRequest:fetchRequest error:error];
   [fetchRequest release];
   return [results gh_firstObject];  
+}
+
+- (KBKegTimeHost *)kegTimeHostWithName:(NSString *)name ipAddress:(NSString *)ipAddress port:(NSInteger)port {
+  KBKegTimeHost *host = [NSEntityDescription insertNewObjectForEntityForName:@"KBKegTimeHost" inManagedObjectContext:[self managedObjectContext]];  
+  host.name = name;
+  host.ipAddress = ipAddress;
+  host.portValue = port;  
+  return host;
 }
 
 - (KBRating *)setRating:(KBRatingValue)ratingValue user:(KBUser *)user keg:(KBKeg *)keg error:(NSError **)error {
