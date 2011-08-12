@@ -1,8 +1,8 @@
 //
-//  main.m
-//  KegTimeClient
+//  KBKegTimeHostInfoViewController.h
+//  KegPad
 //
-//  Created by Gabriel Handford on 7/29/11.
+//  Created by Gabriel Handford on 8/13/11.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,12 +19,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
 
-int main(int argc, char *argv[])
-{
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  int retVal = UIApplicationMain(argc, argv, nil, nil);
-  [pool release];
-  return retVal;
+@interface KBKegTimeHostInfoViewController : UIViewController {
+  IBOutlet UITextView *_textView;
 }
+
+@property (readonly, nonatomic) UITextView *textView;
+
+@end

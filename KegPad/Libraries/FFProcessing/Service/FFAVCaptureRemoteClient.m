@@ -1,22 +1,22 @@
 //
-//  PBRAVCaptureRemoteClient.m
+//  FFAVCaptureRemoteClient.m
 //  KegPad
 //
 //  Created by Gabriel Handford on 8/8/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
-#import "PBRAVCaptureRemoteClient.h"
-#import "PBRDefines.h"
+#import "FFAVCaptureRemoteClient.h"
+#import "FFUtils.h"
 
 
-@interface PBRAVCaptureRemoteClient ()
+@interface FFAVCaptureRemoteClient ()
 @property (retain, nonatomic) KBKegTimeHost *host;
 - (void)_closeConnection;
 @end
 
 
-@implementation PBRAVCaptureRemoteClient
+@implementation FFAVCaptureRemoteClient
 
 @synthesize host=_host;
 
@@ -43,18 +43,18 @@
 - (BOOL)connect {
   [self close];  
   if (_host) {
-    _connection = [[PBRConnection alloc] init];
+    _connection = [[FFConnection alloc] init];
     _connection.delegate = self;
     return [_connection openWithName:_host.name ipAddress:_host.ipAddress port:(SInt32)_host.portValue];
   }
   return NO;
 }
 
-- (void)connectionDidClose:(PBRConnection *)connection {
+- (void)connectionDidClose:(FFConnection *)connection {
   [[self gh_proxyAfterDelay:4.0] reconnect];
 }
 
-- (void)connection:(PBRConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length {
+- (void)connection:(FFConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length {
   [self readBytes:bytes length:length];
 }
 

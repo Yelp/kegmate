@@ -1,15 +1,15 @@
 //
-//  PBRAVCaptureClient.h
+//  FFAVCaptureClient.h
 //  KegPad
 //
 //  Created by Gabriel Handford on 7/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
 #import "FFReader.h"
 
 
-@interface PBRAVCaptureClient : NSObject <FFReader> {
+@interface FFAVCaptureClient : NSObject <FFReader> {
   
   FFVFrameRef _frame;
   uint8_t *_frameData;

@@ -44,12 +44,12 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 
 @implementation KBKegManager
 
-@synthesize dataStore=dataStore_, loginUser=loginUser_, processing=processing_;
+@synthesize loginUser=loginUser_, processing=processing_;
 @synthesize activityTime=activityTime_; // Private properties
 
-- (id)init {
+- (id)initWithDataStore:(KBDataStore *)dataStore {
   if ((self = [super init])) {
-    dataStore_ = [[KBDataStore alloc] init];
+    dataStore_ = [dataStore retain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_activityNotification:) name:KBActivityNotification object:nil];
   }
   return self;
@@ -60,6 +60,7 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   [loginTimer_ invalidate];
   processing_.delegate = nil;
   [processing_ release];
+  [dataStore_ release];
   [dataStore_ release];
   [loginUser_ release];
   [super dealloc];

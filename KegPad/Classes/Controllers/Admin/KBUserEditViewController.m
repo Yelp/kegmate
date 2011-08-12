@@ -55,6 +55,7 @@
     [lastNameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:lastNameField_];
     tagField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Tag" text:nil] retain];
+    tagField_.secureTextEntry = YES;
     [tagField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addForm:tagField_];
     isAdminField_ = [[KBUIFormSwitch formSwitchWithTitle:@"Admin" on:NO] retain];

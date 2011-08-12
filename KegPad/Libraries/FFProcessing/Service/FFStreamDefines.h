@@ -1,5 +1,5 @@
 //
-//  PBRStreamDefines.h
+//  FFStreamDefines.h
 //  PBR
 //
 //  Created by Gabriel Handford on 11/18/10.

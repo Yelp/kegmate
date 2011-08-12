@@ -1,17 +1,17 @@
 //
-//  PBRAVCaptureService.m
+//  FFAVCaptureService.m
 //  KegPad
 //
 //  Created by Gabriel Handford on 7/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
-#import "PBRAVCaptureService.h"
-#import "PBRDefines.h"
-#import "PBRStreamDefines.h"
+#import "FFAVCaptureService.h"
+#import "FFUtils.h"
+#import "FFStreamDefines.h"
 
 
-@implementation PBRAVCaptureService
+@implementation FFAVCaptureService
 
 - (void)dealloc {
   [self stopStreamingVideo];
@@ -30,11 +30,11 @@
   return self.server.address;
 }
 
-- (void)didAcceptConnection:(PBRConnection *)connection {
+- (void)didAcceptConnection:(FFConnection *)connection {
   [self startStreamingVideo];
 }
 
-- (void)didCloseConnection:(PBRConnection *)connection {
+- (void)didCloseConnection:(FFConnection *)connection {
   if ([self.connections count] == 0) {
     [self stopStreamingVideo];
   }
@@ -43,7 +43,7 @@
 - (BOOL)startStreamingVideo {
   if (_timer) return NO;
 
-  PBRDebug(@"Starting AV writer");  
+  FFDebug(@"Starting AV writer");  
   _videoCapture = [[FFAVCaptureSessionReader alloc] init];
   [_videoCapture start:nil];
   _timer = [NSTimer scheduledTimerWithTimeInterval:kStreamWriteInterval target:self selector:@selector(writeNextFrameToStream) 
@@ -52,7 +52,7 @@
 }
 
 - (void)stopStreamingVideo {
-  PBRDebug(@"Stopping AV writer");
+  FFDebug(@"Stopping AV writer");
   [_timer invalidate];
   _timer = nil;
   [_videoCapture close];

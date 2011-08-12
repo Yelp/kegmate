@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J3250</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -59,10 +59,9 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string type="base64-UTF8" key="IBUIText">VGhlIEtlZ01hdGXihKIgYW5kIEtlZ1BhZOKEoiBhcmUgYnJvdWdodCB0byB5b3UgYnk6CgogSm9obiBC
-b2lsZXMgKEBqb2huYm9pbGVzKQogQWxleCBEYXZpcyAoQEx4ZHZzKQogR2FicmllbCBIYW5kZm9yZCAo
-QGdhYnJsaCkKIEplZmYgTWlja2xvcyAoQGplZmZtaWNrbG9zKQoKaHR0cDovL2dpdGh1Yi5jb20vWWVs
-cC9rZWdtYXRlA</string>
+						<string type="base64-UTF8" key="IBUIText">VGhlIEtlZ01hdGXihKIgaXMgYnJvdWdodCB0byB5b3UgYnk6CgogSm9obiBCb2lsZXMgKEBqb2huYm9p
+bGVzKQogQWxleCBEYXZpcyAoQEx4ZHZzKQogR2FicmllbCBIYW5kZm9yZCAoQGdhYnJsaCkKIEplZmYg
+TWlja2xvcyAoQGplZmZtaWNrbG9zKQoKaHR0cDovL2dpdGh1Yi5jb20vWWVscC9rZWdtYXRlA</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">HelveticaNeue</string>
 							<double key="NSSize">18</double>
@@ -130,19 +129,20 @@ cC9rZWdtYXRlA</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="107534642"/>
-						<int key="IBUIContentMode">9</int>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">2</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">johnboiles.png</string>
+							<string key="NSResourceName">johnboiles.jpeg</string>
 						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{540, 575}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="742041207"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">2</int>
 					<bytes key="NSRGB">MC44NTQ5MDIwMjkgMC44NjY2NjY3MzQyIDAuODg2Mjc0NTc2MgA</bytes>
@@ -290,14 +290,14 @@ cC9rZWdtYXRlA</string>
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>gabrlh.jpg</string>
 				<string>jeffmicklos.jpg</string>
-				<string>johnboiles.png</string>
+				<string>johnboiles.jpeg</string>
 				<string>lxdvs.jpg</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{128, 128}</string>
+				<string>{218, 218}</string>
 				<string>{72, 72}</string>
-				<string>{100, 100}</string>
+				<string>{375, 500}</string>
 				<string>{72, 72}</string>
 			</object>
 		</object>

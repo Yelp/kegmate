@@ -84,6 +84,8 @@ FFRational FFFindRationalApproximation(float r, long maxden);
 
 double FFAngleRadians(double x, double y);
 
+CGRect FFCGRectConvert(CGRect rect, CGSize size, UIViewContentMode contentMode);
+
 @interface FFUtils : NSObject { }
 
 + (NSString *)documentsDirectory;

@@ -20,6 +20,7 @@
 //
 
 #import "KBKegManagerSimulator.h"
+#import "KBApplication.h"
 
 
 @implementation KBKegManagerSimulator
@@ -58,7 +59,7 @@
 }
 
 - (void)login:(NSString *)tagId {
-  KBUser *user = [kegManager_.dataStore userWithTagId:tagId error:nil];
+  KBUser *user = [[KBApplication dataStore] userWithTagId:tagId error:nil];
   KBDebug(@"User: %@", user);
   [kegManager_ login:user];
 }

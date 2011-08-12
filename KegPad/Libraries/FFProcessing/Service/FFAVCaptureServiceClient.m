@@ -1,21 +1,21 @@
 //
-//  PBRAVCaptureServiceClient.m
+//  FFAVCaptureServiceClient.m
 //  KegPad
 //
 //  Created by Gabriel Handford on 8/8/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
-#import "PBRAVCaptureServiceClient.h"
-#import "PBRDefines.h"
+#import "FFAVCaptureServiceClient.h"
+#import "FFUtils.h"
 
-@interface PBRAVCaptureServiceClient ()
+@interface FFAVCaptureServiceClient ()
 @property (retain, nonatomic) NSNetService *service;
 - (void)_closeConnection;
 @end
 
 
-@implementation PBRAVCaptureServiceClient
+@implementation FFAVCaptureServiceClient
 
 @synthesize service=_service;
 
@@ -46,18 +46,18 @@
 - (BOOL)connect {
   [self _closeConnection];  
   if (_service) {
-    _connection = [[PBRConnection alloc] init];
+    _connection = [[FFConnection alloc] init];
     _connection.delegate = self;
     return [_connection openWithService:_service];
   }
   return NO;
 }
 
-- (void)connectionDidClose:(PBRConnection *)connection {
+- (void)connectionDidClose:(FFConnection *)connection {
   [[self gh_proxyAfterDelay:4.0] reconnect];
 }
 
-- (void)connection:(PBRConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length {
+- (void)connection:(FFConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length {
   [self readBytes:bytes length:length];
 }
 
