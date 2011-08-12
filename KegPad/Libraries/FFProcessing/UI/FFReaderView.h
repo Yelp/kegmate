@@ -18,12 +18,16 @@
 @interface FFReaderView : UIView <FFPlayerViewDelegate> {
   FFPlayerView *_playerView;
   
+  CGSize _videoFrameSize;
+  
   id<FFReaderViewDelegate> _delegate;
 }
 
 @property (assign, nonatomic) id<FFReaderViewDelegate> delegate;
 
 @property (readonly, nonatomic) FFPlayerView *playerView;
+
+@property (assign, nonatomic) CGSize videoFrameSize;
 
 - (void)setReader:(id<FFReader>)reader;
 

@@ -1,8 +1,8 @@
 //
-//  KBKegTimeViewController.h
+//  KBKegTimeHostEditViewController.h
 //  KegPad
 //
-//  Created by Gabriel Handford on 7/28/11.
+//  Created by Gabriel Handford on 8/3/11.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,24 +19,26 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "FFReaderView.h"
-#import "FFAVCaptureClient.h"
-#import "FFAVCaptureSessionReader.h"
+#import "KBUIFormViewController.h"
+#import "KBUIFormTextField.h"
 #import "KBKegTimeHost.h"
 
-@interface KBKegTimeViewController : UIViewController {
-  FFAVCaptureClient *videoServer_;
-  FFReaderView *videoView_;
+
+@class KBKegTimeHostEditViewController;
+
+@protocol KBKegTimeHostEditViewControllerDelegate <NSObject>
+- (void)kegTimeHostEditViewController:(KBKegTimeHostEditViewController *)kegTimeHostEditViewController didAddHost:(KBKegTimeHost *)host;
+@end
+
+
+@interface KBKegTimeHostEditViewController : KBUIFormViewController {
+  KBUIFormTextField *_nameField;
+  KBUIFormTextField *_addressField;
+  KBUIFormTextField *_portField;
   
-  FFAVCaptureSessionReader *videoCapture_;
+  id<KBKegTimeHostEditViewControllerDelegate> _delegate;
 }
 
-- (void)enableCamera;
-
-- (void)close;
-
-- (void)connectToService:(NSNetService *)service;
-
-- (void)connectToHost:(KBKegTimeHost *)host;
+@property (assign, nonatomic) id<KBKegTimeHostEditViewControllerDelegate> delegate;
 
 @end

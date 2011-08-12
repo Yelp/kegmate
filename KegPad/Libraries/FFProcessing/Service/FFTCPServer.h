@@ -1,5 +1,5 @@
 /*
- File: PBRTCPServer.h
+ File: FFTCPServer.h
  Abstract: A TCP server that listens on an arbitrary port.
  Version: 1.7
  
@@ -47,25 +47,25 @@
 
 #import <Foundation/Foundation.h>
 
-@class PBRTCPServer;
+@class FFTCPServer;
 
-NSString * const PBRTCPServerErrorDomain;
+NSString * const FFTCPServerErrorDomain;
 
 typedef enum {
-  kPBRTCPServerCouldNotBindToIPv4Address = 1,
-  kPBRTCPServerCouldNotBindToIPv6Address = 2,
-  kPBRTCPServerNoSocketsAvailable = 3,
-} PBRTCPServerErrorCode;
+  kFFTCPServerCouldNotBindToIPv4Address = 1,
+  kFFTCPServerCouldNotBindToIPv6Address = 2,
+  kFFTCPServerNoSocketsAvailable = 3,
+} FFTCPServerErrorCode;
 
 
-@protocol PBRTCPServerDelegate <NSObject>
+@protocol FFTCPServerDelegate <NSObject>
 @optional
-- (void)serverDidEnableBonjour:(PBRTCPServer *)server withName:(NSString *)name;
-- (void)server:(PBRTCPServer *)server didNotEnableBonjour:(NSDictionary *)errorDict;
-- (void)didAcceptConnectionForServer:(PBRTCPServer *)server address:(NSString *)address inputStream:(NSInputStream *)inputStream outputStream:(NSOutputStream *)outputStream;
+- (void)serverDidEnableBonjour:(FFTCPServer *)server withName:(NSString *)name;
+- (void)server:(FFTCPServer *)server didNotEnableBonjour:(NSDictionary *)errorDict;
+- (void)didAcceptConnectionForServer:(FFTCPServer *)server address:(NSString *)address inputStream:(NSInputStream *)inputStream outputStream:(NSOutputStream *)outputStream;
 @end
 
-@interface PBRTCPServer : NSObject <NSNetServiceDelegate> {
+@interface FFTCPServer : NSObject <NSNetServiceDelegate> {
 @private
 	id _delegate;
   uint16_t _port;
@@ -82,6 +82,6 @@ typedef enum {
 - (BOOL)enableBonjourWithDomain:(NSString*)domain applicationProtocol:(NSString*)protocol name:(NSString*)name; //Pass "nil" for the default local domain - Pass only the application protocol for "protocol" e.g. "myApp"
 - (void)disableBonjour;
 
-@property(assign) id<PBRTCPServerDelegate> delegate;
+@property(assign) id<FFTCPServerDelegate> delegate;
 
 @end

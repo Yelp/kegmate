@@ -1,8 +1,8 @@
 //
-//  KBAboutViewController.m
+//  KBKegTimeHostInfoViewController.m
 //  KegPad
 //
-//  Created by Gabriel Handford on 5/14/11.
+//  Created by Gabriel Handford on 8/13/11.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -19,16 +19,33 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "KBAboutViewController.h"
+#import "KBKegTimeHostInfoViewController.h"
+
+#import "FFStreamUtils.h"
+#import "KBApplication.h"
 
 
-@implementation KBAboutViewController
+@implementation KBKegTimeHostInfoViewController
+
+@synthesize textView=_textView;
 
 - (id)init {  
   if ((self = [self initWithNibName:nil bundle:nil])) {
-    self.title = @"About";
+    self.title = @"Host Info";
   }
   return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  NSMutableString *info = [NSMutableString string];  
+  [info appendFormat:@"Addresses:\n%@\n\n",  [[FFStreamUtils currentAddresses] componentsJoinedByString:@"\n"]];
+  FFAVCaptureService *captureService = [[KBApplication sharedDelegate] captureService];
+  if (captureService) {
+    [info appendFormat:@"Listening on port: %d", captureService.port];
+  }
+  _textView.text = info;
 }
 
 @end

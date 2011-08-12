@@ -1,39 +1,49 @@
 //
-//  PBRServiceBrowser.m
+//  FFServiceBrowser.m
 //  KegPad
 //
 //  Created by Gabriel Handford on 7/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
-#import "PBRServiceBrowser.h"
-#import "PBRDefines.h"
-#import "PBRStreamUtils.h"
+#import "FFServiceBrowser.h"
+#import "FFUtils.h"
+#import "FFStreamUtils.h"
 #include <arpa/inet.h>
 
 
-@implementation PBRServiceBrowser
+@implementation FFServiceBrowser
 
 @synthesize delegate=_delegate, searching=_searching;
 
+- (id)initWithServiceType:(NSString *)serviceType domain:(NSString *)domain {
+  if ((self = [super init])) {
+    _serviceType = [serviceType retain];
+    _domain = [domain retain];
+  }
+  return self;
+}
+
 - (void)dealloc {
   [self stop];
+  [_serviceType release];
+  [_domain release];
   [super dealloc];
 }
 
 - (BOOL)search {
-  PBRDebug(@"Starting service browser");
+  FFDebug(@"Starting service browser");
   if (!_serviceBrowser) {
     _serviceBrowser = [[NSNetServiceBrowser alloc] init];
     [_serviceBrowser setDelegate:self];
   }
-  [_serviceBrowser searchForServicesOfType:@"_kegpad._tcp." inDomain:@"local"];  
+  [_serviceBrowser searchForServicesOfType:_serviceType inDomain:_domain];  
   _searching = YES;
   return YES;
 }
 
 - (void)stop {
-  PBRDebug(@"Stopping service browser");
+  FFDebug(@"Stopping service browser");
   for (NSNetService *service in _resolvingServices) {
     [service setDelegate:nil];
   }
@@ -55,7 +65,7 @@
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didFindService:(NSNetService *)netService moreComing:(BOOL)moreComing {
-  PBRDebug(@"Found service: %@", netService);
+  FFDebug(@"Found service: %@", netService);
   
   if (!_resolvingServices) _resolvingServices = [[NSMutableArray alloc] init];
   [_resolvingServices addObject:netService];  
@@ -66,15 +76,15 @@
 #pragma mark NetService Resolve
 
 - (BOOL)isValidService:(NSNetService *)netService {
-  NSSet *serviceAddresses = [PBRStreamUtils addressStringsFromNetService:netService];
-  PBRDebug(@"Service addresses: %@", serviceAddresses);
+  NSSet *serviceAddresses = [FFStreamUtils addressStringsFromNetService:netService];
+  FFDebug(@"Service addresses: %@", serviceAddresses);
   if ([serviceAddresses count] == 0) {
-    PBRDebug(@"No addresses, skipping");
+    FFDebug(@"No addresses, skipping");
     return NO;
   }
   
-  if ([PBRStreamUtils containsCurrentAddress:serviceAddresses]) {
-    PBRDebug(@"Found ourselves, skipping");
+  if ([FFStreamUtils containsCurrentAddress:serviceAddresses]) {
+    FFDebug(@"Found ourselves, skipping");
     return NO;
   }
 
@@ -82,7 +92,7 @@
 }
 
 - (void)netServiceDidResolveAddress:(NSNetService *)netService {
-  PBRDebug(@"Did resolve address: %@", netService);
+  FFDebug(@"Did resolve address: %@", netService);
   if ([self isValidService:netService]) {
     [_delegate searchService:self didFindAndResolveService:netService];  
   }
@@ -90,7 +100,7 @@
 }
 
 - (void)netService:(NSNetService *)netService didNotResolve:(NSDictionary *)errorInfo {
-  PBRDebug(@"Did not resolve, %@", errorInfo);
+  FFDebug(@"Did not resolve, %@", errorInfo);
   [self stopResolvingService:netService];
   //[_delegate searchService:self didError:nil]; // TODO(gabe): Create NSError
 }
@@ -98,7 +108,7 @@
 #pragma mark NetServiceBrowser Search
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didNotSearch:(NSDictionary *)errorInfo {
-  PBRDebug(@"Did not search, %@", errorInfo);
+  FFDebug(@"Did not search, %@", errorInfo);
   [self stop];
   [_delegate searchService:self didError:nil]; // TODO(gabe): Create NSError
 }

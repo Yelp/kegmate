@@ -1,19 +1,19 @@
 //
-//  PBRConnection.h
+//  FFConnection.h
 //  PBR
 //
 //  Created by Gabriel Handford on 11/19/10.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 
-@class PBRConnection;
+@class FFConnection;
 
-@protocol PBRConnectionDelegate <NSObject>
-- (void)connection:(PBRConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length;
-- (void)connectionDidClose:(PBRConnection *)connection;
+@protocol FFConnectionDelegate <NSObject>
+- (void)connection:(FFConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length;
+- (void)connectionDidClose:(FFConnection *)connection;
 @end
 
-@interface PBRConnection : NSObject <NSStreamDelegate> {
+@interface FFConnection : NSObject <NSStreamDelegate> {
   
   NSString *_serviceName;
   NSOutputStream *_output;
@@ -22,7 +22,7 @@
   uint8_t *_readBuffer;
   NSUInteger _readBufferSize;
   
-  id<PBRConnectionDelegate> _delegate;
+  id<FFConnectionDelegate> _delegate;
   
   // Messages
   uint32_t _headerCommand;
@@ -31,7 +31,7 @@
   NSInteger _messageIndex;
 }
 
-@property (assign, nonatomic) id<PBRConnectionDelegate> delegate;
+@property (assign, nonatomic) id<FFConnectionDelegate> delegate;
 
 @property (readonly, retain, nonatomic) NSString *serviceName;
 @property (retain, nonatomic) NSOutputStream *output;

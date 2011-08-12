@@ -1,12 +1,12 @@
 //
-//  PBRStreamUtils.m
+//  FFStreamUtils.m
 //  PBR
 //
 //  Created by Gabriel Handford on 11/18/10.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 
-#import "PBRStreamUtils.h"
+#import "FFStreamUtils.h"
 
 #import <sys/socket.h>
 #import <netinet/in.h>
@@ -25,7 +25,7 @@
 
 
 
-@implementation PBRStreamUtils
+@implementation FFStreamUtils
 
 /*
 + (NSData *)addressInfoForHost:(NSString *)host port:(int)port {
@@ -69,21 +69,16 @@
   return [(NSData *)addressRef autorelease];
 }
 
-+ (NSString *)ipv4Address {
-  // TODO(gabe): Fix
-  return [[[NSHost currentHost] addresses] gh_objectAtIndex:1];
-}
-
 + (NSArray *)currentAddresses {
   NSHost *currentHost = [NSHost currentHost];
-  //PBRDebug(@"Our addresses: %@", [currentHost addresses]);
+  //FFDebug(@"Our addresses: %@", [currentHost addresses]);
   return [currentHost addresses];
 }
 
 + (BOOL)containsCurrentAddress:(NSSet *)addresses {
   // TODO(gabe): NSHost is private
   NSHost *currentHost = [NSHost currentHost];
-  //PBRDebug(@"Our addresses: %@", [currentHost addresses]);
+  //FFDebug(@"Our addresses: %@", [currentHost addresses]);
   for (NSString *address in [currentHost addresses]) {
     if ([addresses containsObject:address]) {
       return YES;

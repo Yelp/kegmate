@@ -41,8 +41,13 @@
 }
 
 @property (readonly, retain, nonatomic) KBUser *loginUser;
-@property (readonly, retain) KBDataStore *dataStore;
 @property (readonly, nonatomic) KBKegProcessing *processing;
+
+/*!
+ Initialize with the data store.
+ @param dataStore Data store
+ */
+- (id)initWithDataStore:(KBDataStore *)dataStore;
 
 /*!
  Start the processor.

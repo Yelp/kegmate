@@ -1,16 +1,16 @@
 //
-//  PBRService.m
+//  FFService.m
 //  PBR
 //
 //  Created by Gabriel Handford on 11/19/10.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 
-#import "PBRService.h"
-#import "PBRDefines.h"
+#import "FFService.h"
+#import "FFUtils.h"
 
 
-@implementation PBRService
+@implementation FFService
 
 @synthesize connections=_connections, server=_server;
 
@@ -30,10 +30,10 @@
 - (BOOL)start:(NSError **)error {
   NSAssert(!_server, @"Already started");
   
-  _server = [[PBRTCPServer alloc] init];
+  _server = [[FFTCPServer alloc] init];
   _server.delegate = self;
   if (![_server start:nil]) {
-    PBRDebug(@"Couldn't start TCP server");
+    FFDebug(@"Couldn't start TCP server");
     return NO;
   }  
   return YES;
@@ -45,7 +45,7 @@
   [_server release];
   _server = nil;
   
-  for (PBRConnection *connection in _connections) {
+  for (FFConnection *connection in _connections) {
     [connection close];
     connection.delegate = nil;
   }
@@ -56,12 +56,12 @@
   [self stop];
 }
 
-- (BOOL)enableBonjourWithName:(NSString *)name {
-  if (![_server enableBonjourWithDomain:@"local" applicationProtocol:@"_kegpad._tcp." name:name]) {
-    PBRDebug(@"Couldn't enable bonjour");
+- (BOOL)enableBonjourWithDomain:(NSString *)domain serviceType:(NSString *)serviceType name:(NSString *)name {
+  if (![_server enableBonjourWithDomain:domain applicationProtocol:serviceType name:name]) {
+    FFDebug(@"Couldn't enable bonjour");
     return NO;
   }
-  PBRDebug(@"Enabled bonjour");
+  FFDebug(@"Enabled bonjour");
   return YES;
 }
 
@@ -69,10 +69,10 @@
   [_server disableBonjour];
 }
 
-- (void)didAcceptConnectionForServer:(PBRTCPServer *)server address:(NSString *)address inputStream:(NSInputStream *)inputStream outputStream:(NSOutputStream *)outputStream {
-  PBRDebug(@"Accepted connection from %@", address);
+- (void)didAcceptConnectionForServer:(FFTCPServer *)server address:(NSString *)address inputStream:(NSInputStream *)inputStream outputStream:(NSOutputStream *)outputStream {
+  FFDebug(@"Accepted connection from %@", address);
   
-  PBRConnection *connection = [[PBRConnection alloc] init];
+  FFConnection *connection = [[FFConnection alloc] init];
   connection.delegate = self;
   [connection openWithInputStream:inputStream outputStream:outputStream];
   [_connections addObject:connection];
@@ -81,16 +81,16 @@
 }
 
 - (void)writeMessage:(NSData *)message {
-  for (PBRConnection *connection in _connections) {
+  for (FFConnection *connection in _connections) {
     [connection writeMessage:message];
   }
 }
 
 #pragma mark -
 
-- (void)connection:(PBRConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length { }
+- (void)connection:(FFConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length { }
 
-- (void)connectionDidClose:(PBRConnection *)connection {
+- (void)connectionDidClose:(FFConnection *)connection {
   [connection retain];
   [_connections removeObject:connection];
   [self didCloseConnection:connection];
@@ -99,11 +99,11 @@
 
 #pragma mark -
 
-- (void)didAcceptConnection:(PBRConnection *)connection {
+- (void)didAcceptConnection:(FFConnection *)connection {
   // For subclasses
 }
 
-- (void)didCloseConnection:(PBRConnection *)connection {
+- (void)didCloseConnection:(FFConnection *)connection {
   // For subclasses
 }
 

@@ -27,14 +27,14 @@
 
 @implementation KBApplicationDelegate
 
-@synthesize window=window_, kegManager=kegManager_, twitterShare=twitterShare_, captureService=captureService_;
+@synthesize window=window_, kegManager=kegManager_, dataStore=dataStore_, twitterShare=twitterShare_, captureService=captureService_;
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [captureService_ release];
   [twitterShare_ release];
   [kegManager_ release];
-  [store_ release];
+  [dataStore_ release];
   [window_ release];
   displayViewController_.delegate = nil;
   [displayViewController_ release];
@@ -101,27 +101,28 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_unknownTagId:) name:KBUnknownTagIdNotification object:nil];  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_selectUser:) name:KBDidSelectUserNotification object:nil];    
   
-  kegManager_ = [[KBKegManager alloc] init];
+  dataStore_ = [[KBDataStore alloc] init];
+  kegManager_ = [[KBKegManager alloc] initWithDataStore:dataStore_];
   
   twitterShare_ = [[KBTwitterShare alloc] init];
 
   // Set the keg (only 1 keg is currently supported)
-  KBKeg *keg = [kegManager_.dataStore kegAtPosition:0];
+  KBKeg *keg = [dataStore_ kegAtPosition:0];
   if (keg) {
     [self setKeg:keg];
   }
   
   // Setup some defaults
-  [[KBApplication dataStore] addOrUpdateUserWithTagId:@"ADMIN" firstName:@"Yelp" lastName:@"Admin" isAdmin:YES error:nil];
+  [[self dataStore] addOrUpdateUserWithTagId:@"ADMIN" firstName:@"Yelp" lastName:@"Admin" isAdmin:YES error:nil];
   
   // Start processing
   [kegManager_ start];
   
   // Start video server
-  if ([PBRAVCaptureService isSupported]) {
-    captureService_ = [[PBRAVCaptureService alloc] init];
+  if ([FFAVCaptureService isSupported]) {
+    captureService_ = [[FFAVCaptureService alloc] init];
     [captureService_ start:nil];
-    [captureService_ enableBonjourWithName:nil];
+    [captureService_ enableBonjourWithDomain:@"local." serviceType:@"_kegtime._tcp." name:nil];
   }
   return YES;
 }

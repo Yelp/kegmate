@@ -164,12 +164,12 @@
     size_t width = CVPixelBufferGetWidth(imageBuffer);
     size_t height = CVPixelBufferGetHeight(imageBuffer);
     FFPixelFormat pixelFormat = FFPixelFormatFromCVPixelFormat(kCVPixelFormat);
-    FFDebug(@"Creating frame; width=%d, height=%d, CVPixelBufferSize=%d, pixelFormat=%d", width, height, size, pixelFormat);
+    FFDebug(@"Creating frame; width=%zd, height=%zd, CVPixelBufferSize=%zd, pixelFormat=%d", width, height, size, pixelFormat);
     _frame = FFVFrameCreateWithData(FFVFormatMake(width, height, pixelFormat), NULL);
   }
 
   if (_data == NULL || size != _dataSize) {
-    FFDebug(@"Allocating video data of size: %d", size);
+    FFDebug(@"Allocating video data of size: %zd", size);
     if (_data != NULL) free(_data);
     _data = malloc(size);
     _dataSize = size;
@@ -202,9 +202,8 @@
   if (_frame == NULL) {
     _frame = FFVFrameCreate(FFVFormatMake(192, 144, kFFPixelFormatType_32BGRA));
     FFFill32BGRAImage(_frame, 0);
-    FFDebug(@"Filled 32BGRA image");
+    FFDebug(@"Filled 32BGRA image for test frame");
   }
-  FFDebug(@"[TEST FRAME]");
   return _frame;  
 }
 

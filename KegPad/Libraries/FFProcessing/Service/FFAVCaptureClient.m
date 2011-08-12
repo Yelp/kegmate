@@ -1,19 +1,19 @@
 //
-//  PBRAVCaptureClient.m
+//  FFAVCaptureClient.m
 //  KegPad
 //
 //  Created by Gabriel Handford on 7/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
-#import "PBRAVCaptureClient.h"
-#import "PBRStreamDefines.h"
-#import "PBRDefines.h"
+#import "FFAVCaptureClient.h"
+#import "FFStreamDefines.h"
+#import "FFUtils.h"
 
 #define MAX_MESSAGE_SIZE (100 * 1024)
 
 
-@implementation PBRAVCaptureClient
+@implementation FFAVCaptureClient
 
 - (id)init {
   if ((self = [super init])) {
@@ -25,8 +25,6 @@
 - (void)dealloc {
   [self close];
   free(_messageData);
-  // TODO(gabe): Who is releasing these?
-  //FFVFrameRelease(_frame);
   [super dealloc];
 }
 
@@ -37,7 +35,7 @@
 }
 
 - (void)reconnect {
-  PBRDebug(@"Reconnecting");
+  FFDebug(@"Reconnecting");
   [self close];
   [self connect];
 }
@@ -63,7 +61,7 @@
   if (_frame == NULL || _frame->format.width != width || _frame->format.height != height) {
     if (_frame != NULL) FFVFrameRelease(_frame);
     _frame = FFVFrameCreate(FFVFormatMake(width, height, kFFPixelFormatType_32BGRA));
-    PBRDebug(@"Frame size received: %d, %d (length=%d)", width, height, length);
+    FFDebug(@"Frame size received: %d, %d (length=%d)", width, height, length);
   }
 
   FFConvertFromJPEGDataToBGRA(image, _frame);
@@ -72,7 +70,7 @@
 }
 
 - (void)reset {
-  PBRDebug(@"Resetting");
+  FFDebug(@"Resetting");
   _messageLength = 0;
   _messageIndex = 0;
   [self reconnect];
@@ -81,9 +79,9 @@
 - (void)readBytes:(uint8_t *)bytes length:(NSUInteger)length {
   if (length == 0) return;
 
-  //PBRDebug(@"[RECV] Data, length=%d", length);
+  //FFDebug(@"[RECV] Data, length=%d", length);
   if (length < 8) {
-    PBRDebug(@"Not enough data");
+    FFDebug(@"Not enough data");
     [self reset];
     return;
   }
@@ -97,11 +95,11 @@
     length -= 8;
     
     if (headerCommand != 0xBEEF || _messageLength > MAX_MESSAGE_SIZE) {
-      PBRDebug(@"Invalid data");
+      FFDebug(@"Invalid data");
       [self reset];
       return;
     }
-    //PBRDebug(@"[RECV] Message: command=%X, messageLength=%d, length=%d", headerCommand, _messageLength, length);
+    //FFDebug(@"[RECV] Message: command=%X, messageLength=%d, length=%d", headerCommand, _messageLength, length);
   }
   
   if (_messageIndex + length >= _messageLength) {
@@ -113,7 +111,7 @@
     _messageIndex = 0;
     
     NSUInteger lengthOverflow = length - lengthLeft;
-    //PBRDebug(@"[RECV] Message complete; Overflow=%d", lengthOverflow);
+    //FFDebug(@"[RECV] Message complete; Overflow=%d", lengthOverflow);
     NSAssert(lengthOverflow >= 0, @"No more length left");
     if (lengthOverflow > 0) {
       [self readBytes:&bytes[lengthLeft] length:lengthOverflow];
@@ -121,20 +119,20 @@
   } else {
     // We got less data than was needed to fill the message data
     if ((length + _messageIndex) > MAX_MESSAGE_SIZE) {
-      PBRDebug(@"Invalid data");
+      FFDebug(@"Invalid data");
       [self reset];
       return;
     }
     memcpy(_messageData + _messageIndex, bytes, length);
     _messageIndex += length;
-    //PBRDebug(@"[RECV] Message: %d/%d", _messageIndex, _messageLength);
+    //FFDebug(@"[RECV] Message: %d/%d", _messageIndex, _messageLength);
   }
 }
 
 
 // Implementation for reading raw uncompressed frames
 /*
- - (void)connection:(PBRConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length {
+ - (void)connection:(FFConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length {
  if (_bufferIndex + length >= _frameLength) {
  // Need to split up the data across frames
  NSUInteger lengthLeft = (_frameLength - _bufferIndex);    

@@ -126,6 +126,73 @@ double FFAngleRadians(double x, double y) {
  }
  */
 
+// From Three20: UIImageAdditions#convertRect
+CGRect FFCGRectConvert(CGRect rect, CGSize size, UIViewContentMode contentMode) {
+  if (size.width != rect.size.width || size.height != rect.size.height) {
+    if (contentMode == UIViewContentModeLeft) {
+      return CGRectMake(rect.origin.x,
+                        rect.origin.y + floor(rect.size.height/2 - size.height/2),
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeRight) {
+      return CGRectMake(rect.origin.x + (rect.size.width - size.width),
+                        rect.origin.y + floor(rect.size.height/2 - size.height/2),
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeTop) {
+      return CGRectMake(rect.origin.x + floor(rect.size.width/2 - size.width/2),
+                        rect.origin.y,
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeBottom) {
+      return CGRectMake(rect.origin.x + floor(rect.size.width/2 - size.width/2),
+                        rect.origin.y + floor(rect.size.height - size.height),
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeCenter) {
+      return CGRectMake(rect.origin.x + floor(rect.size.width/2 - size.width/2),
+                        rect.origin.y + floor(rect.size.height/2 - size.height/2),
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeBottomLeft) {
+      return CGRectMake(rect.origin.x,
+                        rect.origin.y + floor(rect.size.height - size.height),
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeBottomRight) {
+      return CGRectMake(rect.origin.x + (rect.size.width - size.width),
+                        rect.origin.y + (rect.size.height - size.height),
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeTopLeft) {
+      return CGRectMake(rect.origin.x,
+                        rect.origin.y,                        
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeTopRight) {
+      return CGRectMake(rect.origin.x + (rect.size.width - size.width),
+                        rect.origin.y,
+                        size.width, size.height);
+    } else if (contentMode == UIViewContentModeScaleAspectFill) {
+      CGSize viewSize = size;
+      if (viewSize.height < viewSize.width) {
+        viewSize.width = floorf((viewSize.width/viewSize.height) * rect.size.height);
+        viewSize.height = rect.size.height;
+      } else {
+        viewSize.height = floorf((viewSize.height/viewSize.width) * rect.size.width);
+        viewSize.width = rect.size.width;
+      }
+      return CGRectMake(rect.origin.x + floorf(rect.size.width/2 - viewSize.width/2),
+                        rect.origin.y + floorf(rect.size.height/2 - viewSize.height/2),
+                        viewSize.width, viewSize.height);
+    } else if (contentMode == UIViewContentModeScaleAspectFit) {
+      if (size.height < size.width) {
+        size.height = floorf((size.height/size.width) * rect.size.width);
+        size.width = rect.size.width;
+      } else {
+        size.width = floorf((size.width/size.height) * rect.size.height);
+        size.height = rect.size.height;
+      }
+      return CGRectMake(rect.origin.x + floorf(rect.size.width/2 - size.width/2),
+                        rect.origin.y + floorf(rect.size.height/2 - size.height/2),
+                        size.width, size.height);
+    }
+  }
+  return rect;
+}
+
 @implementation FFUtils
 
 + (NSString *)documentsDirectory {	

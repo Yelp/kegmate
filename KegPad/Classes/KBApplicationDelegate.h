@@ -25,7 +25,7 @@
 #import "KBKegManager.h"
 #import "KBApplication.h"
 #import <AudioToolbox/AudioServices.h>
-#import "PBRAVCaptureService.h"
+#import "FFAVCaptureService.h"
 
 /*!
  Main application delegate.
@@ -33,7 +33,7 @@
 @interface KBApplicationDelegate : NSObject <KBApplicationDelegate, KBUserEditViewControllerDelegate> {
   UIWindow *window_;    
   
-  KBDataStore *store_;
+  KBDataStore *dataStore_;
 
   UINavigationController *navigationController_;
   KBDisplayViewController *displayViewController_;
@@ -44,15 +44,16 @@
   KBKegManager *kegManager_;
   KBTwitterShare *twitterShare_;
   
-  PBRAVCaptureService *captureService_;
+  FFAVCaptureService *captureService_;
   
   BOOL animating_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, readonly) KBKegManager *kegManager;
+@property (nonatomic, readonly) KBDataStore *dataStore;
 @property (nonatomic, readonly) KBTwitterShare *twitterShare;
-@property (nonatomic, readonly) PBRAVCaptureService *captureService;
+@property (nonatomic, readonly) FFAVCaptureService *captureService;
 
 - (void)setKeg:(KBKeg *)keg;
 

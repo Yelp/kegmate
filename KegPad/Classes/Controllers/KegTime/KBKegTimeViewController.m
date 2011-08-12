@@ -3,24 +3,34 @@
 //  KegPad
 //
 //  Created by Gabriel Handford on 7/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Yelp. All rights reserved.
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 #import "KBKegTimeViewController.h"
-#import "PBRAVCaptureServiceClient.h"
-#import "PBRAVCaptureRemoteClient.h"
+#import "FFAVCaptureServiceClient.h"
+#import "FFAVCaptureRemoteClient.h"
 #import "FFAVCaptureSessionReader.h"
 
 
 @implementation KBKegTimeViewController
 
-@synthesize videoSize=_videoSize;
-
 - (id)init {
   if ((self = [super init])) {
     self.title = @"KegTime";
     self.modalPresentationStyle = UIModalPresentationFormSheet;
-    _videoSize = CGSizeZero;
   }
   return self;
 }
@@ -31,14 +41,11 @@
   [super dealloc];
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  if (_videoSize.width == 0) _videoSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
-  
-  if (!videoView_) {
-    videoView_ = [[FFReaderView alloc] initWithFrame:CGRectMake(0, 0, _videoSize.width, _videoSize.height)];
-  }
-  [self.view addSubview:videoView_];
+- (void)loadView {
+  [videoView_ release];
+  videoView_ = [[FFReaderView alloc] init];
+  videoView_.videoFrameSize = CGSizeMake(144, 192); // TODO(gabe): Get this from the reader
+  self.view = videoView_;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -77,7 +84,7 @@
     if (service.name) {
       self.title = [NSString stringWithFormat:@"KegTime: %@", service.name];  
     }
-    videoServer_ = [[PBRAVCaptureServiceClient alloc] initWithService:service];
+    videoServer_ = [[FFAVCaptureServiceClient alloc] initWithService:service];
     [videoServer_ connect];
     [self setReader:videoServer_];
   }
@@ -87,7 +94,7 @@
   if (host.name) {
     self.title = [NSString stringWithFormat:@"KegTime: %@", host.name];  
   }
-  videoServer_ = [[PBRAVCaptureRemoteClient alloc] initWithHost:host];
+  videoServer_ = [[FFAVCaptureRemoteClient alloc] initWithHost:host];
   [videoServer_ connect];
   [self setReader:videoServer_];
 }

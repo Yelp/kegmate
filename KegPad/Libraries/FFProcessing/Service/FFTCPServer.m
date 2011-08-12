@@ -1,5 +1,5 @@
 /*
- File: PBRTCPServer.m
+ File: FFTCPServer.m
  Abstract: A TCP server that listens on an arbitrary port.
  Version: 1.7
  
@@ -50,20 +50,20 @@
 #include <unistd.h>
 #include <CFNetwork/CFSocketStream.h>
 
-#import "PBRTCPServer.h"
-#import "PBRDefines.h"
-#import "PBRStreamUtils.h"
+#import "FFTCPServer.h"
+#import "FFUtils.h"
+#import "FFStreamUtils.h"
 
 
-NSString *const PBRTCPServerErrorDomain = @"PBRTCPServerErrorDomain";
+NSString *const FFTCPServerErrorDomain = @"FFTCPServerErrorDomain";
 
-@interface PBRTCPServer ()
+@interface FFTCPServer ()
 @property (retain, nonatomic) NSNetService *netService;
 @property (assign, nonatomic) uint16_t port;
 @property (retain, nonatomic) NSString *address;
 @end
 
-@implementation PBRTCPServer
+@implementation FFTCPServer
 
 @synthesize delegate=_delegate, netService=_netService, port=_port, address=_address;
 
@@ -86,9 +86,9 @@ NSString *NSStringFromSockAddr(const struct sockaddr_in *addr_in) {
 
 // This function is called by CFSocket when a new connection comes in.
 // We gather some data here, and convert the function call to a method
-// invocation on PBRTCPServer.
-static void PBRTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) {
-  PBRTCPServer *server = (PBRTCPServer *)info;
+// invocation on FFTCPServer.
+static void FFTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) {
+  FFTCPServer *server = (FFTCPServer *)info;
   if (kCFSocketAcceptCallBack == type) { 
     // for an AcceptCallBack, the data parameter is a pointer to a CFSocketNativeHandle
     CFSocketNativeHandle nativeSocketHandle = *(CFSocketNativeHandle *)data;
@@ -117,10 +117,10 @@ static void PBRTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType 
 
 - (BOOL)start:(NSError **)error {
   CFSocketContext socketCtxt = {0, self, NULL, NULL, NULL};
-  _ipv4socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&PBRTCPServerAcceptCallBack, &socketCtxt);
+  _ipv4socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&FFTCPServerAcceptCallBack, &socketCtxt);
 	
   if (_ipv4socket == NULL) {
-    if (error) *error = [[NSError alloc] initWithDomain:PBRTCPServerErrorDomain code:kPBRTCPServerNoSocketsAvailable userInfo:nil];
+    if (error) *error = [[NSError alloc] initWithDomain:FFTCPServerErrorDomain code:kFFTCPServerNoSocketsAvailable userInfo:nil];
     if (_ipv4socket) CFRelease(_ipv4socket);
     _ipv4socket = NULL;
     return NO;
@@ -138,9 +138,10 @@ static void PBRTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType 
   addr4.sin_port = 0;
   addr4.sin_addr.s_addr = htonl(INADDR_ANY);
   NSData *address4 = [NSData dataWithBytes:&addr4 length:sizeof(addr4)];
+  self.address = [FFStreamUtils addressFromData:address4];
 	
   if (kCFSocketSuccess != CFSocketSetAddress(_ipv4socket, (CFDataRef)address4)) {
-    if (error) *error = [[NSError alloc] initWithDomain:PBRTCPServerErrorDomain code:kPBRTCPServerCouldNotBindToIPv4Address userInfo:nil];
+    if (error) *error = [[NSError alloc] initWithDomain:FFTCPServerErrorDomain code:kFFTCPServerCouldNotBindToIPv4Address userInfo:nil];
     if (_ipv4socket) CFRelease(_ipv4socket);
     _ipv4socket = NULL;
     return NO;
@@ -151,7 +152,7 @@ static void PBRTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType 
 	NSData *addr = [(NSData *)CFSocketCopyAddress(_ipv4socket) autorelease];
 	memcpy(&addr4, [addr bytes], [addr length]);
 	self.port = ntohs(addr4.sin_port);
-  PBRDebug(@"Port: %d", self.port);
+  FFDebug(@"Address: %@, Port: %d", self.address, self.port);
 	
   // set up the run loop sources for the sockets
   CFRunLoopRef cfrl = CFRunLoopGetCurrent();
@@ -164,7 +165,7 @@ static void PBRTCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType 
 }
 
 - (BOOL)stop {
-  PBRDebug(@"Stopping TCP server");
+  FFDebug(@"Stopping TCP server");
   [self disableBonjour];
   
 	if (_ipv4socket) {

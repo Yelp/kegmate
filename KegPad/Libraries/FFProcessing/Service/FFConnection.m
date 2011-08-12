@@ -1,23 +1,23 @@
 //
-//  PBRConnection.m
+//  FFConnection.m
 //  PBR
 //
 //  Created by Gabriel Handford on 11/19/10.
 //  Copyright 2010 Yelp. All rights reserved.
 //
 
-#import "PBRConnection.h"
-#import "PBRDefines.h"
-#import "PBRStreamUtils.h"
+#import "FFConnection.h"
+#import "FFUtils.h"
+#import "FFStreamUtils.h"
 
 
-@interface PBRConnection ()
+@interface FFConnection ()
 @property (retain, nonatomic) NSString *serviceName;
 - (void)_close;
 @end
 
 
-@implementation PBRConnection
+@implementation FFConnection
 
 @synthesize output=_output, input=_input, delegate=_delegate, serviceName=_serviceName;
 
@@ -63,19 +63,19 @@
   [self _close];
   self.serviceName = service.name;
   BOOL success = [service getInputStream:&_input outputStream:&_output];
-  PBRDebug(@"Open net service: %d (%@)", success, service);
+  FFDebug(@"Open net service: %d (%@)", success, service);
   if (success) {    
     [self _openStreams];
     return YES;
   }
-  PBRDebug(@"Failed to open net service");
+  FFDebug(@"Failed to open net service");
   return NO;
 }
 
 - (BOOL)openWithName:(NSString *)name ipAddress:(NSString *)ipAddress port:(SInt32)port {
   [self _close];
   self.serviceName = name;
-  NSData *address = [PBRStreamUtils dataForIPAddress:ipAddress];
+  NSData *address = [FFStreamUtils dataForIPAddress:ipAddress];
   
   CFHostRef host = CFHostCreateWithAddress(NULL, (CFDataRef)address);
   CFReadStreamRef readStream;
@@ -91,7 +91,7 @@
 }
 
 - (void)_close {
-  PBRDebug(@"Closing connection");
+  FFDebug(@"Closing connection");
   _input.delegate = nil;
   [_input close];
   [_input removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
@@ -114,17 +114,17 @@
 
 - (NSInteger)writeBytes:(uint8_t *)bytes length:(NSUInteger)length {
   if (!_output) { 
-    //PBRDebug(@"No output");
+    //FFDebug(@"No output");
     return -1; 
   }
   if (![_output hasSpaceAvailable]) {
-    //PBRDebug(@"No space available");
+    //FFDebug(@"No space available");
     return -2;
   }
   NSUInteger bytesToWrite = length;
   NSInteger bytesTotalWritten = 0;
   do {
-    //PBRDebug(@"Writing bytes (%d)", bytesToWrite);
+    //FFDebug(@"Writing bytes (%d)", bytesToWrite);
     if (![_output hasSpaceAvailable]) break;
     NSInteger bytesWritten = [_output write:&bytes[bytesTotalWritten] maxLength:bytesToWrite];
     if (bytesWritten > 0) {
@@ -134,7 +134,7 @@
       break;
     } 
   } while (bytesToWrite > 0);
-  //PBRDebug(@"Wrote %d", bytesTotalWritten);
+  //FFDebug(@"Wrote %d", bytesTotalWritten);
   return bytesTotalWritten;
 }
 
@@ -144,11 +144,11 @@
   }
   
   NSInteger bytesRead = [_input read:_readBuffer maxLength:_readBufferSize];
-  //PBRDebug(@"bytesRead=%d", bytesRead);
+  //FFDebug(@"bytesRead=%d", bytesRead);
   if (bytesRead > 0) {
     [_delegate connection:self didReadBytes:_readBuffer length:bytesRead];
   } else if (bytesRead < 0) {
-    PBRDebug(@"Error on read: %d", bytesRead);
+    FFDebug(@"Error on read: %d", bytesRead);
     [self close];
   }
 }
@@ -156,25 +156,25 @@
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {
   switch(eventCode) {
     case NSStreamEventOpenCompleted: {
-      PBRDebug(@"Connection open completed");
+      FFDebug(@"Connection open completed");
       break;
     }
     case NSStreamEventHasSpaceAvailable: {
-      //PBRDebug(@"Has space (available for write)");
+      //FFDebug(@"Has space (available for write)");
       break;
     }
     case NSStreamEventHasBytesAvailable: {
-      //PBRDebug(@"Has bytes (for read)");
+      //FFDebug(@"Has bytes (for read)");
       [self read];
       break;
     }
     case NSStreamEventErrorOccurred: {
-      PBRDebug(@"Connection error: %@", [[stream streamError] gh_fullDescription]);
+      FFDebug(@"Connection error: %@", [[stream streamError] gh_fullDescription]);
       [self close];
       break;
     }
     case NSStreamEventEndEncountered: {
-      PBRDebug(@"Connection end");
+      FFDebug(@"Connection end");
       [self close];
       break;
     }
@@ -223,7 +223,7 @@
     NSInteger lengthSent = [self writeBytes:&data[_messageIndex] length:([_message length] - _messageIndex)];
     if (lengthSent > 0) {
       _messageIndex += lengthSent;
-      //PBRDebug(@"[SEND] Message complete: %d", [_messageData length]);
+      //FFDebug(@"[SEND] Message complete: %d", [_messageData length]);
       NSAssert(lengthSent <= [_message length], @"Sent more than we had?");
       if (lengthSent == [_message length]) {
         [_message release];

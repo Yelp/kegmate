@@ -3,16 +3,30 @@
 //  KegPad
 //
 //  Created by Gabriel Handford on 7/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Yelp. All rights reserved.
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 #import "KBKegTimeSearchViewController.h"
 
 #import "KBKegTimeViewController.h"
-#import "PBRDefines.h"
+#import "FFUtils.h"
 #import "KBApplication.h"
-#import "PBRStreamUtils.h"
+#import "FFStreamUtils.h"
 #import "KBKegTimeHost.h"
+#import "KBKegTimeHostInfoViewController.h"
 
 
 @implementation KBKegTimeSearchNavigationController
@@ -51,6 +65,7 @@
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close)] autorelease];
     
     [self addForm:[KBUIForm formWithTitle:@"Add Host" text:nil target:self action:@selector(_addHost) context:nil showDisclosure:YES] section:3];    
+    [self addForm:[KBUIForm formWithTitle:@"Info" text:nil target:self action:@selector(_showInfo) context:nil showDisclosure:YES] section:3];    
   }
   return self;
 }
@@ -74,13 +89,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  PBRAVCaptureService *captureService = [[KBApplication sharedDelegate] captureService];
   _footerLabel.text = @"";
-  if (captureService) {
-    NSString *address = [PBRStreamUtils ipv4Address];
-    _footerLabel.text = [NSString stringWithFormat:@"%@:%d", address, captureService.port];
-  }
-  
   if (!_searchService) {
     [self _refresh];
   }
@@ -92,7 +101,7 @@
 
 - (void)_refresh {
   if (!_searchService) {
-    _searchService = [[PBRServiceBrowser alloc] init];
+    _searchService = [[FFServiceBrowser alloc] initWithServiceType:@"_kegtime._tcp." domain:@"local."];
     _searchService.delegate = self;
   }
 
@@ -110,7 +119,7 @@
 
 - (KBKegTimeViewController *)_kegTimeViewController {
   KBKegTimeViewController *kegTimeViewController = [[KBKegTimeViewController alloc] init];
-  kegTimeViewController.videoSize = CGSizeMake(540, 720);
+  //kegTimeViewController.videoSize = CGSizeMake(540, 720);
   [self.navigationController pushViewController:kegTimeViewController animated:YES];
   [kegTimeViewController release];
   return kegTimeViewController;
@@ -127,13 +136,19 @@
 }
 
 - (void)_addHost {
-  KegTimeHostEditViewController *kegTimeHostEditViewController = [[KegTimeHostEditViewController alloc] init];
+  KBKegTimeHostEditViewController *kegTimeHostEditViewController = [[KBKegTimeHostEditViewController alloc] init];
   kegTimeHostEditViewController.delegate = self;
   [self.navigationController pushViewController:kegTimeHostEditViewController animated:YES];
   [kegTimeHostEditViewController release];
 }
 
-- (void)searchService:(PBRServiceBrowser *)searchService didFindAndResolveService:(NSNetService *)netService {
+- (void)_showInfo {
+  KBKegTimeHostInfoViewController *kegTimeHostInfoViewController = [[KBKegTimeHostInfoViewController alloc] init];
+  [self.navigationController pushViewController:kegTimeHostInfoViewController animated:YES];
+  [kegTimeHostInfoViewController release];
+}
+
+- (void)searchService:(FFServiceBrowser *)searchService didFindAndResolveService:(NSNetService *)netService {
   for (KBUIForm *form in [self formsForSection:1]) {
     if ([[form.context name] isEqualToString:[netService name]]) {
       form.context = netService;
@@ -147,13 +162,13 @@
   [self reload];  
 }
 
-- (void)searchService:(PBRServiceBrowser *)searchService didError:(NSError *)error {
-  PBRDebug(@"Error: %@", error);
+- (void)searchService:(FFServiceBrowser *)searchService didError:(NSError *)error {
+  FFDebug(@"Error: %@", error);
   //[self showAlertWithTitle:@"Error" message:@"We had a problem"]; // TODO(gabe): Real error
   [[_searchService gh_proxyAfterDelay:2] search];
 }
 
-- (void)kegTimeHostEditViewController:(KegTimeHostEditViewController *)kegTimeHostEditViewController didAddHost:(KBKegTimeHost *)host {  
+- (void)kegTimeHostEditViewController:(KBKegTimeHostEditViewController *)kegTimeHostEditViewController didAddHost:(KBKegTimeHost *)host {  
   [self addForm:[KBUIForm formWithTitle:host.name text:[NSString stringWithFormat:@"%@:%@", host.ipAddress, host.port] target:self action:@selector(_kegPadSelectHost:) context:host showDisclosure:YES] section:2];    
   [self reload];
   [self.navigationController popToViewController:self animated:YES];

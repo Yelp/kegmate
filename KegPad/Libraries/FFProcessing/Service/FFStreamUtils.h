@@ -1,5 +1,5 @@
 //
-//  PBRStreamUtils.h
+//  FFStreamUtils.h
 //  PBR
 //
 //  Created by Gabriel Handford on 11/18/10.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface PBRStreamUtils : NSObject {
+@interface FFStreamUtils : NSObject {
 
 }
 
@@ -20,8 +20,6 @@
 + (NSString *)addressFromData:(NSData *)data;
 
 + (NSArray *)currentAddresses;
-
-+ (NSString *)ipv4Address;
 
 + (NSSet *)addressStringsFromNetService:(NSNetService *)netService;
 

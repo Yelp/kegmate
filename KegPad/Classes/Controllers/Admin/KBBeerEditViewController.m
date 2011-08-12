@@ -67,6 +67,8 @@
   [countryField_ release];
   [imageNameField_ release];
   [_beerEditId release];
+  _imagePickerPopoverController.delegate = nil;
+  [_imagePickerPopoverController release];
   [super dealloc];
 }
 
@@ -120,6 +122,10 @@
 }
 
 - (void)_selectFromPhotoLibrary {
+  _imagePickerPopoverController.delegate = nil;
+  [_imagePickerPopoverController release];
+  _imagePickerPopoverController = nil;
+  
   UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
   imagePickerController.allowsEditing = YES;
   imagePickerController.delegate = self;
@@ -127,7 +133,7 @@
   _imagePickerPopoverController = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
   _imagePickerPopoverController.delegate = self;
   [_imagePickerPopoverController presentPopoverFromRect:self.view.frame
-                                                 inView:self.view
+                                                 inView:imageNameField_.textField
                                permittedArrowDirections:UIPopoverArrowDirectionAny
                                                animated:YES];
   [imagePickerController release];

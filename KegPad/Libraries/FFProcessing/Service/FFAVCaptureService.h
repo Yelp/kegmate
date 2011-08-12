@@ -1,16 +1,16 @@
 //
-//  PBRAVCaptureService.h
+//  FFAVCaptureService.h
 //  KegPad
 //
 //  Created by Gabriel Handford on 7/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
 #import "FFAVCaptureSessionReader.h"
-#import "PBRService.h"
+#import "FFService.h"
 
 
-@interface PBRAVCaptureService : PBRService {
+@interface FFAVCaptureService : FFService {
   FFAVCaptureSessionReader *_videoCapture;
 
   NSTimer *_timer;  

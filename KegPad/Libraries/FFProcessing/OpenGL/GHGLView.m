@@ -115,7 +115,7 @@
 	
 	glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &_backingWidth);
 	glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &_backingHeight);
-	
+
 	if (USE_DEPTH_BUFFER) {
 		glGenRenderbuffersOES(1, &_depthRenderbuffer);
 		glBindRenderbufferOES(GL_RENDERBUFFER_OES, _depthRenderbuffer);
@@ -124,7 +124,7 @@
 	}
 	
 	if (glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES) {
-		GHGLDebug(@"failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
+		GHGLDebug(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
 		return NO;
 	}
 	
