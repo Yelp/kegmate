@@ -26,17 +26,17 @@
 
 @interface KBKegTimeViewController : UIViewController {
   FFAVCaptureClient *videoServer_;
-  FFReaderView *videoView_;
-  
-  FFAVCaptureSessionReader *videoCapture_;
+  FFReaderView *videoView_;  
 }
-
-- (void)enableCamera;
 
 - (void)close;
 
 - (void)connectToService:(NSNetService *)service;
 
 - (void)connectToHost:(KBKegTimeHost *)host;
+
+- (void)setReader:(id<FFReader>)reader;
+
+- (void)setSecondaryReader:(id<FFReader>)secondaryReader;
 
 @end

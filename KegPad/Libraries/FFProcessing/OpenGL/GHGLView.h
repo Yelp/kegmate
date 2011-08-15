@@ -32,14 +32,12 @@
   BOOL _supportsBGRA8888;
   BOOL _supportsNPOT;
   
-	id<GHGLViewDrawable> _drawable; // weak
+	NSMutableArray /*of id<GHGLViewDrawable>*/*_drawables;
 		
 }
 
-@property (retain, nonatomic) id<GHGLViewDrawable> drawable;
 @property (readonly, nonatomic) GLint backingWidth;
 @property (readonly, nonatomic) GLint backingHeight;
-
 
 - (void)startAnimation;
 - (void)stopAnimation;
@@ -47,6 +45,12 @@
 - (void)drawView;
 
 - (void)setFrameInterval:(NSInteger)frameInterval;
+
+- (NSArray *)drawables;
+- (void)addDrawable:(id<GHGLViewDrawable>)drawable;
+- (void)removeDrawable:(id<GHGLViewDrawable>)drawable;
+- (void)removeDrawables;
+- (void)setDrawable:(id<GHGLViewDrawable>)drawable;
 
 @end
 

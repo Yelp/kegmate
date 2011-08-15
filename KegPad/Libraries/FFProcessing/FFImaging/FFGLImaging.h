@@ -9,6 +9,7 @@
 #import "GHGLCommon.h"
 
 typedef enum {
+  FFGLImagingNone,
   FFGLImagingHue = 1 << 0,
   FFGLImagingBrightness = 1 << 1,
   FFGLImagingBlur = 1 << 2,

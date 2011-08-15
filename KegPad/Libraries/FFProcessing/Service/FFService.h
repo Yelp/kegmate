@@ -31,6 +31,8 @@
 
 - (void)writeMessage:(NSData *)message;
 
+- (NSInteger)connectionCount;
+
 - (void)didAcceptConnection:(FFConnection *)connection; // For subclasses
 - (void)didCloseConnection:(FFConnection *)connection; // For subclasses
 

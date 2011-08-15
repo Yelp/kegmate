@@ -26,6 +26,8 @@
   dispatch_queue_t _queue;
 }
 
+- (BOOL)isStarted;
+
 @end
 #else
 @interface FFAVCaptureSessionReader : NSObject <FFReader> { 

@@ -110,16 +110,15 @@
   [_searchService search];
 }
 
-- (void)_camera {
-  KBKegTimeViewController *kegTimeViewController = [[KBKegTimeViewController alloc] init];
-  [kegTimeViewController enableCamera];
-  [self.navigationController pushViewController:kegTimeViewController animated:YES];
-  [kegTimeViewController release];
-}
-
 - (KBKegTimeViewController *)_kegTimeViewController {
   KBKegTimeViewController *kegTimeViewController = [[KBKegTimeViewController alloc] init];
-  //kegTimeViewController.videoSize = CGSizeMake(540, 720);
+  
+  FFAVCaptureService *captureService = [[KBApplication sharedDelegate] captureService];
+  if (captureService) {  
+    [kegTimeViewController setSecondaryReader:captureService.videoCapture];
+    [captureService startCapture];
+  }
+  
   [self.navigationController pushViewController:kegTimeViewController animated:YES];
   [kegTimeViewController release];
   return kegTimeViewController;

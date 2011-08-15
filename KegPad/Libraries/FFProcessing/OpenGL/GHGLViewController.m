@@ -25,10 +25,11 @@
 }
 
 - (void)loadView {
+  [_GLView release];
 	_GLView = [[GHGLView alloc] init];
 	NSAssert(_GLView, @"No GL view");
 	_GLView.frame = CGRectMake(0, 0, 320, 480);
-	_GLView.drawable = _drawable;
+	[_GLView addDrawable:_drawable];
 	self.view = _GLView;
 }
 

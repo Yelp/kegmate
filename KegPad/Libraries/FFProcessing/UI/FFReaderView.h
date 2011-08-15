@@ -8,6 +8,7 @@
 
 #import "FFPlayerView.h"
 #import "FFGLImaging.h"
+#import "FFGLDrawable.h"
 
 @class FFReaderView;
 
@@ -20,6 +21,9 @@
   
   CGSize _videoFrameSize;
   
+  FFGLDrawable *_drawable;
+  FFGLDrawable *_secondaryDrawable;
+  
   id<FFReaderViewDelegate> _delegate;
 }
 
@@ -31,10 +35,6 @@
 
 - (void)setReader:(id<FFReader>)reader;
 
-- (void)setImagingOptions:(FFGLImagingOptions)imagingOptions;
-
-- (void)startAnimation;
-
-- (void)stopAnimation;
+- (void)setSecondaryReader:(id<FFReader>)secondaryReader;
 
 @end

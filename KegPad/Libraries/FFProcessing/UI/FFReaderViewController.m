@@ -35,8 +35,7 @@
 }
 
 - (void)loadView {
-  if (!_playerView) {
-    
+  if (!_playerView) {    
     _playerView = [[FFPlayerView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];  
     _playerView.delegate = self;
   }
@@ -47,7 +46,7 @@
 
 - (void)_reload {
   FFGLDrawable *drawable = [[FFGLDrawable alloc] initWithReader:_reader filter:nil];
-  _playerView.drawable = drawable;
+  [_playerView setDrawable:drawable];
   [drawable release];
 }
 
@@ -63,7 +62,8 @@
 
 - (void)setImagingOptions:(FFGLImagingOptions)imagingOptions {
   [self view];
-  [(FFGLDrawable *)_playerView.drawable setImagingOptions:imagingOptions];
+  FFGLDrawable *drawable = [[_playerView drawables] gh_firstObject];
+  [drawable setImagingOptions:imagingOptions];
 }
 
 - (void)playerViewDidTouch:(FFPlayerView *)playerView {

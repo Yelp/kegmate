@@ -21,12 +21,13 @@
   FFGLImaging *_imaging;
   FFGLImagingOptions _imagingOptions;
   
-  NSUInteger _frameCount;
-
+  CGRect _textureFrame; // If not set, defaults to the size of the view
 }
 
 @property (retain, nonatomic) id<FFFilter> filter;
 @property (retain, nonatomic) id<FFReader> reader;
+
+@property (assign, nonatomic) CGRect textureFrame;
 
 - (id)initWithReader:(id<FFReader>)reader filter:(id<FFFilter>)filter;
 

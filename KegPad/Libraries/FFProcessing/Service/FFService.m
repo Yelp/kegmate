@@ -86,6 +86,11 @@
   }
 }
 
+- (NSInteger)connectionCount {
+  if (!_connections) return 0;
+  return [_connections count];
+}
+
 #pragma mark -
 
 - (void)connection:(FFConnection *)connection didReadBytes:(uint8_t *)bytes length:(NSUInteger)length { }
