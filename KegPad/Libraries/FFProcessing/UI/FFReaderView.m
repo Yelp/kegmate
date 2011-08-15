@@ -12,21 +12,20 @@
 #import "FFAVCaptureSessionReader.h"
 #import "FFGLDrawable.h"
 
+@interface FFReaderView ()
+@property (retain, nonatomic) FFGLDrawable *drawable;
+@property (retain, nonatomic) FFGLDrawable *secondaryDrawable;
+@end
+
 
 @implementation FFReaderView
 
-@synthesize delegate=_delegate, playerView=_playerView, videoFrameSize=_videoFrameSize;
+@synthesize delegate=_delegate, playerView=_playerView, videoFrameSize=_videoFrameSize, drawable=_drawable, secondaryDrawable=_secondaryDrawable;
 
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundColor = [UIColor blackColor];
-    _playerView = [[FFPlayerView alloc] init];  
-    _playerView.delegate = self;
-    FFGLDrawable *drawable = [[FFGLDrawable alloc] init];
-    _playerView.drawable = drawable;
-    [drawable release];
-    [self addSubview:_playerView];
   }
   return self;
 }
@@ -35,14 +34,15 @@
   [_playerView stopAnimation];
   _playerView.delegate = nil;
   [_playerView release];
+  [_drawable release];
+  [_secondaryDrawable release];
   [super dealloc];
 }
 
 - (void)layoutSubviews {
   [super layoutSubviews];
   if (_videoFrameSize.width > 0) {
-    _playerView.frame = FFCGRectConvert(self.frame, _videoFrameSize, UIViewContentModeScaleAspectFit);    
-    //_playerView.frame = CGRectMake(roundf((self.frame.size.width - width)/2.0), roundf((self.frame.size.height - height)/2.0), width, height);
+    _playerView.frame = FFCGRectConvert(self.frame, _videoFrameSize, UIViewContentModeScaleAspectFit);
   } else {
     _playerView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
   }
@@ -53,20 +53,29 @@
   [self setNeedsLayout];
 }
 
+- (FFPlayerView *)playerView {
+  if (!_playerView) {
+    _playerView = [[FFPlayerView alloc] init];  
+    _playerView.delegate = self;
+    [self addSubview:_playerView];
+    [_playerView startAnimation];
+  }
+  return _playerView;
+}
+
 - (void)setReader:(id<FFReader>)reader {
-  ((FFGLDrawable *)_playerView.drawable).reader = reader;
+  if (_drawable) [[self playerView] removeDrawable:_drawable];  
+  _drawable = [[FFGLDrawable alloc] initWithReader:reader filter:nil];
+  [[self playerView] addDrawable:_drawable];
+  [self setNeedsLayout];
 }
 
-- (void)startAnimation {
-  [_playerView startAnimation];
-}
-
-- (void)stopAnimation {
-  [_playerView stopAnimation];
-}
-
-- (void)setImagingOptions:(FFGLImagingOptions)imagingOptions {
-  [(FFGLDrawable *)_playerView.drawable setImagingOptions:imagingOptions];
+- (void)setSecondaryReader:(id<FFReader>)secondaryReader {
+  if (_secondaryDrawable) [[self playerView] removeDrawable:_secondaryDrawable];  
+  _secondaryDrawable = [[FFGLDrawable alloc] initWithReader:secondaryReader filter:nil];
+  _secondaryDrawable.textureFrame = CGRectMake(10, 50, 144, 192);
+  [[self playerView] addDrawable:_secondaryDrawable];
+  [self setNeedsLayout];
 }
 
 - (void)playerViewDidTouch:(FFPlayerView *)playerView {

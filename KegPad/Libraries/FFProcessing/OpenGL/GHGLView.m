@@ -17,7 +17,7 @@
 
 @implementation GHGLView
 
-@synthesize drawable=_drawable, backingWidth=_backingWidth, backingHeight=_backingHeight;
+@synthesize backingWidth=_backingWidth, backingHeight=_backingHeight;
 @synthesize context=_context; // Private properties
 
 + (Class)layerClass {
@@ -60,6 +60,8 @@
     GHGLDebug(@"GL_MAX_TEXTURE_SIZE: %d", _maxTextureSize);
     GHGLDebug(@"Supports BGRA8888 textures: %d", _supportsBGRA8888);
     GHGLDebug(@"Supports NPOT textures: %d", _supportsNPOT);
+    
+    _drawables = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -69,38 +71,58 @@
 	
 	if ([EAGLContext currentContext] == _context) 
 		[EAGLContext setCurrentContext:nil];
-	
-	[_context release];  
-  [_drawable release];
+
   [_displayLink invalidate];
+	[_context release];
+  [_drawables release];
 	[super dealloc];
 }
 
 - (void)drawView {
-  if (!_drawable) return;
+  if ([_drawables count] == 0) return;
   glBindFramebufferOES(GL_FRAMEBUFFER_OES, _viewFramebuffer);
-  BOOL render = YES;
-  while (render) {
-    render = [_drawable drawView:self];
-    if (render) {
-      glBindRenderbufferOES(GL_RENDERBUFFER_OES, _viewRenderbuffer);
-      [_context presentRenderbuffer:GL_RENDERBUFFER_OES];
-    }
+  BOOL render = NO;
+  for (id<GHGLViewDrawable> drawable in _drawables) {
+    render |= [drawable drawView:self];    
+  }
+  if (render) {
+    glBindRenderbufferOES(GL_RENDERBUFFER_OES, _viewRenderbuffer);
+    [_context presentRenderbuffer:GL_RENDERBUFFER_OES];
   }
 }
 
 - (void)layoutSubviews {
-  if (!_drawable) return;
+  if ([_drawables count] == 0) return;
 	[EAGLContext setCurrentContext:_context];
 	[self _destroyFramebuffer];
 	[self _createFramebuffer];
 	[self drawView];
 }
 
+- (NSArray *)drawables {
+  return _drawables;
+}
+
 - (void)setDrawable:(id<GHGLViewDrawable>)drawable {
-  [drawable retain];
-  [_drawable release];
-  _drawable = drawable;
+  [self removeDrawables];
+  [self addDrawable:drawable];
+}
+
+- (void)removeDrawables {
+  for (id<GHGLViewDrawable> drawable in _drawables) {
+    [drawable stop];
+  }
+  [_drawables removeAllObjects];
+}
+
+- (void)removeDrawable:(id<GHGLViewDrawable>)drawable {
+  [drawable stop];
+  [_drawables removeObject:drawable];
+}
+
+- (void)addDrawable:(id<GHGLViewDrawable>)drawable {
+  [_drawables addObject:drawable];
+  if (_displayLink) [drawable start]; // Start if we are running
   [self setNeedsLayout];
 }
 
@@ -128,7 +150,9 @@
 		return NO;
 	}
 	
-	[_drawable setupView:self];
+  for (id<GHGLViewDrawable> drawable in _drawables) {
+    [drawable setupView:self];
+  }
 	return YES;
 }
 
@@ -148,11 +172,13 @@
   if (!_displayLink) {
     GHGLDebug(@"Start animation");
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawView)];    
-    _displayLink.frameInterval = 3;
+    //_displayLink.frameInterval = 3;
     [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     GHGLDebug(@"Display link; frame interval %d", _displayLink.frameInterval);
-    if (!_drawable) GHGLError(@"No drawable set");
-    [_drawable start];
+  }
+  if ([_drawables count] == 0) GHGLError(@"No drawable set, can't start it");
+  for (id<GHGLViewDrawable> drawable in _drawables) {
+    [drawable start];
   }
 }
 
@@ -166,7 +192,9 @@
     [_displayLink invalidate];
     _displayLink = nil;    
   }
-  [_drawable stop];
+  for (id<GHGLViewDrawable> drawable in _drawables) {
+    [drawable stop];
+  }
 }
 
 - (void)setFrameInterval:(NSInteger)frameInterval {

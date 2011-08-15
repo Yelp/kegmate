@@ -13,8 +13,10 @@
 
 @implementation FFAVCaptureService
 
+@synthesize videoCapture=_videoCapture;
+
 - (void)dealloc {
-  [self stopStreamingVideo];
+  [self stopCapture];
   [super dealloc];
 }
 
@@ -31,27 +33,36 @@
 }
 
 - (void)didAcceptConnection:(FFConnection *)connection {
-  [self startStreamingVideo];
+  [self startCapture];
 }
 
 - (void)didCloseConnection:(FFConnection *)connection {
-  if ([self.connections count] == 0) {
-    [self stopStreamingVideo];
+  if ([self connectionCount] == 0) {
+    [self stopCapture];
   }
 }
 
-- (BOOL)startStreamingVideo {
-  if (_timer) return NO;
+- (FFAVCaptureSessionReader *)videoCapture {
+  if (!_videoCapture) {
+    _videoCapture = [[FFAVCaptureSessionReader alloc] init];
+  }
+  return _videoCapture;
+}
 
-  FFDebug(@"Starting AV writer");  
-  _videoCapture = [[FFAVCaptureSessionReader alloc] init];
-  [_videoCapture start:nil];
+- (BOOL)startCapture {
+  FFAVCaptureSessionReader *videoCapture = [self videoCapture];
+  if (![videoCapture isStarted]) {
+    FFDebug(@"Starting AV writer");
+    [videoCapture start:nil];
+  }
+
+  if (_timer) return NO;
   _timer = [NSTimer scheduledTimerWithTimeInterval:kStreamWriteInterval target:self selector:@selector(writeNextFrameToStream) 
                                           userInfo:nil repeats:YES];
   return YES;
 }
 
-- (void)stopStreamingVideo {
+- (void)stopCapture {
   FFDebug(@"Stopping AV writer");
   [_timer invalidate];
   _timer = nil;
@@ -61,6 +72,8 @@
 }
 
 - (void)writeNextFrameToStream {
+  if ([self connectionCount] <= 0) return;
+  
   FFVFrameRef frame = [_videoCapture nextFrame:nil];
   if (frame != NULL) {
     NSData *messageData = JPEGDataCreateFromFFVFrame(frame, kJPEGQuality);

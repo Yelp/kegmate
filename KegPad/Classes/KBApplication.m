@@ -49,7 +49,6 @@ static NSObject<KBApplicationDelegate> *KBApplicationSharedDelegate = NULL;
 
 + (KBDataStore *)dataStore {
   return [[self sharedDelegate] dataStore];
-  //return [[self sharedDelegate] kegManager].dataStore;
 }
 
 @end

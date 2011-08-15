@@ -16,8 +16,10 @@
   NSTimer *_timer;  
 }
 
-- (BOOL)startStreamingVideo;
-- (void)stopStreamingVideo;
+@property (readonly, nonatomic) FFAVCaptureSessionReader *videoCapture;
+
+- (BOOL)startCapture;
+- (void)stopCapture;
 
 + (BOOL)isSupported;
 

@@ -38,6 +38,10 @@
   [videoCaptureDevice unlockForConfiguration];  
 }
 
+- (BOOL)isStarted {
+  return (!!_captureSession);
+}
+
 - (BOOL)start:(NSError **)error {
   if (_captureSession) {
     FFSetError(error, 0, @"Capture session already started");
@@ -117,8 +121,7 @@
 - (FFVFrameRef)nextFrame:(NSError **)error {
   _wantsData = YES;
   if (!_captureSession) {
-    //[self start:error];
-    NSAssert(NO, @"Call start: before requesting frame");
+    FFDebug(@"Next frame called with no capture session (forgot to start or stop?)");
     return NULL;
   }
   

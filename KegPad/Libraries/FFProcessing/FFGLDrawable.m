@@ -12,11 +12,13 @@
 
 @implementation FFGLDrawable
 
-@synthesize filter=_filter, reader=_reader;
+@synthesize filter=_filter, reader=_reader, textureFrame=_textureFrame;
 
 - (id)init {
   if ((self = [super init])) {
     _GLFormat = GL_BGRA;
+    _imagingOptions = FFGLImagingOptionsMake(FFGLImagingNone, 0);
+    _textureFrame = CGRectZero;
   }
   return self;
 }
@@ -63,7 +65,7 @@
     //FFDebug(@"No frame from FFReader");
     return NO;
   }
-  
+
   if (_filter) {
     frame = [_filter filterFrame:frame error:nil];
     if (frame == NULL) return NO;
@@ -76,15 +78,6 @@
     FFDebug(@"No data");
     return NO;
   }
-  
-  // Testing JPEG encode/decode frames
-  /*
-  NSData *JPEGData = JPEGDataCreateFromFFVFrame(frame, 0.6);
-  FFDebug(@"JPEG data length: %d", [JPEGData length]);
-  for (int i = 0, size = FFVFormatGetSize(frame->format); i < size; i++) data[i] = 0;
-  FFConvertFromJPEGDataToBGRA(JPEGData, data);
-  [JPEGData release];
-   */
     
   //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 	glLoadIdentity();
@@ -97,6 +90,7 @@
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);  
   
+  // Create texture with data or update existing texture data
   if (!_textureLoaded) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, format.width, format.height, 0, _GLFormat, GL_UNSIGNED_BYTE, data);        
     _textureLoaded = YES;
@@ -112,12 +106,17 @@
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   GHGLCheckError();
 
-  CGRect texRect = CGRectMake(0, 0, view.frame.size.height, view.frame.size.width); // TODO(gabe): ??
+  // TODO(gabe): Height and width, x and y are flipped
+  CGRect textureFrame = CGRectMake(0, 0, view.frame.size.height, view.frame.size.width);
+  if (_textureFrame.size.width > 0 && _textureFrame.size.height > 0) {
+    textureFrame = CGRectMake(_textureFrame.origin.y, _textureFrame.origin.x, _textureFrame.size.height, _textureFrame.size.width);;
+  }
+  
   TexturedVertexData2D quad[4] = {
-    {{texRect.origin.y, texRect.origin.x}, {0, 1}},
-    {{texRect.origin.y, texRect.origin.x + texRect.size.width}, {1, 1}},
-    {{texRect.origin.y + texRect.size.height, texRect.origin.x}, {0, 0}},
-    {{texRect.origin.y + texRect.size.height, texRect.origin.x + texRect.size.width}, {1, 0}}
+    {{textureFrame.origin.y, textureFrame.origin.x}, {0, 1}},
+    {{textureFrame.origin.y, textureFrame.origin.x + textureFrame.size.width}, {1, 1}},
+    {{textureFrame.origin.y + textureFrame.size.height, textureFrame.origin.x}, {0, 0}},
+    {{textureFrame.origin.y + textureFrame.size.height, textureFrame.origin.x + textureFrame.size.width}, {1, 0}}
   };
   
   NSAssert(_imaging, @"No imaging");
@@ -125,12 +124,8 @@
   
   /*
   [_imageEncoder GLReadPixels];
-  if (_frameCount == 30) {
-    [_imageEncoder writeToPhotosAlbum];    
-  }
+  [_imageEncoder writeToPhotosAlbum];    
    */
-  
-  _frameCount++;
   return YES;
 }
 

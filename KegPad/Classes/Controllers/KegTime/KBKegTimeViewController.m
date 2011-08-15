@@ -55,9 +55,6 @@
 
 - (void)close {
   self.title = @"KegTime";
-  [videoCapture_ close];
-  [videoCapture_ release];
-  videoCapture_ = nil;  
   [videoServer_ close];
   [videoServer_ release];
   videoServer_ = nil;  
@@ -66,16 +63,11 @@
 - (void)setReader:(id<FFReader>)reader {
   [self view];
   [videoView_ setReader:reader];
-  [videoView_ startAnimation];
 }
 
-- (void)enableCamera {
-  [videoCapture_ close];
-  [videoCapture_ release];
-  videoCapture_ = nil;  
-  videoCapture_ = [[FFAVCaptureSessionReader alloc] init];
-  [videoCapture_ start:nil];
-  [self setReader:videoCapture_];
+- (void)setSecondaryReader:(id<FFReader>)secondaryReader {
+  [self view];
+  [videoView_ setSecondaryReader:secondaryReader];
 }
 
 - (void)connectToService:(NSNetService *)service {  
