@@ -176,17 +176,36 @@ TexturedVertexData2D flipquad[4] = {
   } else if (FFGLImagingHasMode(options.mode, FFGLImagingContrast)) {
     [self contrast:quad amount:options.contrastAmount];
   } else {
-    [self draw:quad];
+    [FFGLImaging drawVertexData2D:quad];
     return NO;
   }
   return YES;
 }
 
-- (void)draw:(TexturedVertexData2D[4])quad {
++ (void)drawVertexData2D:(TexturedVertexData2D[4])quad {
   glVertexPointer(2, GL_FLOAT, sizeof(TexturedVertexData2D), &quad[0].vertex.x);
   glTexCoordPointer(2, GL_FLOAT, sizeof(TexturedVertexData2D), &quad[0].texCoord.s);	
   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
   GHGLCheckError();
+}  
+
++ (void)drawVertexData3D:(TexturedVertexData3D[4])quad {
+  glEnable(GL_TEXTURE_2D);
+  glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+  
+  glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  
+  glVertexPointer(3, GL_FLOAT, sizeof(TexturedVertexData3D), &quad[0].vertex);
+  glTexCoordPointer(2, GL_FLOAT, sizeof(TexturedVertexData3D), &quad[0].texCoord);	
+  glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+  GHGLCheckError();
+  
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+  glDisable(GL_BLEND);
+	glDisable(GL_TEXTURE_2D);
 }  
 
 // The following filters change the TexEnv state in various ways.

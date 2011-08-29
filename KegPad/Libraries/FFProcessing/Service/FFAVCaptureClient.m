@@ -80,7 +80,7 @@
   if (length == 0) return;
 
   //FFDebug(@"[RECV] Data, length=%d", length);
-  if (length < 8) {
+  if (length < 8 && _messageLength == 0) {
     FFDebug(@"Not enough data");
     [self reset];
     return;

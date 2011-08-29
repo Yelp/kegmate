@@ -66,7 +66,6 @@
 			free(imageData);
 			[image release];
 		}
-		glEnable(GL_BLEND);
 		[textureData release];
 	}
 	return self;

@@ -41,11 +41,16 @@
 
 - (void)layoutSubviews {
   [super layoutSubviews];
+  CGRect frame;
   if (_videoFrameSize.width > 0) {
-    _playerView.frame = FFCGRectConvert(self.frame, _videoFrameSize, UIViewContentModeScaleAspectFit);
+    frame = FFCGRectConvert(self.frame, _videoFrameSize, UIViewContentModeScaleAspectFit);
   } else {
-    _playerView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
   }
+  
+  _playerView.frame = frame;
+  
+  _secondaryDrawable.textureFrame = CGRectMake(0, frame.size.height - 192, 144, 192);
 }
 
 - (void)setVideoFrameSize:(CGSize)videoFrameSize {
@@ -66,15 +71,14 @@
 - (void)setReader:(id<FFReader>)reader {
   if (_drawable) [[self playerView] removeDrawable:_drawable];  
   _drawable = [[FFGLDrawable alloc] initWithReader:reader filter:nil];
-  [[self playerView] addDrawable:_drawable];
+  [[self playerView] addDrawable:_drawable index:0];
   [self setNeedsLayout];
 }
 
 - (void)setSecondaryReader:(id<FFReader>)secondaryReader {
   if (_secondaryDrawable) [[self playerView] removeDrawable:_secondaryDrawable];  
   _secondaryDrawable = [[FFGLDrawable alloc] initWithReader:secondaryReader filter:nil];
-  _secondaryDrawable.textureFrame = CGRectMake(10, 50, 144, 192);
-  [[self playerView] addDrawable:_secondaryDrawable];
+  [[self playerView] addDrawable:_secondaryDrawable index:1];
   [self setNeedsLayout];
 }
 

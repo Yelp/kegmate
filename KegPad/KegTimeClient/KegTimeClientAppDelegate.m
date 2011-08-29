@@ -41,11 +41,21 @@
 
   [self.window addSubview:_viewController.view];
   [self.window makeKeyAndVisible];
+  
+  
+  // Start video server
+  /*
+  if ([FFAVCaptureService isSupported]) {
+    captureService_ = [[FFAVCaptureService alloc] init];
+    [captureService_ start:nil];
+    [captureService_ enableBonjourWithDomain:@"local." serviceType:@"_kegtime._tcp." name:nil];
+  }
+  */
   return YES;
 }
 
 - (FFAVCaptureService *)captureService {
-  return nil;
+  return captureService_;
 }
 
 - (KBDataStore *)dataStore {

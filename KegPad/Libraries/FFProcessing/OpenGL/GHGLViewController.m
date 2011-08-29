@@ -29,7 +29,7 @@
 	_GLView = [[GHGLView alloc] init];
 	NSAssert(_GLView, @"No GL view");
 	_GLView.frame = CGRectMake(0, 0, 320, 480);
-	[_GLView addDrawable:_drawable];
+	[_GLView addDrawable:_drawable index:0];
 	self.view = _GLView;
 }
 

@@ -143,6 +143,8 @@
     _readBuffer = calloc(1, _readBufferSize);
   }
   
+  if (![_input hasBytesAvailable]) return;
+    
   NSInteger bytesRead = [_input read:_readBuffer maxLength:_readBufferSize];
   //FFDebug(@"bytesRead=%d", bytesRead);
   if (bytesRead > 0) {

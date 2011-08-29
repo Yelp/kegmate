@@ -58,7 +58,9 @@ static inline FFGLImagingOptions FFGLImagingOptionsMake(FFGLImagingMode mode, fl
 
 - (BOOL)apply:(TexturedVertexData2D[4])quad options:(FFGLImagingOptions)options;
 
-- (void)draw:(TexturedVertexData2D[4])quad;
++ (void)drawVertexData2D:(TexturedVertexData2D[4])quad;
+
++ (void)drawVertexData3D:(TexturedVertexData3D[4])quad;
 
 - (void)brightness:(TexturedVertexData2D[4])quad amount:(float)amount;
 

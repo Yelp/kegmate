@@ -23,12 +23,14 @@
 
 #import "KBKegTimeSearchViewController.h"
 #import "KBDataStore.h"
+#import "FFAVCaptureService.h"
 
 @interface KegTimeClientAppDelegate : NSObject <UIApplicationDelegate> {
   KBKegTimeSearchNavigationController *_viewController;
   
   KBDataStore *_dataStore;
 
+  FFAVCaptureService *captureService_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

@@ -47,7 +47,7 @@
 - (void)setFrameInterval:(NSInteger)frameInterval;
 
 - (NSArray *)drawables;
-- (void)addDrawable:(id<GHGLViewDrawable>)drawable;
+- (void)addDrawable:(id<GHGLViewDrawable>)drawable index:(NSInteger)index;
 - (void)removeDrawable:(id<GHGLViewDrawable>)drawable;
 - (void)removeDrawables;
 - (void)setDrawable:(id<GHGLViewDrawable>)drawable;

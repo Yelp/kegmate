@@ -80,10 +80,15 @@
 
 - (void)drawView {
   if ([_drawables count] == 0) return;
+  
   glBindFramebufferOES(GL_FRAMEBUFFER_OES, _viewFramebuffer);
+  
+  //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glLoadIdentity();
+  
   BOOL render = NO;
   for (id<GHGLViewDrawable> drawable in _drawables) {
-    render |= [drawable drawView:self];    
+    render |= [drawable drawView:self];
   }
   if (render) {
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, _viewRenderbuffer);
@@ -105,7 +110,7 @@
 
 - (void)setDrawable:(id<GHGLViewDrawable>)drawable {
   [self removeDrawables];
-  [self addDrawable:drawable];
+  [self addDrawable:drawable index:0];
 }
 
 - (void)removeDrawables {
@@ -120,8 +125,9 @@
   [_drawables removeObject:drawable];
 }
 
-- (void)addDrawable:(id<GHGLViewDrawable>)drawable {
-  [_drawables addObject:drawable];
+- (void)addDrawable:(id<GHGLViewDrawable>)drawable index:(NSInteger)index {
+  if (index > [_drawables count]) index = [_drawables count];
+  [_drawables insertObject:drawable atIndex:index];
   if (_displayLink) [drawable start]; // Start if we are running
   [self setNeedsLayout];
 }
@@ -149,6 +155,16 @@
 		GHGLDebug(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
 		return NO;
 	}
+  
+  GHGLDebug(@"Setup view; viewport: (%d, %d, %d, %d)", 0, 0, _backingWidth, _backingHeight);
+  glViewport(0, 0, _backingWidth, _backingHeight);  
+	glMatrixMode(GL_PROJECTION);  
+	glLoadIdentity();
+  
+	glOrthof(0, _backingWidth, _backingHeight, 0, -1, 1);
+	glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  //glScalef(view.backingWidth, view.backingHeight, 1);
 	
   for (id<GHGLViewDrawable> drawable in _drawables) {
     [drawable setupView:self];
@@ -213,17 +229,6 @@
 }
 
 - (void)setupView:(GHGLView *)view {
-  GHGLDebug(@"Setup view; viewport: (%d, %d, %d, %d)", 0, 0, view.backingWidth, view.backingHeight);
-  glViewport(0, 0, view.backingWidth, view.backingHeight);  
-	glMatrixMode(GL_PROJECTION);
-  
-	glLoadIdentity();
-  
-	glOrthof(0, view.backingWidth, view.backingHeight, 0, -1, 1);
-	glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  //glScalef(view.backingWidth, view.backingHeight, 1);
-
   glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glEnable(GL_TEXTURE_2D);
