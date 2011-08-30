@@ -234,7 +234,7 @@
   twitterShare_ = [[KBTwitterShare alloc] init];
 
   // Set the keg (only 1 keg is currently supported)
-  KBKeg *keg = [kegManager_.dataStore kegAtPosition:0];
+  KBKeg *keg = [kegManager_.dataRouter currentKeg];
   if (keg) {
     [self setKeg:keg];
   }

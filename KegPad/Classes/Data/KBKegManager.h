@@ -21,29 +21,29 @@
 
 #import "KBKegProcessing.h"
 #import "KBUser.h"
-#import "KBDataStore.h"
+#import "KBDataRouter.h"
 
 /*!
  Interfaces to keg processing (may multiple in the future) and the data store; Keeps track of current user, pouring status,
  and triggering all the notifications.
  */
-@interface KBKegManager : NSObject <KBKegProcessingDelegate, RKObjectLoaderDelegate> {
+@interface KBKegManager : NSObject <KBKegProcessingDelegate> {
 
-  KBUser *loginUser_;
+  KBRKUser *loginUser_;
   NSTimeInterval activityTime_; // The time of last activity from the reference date
   BOOL pouring_; // YES if we are currently pouring
   
   KBKegProcessing *processing_;
   
-  KBDataStore *dataStore_;
+  KBDataRouter *dataRouter_;
 
   NSTimer *loginTimer_;
 
   NSString *username_;
 }
 
-@property (readonly, retain, nonatomic) KBUser *loginUser;
-@property (readonly, retain) KBDataStore *dataStore;
+@property (readonly, retain, nonatomic) KBRKUser *loginUser;
+@property (readonly, retain) KBDataRouter *dataRouter;
 @property (readonly, nonatomic) KBKegProcessing *processing;
 
 /*!
@@ -55,14 +55,13 @@
  Login user.
  User will logout automatically after a timeout (if not pouring).
  */
-- (void)login:(KBUser *)user;
+- (void)login:(KBRKUser *)user;
 
 /*!
  Login user with tag id.
  @param tagId
- @result nil if user unknown
  */
-- (KBUser *)loginWithTagId:(NSString *)tagId;
+- (void)loginWithTagId:(NSString *)tagId;
 
 /*!
  Logout.

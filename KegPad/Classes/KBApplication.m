@@ -47,8 +47,8 @@ static NSObject<KBApplicationDelegate> *KBApplicationSharedDelegate = NULL;
   return [[self sharedDelegate] twitterShare];
 }
 
-+ (KBDataStore *)dataStore {
-  return [[self sharedDelegate] kegManager].dataStore;
++ (KBDataRouter *)dataRouter {
+  return [[self sharedDelegate] kegManager].dataRouter;
 }
 
 + (NSString *)apiKey {

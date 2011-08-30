@@ -41,7 +41,7 @@
 
 + (KBTwitterShare *)twitterShare;
 
-+ (KBDataStore *)dataStore;
++ (KBDataRouter *)dataRouter;
 
 + (NSString *)apiKey;
 

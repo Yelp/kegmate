@@ -45,12 +45,12 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 
 @implementation KBKegManager
 
-@synthesize dataStore=dataStore_, loginUser=loginUser_, processing=processing_;
+@synthesize dataRouter=dataRouter_, loginUser=loginUser_, processing=processing_;
 @synthesize activityTime=activityTime_; // Private properties
 
 - (id)init {
   if ((self = [super init])) {
-    dataStore_ = [[KBDataStore alloc] init];
+    dataRouter_ = [[KBDataRouter alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_activityNotification:) name:KBActivityNotification object:nil];
   }
   return self;
@@ -61,7 +61,7 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   [loginTimer_ invalidate];
   processing_.delegate = nil;
   [processing_ release];
-  [dataStore_ release];
+  [dataRouter_ release];
   [loginUser_ release];
   [super dealloc];
 }
@@ -73,7 +73,7 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   }
 }
 
-- (void)login:(KBUser *)user {
+- (void)login:(KBRKUser *)user {
   NSParameterAssert(user);
   // Check if its the same user, so we don't log out and log in the same user,
   // though we will re-set the login date and timer below even if they are equal.
@@ -88,36 +88,20 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   loginTimer_ = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_checkLoginStatus) userInfo:nil repeats:YES];
 }
 
-- (KBUser *)loginWithTagId:(NSString *)tagId {
+- (void)loginWithTagId:(NSString *)tagId {
   // TODO(johnb): tagId is coming in with some giberish
   tagId = [tagId gh_strip];
-  
-  KBRKAuthToken *authToken = [[KBRKAuthToken alloc] init];
-  authToken.identifier = tagId;
-  [authToken getWithDelegate:self];
-
-  RKObjectManager* objectManager = [RKObjectManager sharedManager];
-  RKObjectMapping *authTokenMapping = [objectManager.mappingProvider objectMappingForKeyPath:@"auth_token"];
-  [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"/auth-tokens/magstripe.%@/?api_key=%@", tagId, [KBApplication apiKey], nil]
-                             objectMapping:authTokenMapping
-                                  delegate:self];
-  
-//  if ([NSString gh_isBlank:tagId]) return nil;
-//
-//  KBUser *user = (tagId ? [dataStore_ userWithTagId:tagId error:nil] : nil);
-//  if (user) {
-//    [self login:user];
-//    [[KBApplication sharedDelegate] playSystemSoundGlass];
-//    KBDebug(@"RFID=%@, user=%@", tagId, user);
-//  }
-//  return user;
-  return nil;
+  [dataRouter_ userWithAuthKey:tagId completion:^(KBRKUser *user, NSError *error){
+    if (user) {
+      [self login:user];
+      [[KBApplication sharedDelegate] playSystemSoundGlass];
+      KBDebug(@"RFID=%@, user=%@", tagId, user);
+    }
+  }];
 }
 
 - (void)_logout:(BOOL)postNotification {
-  //[tagId_ release];
-  //tagId_ = nil;
-  KBUser *previousUser = [self.loginUser retain];
+  KBRKUser *previousUser = [self.loginUser retain];
   self.activityTime = 0;
   self.loginUser = nil;
   [loginTimer_ invalidate];
@@ -134,7 +118,6 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 //! Run from timer after login, and logout if timeout was reached
 - (void)_checkLoginStatus {
   if (pouring_) return; // Don't log out current user if pouring
-  
   if ([NSDate timeIntervalSinceReferenceDate] - activityTime_ > kLoggedInTimeoutInterval) {
     [self logout];
   }
@@ -166,7 +149,7 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
   double maxPourAmountInLiters = [[NSUserDefaults standardUserDefaults] gh_doubleForKey:@"MaxPourAmountInLiters" withDefault:2.5];
 
   if (amount > 0 && amount <= maxPourAmountInLiters) {
-    [drink postToAPIWithDelegate:nil];
+    [dataRouter_ addDrink:drink completion:NULL];
     // XXX(johnb): Bring this feature back
     /*
     KBKegPour *lastPour = [dataStore_ lastPour:nil];
@@ -189,18 +172,12 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didChangeTemperature:(double)temperature {
-  BOOL save = NO;
-  
-  if (save) {
-    //[dataStore_ addKegTemperature:temperature keg:[dataStore_ kegAtPosition:0] error:nil];
-  } else {
-    KBRKThermoLog *thermoLog = [[KBRKThermoLog alloc] init];
-    thermoLog.temperatureC = [NSNumber numberWithDouble:temperature];
-    // TODO(johnb): Make the sensor id configurable?
-    thermoLog.sensorId = @"1";
-    [thermoLog postToAPIWithDelegate:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:KBRKThermoLogDidChangeNotification object:thermoLog];
-  }
+  KBRKThermoLog *thermoLog = [[KBRKThermoLog alloc] init];
+  thermoLog.temperatureC = [NSNumber numberWithDouble:temperature];
+  // TODO(johnb): Make the sensor id configurable?
+  thermoLog.sensorId = @"1";
+  [dataRouter_ addThermoLog:thermoLog completion:NULL];
+  [[NSNotificationCenter defaultCenter] postNotificationName:KBRKThermoLogDidChangeNotification object:thermoLog];
 }
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didReceiveRFIDTagId:(NSString *)tagId {
@@ -209,29 +186,6 @@ static const NSTimeInterval kLoggedInTimeoutAfterPourInterval = 3.0; // Logs out
 
 - (void)kegProcessing:(KBKegProcessing *)kegProcessing didUpdatePourWithAmount:(double)amount flowRate:(double)flowRate {
   [[NSNotificationCenter defaultCenter] postNotificationName:KBKegDidUpdatePourNotification object:kegProcessing];
-}
-
-#pragma mark RKObjectLoaderDelegate
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-  NSLog(@"Loaded objects: %@", objects);
-  id object = [objects gh_firstObject];
-  if ([object isKindOfClass:[KBRKAuthToken class]]) {
-    username_ = [object username];
-  }
-}
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-  [alert show];
-  NSLog(@"Hit error: %@", error);
-}
-
-#pragma mark RKRequestDelegate
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-  NSLog(@"%@", response);
-  
 }
 
 @end

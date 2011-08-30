@@ -170,6 +170,7 @@
 		4225C42813824B110065FEE5 /* rk_kegs.json in Resources */ = {isa = PBXBuildFile; fileRef = 4225C42713824B110065FEE5 /* rk_kegs.json */; };
 		422D27BC128A81AD00AA0C62 /* beer_image_gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */; };
 		422D27BD128A81AD00AA0C62 /* beer_image_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D27BB128A81AD00AA0C62 /* beer_image_mask.png */; };
+		422D9C7613F64D3700D2A136 /* KBDataRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D9C7513F64D3700D2A136 /* KBDataRouter.m */; };
 		4237352A127264E000C48796 /* Lagunitas_PILS.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373528127264E000C48796 /* Lagunitas_PILS.png */; };
 		4237352B127264E000C48796 /* Ommegang_BPA.png in Resources */ = {isa = PBXBuildFile; fileRef = 42373529127264E000C48796 /* Ommegang_BPA.png */; };
 		423F976913E26B4000D10061 /* _KBRKThermoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 423F976613E26B3F00D10061 /* _KBRKThermoLog.m */; };
@@ -565,6 +566,8 @@
 		4225C42713824B110065FEE5 /* rk_kegs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rk_kegs.json; sourceTree = "<group>"; };
 		422D27BA128A81AD00AA0C62 /* beer_image_gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_image_gloss.png; sourceTree = "<group>"; };
 		422D27BB128A81AD00AA0C62 /* beer_image_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beer_image_mask.png; sourceTree = "<group>"; };
+		422D9C7413F64D3700D2A136 /* KBDataRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDataRouter.h; sourceTree = "<group>"; };
+		422D9C7513F64D3700D2A136 /* KBDataRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDataRouter.m; sourceTree = "<group>"; };
 		42373528127264E000C48796 /* Lagunitas_PILS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lagunitas_PILS.png; sourceTree = "<group>"; };
 		42373529127264E000C48796 /* Ommegang_BPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ommegang_BPA.png; sourceTree = "<group>"; };
 		423F976513E26B3F00D10061 /* _KBRKThermoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KBRKThermoLog.h; sourceTree = "<group>"; };
@@ -883,6 +886,8 @@
 			children = (
 				00C1134F12110639009C9B51 /* KBDataStore.h */,
 				00C1135012110639009C9B51 /* KBDataStore.m */,
+				422D9C7413F64D3700D2A136 /* KBDataRouter.h */,
+				422D9C7513F64D3700D2A136 /* KBDataRouter.m */,
 				00C113521211064A009C9B51 /* KBDataImporter.h */,
 				00C113531211064A009C9B51 /* KBDataImporter.m */,
 				00C1135F12110A70009C9B51 /* KBKegManager.h */,
@@ -1640,6 +1645,7 @@
 				4208435813E3359C00498211 /* KBRKBeerStyle.m in Sources */,
 				4208435D13E34AB200498211 /* _KBRKAuthToken.m in Sources */,
 				4208435E13E34AB200498211 /* KBRKAuthToken.m in Sources */,
+				422D9C7613F64D3700D2A136 /* KBDataRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
