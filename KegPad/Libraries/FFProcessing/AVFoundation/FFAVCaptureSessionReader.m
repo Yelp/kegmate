@@ -201,6 +201,10 @@
   return YES;
 }
 
+- (BOOL)isStarted {
+  return YES;
+}
+
 - (FFVFrameRef)nextFrame:(NSError **)error { 
   if (_frame == NULL) {
     _frame = FFVFrameCreate(FFVFormatMake(192, 144, kFFPixelFormatType_32BGRA));

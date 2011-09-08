@@ -40,12 +40,16 @@
 
     nameField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Name" text:nil] retain];
     [nameField_.textField addTarget:self action:@selector(_onTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    nameField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [self addForm:nameField_];
     infoField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Info" text:nil] retain];
+    infoField_.textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     [self addForm:infoField_];
     typeField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Type" text:nil] retain];
+    typeField_.textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [self addForm:typeField_];
     abvField_ = [[KBUIFormTextField formTextFieldWithTitle:@"ABV" text:nil] retain];
+    abvField_.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     [self addForm:abvField_];
     countryField_ = [[KBUIFormTextField formTextFieldWithTitle:@"Country" text:nil] retain];
     [self addForm:countryField_];
@@ -85,16 +89,27 @@
 
 - (BOOL)validate {
   NSString *name = nameField_.textField.text;
-  return (!([NSString gh_isBlank:name]));
+  if ([NSString gh_isBlank:name]) {
+    [self showAlertWithTitle:@"Error" message:@"Please specify a name"];
+    return NO;
+  }
+  
+  NSString *info = infoField_.textField.text;
+  if ([NSString gh_isBlank:info]) {
+    [self showAlertWithTitle:@"Error" message:@"Please specify info"];
+    return NO;
+  }
+  
+  NSString *abv = abvField_.textField.text;
+  if ([NSString gh_isBlank:abv]) {
+    [self showAlertWithTitle:@"Error" message:@"Please specify an ABV"];
+    return NO;
+  }
+  
+  return YES;
 }
 
-- (void)_updateNavigationItem {
-  self.navigationItem.rightBarButtonItem.enabled = [self validate];
-}
-
-- (void)_onTextFieldDidChange:(id)sender {
-  [self _updateNavigationItem];
-}
+- (void)_onTextFieldDidChange:(id)sender { }
 
 - (void)_save {
   if (![self validate]) return;

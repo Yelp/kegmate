@@ -33,6 +33,9 @@
 @interface FFAVCaptureSessionReader : NSObject <FFReader> { 
   FFVFrameRef _frame;
 }
+
+- (BOOL)isStarted;
+
 @end
 #endif
 
