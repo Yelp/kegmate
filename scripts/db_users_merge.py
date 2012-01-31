@@ -31,12 +31,12 @@
 #
 import sqlite3 as sqlite
 
-DEBUG = 0
+DEBUG = 1
 
 sqlite_files = [
-'/Users/johnb/Desktop/Beer/DB Backup/KegPad-3-20101123.sqlite',
-'/Users/johnb/Desktop/Beer/DB Backup/KegPad-2-20101123.sqlite',
-'/Users/johnb/Desktop/Beer/DB Backup/KegPad-1-20101117.sqlite']
+'/Users/johnb/Desktop/Beer/DB Backup/KegPad-3-20120131.sqlite',
+'/Users/johnb/Desktop/Beer/DB Backup/KegPad-2-20120131.sqlite',
+'/Users/johnb/Desktop/Beer/DB Backup/KegPad-1-20120131.sqlite']
 
 class Colors:
     HEADER = '\033[95m'
@@ -49,12 +49,14 @@ class Colors:
 def load_users_from_sqlite(sqlite_file):
     con = sqlite.connect(sqlite_file)
     cur = con.cursor()
-    cur.execute('SELECT * FROM ZKBUSER')
+    # Z_PK INTEGER PRIMARY KEY, Z_ENT INTEGER, Z_OPT INTEGER, ZPOURCOUNT INTEGER, ZISADMIN INTEGER, ZVOLUMEPOURED FLOAT, ZLASTNAME VARCHAR, ZFIRSTNAME VARCHAR, ZTAGID VARCHAR
+    cur.execute('SELECT ZKBUSER.Z_PK, ZKBUSER.ZPOURCOUNT, ZKBUSER.ZISADMIN, ZKBUSER.ZVOLUMEPOURED, ZKBUSER.ZLASTNAME, ZKBUSER.ZFIRSTNAME, ZKBUSER.ZTAGID FROM ZKBUSER')
     user_rows = cur.fetchall()
     users = []
     user_dict = {}
     for user_row in user_rows:
-        primary_key, _, _, pour_count, is_admin, volume_poured, last_name, first_name, tag_id = user_row
+        #print user_row
+        primary_key, pour_count, is_admin, volume_poured, last_name, first_name, tag_id = user_row
         user = {'pour_count': pour_count, 'volume_poured': volume_poured, 'tag_id': tag_id, 'first_name': first_name, 'last_name': last_name, 'is_admin': bool(is_admin)}
         users.append(user)
     return users
@@ -141,4 +143,6 @@ if __name__ == '__main__':
     for sqlite_file in sqlite_files:
         users.extend(load_users_from_sqlite(sqlite_file))
     unique_users = merge_duplicate_users(users)
-    print json_dict_for_users(unique_users)
+    #print json_dict_for_users(unique_users)
+    if DEBUG:
+        print "found %d unique users" % len(unique_users)
