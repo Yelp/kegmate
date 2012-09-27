@@ -18,7 +18,7 @@
 #define KB_ENABLE_BUZZER    1
 
 // Enable ID-12 RFID?
-#define KB_ENABLE_ID12_RFID 1
+#define KB_ENABLE_ID12_RFID 0
 
 // Enable MagStripe reader?
 #define KB_ENABLE_MAGSTRIPE 1
@@ -72,7 +72,7 @@
 #define KB_PIN_GPIO_B             A5
 
 
-#define KB_PIN_MAGSTRIPE_CLOCK    A3
+#define KB_PIN_MAGSTRIPE_CLOCK    3
 #define KB_PIN_MAGSTRIPE_DATA     A4
 #define KB_PIN_MAGSTRIPE_CARD_PRESENT A5
 
